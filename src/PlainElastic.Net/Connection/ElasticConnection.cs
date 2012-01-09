@@ -3,9 +3,9 @@ using System.IO;
 using System.Net;
 using System.Text;
 
-namespace PlainElastic.Net.Connection
+namespace PlainElastic.Net
 {
-    class ElasticConnection: IElasticConnection
+    public class ElasticConnection: IElasticConnection
     {
         
         public string DefaultHost { get; set; }
@@ -38,7 +38,7 @@ namespace PlainElastic.Net.Connection
 
         private OperationResult ExecuteRequest(string method, string command, string jsonData)
         {
-            Uri uri = CommandToUri(command);
+            string uri = CommandToUri(command);
             var request = CreateRequest(method, uri);
 
             // Add request payload if any.
@@ -59,7 +59,7 @@ namespace PlainElastic.Net.Connection
             }
         }
 
-        private HttpWebRequest CreateRequest(string method, Uri uri)
+        private HttpWebRequest CreateRequest(string method, string uri)
         {
             var request = (HttpWebRequest) WebRequest.Create(uri);
 
@@ -77,12 +77,12 @@ namespace PlainElastic.Net.Connection
             return request;
         }
 
-        private Uri CommandToUri(string command)
+        private string CommandToUri(string command)
         {
             if (Uri.IsWellFormedUriString(command, UriKind.Absolute))
-                return new Uri(command);
+                return command;
 
-            return new UriBuilder("HTTP", DefaultHost, DefaultPort, command).Uri;
+            return @"http://{0}:{1}/{2}".F(DefaultHost, DefaultPort, command);
         }
     }
 }

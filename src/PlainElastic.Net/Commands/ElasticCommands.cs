@@ -1,34 +1,24 @@
 namespace PlainElastic.Net
 {
+    /// <summary>
+    /// Provides shortcuts to Elastic Search command builders.
+    /// </summary>
     public class ElasticCommands
     {
 
-        public static GetCommand Get(string index, string type, string id)
+        public static GetCommandBuilder Get()
         {
-            return new GetCommand();
+            return new GetCommandBuilder();
         }
 
-        public static GetCommand Get()
+        public static IndexCommandBuilder Index()
         {
-            return new GetCommand();
+            return new IndexCommandBuilder();
         }
-
-
-        public static IndexCommand Index(string index, string type = null, string id = null)
-        {
-            return new IndexCommand();
-        }
-
-
 
         public static SearchCommand Search()
         {
             return new SearchCommand();
-        }
-
-        public static SearchCommand Search(string index, string type)
-        {
-            throw new System.NotImplementedException();
         }
     }
 }

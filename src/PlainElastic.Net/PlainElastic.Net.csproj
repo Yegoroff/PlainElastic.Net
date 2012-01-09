@@ -43,11 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\Command.cs" />
+    <Compile Include="Commands\CommandBuilder.cs" />
     <Compile Include="Commands\IndexCommand.cs" />
-    <Compile Include="Commands\GetCommand.cs" />
+    <Compile Include="Commands\GetCommandBuilder.cs" />
     <Compile Include="Commands\ElasticCommands.cs" />
-    <Compile Include="Commands\SelectCommand.cs" />
+    <Compile Include="Commands\SearchCommand.cs" />
     <Compile Include="Connection\ElasticConnection.cs" />
     <Compile Include="OperationResult.cs" />
     <Compile Include="Test.cs" />

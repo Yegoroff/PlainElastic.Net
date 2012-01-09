@@ -5,12 +5,7 @@ using System.Text;
 
 namespace PlainElastic.Net
 {
-    public class IndexCommand: Command<IndexCommand>
+    public class IndexCommandBuilder: CommandBuilder<IndexCommandBuilder>
     {
-        protected override IndexCommand Instance
-        {
-            get { return this; }
-        }
-
     }
 }

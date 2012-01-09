@@ -19,12 +19,11 @@ namespace PlainElastic.Net
 
         public void TestConnection()
         {
-            IElasticConnection connection = CreateConnection("http://localhost:9200");
-
+            IElasticConnection connection = new ElasticConnection { DefaultHost = "http://localhost", DefaultPort = 9200 };
 
             Customer customer = new Customer();
             
-            var fullQueryResult  =
+            var fullQueryResult =
                 connection.Put(
                 "http://localhost:9200/twitter/tweet/1",
                 customer.ToJson()
@@ -56,41 +55,38 @@ namespace PlainElastic.Net
             var customerResult = connection.Get("http://localhost:9200/twitter/tweet/1").As<Customer>();
 
 
-
-            connection.Get(command: ElasticCommands.Get().FromIndex("twitter").OfType("tweet").Id("1")).As<Customer>();
-
-
-
-            connection.Put(ElasticCommands.Index(index: "twitter", type: "customer", id: "1") ).As<Customer>();
+            connection.Get(ElasticCommands.Get().ForIndex("twitter").OfType("tweet").WithId("1")).As<Customer>();
 
 
 
-            connection.Put(ElasticCommands.Index(index: "twitter", type: typeof(Customer), id: "1" ), 
-                customer.ToJson()
-                ).As<Customer>();
+            //connection.Put(ElasticCommands.Index(index: "twitter", type: "customer", id: "1") ).As<Customer>();
 
+
+
+            //connection.Put(ElasticCommands.Index(index: "twitter", type: typeof(Customer), id: "1" ), 
+            //    customer.ToJson()
+            //    ).As<Customer>();
+            
 
             string query = "";
 
 
-            customerResult = connection.Post(command: Commands.Search()
-                                                                     .Index("customers")
-                                                                     .Type<Customer>(),
+            customerResult = connection.Post(command: ElasticCommands.Search().ForIndex("customers").OfType<Customer>(),
                                              jsonData: query)
                                              .As<Customer>();
 
-            customerResult = connection.Post(command: ElasticCommands.Search("customers", "customer"), 
-                                             jsonData: query)
-                                             .As<Customer>();
+            //customerResult = connection.Post(command: ElasticCommands.Search("customers", "customer"), 
+            //                                 jsonData: query)
+            //                                 .As<Customer>();
 
-            customerResult = connection.Post(command: ElasticCommands.Search(index: "customers", type: typeof(Customer)), 
-                                             jsonData: query)
-                                             .As<Customer>();
+            //customerResult = connection.Post(command: ElasticCommands.Search(index: "customers", type: typeof(Customer)), 
+            //                                 jsonData: query)
+            //                                 .As<Customer>();
 
             // CommandBuilder.Select("customers","customer")
 
 
-            customerResult = connection.Post(new SearchCommand().FromIndex("customer").OfType<Customer>().Id("1") ).As<Customer>();
+            customerResult = connection.Post(new SearchCommand().ForIndex("customer").OfType<Customer>(), query ).As<Customer>();
 
             //customerResult = connection.Post(command, query).As<Customer>();
 
@@ -100,31 +96,36 @@ namespace PlainElastic.Net
 
 
 
-            connection.Get(ElasticCommands.Get(index: "twitter", type: "tweet", id: "1"));
+//            connection.Get(ElasticCommands.Get(index: "twitter", type: "tweet", id: "1"));
 
 
 
 
 
-            connection.Get(new GetCommand().FromIndex("twitter").OfType("tweet").Id("1"));
-            connection.Get(() => new GetCommand(index: "twitter", type: "tweet", id: "1"));
+            //connection.Get(new GetCommand().ForIndex("twitter").OfType("tweet").Id("1"));
+            //connection.Get(() => new GetCommand(index: "twitter", type: "tweet", id: "1"));
         }
 
-
-
-        private IElasticConnection CreateConnection(string url)
+        public void TestMapping()
         {
-            return null;
+            
         }
+
+
+        public void TestQuery()
+        {
+
+        }
+
     }
+
+
 
     public class Customer
     {
         public string ToJson()
         {
-            
-
-
+            return "";
         }
     }
 }

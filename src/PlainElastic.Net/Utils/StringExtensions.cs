@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -62,5 +63,10 @@ namespace PlainElastic.Net
             return textsToSearch.ToArray();
         }
 
+
+        public static string AsString(this bool value)
+        {
+            return value.ToString(CultureInfo.InvariantCulture).ToLower();
+        }
     }
 }

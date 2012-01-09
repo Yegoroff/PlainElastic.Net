@@ -46,6 +46,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\When_GetCommand_with_reflected_fields_built.cs" />
+    <Compile Include="Commands\When_complete_GetCommand_built.cs" />
+    <Compile Include="Integration\Connection\When_partial_GET_request_on_valid_ES_instance.cs" />
+    <Compile Include="Integration\Connection\When_full_GET_request_on_valid_ES_instance.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -53,6 +57,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Utils\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PlainElastic.Net\PlainElastic.Net.csproj">
+      <Project>{7881C0A1-3020-45AC-944D-36DA5AE2D734}</Project>
+      <Name>PlainElastic.Net</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

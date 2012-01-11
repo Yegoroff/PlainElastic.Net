@@ -37,7 +37,6 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -50,8 +49,7 @@
     <Compile Include="Commands\SearchCommand.cs" />
     <Compile Include="Connection\ElasticConnection.cs" />
     <Compile Include="OperationResult.cs" />
-    <Compile Include="Test.cs" />
-    <Compile Include="IElasticConnection.cs" />
+    <Compile Include="Connection\IElasticConnection.cs" />
     <Compile Include="Mapping\Map.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryBuilder\AbstractQuery.cs" />
@@ -68,6 +66,10 @@
     <Compile Include="QueryBuilder\Term.cs" />
     <Compile Include="QueryBuilder\TermFilter.cs" />
     <Compile Include="QueryBuilder\Terms.cs" />
+    <Compile Include="Serialization\JsonNetSerializer.cs" />
+    <Compile Include="Serialization\IJsonSerializer.cs" />
+    <Compile Include="Serialization\SerializationExtensions.cs" />
+    <Compile Include="Utils\UrlBuilder.cs" />
     <Compile Include="Utils\ReflectExtensions.cs" />
     <Compile Include="Utils\Reflect.cs" />
     <Compile Include="Utils\StringExtensions.cs" />

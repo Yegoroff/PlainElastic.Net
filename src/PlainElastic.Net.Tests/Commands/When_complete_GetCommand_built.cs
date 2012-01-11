@@ -5,14 +5,8 @@ namespace PlainElastic.Net.Tests.Integration
     [Subject(typeof(GetCommandBuilder))]
     class When_complete_GetCommand_built
     {
-        Establish context = () =>
-        {
-            command = new GetCommandBuilder();
-        };
 
-
-        Because of = () => result = command
-            .ForIndex("Index").OfType("Type").WithId("Id")
+        Because of = () => result = new GetCommandBuilder(index:"Index", type:"Type", id: "Id")
             .Realtime(false)
             .Fields("field1,field2")
             .Routing("route")
@@ -22,7 +16,7 @@ namespace PlainElastic.Net.Tests.Integration
             .BuildCommand();
 
 
-        It should_starts_with_index_type_and_id = () => result.ShouldStartWith("/index/type/id");
+        It should_starts_with_index_type_and_id = () => result.ShouldStartWith("index/type/id");
 
         It should_contain_first_parameter_realtime_equals_to_false = () => result.ShouldContain("?realtime=false");
 
@@ -34,9 +28,9 @@ namespace PlainElastic.Net.Tests.Integration
 
         It should_contain_parameter_refresh_equals_to_true = () => result.ShouldContain("&refresh=true");
 
-        It should_return_correct_value = () => result.ShouldEqual(@"/index/type/id?realtime=false&fields=field1,field2&routing=route&preference=preference&refresh=true");
+        It should_return_correct_value = () => result.ShouldEqual(@"index/type/id?realtime=false&fields=field1,field2&routing=route&preference=preference&refresh=true");
 
-        private static GetCommandBuilder command;
+
         private static string result;
     }
 }

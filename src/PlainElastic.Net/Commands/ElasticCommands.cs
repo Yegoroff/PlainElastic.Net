@@ -6,9 +6,9 @@ namespace PlainElastic.Net
     public class ElasticCommands
     {
 
-        public static GetCommandBuilder Get()
+        public static GetCommandBuilder Get(string index = null, string type = null, string id = null)
         {
-            return new GetCommandBuilder();
+            return new GetCommandBuilder(index, type, id);
         }
 
         public static IndexCommandBuilder Index()

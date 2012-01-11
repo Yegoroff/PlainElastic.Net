@@ -10,7 +10,19 @@ namespace PlainElastic.Net
 
     public class GetCommandBuilder : CommandBuilder<GetCommandBuilder>
     {
+        public string Index { get; private set; }
+
+        public string Type { get; private set; }
+
         public string Id { get; private set; }
+
+
+        public GetCommandBuilder(string index = null, string type = null, string id = null)
+        {
+            Index = index;
+            Type = type;
+            Id = id;
+        }
 
 
         public GetCommandBuilder WithId(string id)
@@ -66,14 +78,9 @@ namespace PlainElastic.Net
         }
 
 
-        protected override string BuildPath()
+        protected override string BuildUrlPath()
         {
-            string path = base.BuildPath();
-            
-            if (!Id.IsNullOrEmpty())
-                path += "/" + Id;
-
-            return path;
+            return UrlBuilder.BuildUrlPath(Index, Type, Id);
         }
 
     }

@@ -7,7 +7,7 @@ namespace PlainElastic.Net.Tests.Integration
     {
         Establish context = () =>
         {
-            command = new GetCommandBuilder().ForIndex("Index").OfType("Type").WithId("Id");
+            command = new GetCommandBuilder(index:"Index", type:"Type", id:"Id");
         };
 
 
@@ -17,11 +17,11 @@ namespace PlainElastic.Net.Tests.Integration
             .BuildCommand();
 
 
-        It should_starts_with_index_type_and_id = () => result.ShouldStartWith("/index/type/id");
+        It should_starts_with_index_type_and_id = () => result.ShouldStartWith("index/type/id");
 
         It should_contain_first_parameter_fields_with_property1_and_property2 = () => result.ShouldContain("?fields=property1,property2");
 
-        It should_return_correct_value = () => result.ShouldEqual(@"/index/type/id?fields=property1,property2");
+        It should_return_correct_value = () => result.ShouldEqual(@"index/type/id?fields=property1,property2");
 
         private static GetCommandBuilder command;
         private static string result;

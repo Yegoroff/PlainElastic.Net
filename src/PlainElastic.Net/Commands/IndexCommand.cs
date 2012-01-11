@@ -7,5 +7,9 @@ namespace PlainElastic.Net
 {
     public class IndexCommandBuilder: CommandBuilder<IndexCommandBuilder>
     {
+        protected override string BuildUrlPath()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

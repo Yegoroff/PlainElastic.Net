@@ -3,7 +3,6 @@ namespace PlainElastic.Net
 {
     public interface IElasticConnection
     {
-
         string DefaultHost { get; set; }
 
         int DefaultPort { get; set; }
@@ -15,6 +14,5 @@ namespace PlainElastic.Net
         OperationResult Put(string command, string jsonData = null);
 
         OperationResult Delete(string command, string jsonData = null);
-
     }
 }

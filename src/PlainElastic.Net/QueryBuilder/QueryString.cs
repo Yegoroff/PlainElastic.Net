@@ -7,10 +7,10 @@ using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.QueryBuilder
 {
-    internal enum Rewrite { ConstantScoreDefault, ScoringBoolean, ConstantScoreBoolean, ConstantScoreFilter, TopTermsN, TopTermsBoostN }
+    public enum Rewrite { ConstantScoreDefault, ScoringBoolean, ConstantScoreBoolean, ConstantScoreFilter, TopTermsN, TopTermsBoostN }
 
 
-    internal class QueryString<T> : IJsonConvertible
+    public class QueryString<T> : IJsonConvertible
     {
 
         #region Query Templates

@@ -1,12 +1,11 @@
 using System;
-using System.Collections.Generic;
 using System.Linq.Expressions;
 using PlainElastic.Net.Utils;
 
 
 namespace PlainElastic.Net.QueryBuilder
 {
-    internal class Term<T> : IJsonConvertible
+    public class Term<T> : IJsonConvertible
     {
 
         #region Query Templates

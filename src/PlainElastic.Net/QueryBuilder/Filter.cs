@@ -2,7 +2,7 @@ using System;
 
 namespace PlainElastic.Net.QueryBuilder
 {
-    internal class Filter<T> : AbstractQuery<T>
+    public class Filter<T> : AbstractQuery<T>
     {
 
         #region Query Templates

@@ -1,8 +1,6 @@
-using System;
-
 namespace PlainElastic.Net.QueryBuilder
 {
-    internal class AndFilter<T> : Filter<T>
+    public class AndFilter<T> : Filter<T>
     {
 
         #region Query Templates

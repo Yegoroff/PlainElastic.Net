@@ -5,7 +5,7 @@ using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.QueryBuilder
 {
-    internal class TermFilter<T> : IJsonConvertible
+    public class TermFilter<T> : IJsonConvertible
     {
 
         #region Filter Templates

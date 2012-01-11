@@ -1,6 +1,6 @@
 namespace PlainElastic.Net.QueryBuilder
 {
-    internal class MustQuery<T> : Query<T>
+    public class MustQuery<T> : Query<T>
     {
         #region Query Templates
 

@@ -1,10 +1,9 @@
 using System;
-using System.Collections.Generic;
 
 
 namespace PlainElastic.Net.QueryBuilder
 {
-    internal class QueryBuilder<T>: AbstractQuery<T>
+    public class QueryBuilder<T> : AbstractQuery<T>
     {
         #region Query Templates
 

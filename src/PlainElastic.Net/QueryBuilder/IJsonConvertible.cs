@@ -1,6 +1,6 @@
 namespace PlainElastic.Net.QueryBuilder
 {
-    internal interface IJsonConvertible
+    public interface IJsonConvertible
     {
         string ToJson();
     }

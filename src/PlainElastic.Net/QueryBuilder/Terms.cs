@@ -6,7 +6,7 @@ using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.QueryBuilder
 {
-    internal class Terms<T> : IJsonConvertible
+    public class Terms<T> : IJsonConvertible
     {
 
         #region Query Templates

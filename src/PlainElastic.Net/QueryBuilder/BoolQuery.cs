@@ -3,7 +3,7 @@ using System;
 
 namespace PlainElastic.Net.QueryBuilder
 {
-    internal class BoolQuery<T> : AbstractQuery<T>
+    public class BoolQuery<T> : AbstractQuery<T>
     {
         #region Query Templates
 

@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace PlainElastic.Net.QueryBuilder
 {
-    internal abstract class AbstractQuery<T> : IJsonConvertible
+    public abstract class AbstractQuery<T> : IJsonConvertible
     {
 
         public abstract string QueryTemplate { get; }

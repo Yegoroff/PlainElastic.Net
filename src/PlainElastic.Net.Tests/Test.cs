@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using PlainElastic.Net.Serialization;
 
 namespace PlainElastic.Net
 {
@@ -20,6 +21,9 @@ namespace PlainElastic.Net
         public void TestConnection()
         {
             IElasticConnection connection = new ElasticConnection { DefaultHost = "http://localhost", DefaultPort = 9200 };
+
+
+            IJsonSerializer serializer = new JsonNetSerializer();
 
             Customer customer = new Customer();
             
@@ -52,10 +56,24 @@ namespace PlainElastic.Net
 
             // curl -XGET 'http://localhost:9200/twitter/tweet/1'
 
-            var customerResult = connection.Get("http://localhost:9200/twitter/tweet/1").As<Customer>();
+            var customerResult = connection.Get("http://localhost:9200/twitter/tweet/1");
+
+            Customer gotCustomer = serializer.ToGetResult<Customer>(customerResult);
 
 
-            connection.Get(ElasticCommands.Get().ForIndex("twitter").OfType("tweet").WithId("1")).As<Customer>();
+            // connection.Get(ElasticCommands.Get().ForIndex("twitter").OfType("tweet").WithId("1")).As<Customer>();
+
+            connection.Get(ElasticCommands.Get(index: "twitter", type: "tweet", id: "1")).As<Customer>();
+            connection.Get(ElasticCommands.Get(index: "twitter", type: typeof(Customer), id: "1")).As<Customer>();
+
+
+            connection.Get(ElasticCommands.Get(index:"customers", type:"customer", id: "1")
+                               .Realtime(false)
+                               .Fields("field1,field2")
+                               .Routing("route")
+                               .Preference(GetPrefernce.custom, "preference")
+                               .Refresh(true)
+                );
 
 
 
@@ -71,9 +89,9 @@ namespace PlainElastic.Net
             string query = "";
 
 
-            customerResult = connection.Post(command: ElasticCommands.Search().ForIndex("customers").OfType<Customer>(),
-                                             jsonData: query)
-                                             .As<Customer>();
+            //customerResult = connection.Post(command: ElasticCommands.Search().ForIndex("customers").OfType<Customer>(),
+            //                                 jsonData: query)
+            //                                 .As<Customer>();
 
             //customerResult = connection.Post(command: ElasticCommands.Search("customers", "customer"), 
             //                                 jsonData: query)
@@ -86,7 +104,7 @@ namespace PlainElastic.Net
             // CommandBuilder.Select("customers","customer")
 
 
-            customerResult = connection.Post(new SearchCommand().ForIndex("customer").OfType<Customer>(), query ).As<Customer>();
+            //customerResult = connection.Post(new SearchCommand().ForIndex("customer").OfType<Customer>(), query ).As<Customer>();
 
             //customerResult = connection.Post(command, query).As<Customer>();
 

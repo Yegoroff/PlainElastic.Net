@@ -43,12 +43,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\CommandBuilder.cs" />
-    <Compile Include="Commands\IndexCommand.cs" />
+    <Compile Include="Commands\IndexCommandBuilder.cs" />
     <Compile Include="Commands\GetCommandBuilder.cs" />
     <Compile Include="Commands\ElasticCommands.cs" />
-    <Compile Include="Commands\SearchCommand.cs" />
+    <Compile Include="Commands\SearchCommandBuilder.cs" />
     <Compile Include="Connection\ElasticConnection.cs" />
-    <Compile Include="OperationResult.cs" />
+    <Compile Include="Connection\OperationResult.cs" />
     <Compile Include="Connection\IElasticConnection.cs" />
     <Compile Include="Mapping\Map.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -66,6 +66,9 @@
     <Compile Include="QueryBuilder\Term.cs" />
     <Compile Include="QueryBuilder\TermFilter.cs" />
     <Compile Include="QueryBuilder\Terms.cs" />
+    <Compile Include="Serialization\Results\BaseResult.cs" />
+    <Compile Include="Serialization\Results\IndexResult.cs" />
+    <Compile Include="Serialization\Results\GetResult.cs" />
     <Compile Include="Serialization\JsonNetSerializer.cs" />
     <Compile Include="Serialization\IJsonSerializer.cs" />
     <Compile Include="Serialization\SerializationExtensions.cs" />

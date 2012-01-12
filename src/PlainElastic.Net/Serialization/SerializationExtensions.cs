@@ -7,12 +7,26 @@
             return serializer.Serialize(value);
         }
 
-
-        public static T ToGetResult<T>(this IJsonSerializer serializer, OperationResult operationResult)
+        public static T Deserialize<T>(this IJsonSerializer serializer, string value)
         {
-            return (T) serializer.Deserialize(operationResult.Result, typeof (T));
+            if (value.IsNullOrEmpty())
+                return default(T);
+
+            return (T) serializer.Deserialize(value, typeof (T));
         }
 
 
+
+        public static T ToGetResult<T>(this IJsonSerializer serializer, OperationResult operationResult)
+        {           
+            var getResult = serializer.Deserialize<GetResult<T>>(operationResult);
+
+            return getResult._source;
+        }
+
+        public static IndexResult ToIndexResult(this IJsonSerializer serializer, OperationResult operationResult)
+        {
+            return serializer.Deserialize<IndexResult>(operationResult);            
+        }
     }
 }

@@ -15,6 +15,12 @@ namespace PlainElastic.Net
             return (T)this;
         }
 
+        public T Pretty()
+        {
+            Parameters.Add("pretty", "true");
+            return (T)this;
+        }
+
 
         public string BuildCommand()
         {

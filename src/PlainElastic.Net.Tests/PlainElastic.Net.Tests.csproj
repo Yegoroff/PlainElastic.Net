@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\When_complete_IndexCommand_built.cs" />
     <Compile Include="Commands\When_GetCommand_with_reflected_fields_built.cs" />
     <Compile Include="Commands\When_complete_GetCommand_built.cs" />
     <Compile Include="Integration\Connection\When_partial_GET_request_on_valid_ES_instance.cs" />

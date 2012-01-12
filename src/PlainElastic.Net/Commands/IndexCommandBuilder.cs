@@ -8,7 +8,7 @@ namespace PlainElastic.Net
 
     public enum WriteConsistency { one, quorum, all }
 
-    public enum DocumentReplication { sync, asyns }
+    public enum DocumentReplication { sync, async }
 
     /// <summary>
     /// Builds a command that allows to create Index and add or update custom Json document in that Index.
@@ -41,7 +41,7 @@ namespace PlainElastic.Net
 
         public IndexCommandBuilder Consistency(WriteConsistency consistency)
         {
-            Parameters.Add("consistency ", consistency.ToString());
+            Parameters.Add("consistency", consistency.ToString());
             return this;
         }
 
@@ -57,7 +57,7 @@ namespace PlainElastic.Net
             return this;
         }
 
-        public IndexCommandBuilder Percolate(PercolateMode percolateMode, string color)
+        public IndexCommandBuilder Percolate(PercolateMode percolateMode, string color = null)
         {
             if (percolateMode == PercolateMode.All)
                 Parameters.Add("percolate", "*");
@@ -75,7 +75,7 @@ namespace PlainElastic.Net
         
         public IndexCommandBuilder Replication(DocumentReplication replication)
         {
-            Parameters.Add("replication ", replication.ToString());
+            Parameters.Add("replication", replication.ToString());
             return this;
         }
 
@@ -93,13 +93,13 @@ namespace PlainElastic.Net
 
         public IndexCommandBuilder Timestamp(DateTime timestamp)
         {
-            Parameters.Add("timestamp", timestamp.ToString("o"));
+            Parameters.Add("timestamp", timestamp.ToString("s"));
             return this;
         }
 
         public IndexCommandBuilder TTL(string timeToLive)
         {
-            Parameters.Add("timestamp", timeToLive);
+            Parameters.Add("ttl", timeToLive);
             return this;
         }
 

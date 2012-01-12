@@ -2,7 +2,7 @@ using System;
 
 namespace PlainElastic.Net
 {
-    public class SearchCommand : CommandBuilder<SearchCommand>
+    public class SearchCommandBuilder : CommandBuilder<SearchCommandBuilder>
     {
         protected override string BuildUrlPath()
         {

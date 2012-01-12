@@ -25,20 +25,7 @@ namespace PlainElastic.Net
         }
 
 
-        public GetCommandBuilder WithId(string id)
-        {
-            Id = id;
-            return this;
-        }
-
-
-        // Parameters
-
-        public GetCommandBuilder Realtime(bool realtime)
-        {
-            Parameters.Add("realtime", realtime.AsString());
-            return this;
-        }
+        #region Query Parameters
 
         public GetCommandBuilder Fields(string fields)
         {
@@ -50,12 +37,6 @@ namespace PlainElastic.Net
         {
             string fields = properties.Select(prop => prop.GePropertyName()).JoinWithComma();
             Parameters.Add("fields", fields);
-            return this;
-        }
-
-        public GetCommandBuilder Routing(string routing)
-        {
-            Parameters.Add("routing", routing);
             return this;
         }
 
@@ -71,11 +52,25 @@ namespace PlainElastic.Net
             return this;
         }
 
+        public GetCommandBuilder Realtime(bool realtime)
+        {
+            Parameters.Add("realtime", realtime.AsString());
+            return this;
+        }
+
         public GetCommandBuilder Refresh(bool refresh)
         {
             Parameters.Add("refresh", refresh.AsString());
             return this;
         }
+
+        public GetCommandBuilder Routing(string routing)
+        {
+            Parameters.Add("routing", routing);
+            return this;
+        }
+
+        #endregion
 
 
         protected override string BuildUrlPath()

@@ -11,14 +11,14 @@ namespace PlainElastic.Net
             return new GetCommandBuilder(index, type, id);
         }
 
-        public static IndexCommandBuilder Index()
+        public static IndexCommandBuilder Index(string index, string type = null, string id = null)
         {
-            return new IndexCommandBuilder();
+            return new IndexCommandBuilder(index, type, id);
         }
 
-        public static SearchCommand Search()
+        public static SearchCommandBuilder Search()
         {
-            return new SearchCommand();
+            return new SearchCommandBuilder();
         }
     }
 }

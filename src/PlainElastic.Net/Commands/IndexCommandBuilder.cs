@@ -2,14 +2,6 @@
 
 namespace PlainElastic.Net
 {
-    public enum IndexOperation { create };
-
-    public enum PercolateMode { All, Color }
-
-    public enum WriteConsistency { one, quorum, all }
-
-    public enum DocumentReplication { sync, async }
-
     /// <summary>
     /// Builds a command that allows to create Index and add or update custom Json document in that Index.
     /// </summary>

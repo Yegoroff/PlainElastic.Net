@@ -5,9 +5,6 @@ using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net
 {
-    public enum GetPrefernce {_primary, _local, custom };
-
-
     public class GetCommandBuilder : CommandBuilder<GetCommandBuilder>
     {
         public string Index { get; private set; }

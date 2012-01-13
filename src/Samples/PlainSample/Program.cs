@@ -17,9 +17,9 @@ namespace PlainSample
                 Message = "trying out Elastic Search"
             };
 
-            IndexTweet(tweet, connection, serializer);
+            IndexTweet(tweet, "1", connection, serializer);
 
-            GetTweet(serializer, connection);
+            GetTweet("1", serializer, connection);
 
             DeleteTweeterIndex(connection, serializer);
 
@@ -27,7 +27,7 @@ namespace PlainSample
         }
 
 
-        private static void IndexTweet(Tweet tweet, ElasticConnection connection, JsonNetSerializer serializer)
+        private static void IndexTweet(Tweet tweet, string id, ElasticConnection connection, JsonNetSerializer serializer)
         {
            /*            
            $ curl -XPUT 'http://localhost:9200/twitter/tweet/1?pretty=true' -d '{
@@ -37,7 +37,7 @@ namespace PlainSample
            */
 
             // This is url that will be requested from ES. We can grab it and put to any ES admin console (like Head) to debug ES behavior.
-            string indexCommand = new IndexCommandBuilder(index: "twitter", type: "tweet", id: "1").Pretty();
+            string indexCommand = new IndexCommandBuilder(index: "twitter", type: "tweet", id: id).Pretty(); // this will generate: twitter/tweet/1?pretty=true
 
             // This variable contains JSON of serialized tweet, thus we can check if our object serialized correctly 
             // or use it directly in ES admin console.
@@ -68,14 +68,13 @@ namespace PlainSample
             Console.WriteLine();
         }
 
-
-        private static Tweet GetTweet(JsonNetSerializer serializer, ElasticConnection connection)
+        private static Tweet GetTweet(string id, JsonNetSerializer serializer, ElasticConnection connection)
         {
             /*            
             $ curl -XGET 'http://localhost:9200/twitter/tweet/1?pretty=true'
             */
 
-            String getCommand = new GetCommandBuilder(index: "twitter", type: "tweet", id: "1").Pretty(); // this will generate: twitter/tweet/1?pretty=true
+            String getCommand = new GetCommandBuilder(index: "twitter", type: "tweet", id: id).Pretty(); // this will generate: twitter/tweet/1?pretty=true
 
             var result = connection.Get(getCommand); 
 

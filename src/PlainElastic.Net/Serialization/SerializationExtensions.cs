@@ -16,7 +16,7 @@
         }
 
 
-
+#warning Rename to something more clear.
         public static T ToGetResult<T>(this IJsonSerializer serializer, OperationResult operationResult)
         {           
             var getResult = serializer.Deserialize<GetResult<T>>(operationResult);
@@ -28,5 +28,13 @@
         {
             return serializer.Deserialize<IndexResult>(operationResult);            
         }
+
+        public static DeleteResult ToDeleteResult(this IJsonSerializer serializer, OperationResult operationResult)
+        {
+            return serializer.Deserialize<DeleteResult>(operationResult);
+        }
+
+
     }
+
 }

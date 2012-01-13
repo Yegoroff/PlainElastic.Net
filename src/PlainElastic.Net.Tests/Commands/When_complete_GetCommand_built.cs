@@ -12,6 +12,7 @@ namespace PlainElastic.Net.Tests.Integration
             .Routing("route")
             .Preference(GetPrefernce.custom, "preference")
             .Refresh(true)
+            .Pretty()
             
             .BuildCommand();
 
@@ -28,7 +29,7 @@ namespace PlainElastic.Net.Tests.Integration
 
         It should_contain_parameter_refresh_equals_to_true = () => result.ShouldContain("&refresh=true");
 
-        It should_return_correct_value = () => result.ShouldEqual(@"index/type/id?realtime=false&fields=field1,field2&routing=route&preference=preference&refresh=true");
+        It should_return_correct_value = () => result.ShouldEqual(@"index/type/id?realtime=false&fields=field1,field2&routing=route&preference=preference&refresh=true&pretty=true");
 
 
         private static string result;

@@ -16,9 +16,19 @@ namespace PlainElastic.Net
             return new IndexCommandBuilder(index, type, id);
         }
 
-        public static SearchCommandBuilder Search()
+        public static DeleteCommandBuilder Delete(string index, string type = null, string id = null)
         {
-            return new SearchCommandBuilder();
+            return new DeleteCommandBuilder(index, type, id);
+        }
+
+        public static SearchCommandBuilder Search(string index = null, string type = null)
+        {
+            return new SearchCommandBuilder(index, type);
+        }
+
+        public static SearchCommandBuilder Search(string[] indexes, string[] types)
+        {
+            return new SearchCommandBuilder(indexes, types);
         }
     }
 }

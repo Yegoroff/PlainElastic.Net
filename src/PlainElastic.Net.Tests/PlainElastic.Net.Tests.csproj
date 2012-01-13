@@ -45,6 +45,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\When_SearchCommand_with_reflected_sort_fields_built.cs" />
+    <Compile Include="Commands\When_SearchCommand_with_reflected_fields_built.cs" />
+    <Compile Include="Commands\FieldsTestClass.cs" />
+    <Compile Include="Commands\When_multiple_indexes_and_types_SearchCommand_built.cs" />
+    <Compile Include="Commands\When_complete_SearchCommand_built.cs" />
     <Compile Include="Commands\When_complete_DeleteCommand_built.cs" />
     <Compile Include="Commands\When_complete_IndexCommand_built.cs" />
     <Compile Include="Commands\When_GetCommand_with_reflected_fields_built.cs" />

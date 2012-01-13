@@ -30,21 +30,21 @@ namespace PlainElastic.Net
 
         #region Query Parameters
 
-        public SearchCommandBuilder Q(string query)
+        public SearchCommandBuilder Analyzer(string analyzer)
         {
-            Parameters.Add("q", query);
+            Parameters.Add("analyzer", analyzer);
+            return this;
+        }
+
+        public SearchCommandBuilder AnalyzeWildcard(bool analyzeWildcard = false)
+        {
+            Parameters.Add("analyze_wildcard", analyzeWildcard.AsString());
             return this;
         }
 
         public SearchCommandBuilder Df(string defaultField)
         {
             Parameters.Add("df", defaultField);
-            return this;
-        }
-
-        public SearchCommandBuilder Analyzer(string analyzer)
-        {
-            Parameters.Add("analyzer", analyzer);
             return this;
         }
 
@@ -80,6 +80,55 @@ namespace PlainElastic.Net
         }
 
         /// <summary>
+        /// The starting from index of the hits to return. Defaults to 0.
+        /// </summary>
+        public SearchCommandBuilder From(int fromIndex = 0)
+        {
+            Parameters.Add("from", fromIndex.ToString());
+            return this;
+        }
+
+        public SearchCommandBuilder LowercaseExpandedTerms(bool lowercaseExpandedTerms = true)
+        {
+            Parameters.Add("lowercase_expanded_terms", lowercaseExpandedTerms.AsString());
+            return this;
+
+        }
+
+        public SearchCommandBuilder Q(string query)
+        {
+            Parameters.Add("q", query);
+            return this;
+        }
+
+        public SearchCommandBuilder Routing(string routing)
+        {
+            Parameters.Add("routing", routing);
+            return this;
+        }
+
+        public SearchCommandBuilder Scroll(string scrollActiveTime)
+        {
+            Parameters.Add("scroll", scrollActiveTime);
+            return this;
+        }
+
+        public SearchCommandBuilder SearchType(SearchType searchType)
+        {
+            Parameters.Add("search_type", searchType.ToString());
+            return this;
+        }
+
+        /// <summary>
+        /// The number of hits to return. Defaults to 10.
+        /// </summary>
+        public SearchCommandBuilder Size(int size = 10)
+        {
+            Parameters.Add("size", size.ToString());
+            return this;
+        }
+
+        /// <summary>
         /// Sorting to perform. There can be several Sort parameters (order is important).
         /// Use "_score" to sort by query score.
         /// </summary>
@@ -99,11 +148,6 @@ namespace PlainElastic.Net
             return this;            
         }
 
-        public SearchCommandBuilder TrackScores(bool trackScores)
-        {
-            Parameters.Add("track_scores", trackScores.ToString());
-            return this;            
-        }
 
         public SearchCommandBuilder Timeout(string timeout)
         {
@@ -111,52 +155,9 @@ namespace PlainElastic.Net
             return this;
         }
 
-        /// <summary>
-        /// The starting from index of the hits to return. Defaults to 0.
-        /// </summary>
-        public SearchCommandBuilder From(int fromIndex = 0)
+        public SearchCommandBuilder TrackScores(bool trackScores)
         {
-            Parameters.Add("from", fromIndex.ToString());
-            return this;
-        }
-
-        /// <summary>
-        /// The number of hits to return. Defaults to 10.
-        /// </summary>
-        public SearchCommandBuilder Size(int size = 10)
-        {
-            Parameters.Add("size", size.ToString());
-            return this;
-        }
-
-        public SearchCommandBuilder SearchType(SearchType searchType)
-        {
-            Parameters.Add("search_type", searchType.ToString());
-            return this;
-        }
-            
-        public SearchCommandBuilder Scroll(string scrollActiveTime)
-        {
-            Parameters.Add("scroll", scrollActiveTime);
-            return this;
-        }
-
-        public SearchCommandBuilder LowercaseExpandedTerms(bool lowercaseExpandedTerms = true)
-        {
-            Parameters.Add("lowercase_expanded_terms", lowercaseExpandedTerms.ToString());
-            return this;
-            
-        }
-
-        public SearchCommandBuilder AnalyzeWildcard(bool analyzeWildcard = false)
-        {
-            Parameters.Add("analyze_wildcard", analyzeWildcard.ToString());
-            return this;
-        }
-
-        public SearchCommandBuilder Routing(string routing)
-        {
-            Parameters.Add("routing", routing);
+            Parameters.Add("track_scores", trackScores.AsString());
             return this;
         }
 

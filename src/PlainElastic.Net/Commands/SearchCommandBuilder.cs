@@ -166,7 +166,7 @@ namespace PlainElastic.Net
 
         protected override string BuildUrlPath()
         {
-            return UrlBuilder.BuildUrlPath(Index, Type);
+            return UrlBuilder.BuildUrlPath(Index, Type, "_search");
         }
     }
 }

@@ -7,7 +7,7 @@ namespace PlainElastic.Net
 
         int DefaultPort { get; set; }
 
-        OperationResult Get(string command);
+        OperationResult Get(string command, string jsonData = null);
 
         OperationResult Post(string command, string jsonData = null);
 

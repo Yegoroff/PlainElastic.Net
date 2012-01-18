@@ -11,9 +11,9 @@ namespace PlainElastic.Net
         public string DefaultHost { get; set; }
 
         public int DefaultPort { get; set; }
-        
 
-        public OperationResult Get(string command)
+
+        public OperationResult Get(string command, string jsonData = null)
         {
             return ExecuteRequest("GET", command, null);
         }
@@ -38,25 +38,44 @@ namespace PlainElastic.Net
 
         private OperationResult ExecuteRequest(string method, string command, string jsonData)
         {
-            string uri = CommandToUri(command);
-            var request = CreateRequest(method, uri);
-
-            // Add request payload if any.
-            if (!jsonData.IsNullOrEmpty())
+            try
             {
-                byte[] buffer = Encoding.UTF8.GetBytes(jsonData);
-                request.ContentLength = buffer.Length;
-                using (Stream requestStream = request.GetRequestStream())
+                string uri = CommandToUri(command);
+                var request = CreateRequest(method, uri);
+
+                // Add request payload if any.
+                if (!jsonData.IsNullOrEmpty())
                 {
-                    requestStream.Write(buffer, 0, buffer.Length);
+                    byte[] buffer = Encoding.UTF8.GetBytes(jsonData);
+                    request.ContentLength = buffer.Length;
+                    using (Stream requestStream = request.GetRequestStream())
+                    {
+                        requestStream.Write(buffer, 0, buffer.Length);
+                    }
                 }
+
+                // Execute request.
+                using (WebResponse response = request.GetResponse())
+                {
+                    var result = new StreamReader(response.GetResponseStream()).ReadToEnd();
+                    return new OperationResult(result);
+                }
+
+            }
+            catch (WebException ex)
+            {
+                var message = ex.Message;
+                var response = (ex.Response);
+                if (response != null)
+                {
+                    using (var responseStream = response.GetResponseStream())
+                    {
+                        message = new StreamReader(responseStream, true).ReadToEnd();
+                    }
+                }
+                throw new OperationExeception(message, ex);
             }
 
-            using (WebResponse response = request.GetResponse())
-            {
-                var result = new StreamReader(response.GetResponseStream()).ReadToEnd();
-                return new OperationResult(result);
-            }
         }
 
         private HttpWebRequest CreateRequest(string method, string uri)

@@ -16,5 +16,10 @@
         {
             return value.Result;
         }
+
+        public override string ToString()
+        {
+            return Result;
+        }
     }
 }

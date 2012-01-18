@@ -45,6 +45,7 @@
     <Compile Include="Commands\GetCommandBuilder.cs" />
     <Compile Include="Commands\ElasticCommands.cs" />
     <Compile Include="Commands\SearchCommandBuilder.cs" />
+    <Compile Include="Connection\OperationExeception.cs" />
     <Compile Include="Connection\ElasticConnection.cs" />
     <Compile Include="Connection\OperationResult.cs" />
     <Compile Include="Connection\IElasticConnection.cs" />
@@ -65,6 +66,7 @@
     <Compile Include="QueryBuilder\TermFilter.cs" />
     <Compile Include="QueryBuilder\Terms.cs" />
     <Compile Include="Serialization\Results\BaseResult.cs" />
+    <Compile Include="Serialization\Results\SearchResult.cs" />
     <Compile Include="Serialization\Results\DeleteResult.cs" />
     <Compile Include="Serialization\Results\IndexResult.cs" />
     <Compile Include="Serialization\Results\GetResult.cs" />

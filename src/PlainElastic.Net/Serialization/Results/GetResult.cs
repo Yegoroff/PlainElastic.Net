@@ -14,5 +14,7 @@
         public bool exists;
 
         public T _source;
+
+        public T Document { get { return _source; } }
     }
 }

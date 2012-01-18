@@ -16,17 +16,14 @@
         }
 
 
-#warning Rename to something more clear.
-        public static T ToGetResult<T>(this IJsonSerializer serializer, OperationResult operationResult)
+        public static GetResult<T> ToGetResult<T>(this IJsonSerializer serializer, OperationResult operationResult)
         {           
-            var getResult = serializer.Deserialize<GetResult<T>>(operationResult);
-
-            return getResult._source;
+            return serializer.Deserialize<GetResult<T>>(operationResult);
         }
 
         public static IndexResult ToIndexResult(this IJsonSerializer serializer, OperationResult operationResult)
         {
-            return serializer.Deserialize<IndexResult>(operationResult);            
+            return serializer.Deserialize<IndexResult>(operationResult);
         }
 
         public static DeleteResult ToDeleteResult(this IJsonSerializer serializer, OperationResult operationResult)
@@ -34,7 +31,10 @@
             return serializer.Deserialize<DeleteResult>(operationResult);
         }
 
-
+        public static SearchResult<T> ToSearchResult<T>(this IJsonSerializer serializer, OperationResult operationResult)
+        {
+            return serializer.Deserialize<SearchResult<T>>(operationResult);
+        } 
     }
 
 }

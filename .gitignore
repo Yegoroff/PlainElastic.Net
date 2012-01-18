@@ -3,3 +3,5 @@ _ReSharper*
 bin
 obj
 *.user
+NuGet/lib/
+*.nupkg

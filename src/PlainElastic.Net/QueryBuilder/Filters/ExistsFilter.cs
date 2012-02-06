@@ -7,16 +7,7 @@ namespace PlainElastic.Net.QueryBuilder
 {
     public class ExistsFilter<T> : IJsonConvertible
     {
-        #region Filter Templates
-
-        private const string existsFilterTemplate = 
-@"  {{
-        ""exists"": {{
-             ""field"" : {0}        
-        }}
-    }}";
-
-        #endregion
+        private const string existsFilterTemplate = "{{ \"exists\": {{ \"field\" : {0} }} }}";
 
 
         private string existsField;

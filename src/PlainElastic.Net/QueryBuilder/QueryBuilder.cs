@@ -3,11 +3,11 @@ using System;
 
 namespace PlainElastic.Net.QueryBuilder
 {
-    public class QueryBuilder<T> : AbstractQuery<T>
+    public class QueryBuilder<T> : AbstractCompositeQuery<T>
     {
         #region Query Templates
 
-        private const string mainQueryTemplate =@"{{ {0} }}";
+        private const string mainQueryTemplate ="{{ {0} }}";
         private const string fromTemplate = "  \"from\": {0}";
         private const string sizeTemplate = "  \"size\": {0}";
         private const string sortTemplate = "  \"sort\": [{0}]";
@@ -23,13 +23,13 @@ namespace PlainElastic.Net.QueryBuilder
 
         public QueryBuilder<T> Query(Func<Query<T>, Query<T>> query)
         {
-            ExecuteAndRegisterQuery(query);
+            RegisterQueryAsJson(query);
             return this;
         }
 
         public QueryBuilder<T> Filter(Func<Filter<T>, Filter<T>> filter)
         {
-            ExecuteAndRegisterQuery(filter);
+            RegisterQueryAsJson(filter);
             return this;
         }
 
@@ -50,17 +50,13 @@ namespace PlainElastic.Net.QueryBuilder
 
         }
 
-        public QueryBuilder<T> Sort(string sortField)
+        public QueryBuilder<T> Sort(Func<Sort<T>, Sort<T>> sort)
         {
-            if (sortField.IsNullOrEmpty())
-                return this;
-
-            sortField = sortField.Quotate();
-            var sortQuery = sortTemplate.F(sortField);
-            Queries.Add(sortQuery);
-
+            RegisterQueryAsJson(sort);
             return this;
         }
+
+        // track_scores : true
 
 
         public string Build()

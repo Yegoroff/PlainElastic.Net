@@ -7,10 +7,9 @@ namespace PlainElastic.Net.QueryBuilder
 {
     public class Term<T> : IJsonConvertible
     {
-
         #region Query Templates
 
-        private const string termTemplate = @" ""term"": {{ {0} : {{ {1} }} }} ";
+        private const string termTemplate = "{{ \"term\": {{ {0} : {{ {1} }} }}  }}";
 
         private const string valueTemplate = "\"value\" :{0}";
         private const string boostTemplate = "\"boost\": {0}";

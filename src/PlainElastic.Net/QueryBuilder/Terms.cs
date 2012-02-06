@@ -11,13 +11,7 @@ namespace PlainElastic.Net.QueryBuilder
 
         #region Query Templates
 
-        private const string termsTemplate = 
-@"  {{
-        ""terms"": {{
-            {0} : [ {1} ]
-            {2}
-        }}
-    }}";
+        private const string termsTemplate =  "{{ \"terms\": {{ {0} : [ {1} ] {2} }} }}";
 
         private const string minimumMatchTemplate = "\"minimum_match\" :{0}";
 

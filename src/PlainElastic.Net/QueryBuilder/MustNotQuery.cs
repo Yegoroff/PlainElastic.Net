@@ -1,8 +1,8 @@
 namespace PlainElastic.Net.QueryBuilder
 {
-    public class MustQuery<T> : Query<T>
+    public class MustNotQuery<T> : Query<T>
     {
-        private const string queryTemplate = " \"must\": [ {0} ]";
+        private const string queryTemplate = " \"must_not\": [ {0} ]";
 
 
         protected override string QueryTemplate

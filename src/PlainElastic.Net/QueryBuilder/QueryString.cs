@@ -15,18 +15,13 @@ namespace PlainElastic.Net.QueryBuilder
 
         #region Query Templates
 
-        private const string mainTemplate = 
-@"{{
-    ""query_string"": {{
-{0}
-    }}
-}}";
+        private const string mainTemplate =         "{{ \"query_string\": {{ {0} }} }}";
 
-        private const string defaultFieldTemplate = "   \"default_field\": {0}";
-        private const string boostTemplate =        "   \"boost\": {0}";
-        private const string rewriteTemplate =      "   \"rewrite\": {0}";
-        private const string queryTemplate =        "   \"query\": {0}";
-        private const string fieldsTemplate =       "   \"fields\": [{0}]";
+        private const string defaultFieldTemplate = " \"default_field\": {0}";
+        private const string boostTemplate =        " \"boost\": {0}";
+        private const string rewriteTemplate =      " \"rewrite\": {0}";
+        private const string queryTemplate =        " \"query\": {0}";
+        private const string fieldsTemplate =       " \"fields\": [{0}]";
 
         #endregion
 
@@ -59,11 +54,11 @@ namespace PlainElastic.Net.QueryBuilder
 
         public QueryString<T> FieldsOfCollection<TProp>(Expression<Func<T, IEnumerable<TProp>>> collectionField, params Expression<Func<TProp, object>>[] fields)
         {
-            var collectionProperty = collectionField.GePropertyName();
+            var collectionProperty = collectionField.GetPropertyName();
 
             foreach (var field in fields)
             {
-                var fieldName = collectionProperty + "." + field.GePropertyName();
+                var fieldName = collectionProperty + "." + field.GetPropertyName();
                 fieldName = fieldName.Quotate();
                 queryFields.Add(fieldName);
             }
@@ -152,7 +147,7 @@ namespace PlainElastic.Net.QueryBuilder
 
             queryParts.Insert(0, GenerateFieldsQueryPart());
 
-            var body = queryParts.JoinWithSeparator(",\r\n");
+            var body = queryParts.JoinWithSeparator(", ");
             var result = mainTemplate.F(body);
 
             return result;

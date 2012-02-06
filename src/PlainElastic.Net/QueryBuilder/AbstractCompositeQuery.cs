@@ -4,35 +4,35 @@ using System.Linq;
 
 namespace PlainElastic.Net.QueryBuilder
 {
-    public abstract class AbstractQuery<T> : IJsonConvertible
+    public abstract class AbstractCompositeQuery<T> : IJsonConvertible
     {
 
         protected abstract string QueryTemplate { get; }
 
 
-        protected AbstractQuery()
+        protected AbstractCompositeQuery()
         {
             Queries = new List<string>();
         }
 
 
-        protected List<string> Queries { get; private set; }
+        public List<string> Queries { get; private set; }
 
 
-        protected TQuery2 ExecuteAndRegisterQuery<TQuery, TQuery2>(Func<TQuery, TQuery2> query)
+
+        protected TResultQuery RegisterQueryAsJson<TQuery, TResultQuery>(Func<TQuery, TResultQuery> query)
             where TQuery : new()
-            where TQuery2: IJsonConvertible
+            where TResultQuery : IJsonConvertible
         {
             var instance = new TQuery();
-            var returnQuery = query.Invoke(instance);
-
-            IJsonConvertible resultQuery = returnQuery;
+            var resultQuery = query.Invoke(instance);
+           
             var jsonQuery = resultQuery.ToJson();
 
             if (!jsonQuery.IsNullOrEmpty())
                 Queries.Add(jsonQuery);
 
-            return returnQuery;
+            return resultQuery;
         }
 
 
@@ -42,8 +42,9 @@ namespace PlainElastic.Net.QueryBuilder
             if (!Queries.Any())
                 return "";
 
-            var body = Queries.JoinWithSeparator(",\r\n");
+            var body = Queries.JoinWithSeparator(", ");
             return QueryTemplate.F(body);
         }
+
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using PlainElastic.Net;
+using PlainElastic.Net.QueryBuilder;
 using PlainElastic.Net.Serialization;
 
 namespace PlainSample
@@ -48,8 +49,7 @@ namespace PlainSample
            */
 
             // This is url that will be requested from ES. We can grab it and put to any ES admin console (like Head) to debug ES behavior.
-            string indexCommand = new IndexCommandBuilder(index: "twitter", type: "tweet", id: id)
-               // .Consistency(WriteConsistency.all)
+            string indexCommand =  ElasticCommands.Index(index: "twitter", type: "tweet", id: id)
                 .Refresh(true)
                 .Pretty(); // this will generate: twitter/tweet/1?pretty=true
 
@@ -88,7 +88,7 @@ namespace PlainSample
             $ curl -XGET 'http://localhost:9200/twitter/tweet/1?pretty=true'
             */
 
-            String getCommand = new GetCommandBuilder(index: "twitter", type: "tweet", id: id).Pretty(); // this will generate: twitter/tweet/1?pretty=true
+            String getCommand = ElasticCommands.Get(index: "twitter", type: "tweet", id: id).Pretty(); // this will generate: twitter/tweet/1?pretty=true
 
             var result = connection.Get(getCommand); 
 
@@ -152,19 +152,49 @@ namespace PlainSample
         {
             string searchCommand = ElasticCommands.Search("twitter", "tweet").Pretty();
 
-            var results = connection.Post(searchCommand, "{}");
+            /*
+{
+    "query": {
+        "term": {
+            "User": {
+                "value": "testuser",
+                "boost": "5"
+            }
+        }
+    }
+}
+              
+             */
+
+
+            string query = new QueryBuilder<Tweet>()
+                .Query(qry => qry
+                    .Term(term => term
+                        .Field(tweet => tweet.User)
+                        .Value("testUser")
+                        .Boost(5)
+                     )
+                .Custom(" 'term': {  '{0}': { 'value': {1}, 'boost': '5' } }", R(tweet => tweet.User), "testUser")
+                .Custom(" 'term': {  '" + R(tweet => tweet.User) + "': { 'value': "+ V("testUser") + ", 'boost': '5' } }")
+                ).BuildBeautified();
+
+
+
+            var results = connection.Post(searchCommand, query);
 
             var searchResult = serializer.ToSearchResult<Tweet>(results);
 
 
-            PrintSearchResults(searchResult, searchCommand, results);
+            PrintSearchResults(searchResult, searchCommand, query, results);
 
             return searchResult.Documents;
         }
 
-        private static void PrintSearchResults(SearchResult<Tweet> searchResult, string searchCommand, OperationResult results)
+        private static void PrintSearchResults(SearchResult<Tweet> searchResult, string searchCommand, string query, OperationResult results)
         {
-            Console.WriteLine("Executed: GET \r\n {0} \r\n".F(searchCommand));
+            Console.WriteLine("Executed: POST \r\n {0} \r\n".F(searchCommand));
+            Console.WriteLine(query);
+            Console.WriteLine();
 
             Console.WriteLine("Search Result: \r\n {0} \r\n".F(results));
 

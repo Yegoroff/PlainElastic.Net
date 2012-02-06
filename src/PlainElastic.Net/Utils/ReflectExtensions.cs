@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 
 namespace PlainElastic.Net.Utils
 {
@@ -10,13 +7,13 @@ namespace PlainElastic.Net.Utils
     {
         public static string GetQuotatedPropertyName<TClass, TProp>(this Expression<Func<TClass, TProp>> property)
         {
-            return Reflect<TClass>.CamelCasedPropertyName(property)
+            return Reflect<TClass>.PropertyName(property)
                 .Quotate();
         }
 
         public static string GePropertyName<TClass, TProp>(this Expression<Func<TClass, TProp>> property)
         {
-            return Reflect<TClass>.CamelCasedPropertyName(property);
+            return Reflect<TClass>.PropertyName(property);
         }
     }
 }

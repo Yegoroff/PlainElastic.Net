@@ -7,7 +7,7 @@ namespace PlainElastic.Net.QueryBuilder
     public abstract class AbstractQuery<T> : IJsonConvertible
     {
 
-        public abstract string QueryTemplate { get; }
+        protected abstract string QueryTemplate { get; }
 
 
         protected AbstractQuery()
@@ -16,7 +16,7 @@ namespace PlainElastic.Net.QueryBuilder
         }
 
 
-        public List<string> Queries { get; private set; }
+        protected List<string> Queries { get; private set; }
 
 
         protected TQuery2 ExecuteAndRegisterQuery<TQuery, TQuery2>(Func<TQuery, TQuery2> query)

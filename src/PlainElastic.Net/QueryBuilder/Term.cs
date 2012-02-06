@@ -10,17 +10,10 @@ namespace PlainElastic.Net.QueryBuilder
 
         #region Query Templates
 
-        private const string termTemplate = 
-@"  {{
-        ""term"": {{
-           {0} : {{
-             {1}
-            }}
-        }}
-    }}";
+        private const string termTemplate = @" ""term"": {{ {0} : {{ {1} }} }} ";
 
-        private const string valueTemplate = "          \"value\" :{0}";
-        private const string boostTemplate = "          \"boost\": {0}";
+        private const string valueTemplate = "\"value\" :{0}";
+        private const string boostTemplate = "\"boost\": {0}";
 
         #endregion
 
@@ -70,7 +63,7 @@ namespace PlainElastic.Net.QueryBuilder
             var body = valueTemplate.F(termValue);
 
             if (!boostValue.IsNullOrEmpty())
-                body += ", /r/n" + boostTemplate.F(boostValue);
+                body += ", " + boostTemplate.F(boostValue);
 
             var result = termTemplate.F(termField, body);
 

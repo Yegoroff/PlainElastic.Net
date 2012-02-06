@@ -64,6 +64,11 @@ namespace PlainElastic.Net
         }
 
 
+        public static string ButifyJson(this string json)
+        {
+            return JsonBeautifier.Beautify(json);
+        }
+
         public static string AsString(this bool value)
         {
             return value.ToString(CultureInfo.InvariantCulture).ToLower();

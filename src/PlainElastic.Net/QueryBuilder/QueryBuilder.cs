@@ -7,11 +7,7 @@ namespace PlainElastic.Net.QueryBuilder
     {
         #region Query Templates
 
-        private const string wainQueryTemplate =@"
-{{
-{0}
-}}
-";
+        private const string mainQueryTemplate =@"{{ {0} }}";
         private const string fromTemplate = "  \"from\": {0}";
         private const string sizeTemplate = "  \"size\": {0}";
         private const string sortTemplate = "  \"sort\": [{0}]";
@@ -19,9 +15,9 @@ namespace PlainElastic.Net.QueryBuilder
         #endregion
 
 
-        public override string QueryTemplate
+        protected override string QueryTemplate
         {
-            get { return wainQueryTemplate; }
+            get { return mainQueryTemplate; }
         }
 
 
@@ -71,5 +67,10 @@ namespace PlainElastic.Net.QueryBuilder
         {
             return (this as IJsonConvertible).ToJson();
         }
+
+        public string BuildBeautified()
+        {
+            return Build().ButifyJson();
+        } 
     }
 }

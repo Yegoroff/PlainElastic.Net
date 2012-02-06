@@ -12,7 +12,7 @@ namespace PlainElastic.Net.QueryBuilder
         #endregion
 
 
-        public override string QueryTemplate
+        protected override string QueryTemplate
         {
             get { return queryTemplate; }
         }

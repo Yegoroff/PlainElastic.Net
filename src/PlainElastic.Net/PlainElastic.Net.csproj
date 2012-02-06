@@ -74,6 +74,7 @@
     <Compile Include="Serialization\JsonNetSerializer.cs" />
     <Compile Include="Serialization\IJsonSerializer.cs" />
     <Compile Include="Serialization\SerializationExtensions.cs" />
+    <Compile Include="Utils\JsonBeautifier.cs" />
     <Compile Include="Utils\UrlBuilder.cs" />
     <Compile Include="Utils\ReflectExtensions.cs" />
     <Compile Include="Utils\Reflect.cs" />

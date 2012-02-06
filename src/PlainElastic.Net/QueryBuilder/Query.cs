@@ -7,15 +7,12 @@ namespace PlainElastic.Net.QueryBuilder
 
         #region Query Templates
 
-        private const string queryTemplate = @"
-    ""query"": {{
-{0}
-    }}";
+        private const string queryTemplate = @" ""query"": {{ {0} }}";
 
         #endregion
 
 
-        public override string QueryTemplate
+        protected override string QueryTemplate
         {
             get { return queryTemplate; }
         }
@@ -44,6 +41,12 @@ namespace PlainElastic.Net.QueryBuilder
             ExecuteAndRegisterQuery(termsQuery);
             return this;
         }
+
+        public Query<T> Custom(string query)
+        {
+            Queries.Add(query);
+            return this;
+        } 
 
     }
 }

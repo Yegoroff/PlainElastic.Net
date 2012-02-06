@@ -19,7 +19,7 @@ namespace PlainElastic.Net.QueryBuilder
 
         private int shouldPartsCount;
 
-        public override string QueryTemplate
+        protected override string QueryTemplate
         {
             get { return queryTemplate; }
         }

@@ -11,7 +11,7 @@ namespace PlainElastic.Net.Utils
                 .Quotate();
         }
 
-        public static string GePropertyName<TClass, TProp>(this Expression<Func<TClass, TProp>> property)
+        public static string GetPropertyName<TClass, TProp>(this Expression<Func<TClass, TProp>> property)
         {
             return Reflect<TClass>.PropertyName(property);
         }

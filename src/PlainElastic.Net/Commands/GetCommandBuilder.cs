@@ -32,7 +32,7 @@ namespace PlainElastic.Net
 
         public GetCommandBuilder Fields<T>(params Expression<Func<T, object>>[] properties)
         {
-            string fields = properties.Select(prop => prop.GePropertyName()).JoinWithComma();
+            string fields = properties.Select(prop => prop.GetPropertyName()).JoinWithComma();
             Parameters.Add("fields", fields);
             return this;
         }

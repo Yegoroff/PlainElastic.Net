@@ -92,7 +92,12 @@ namespace PlainElastic.Net.Mapping
 
         public string GenerateJsonMap()
         {
-            return PropertyMapping.JoinWithSeparator(",\r\n");
+            return PropertyMapping.JoinWithComma();
+        }
+
+        public string GenerateBeautifiedJsonMap()
+        {
+            return GenerateJsonMap().ButifyJson();
         }
 
 

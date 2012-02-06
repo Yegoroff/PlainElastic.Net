@@ -11,11 +11,13 @@ namespace PlainSample
         private readonly IElasticConnection connection;
         private readonly JsonNetSerializer serializer;
 
+
         public ElasticClient(string defaultHost, int defaultPort)
         {
             connection = new ElasticConnection{DefaultHost = defaultHost, DefaultPort  = defaultPort};
             serializer = new JsonNetSerializer();
         }
+
 
         public JsonSerializerSettings SerializerSettings
         {

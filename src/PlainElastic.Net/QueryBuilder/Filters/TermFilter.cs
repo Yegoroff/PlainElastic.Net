@@ -20,6 +20,14 @@ namespace PlainElastic.Net.QueryBuilder
             return this;
         }
 
+
+        public TermFilter<T> Value(object value)
+        {
+            termValue = value.ToString().Quotate();
+
+            return this;
+        }      
+
         public TermFilter<T> Value(string value)
         {
             termValue = value.Quotate();            

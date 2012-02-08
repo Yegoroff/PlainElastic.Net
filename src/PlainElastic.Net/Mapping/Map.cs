@@ -68,6 +68,19 @@ namespace PlainElastic.Net.Mapping
             return this;
         }
 
+        public Map<T> CustomProperty(string format, Expression<Func<T, object>> property, int boost = 1, bool typed = true)
+        {
+            string fieldName = GetPropertyName(property);
+            string type = GetPropertyType(property);
+            
+            if (typed)
+                PropertyMapping.Add(format.F(fieldName, type ,boost));
+            else
+                PropertyMapping.Add(format.F(fieldName, boost));
+
+            return this;
+        }
+
 
         public Map<T> Objects<TProp>(Expression<Func<T, IEnumerable<TProp>>> property, Func<Map<TProp>, Map<TProp>> propertyMapping)
         {

@@ -10,7 +10,7 @@ namespace PlainElastic.Net.QueryBuilder
     {
         #region Query Templates
 
-        private const string sortTemplate = " \"sort\": [ {0} ] ";
+        private const string sortTemplate = "\"sort\": [{0}]";
 
         private const string fieldTemplate = "{{ {0} : {{ {1} }} }}";
         private const string orderTemplate = "\"order\": {0}";

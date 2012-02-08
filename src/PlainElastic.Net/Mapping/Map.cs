@@ -49,7 +49,7 @@ namespace PlainElastic.Net.Mapping
             return RootObjectMap.F(rootType, body);
         }
 
-        public Map<T> Index(Expression<Func<T, object>> property, int boost = 1)
+        public Map<T> Index<TProp>(Expression<Func<T, TProp>> property, int boost = 1)
         {
             string fieldName = GetPropertyName(property);
             string type = GetPropertyType(property);
@@ -59,7 +59,7 @@ namespace PlainElastic.Net.Mapping
             return this;
         }
 
-        public Map<T> Ignore(Expression<Func<T, object>> property)
+        public Map<T> Ignore<TProp>(Expression<Func<T, TProp>> property)
         {
             string fieldName = GetPropertyName(property);
             string type = GetPropertyType(property);
@@ -68,7 +68,7 @@ namespace PlainElastic.Net.Mapping
             return this;
         }
 
-        public Map<T> CustomProperty(string format, Expression<Func<T, object>> property, int boost = 1, bool typed = true)
+        public Map<T> CustomProperty<TProp>(string format, Expression<Func<T, TProp>> property, int boost = 1, bool typed = true)
         {
             string fieldName = GetPropertyName(property);
             string type = GetPropertyType(property);
@@ -140,7 +140,7 @@ namespace PlainElastic.Net.Mapping
 
         private static string GetPropertyName<TProp>(Expression<Func<T, TProp>> property)
         {
-            return Reflect<T>.ShortCamelCasedPropertyName(property);
+            return Reflect<T>.ShortPropertyName(property);
         }
 
     }

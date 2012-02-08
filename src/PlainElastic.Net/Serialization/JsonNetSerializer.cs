@@ -1,5 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace PlainElastic.Net.Serialization
 {
@@ -11,6 +12,8 @@ namespace PlainElastic.Net.Serialization
         public JsonNetSerializer()
         {
             Settings = new JsonSerializerSettings();
+            Settings.Converters.Add(new IsoDateTimeConverter());
+            Settings.NullValueHandling = NullValueHandling.Ignore;                           
         }
 
 

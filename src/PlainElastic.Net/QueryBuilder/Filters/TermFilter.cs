@@ -23,7 +23,7 @@ namespace PlainElastic.Net.QueryBuilder
 
         public TermFilter<T> Value(object value)
         {
-            termValue = value.ToString().Quotate();
+            termValue = value.ToString().LowerAndQuotate();
 
             return this;
         }      

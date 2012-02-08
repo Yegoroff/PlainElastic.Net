@@ -14,5 +14,7 @@ namespace PlainElastic.Net
         OperationResult Put(string command, string jsonData = null);
 
         OperationResult Delete(string command, string jsonData = null);
+
+        OperationResult Head(string command, string jsonData = null);
     }
 }

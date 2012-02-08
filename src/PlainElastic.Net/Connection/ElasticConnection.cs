@@ -33,7 +33,10 @@ namespace PlainElastic.Net
             return ExecuteRequest("DELETE", command, jsonData);
         }
 
-
+        public OperationResult Head(string command, string jsonData = null)
+        {
+            return ExecuteRequest("HEAD", command, jsonData);
+        }
 
 
         private OperationResult ExecuteRequest(string method, string command, string jsonData)
@@ -65,7 +68,7 @@ namespace PlainElastic.Net
             catch (WebException ex)
             {
                 var message = ex.Message;
-                var response = (ex.Response);
+                var response = ex.Response;
                 if (response != null)
                 {
                     using (var responseStream = response.GetResponseStream())
@@ -73,7 +76,12 @@ namespace PlainElastic.Net
                         message = new StreamReader(responseStream, true).ReadToEnd();
                     }
                 }
-                throw new OperationExeception(message, ex);
+
+                int statusCode = 0;
+                if (response is HttpWebResponse )
+                    statusCode = (int)((HttpWebResponse)response).StatusCode;
+
+                throw new OperationExeception(message, statusCode, ex);
             }
 
         }

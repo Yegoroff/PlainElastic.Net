@@ -40,6 +40,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\CommandBuilder.cs" />
+    <Compile Include="Commands\CloseCommandBuilder.cs" />
+    <Compile Include="Commands\UpdateSettingsCommandBuilder.cs" />
+    <Compile Include="Commands\OpenCommandBuilder.cs" />
+    <Compile Include="Commands\IndexExistsCommandBuilder.cs" />
+    <Compile Include="Commands\FlushCommandBuilder.cs" />
+    <Compile Include="Commands\GetMappingCommandBuilder.cs" />
+    <Compile Include="Commands\PutMappingCommandBuilder.cs" />
+    <Compile Include="Commands\DeleteMappingCommandBuilder.cs" />
     <Compile Include="Commands\DeleteCommandBuilder.cs" />
     <Compile Include="Commands\Enums.cs" />
     <Compile Include="Commands\IndexCommandBuilder.cs" />
@@ -69,6 +77,7 @@
     <Compile Include="QueryBuilder\Filters\TermFilter.cs" />
     <Compile Include="QueryBuilder\Terms.cs" />
     <Compile Include="Serialization\Results\BaseResult.cs" />
+    <Compile Include="Serialization\Results\CommandResult.cs" />
     <Compile Include="Serialization\Results\SearchResult.cs" />
     <Compile Include="Serialization\Results\DeleteResult.cs" />
     <Compile Include="Serialization\Results\IndexResult.cs" />

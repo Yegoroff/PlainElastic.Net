@@ -26,6 +26,12 @@ namespace PlainElastic.Net
             return PropertyNameFromExpresion(exp.Body, camelCase: true);
         }
 
+
+        public static string ShortPropertyName<TPropertyType>(Expression<Func<T, TPropertyType>> exp)
+        {
+            return PropertyNameFromExpresion(exp.Body, camelCase: false, fullPath: false);
+        }
+
         public static string PropertyName<TPropertyType>(Expression<Func<T, TPropertyType>> exp)
         {
             return PropertyNameFromExpresion(exp.Body, camelCase: false);

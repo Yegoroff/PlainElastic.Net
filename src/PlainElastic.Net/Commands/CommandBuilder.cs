@@ -37,6 +37,12 @@ namespace PlainElastic.Net
         protected abstract string BuildUrlPath();
 
 
+
+        public override string ToString()
+        {
+            return BuildCommand();
+        }
+
         public static implicit operator string (CommandBuilder<T> command)
         {
             return command.BuildCommand();

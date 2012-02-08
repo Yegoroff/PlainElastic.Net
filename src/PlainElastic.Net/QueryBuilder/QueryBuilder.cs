@@ -67,6 +67,12 @@ namespace PlainElastic.Net.QueryBuilder
         public string BuildBeautified()
         {
             return Build().ButifyJson();
-        } 
+        }
+
+
+        public override string ToString()
+        {
+            return BuildBeautified();
+        }
     }
 }

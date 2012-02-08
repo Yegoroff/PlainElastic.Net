@@ -5,6 +5,10 @@ using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net
 {
+    /// <summary>
+    /// Builds a command that allows to get a typed JSON document from the index based on its id.
+    /// http://www.elasticsearch.org/guide/reference/api/get.html
+    /// </summary>
     public class GetCommandBuilder : CommandBuilder<GetCommandBuilder>
     {
         public string Index { get; private set; }

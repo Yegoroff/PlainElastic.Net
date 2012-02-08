@@ -4,6 +4,7 @@ namespace PlainElastic.Net
 {
     /// <summary>
     /// Builds a command that allows to create Index and add or update custom Json document in that Index.
+    /// http://www.elasticsearch.org/guide/reference/api/index_.html
     /// </summary>
     public class IndexCommandBuilder: CommandBuilder<IndexCommandBuilder>
     {
@@ -59,7 +60,7 @@ namespace PlainElastic.Net
             return this;
         }
 
-        public IndexCommandBuilder Refresh(bool refresh)
+        public IndexCommandBuilder Refresh(bool refresh = true)
         {
             Parameters.Add("refresh", refresh.AsString());
             return this;

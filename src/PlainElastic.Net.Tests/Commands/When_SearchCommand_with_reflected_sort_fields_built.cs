@@ -13,9 +13,9 @@ namespace PlainElastic.Net.Tests.Integration
 
         It should_starts_with_index_type = () => result.ShouldStartWith("index/type");
 
-        It should_contain_first_parameter_sort_with_property1_ask = () => result.ShouldContain("?sort=property1:ask");
+        It should_contain_first_parameter_sort_with_property1_ask = () => result.ShouldContain("?sort=Property1:ask");
 
-        It should_return_correct_value = () => result.ShouldEqual(@"index/type?sort=property1:ask");
+        It should_return_correct_value = () => result.ShouldEqual(@"index/type/_search?sort=Property1:ask");
 
 
         private static string result;

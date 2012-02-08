@@ -2,6 +2,7 @@
 {
     /// <summary>
     /// Builds a command that allows to delete custom Json document in Index or delete whole Index.
+    /// http://www.elasticsearch.org/guide/reference/api/delete.html
     /// </summary>
     public class DeleteCommandBuilder: CommandBuilder<DeleteCommandBuilder>
     {

@@ -7,6 +7,7 @@ namespace PlainElastic.Net
 {
     /// <summary>
     /// Builds a command that allows to execute a search query and get back search hits that match the query.
+    /// http://www.elasticsearch.org/guide/reference/api/search/uri-request.html
     /// </summary>
     public class SearchCommandBuilder : CommandBuilder<SearchCommandBuilder>
     {

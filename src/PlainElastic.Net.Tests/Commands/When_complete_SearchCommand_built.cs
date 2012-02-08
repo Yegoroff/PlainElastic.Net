@@ -61,7 +61,7 @@ namespace PlainElastic.Net.Tests.Integration
 
         It should_contain_parameter_track_scores_equals_to_true = () => result.ShouldContain("&track_scores=true");
 
-        It should_return_correct_value = () => result.ShouldEqual(@"index/type?analyze_wildcard=true&analyzer=analyzer&default_operator=OR&df=defaultField&explain=true&fields=field1, field2&from=123&lowercase_expanded_terms=false&q=query:test&routing=route&search_type=dfs_query_then_fetch&scroll=1h&size=321&sort=field1:desc&timeout=1m&track_scores=true&pretty=true");
+        It should_return_correct_value = () => result.ShouldEqual(@"index/type/_search?analyze_wildcard=true&analyzer=analyzer&default_operator=OR&df=defaultField&explain=true&fields=field1, field2&from=123&lowercase_expanded_terms=false&q=query:test&routing=route&search_type=dfs_query_then_fetch&scroll=1h&size=321&sort=field1:desc&timeout=1m&track_scores=true&pretty=true");
 
 
         private static string result;

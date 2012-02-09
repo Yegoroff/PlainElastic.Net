@@ -1,6 +1,6 @@
 ﻿namespace PlainElastic.Net
 {
-    // Actually result is string so if everything ok  - the result will be returned, otherwise exception.
+    // Actually result is string, so if everything ok - the result will be returned as command execution result, otherwise exception.
     // This type used mainly to distinguish operation result functionality from usual string.
     public class OperationResult
     {

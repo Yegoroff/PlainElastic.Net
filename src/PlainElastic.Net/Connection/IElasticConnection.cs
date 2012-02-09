@@ -3,9 +3,9 @@ namespace PlainElastic.Net
 {
     public interface IElasticConnection
     {
-        string DefaultHost { get; set; }
+        string DefaultHost { get; }
 
-        int DefaultPort { get; set; }
+        int DefaultPort { get; }
 
         OperationResult Get(string command, string jsonData = null);
 

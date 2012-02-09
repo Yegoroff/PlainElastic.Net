@@ -7,10 +7,17 @@ namespace PlainElastic.Net
 {
     public class ElasticConnection: IElasticConnection
     {
-        
-        public string DefaultHost { get; set; }
 
-        public int DefaultPort { get; set; }
+        public ElasticConnection(string defaultHost = null, int defaultPort = 9200)
+        {
+            DefaultHost = defaultHost;
+            DefaultPort = defaultPort;
+        }
+
+        
+        public string DefaultHost { get; private set; }
+
+        public int DefaultPort { get; private set; }
 
 
         public OperationResult Get(string command, string jsonData = null)
@@ -78,7 +85,7 @@ namespace PlainElastic.Net
                 }
 
                 int statusCode = 0;
-                if (response is HttpWebResponse )
+                if (response is HttpWebResponse)
                     statusCode = (int)((HttpWebResponse)response).StatusCode;
 
                 throw new OperationExeception(message, statusCode, ex);
@@ -94,8 +101,8 @@ namespace PlainElastic.Net
 
             request.Accept = "application/json";
             request.ContentType = "application/json";
-            request.Timeout = 1000*60;          // 1 minute timeout.
-            request.ReadWriteTimeout = 1000*60; // 1 minute timeout.
+            request.Timeout = 1000 * 60;          // 1 minute timeout.
+            request.ReadWriteTimeout = 1000 * 60; // 1 minute timeout.
             request.Method = method;
 
             //TODO: Setup Proxy

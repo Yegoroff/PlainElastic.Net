@@ -12,7 +12,7 @@ namespace PlainSample
         {
             Console.WriteLine("PLAIN SAMPLE");
 
-            var connection = new ElasticConnection {DefaultHost = "localhost", DefaultPort = 9200};
+            var connection = new ElasticConnection("localhost", 9200);
             var serializer = new JsonNetSerializer();
 
             var tweet = new Tweet
@@ -52,7 +52,7 @@ namespace PlainSample
            */
 
             // This is url that will be requested from ES. We can grab it and put to any ES admin console (like ElasticHead) to debug ES behavior.
-            string indexCommand =  ElasticCommands.Index(index: "twitter", type: "tweet", id: id)
+            string indexCommand =  Commands.Index(index: "twitter", type: "tweet", id: id)
                 .Refresh(true)
                 .Pretty(); // this will generate: twitter/tweet/1?pretty=true
 
@@ -91,7 +91,7 @@ namespace PlainSample
             $ curl -XGET 'http://localhost:9200/twitter/tweet/1?pretty=true'
             */
 
-            String getCommand = ElasticCommands.Get(index: "twitter", type: "tweet", id: id).Pretty(); // this will generate: twitter/tweet/1?pretty=true
+            String getCommand = Commands.Get(index: "twitter", type: "tweet", id: id).Pretty(); // this will generate: twitter/tweet/1?pretty=true
 
             var result = connection.Get(getCommand); 
 
@@ -124,7 +124,7 @@ namespace PlainSample
            $ curl -XDELETE 'http://localhost:9200/twitter?pretty=true'
            */
 
-            string deleteCommand = ElasticCommands.Delete(index: "twitter").Pretty();
+            string deleteCommand = Commands.Delete(index: "twitter").Pretty();
 
             var result = connection.Delete(deleteCommand);
 
@@ -153,7 +153,7 @@ namespace PlainSample
 
         private static IEnumerable<Tweet> SearchTweets(ElasticConnection connection, JsonNetSerializer serializer)
         {
-            string searchCommand = ElasticCommands.Search("twitter", "tweet").Pretty();
+            string searchCommand = Commands.Search("twitter", "tweet").Pretty();
 
             /*
 {

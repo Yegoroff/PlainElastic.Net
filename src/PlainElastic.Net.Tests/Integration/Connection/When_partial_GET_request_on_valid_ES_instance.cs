@@ -7,7 +7,7 @@ namespace PlainElastic.Net.Tests.Integration
     {
         Establish context = () =>
         {
-            connection = new ElasticConnection{DefaultHost = "localhost", DefaultPort = 9200};
+            connection = new ElasticConnection("localhost", 9200);
         };
 
 

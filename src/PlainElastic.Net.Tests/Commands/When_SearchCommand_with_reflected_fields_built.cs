@@ -2,11 +2,11 @@
 
 namespace PlainElastic.Net.Tests.Integration
 {
-    [Subject(typeof(SearchCommandBuilder))]
+    [Subject(typeof(SearchCommand))]
     class When_SearchCommand_with_reflected_fields_built
     {
 
-        Because of = () => result = new SearchCommandBuilder(index:"Index", type:"Type")
+        Because of = () => result = new SearchCommand(index:"Index", type:"Type")
             .Fields<FieldsTestClass>(c => c.Property1,
                                      c => c.Property2)
             .BuildCommand();

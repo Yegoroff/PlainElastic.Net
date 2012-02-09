@@ -2,11 +2,11 @@
 
 namespace PlainElastic.Net.Tests.Integration
 {
-    [Subject(typeof(GetCommandBuilder))]
+    [Subject(typeof(GetCommand))]
     class When_complete_GetCommand_built
     {
 
-        Because of = () => result = new GetCommandBuilder(index:"Index", type:"Type", id: "Id")
+        Because of = () => result = new GetCommand(index:"Index", type:"Type", id: "Id")
             .Realtime(false)
             .Fields("field1,field2")
             .Routing("route")

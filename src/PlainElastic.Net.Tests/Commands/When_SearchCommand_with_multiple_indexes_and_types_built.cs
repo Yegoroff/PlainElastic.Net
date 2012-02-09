@@ -2,11 +2,11 @@
 
 namespace PlainElastic.Net.Tests.Integration
 {
-    [Subject(typeof(SearchCommandBuilder))]
-    class When_multiple_indexes_and_types_SearchCommand_built
+    [Subject(typeof(SearchCommand))]
+    class When_SearchCommand_with_multiple_indexes_and_types_built
     {
 
-        Because of = () => result = new SearchCommandBuilder(indexes: new[] { "index1", "index2" }, types: new[] { "Type1", "Type2" })
+        Because of = () => result = new SearchCommand(indexes: new[] { "index1", "index2" }, types: new[] { "Type1", "Type2" })
             .Pretty()
             .BuildCommand();
 

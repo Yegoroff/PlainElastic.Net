@@ -4,20 +4,20 @@
     /// Builds a command that allows to register specific mapping definition for a specific type.
     /// http://www.elasticsearch.org/guide/reference/api/admin-indices-put-mapping.html
     /// </summary>
-    public class PutMappingCommandBuilder: CommandBuilder<PutMappingCommandBuilder>
+    public class PutMappingCommand: CommandBuilder<PutMappingCommand>
     {
         public string Indexes { get; private set; }
 
         public string Types { get; private set; }
 
 
-        public PutMappingCommandBuilder(string index, string type = null)
+        public PutMappingCommand(string index, string type = null)
         {
             Indexes = index;
             Types = type;
         }
 
-        public PutMappingCommandBuilder(string[] indexes, string[] types = null)
+        public PutMappingCommand(string[] indexes, string[] types = null)
         {
             Indexes = indexes.JoinWithComma();
             Types = types.JoinWithComma();
@@ -26,7 +26,7 @@
 
         #region Query Parameters
 
-        public PutMappingCommandBuilder IgnoreConflicts(bool ignore)
+        public PutMappingCommand IgnoreConflicts(bool ignore)
         {
             Parameters.Add("ignore_conflicts", ignore.AsString());
             return this;

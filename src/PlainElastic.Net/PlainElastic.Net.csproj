@@ -39,20 +39,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\CommandBuilder.cs" />
-    <Compile Include="Commands\CloseCommandBuilder.cs" />
-    <Compile Include="Commands\UpdateSettingsCommandBuilder.cs" />
-    <Compile Include="Commands\OpenCommandBuilder.cs" />
-    <Compile Include="Commands\IndexExistsCommandBuilder.cs" />
-    <Compile Include="Commands\FlushCommandBuilder.cs" />
-    <Compile Include="Commands\GetMappingCommandBuilder.cs" />
-    <Compile Include="Commands\PutMappingCommandBuilder.cs" />
-    <Compile Include="Commands\DeleteMappingCommandBuilder.cs" />
-    <Compile Include="Commands\DeleteCommandBuilder.cs" />
+    <Compile Include="Commands\CloseCommand.cs" />
+    <Compile Include="Commands\UpdateSettingsCommand.cs" />
+    <Compile Include="Commands\OpenCommand.cs" />
+    <Compile Include="Commands\IndexExistsCommand.cs" />
+    <Compile Include="Commands\FlushCommand.cs" />
+    <Compile Include="Commands\GetMappingCommand.cs" />
+    <Compile Include="Commands\PutMappingCommand.cs" />
+    <Compile Include="Commands\DeleteMappingCommand.cs" />
+    <Compile Include="Commands\DeleteCommand.cs" />
     <Compile Include="Commands\Enums.cs" />
-    <Compile Include="Commands\IndexCommandBuilder.cs" />
-    <Compile Include="Commands\GetCommandBuilder.cs" />
-    <Compile Include="Commands\ElasticCommands.cs" />
-    <Compile Include="Commands\SearchCommandBuilder.cs" />
+    <Compile Include="Commands\IndexCommand.cs" />
+    <Compile Include="Commands\GetCommand.cs" />
+    <Compile Include="Commands\Commands.cs" />
+    <Compile Include="Commands\SearchCommand.cs" />
     <Compile Include="Connection\OperationExeception.cs" />
     <Compile Include="Connection\ElasticConnection.cs" />
     <Compile Include="Connection\OperationResult.cs" />

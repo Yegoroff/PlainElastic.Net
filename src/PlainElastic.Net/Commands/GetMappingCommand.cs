@@ -5,20 +5,20 @@
     /// To get mappings for all indices you can use _all for "index"
     /// http://www.elasticsearch.org/guide/reference/api/admin-indices-get-mapping.html
     /// </summary>
-    public class GetMappingCommandBuilder: CommandBuilder<GetMappingCommandBuilder>
+    public class GetMappingCommand: CommandBuilder<GetMappingCommand>
     {
         public string Indexes { get; private set; }
 
         public string Types { get; private set; }
 
 
-        public GetMappingCommandBuilder(string index = null, string type = null)
+        public GetMappingCommand(string index = null, string type = null)
         {
             Indexes = index;
             Types = type;
         }
 
-        public GetMappingCommandBuilder(string[] indexes, string[] types = null)
+        public GetMappingCommand(string[] indexes, string[] types = null)
         {
             Indexes = indexes.JoinWithComma();
             Types = types.JoinWithComma();

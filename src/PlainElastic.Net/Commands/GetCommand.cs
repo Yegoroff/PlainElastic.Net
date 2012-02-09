@@ -9,7 +9,7 @@ namespace PlainElastic.Net
     /// Builds a command that allows to get a typed JSON document from the index based on its id.
     /// http://www.elasticsearch.org/guide/reference/api/get.html
     /// </summary>
-    public class GetCommandBuilder : CommandBuilder<GetCommandBuilder>
+    public class GetCommand : CommandBuilder<GetCommand>
     {
         public string Index { get; private set; }
 
@@ -18,7 +18,7 @@ namespace PlainElastic.Net
         public string Id { get; private set; }
 
 
-        public GetCommandBuilder(string index = null, string type = null, string id = null)
+        public GetCommand(string index = null, string type = null, string id = null)
         {
             Index = index;
             Type = type;
@@ -28,20 +28,20 @@ namespace PlainElastic.Net
 
         #region Query Parameters
 
-        public GetCommandBuilder Fields(string fields)
+        public GetCommand Fields(string fields)
         {
             Parameters.Add("fields", fields);
             return this;
         }
 
-        public GetCommandBuilder Fields<T>(params Expression<Func<T, object>>[] properties)
+        public GetCommand Fields<T>(params Expression<Func<T, object>>[] properties)
         {
             string fields = properties.Select(prop => prop.GetPropertyName()).JoinWithComma();
             Parameters.Add("fields", fields);
             return this;
         }
 
-        public GetCommandBuilder Preference(GetPrefernce prefernce, string customPreference = null)
+        public GetCommand Preference(GetPrefernce prefernce, string customPreference = null)
         {
             string value = prefernce.ToString();
             if (prefernce == GetPrefernce.custom)
@@ -53,19 +53,19 @@ namespace PlainElastic.Net
             return this;
         }
 
-        public GetCommandBuilder Realtime(bool realtime)
+        public GetCommand Realtime(bool realtime)
         {
             Parameters.Add("realtime", realtime.AsString());
             return this;
         }
 
-        public GetCommandBuilder Refresh(bool refresh)
+        public GetCommand Refresh(bool refresh)
         {
             Parameters.Add("refresh", refresh.AsString());
             return this;
         }
 
-        public GetCommandBuilder Routing(string routing)
+        public GetCommand Routing(string routing)
         {
             Parameters.Add("routing", routing);
             return this;

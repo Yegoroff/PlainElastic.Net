@@ -4,12 +4,12 @@
     /// Builds a command that allows check if the index (indices) exists or not. 
     /// http://www.elasticsearch.org/guide/reference/api/admin-indices-indices-exists.html
     /// </summary>
-    public class IndexExistsCommandBuilder : CommandBuilder<IndexExistsCommandBuilder>
+    public class IndexExistsCommand : CommandBuilder<IndexExistsCommand>
     { 
         public string Index { get; private set; }
 
 
-        public IndexExistsCommandBuilder(string index)
+        public IndexExistsCommand(string index)
         {
             Index = index;
         }

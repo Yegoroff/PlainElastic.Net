@@ -6,7 +6,7 @@ namespace PlainElastic.Net
     /// Builds a command that allows to create Index and add or update custom Json document in that Index.
     /// http://www.elasticsearch.org/guide/reference/api/index_.html
     /// </summary>
-    public class IndexCommandBuilder: CommandBuilder<IndexCommandBuilder>
+    public class IndexCommand: CommandBuilder<IndexCommand>
     {
         public string Index { get; private set; }
 
@@ -22,7 +22,7 @@ namespace PlainElastic.Net
         /// <param name="type">The document type name. This parameter could be optional.</param>
         /// <param name="id">The id. If this parameter missing ID will automatically assigned. 
         /// Note to use POST request in this case.</param>
-        public IndexCommandBuilder(string index, string type = null, string id = null)
+        public IndexCommand(string index, string type = null, string id = null)
         {
             Index = index;
             Type = type;
@@ -32,25 +32,25 @@ namespace PlainElastic.Net
 
         #region Query Parameters
 
-        public IndexCommandBuilder Consistency(WriteConsistency consistency)
+        public IndexCommand Consistency(WriteConsistency consistency)
         {
             Parameters.Add("consistency", consistency.ToString());
             return this;
         }
 
-        public IndexCommandBuilder OperationType(IndexOperation operation)
+        public IndexCommand OperationType(IndexOperation operation)
         {
             Parameters.Add("op_type", operation.ToString());
             return this;            
         }
 
-        public IndexCommandBuilder Parent(string parentId)
+        public IndexCommand Parent(string parentId)
         {
             Parameters.Add("parent", parentId);
             return this;
         }
 
-        public IndexCommandBuilder Percolate(PercolateMode percolateMode, string color = null)
+        public IndexCommand Percolate(PercolateMode percolateMode, string color = null)
         {
             if (percolateMode == PercolateMode.All)
                 Parameters.Add("percolate", "*");
@@ -60,43 +60,43 @@ namespace PlainElastic.Net
             return this;
         }
 
-        public IndexCommandBuilder Refresh(bool refresh = true)
+        public IndexCommand Refresh(bool refresh = true)
         {
             Parameters.Add("refresh", refresh.AsString());
             return this;
         }
         
-        public IndexCommandBuilder Replication(DocumentReplication replication)
+        public IndexCommand Replication(DocumentReplication replication)
         {
             Parameters.Add("replication", replication.ToString());
             return this;
         }
 
-        public IndexCommandBuilder Routing(string routing)
+        public IndexCommand Routing(string routing)
         {
             Parameters.Add("routing", routing);
             return this;
         }
 
-        public IndexCommandBuilder Timeout(string timeout)
+        public IndexCommand Timeout(string timeout)
         {
             Parameters.Add("timeout", timeout);
             return this;
         }
 
-        public IndexCommandBuilder Timestamp(DateTime timestamp)
+        public IndexCommand Timestamp(DateTime timestamp)
         {
             Parameters.Add("timestamp", timestamp.ToString("s"));
             return this;
         }
 
-        public IndexCommandBuilder TTL(string timeToLive)
+        public IndexCommand TTL(string timeToLive)
         {
             Parameters.Add("ttl", timeToLive);
             return this;
         }
 
-        public IndexCommandBuilder Version(long version)
+        public IndexCommand Version(long version)
         {
             Parameters.Add("version", version.ToString());
             return this;

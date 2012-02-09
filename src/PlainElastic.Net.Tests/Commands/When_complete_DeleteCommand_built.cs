@@ -3,11 +3,11 @@ using Machine.Specifications;
 
 namespace PlainElastic.Net.Tests.Integration
 {
-    [Subject(typeof(DeleteCommandBuilder))]
+    [Subject(typeof(DeleteCommand))]
     class When_complete_DeleteCommand_built
     {
 
-        Because of = () => result = new DeleteCommandBuilder(index:"Index", type:"Type", id: "Id")
+        Because of = () => result = new DeleteCommand(index:"Index", type:"Type", id: "Id")
             .Consistency(WriteConsistency.quorum)            
             .Parent("parentId")            
             .Refresh(true)

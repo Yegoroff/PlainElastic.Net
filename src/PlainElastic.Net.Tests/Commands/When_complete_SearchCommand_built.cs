@@ -2,11 +2,11 @@
 
 namespace PlainElastic.Net.Tests.Integration
 {
-    [Subject(typeof(SearchCommandBuilder))]
+    [Subject(typeof(SearchCommand))]
     class When_complete_SearchCommand_built
     {
 
-        Because of = () => result = new SearchCommandBuilder(index:"Index", type:"Type")
+        Because of = () => result = new SearchCommand(index:"Index", type:"Type")
             .AnalyzeWildcard(true)
             .Analyzer("analyzer")
             .DefaultOperator(DefaultQueryOperator.OR)

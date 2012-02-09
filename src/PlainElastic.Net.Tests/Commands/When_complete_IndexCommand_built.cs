@@ -3,11 +3,11 @@ using Machine.Specifications;
 
 namespace PlainElastic.Net.Tests.Integration
 {
-    [Subject(typeof(IndexCommandBuilder))]
+    [Subject(typeof(IndexCommand))]
     class When_complete_IndexCommand_built
     {
 
-        Because of = () => result = new IndexCommandBuilder(index:"Index", type:"Type", id: "Id")
+        Because of = () => result = new IndexCommand(index:"Index", type:"Type", id: "Id")
             .Consistency(WriteConsistency.quorum)
             .OperationType(IndexOperation.create)
             .Parent("parentId")

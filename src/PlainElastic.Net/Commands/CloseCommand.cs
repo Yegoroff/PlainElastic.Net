@@ -1,15 +1,15 @@
 ﻿namespace PlainElastic.Net
 {
     /// <summary>
-    /// Builds a command that allows to open an index. 
+    /// Builds a command that allows to close an index. 
     /// http://www.elasticsearch.org/guide/reference/api/admin-indices-open-close.html
     /// </summary>
-    public class OpenCommandBuilder: CommandBuilder<OpenCommandBuilder>
+    public class CloseCommand: CommandBuilder<CloseCommand>
     {
         public string Index { get; private set; }
 
 
-        public OpenCommandBuilder(string index = null)
+        public CloseCommand(string index = null)
         {
             Index = index;
         }
@@ -18,7 +18,7 @@
 
         protected override string BuildUrlPath()
         {
-            return UrlBuilder.BuildUrlPath(Index, "_open");
+            return UrlBuilder.BuildUrlPath(Index, "_close");
         }
     }
 }

@@ -2,12 +2,12 @@
 
 namespace PlainElastic.Net.Tests.Integration
 {
-    [Subject(typeof(GetCommandBuilder))]
+    [Subject(typeof(GetCommand))]
     class When_GetCommand_with_reflected_fields_built
     {
         Establish context = () =>
         {
-            command = new GetCommandBuilder(index:"Index", type:"Type", id:"Id");
+            command = new GetCommand(index:"Index", type:"Type", id:"Id");
         };
 
 
@@ -23,7 +23,7 @@ namespace PlainElastic.Net.Tests.Integration
 
         It should_return_correct_value = () => result.ShouldEqual(@"index/type/id?fields=Property1,Property2");
 
-        private static GetCommandBuilder command;
+        private static GetCommand command;
         private static string result;
     }
 }

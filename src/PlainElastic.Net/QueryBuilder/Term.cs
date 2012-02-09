@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 using PlainElastic.Net.Utils;
 
@@ -28,6 +29,17 @@ namespace PlainElastic.Net.QueryBuilder
 
             return this;
         }
+
+        public Term<T> FieldOfCollection<TProp>(Expression<Func<T, IEnumerable<TProp>>> collectionField, Expression<Func<TProp, object>> field)
+        {
+            var collectionProperty = collectionField.GetPropertyName();
+            var fieldName = collectionProperty + "." + field.GetPropertyName();
+
+            termField = fieldName.Quotate();
+
+            return this;
+        }
+
 
 
         public Term<T> Value(object value)

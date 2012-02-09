@@ -1,28 +1,31 @@
-﻿
-using Newtonsoft.Json;
-using PlainElastic.Net;
+﻿using PlainElastic.Net;
 using PlainElastic.Net.QueryBuilder;
 using PlainElastic.Net.Serialization;
 
 namespace PlainSample
 {
-    public class ElasticClient
+    public class ElasticClient<T>
     {
         private readonly IElasticConnection connection;
-        private readonly JsonNetSerializer serializer;
+        private readonly IJsonSerializer serializer;
 
 
-        public ElasticClient(string defaultHost, int defaultPort)
+        public ElasticClient(IJsonSerializer serializer, string defaultHost = null, int defaultPort = 9200)
         {
-            connection = new ElasticConnection{DefaultHost = defaultHost, DefaultPort  = defaultPort};
-            serializer = new JsonNetSerializer();
+            connection = new ElasticConnection(defaultHost, defaultPort);
+            this.serializer = serializer;
         }
 
 
-        public JsonSerializerSettings SerializerSettings
+        public ElasticClient(string defaultHost, int defaultPort) :
+            this(new JsonNetSerializer(), defaultHost, defaultPort)
         {
-            get { return serializer.Settings; }
-            set { serializer.Settings = value; }
+        }
+
+
+        public IJsonSerializer Serializer
+        {
+            get { return serializer; }
         }
 
         public IElasticConnection Connection
@@ -31,29 +34,98 @@ namespace PlainSample
         }
 
 
-        public GetResult<T> Get<T>(GetCommandBuilder getCommand)
+
+        public GetResult<T> Get(GetCommand getCommand)
         {
             var result = connection.Get(getCommand);
-            return serializer.ToGetResult<T>(result);
+            return Serializer.ToGetResult<T>(result);
         }
 
-        public IndexResult Index(IndexCommandBuilder indexCommand, object document)
+
+        public bool IndexExists(IndexExistsCommand indexExistsCommand)
         {
-            string data = serializer.ToJson(document);
+            try
+            {
+                connection.Head(indexExistsCommand);
+                return true;
+            }
+            catch (OperationExeception ex)
+            {
+                if (ex.HttpStatusCode == 404)
+                    return false;
+                throw;
+            }
+        }
+
+        public IndexResult CreateIndex(IndexCommand indexCommand, string indexSettings = null)
+        {
+            var result = connection.Put(indexCommand, indexSettings);
+            return Serializer.ToIndexResult(result);
+        }
+
+        public IndexResult Index(IndexCommand indexCommand, object document = null)
+        {
+            string data = Serializer.ToJson(document);
             var result = connection.Put(indexCommand, data);
-            return serializer.ToIndexResult(result);
+            return Serializer.ToIndexResult(result);
         }
 
-        public SearchResult<T> Search<T>(SearchCommandBuilder searchCommand, QueryBuilder<T> query)
-        {
-            var results = connection.Post(searchCommand, query.Build());
-            return serializer.ToSearchResult<T>(results);
-        }
 
-        public DeleteResult Delete(DeleteCommandBuilder deleteCommand)
+        public DeleteResult Delete(DeleteCommand deleteCommand)
         {
             var result = connection.Delete(deleteCommand);
-            return serializer.ToDeleteResult(result);
+            return Serializer.ToDeleteResult(result);
         }
+
+
+        public SearchResult<T> Search(SearchCommand searchCommand, QueryBuilder<T> query)
+        {
+            var results = connection.Post(searchCommand, query.Build());
+            return Serializer.ToSearchResult<T>(results);
+        }
+
+
+        public string GetMapping(GetMappingCommand getMappingCommand)
+        {
+            return connection.Get(getMappingCommand);
+        }
+
+        public CommandResult PutMapping(PutMappingCommand putMappingCommand, string mapping)
+        {
+            string result = connection.Put(putMappingCommand, mapping);
+            return Serializer.ToCommandResult(result);
+        }
+
+        public DeleteResult DeleteMapping(DeleteMappingCommand deleteMappingCommand)
+        {
+            var result = connection.Delete(deleteMappingCommand);
+            return Serializer.ToDeleteResult(result);
+        }
+
+
+        public CommandResult Flush(FlushCommand flushCommand)
+        {
+            string result = connection.Post(flushCommand);
+            return Serializer.ToCommandResult(result);
+        }
+
+        public CommandResult Close(CloseCommand closeCommand)
+        {
+            string result = connection.Post(closeCommand);
+            return Serializer.ToCommandResult(result);
+        }
+
+        public CommandResult Open(OpenCommand openCommand)
+        {
+            string result = connection.Post(openCommand);
+            return Serializer.ToCommandResult(result);
+        }
+
+        public CommandResult UpdateSettings(UpdateSettingsCommand updateSettingsCommand, string settings)
+        {
+            string result = connection.Put(updateSettingsCommand, settings);
+            return Serializer.ToCommandResult(result);
+        }
+
     }
 }

@@ -16,25 +16,32 @@
         }
 
 
-        public static GetResult<T> ToGetResult<T>(this IJsonSerializer serializer, OperationResult operationResult)
+        public static GetResult<T> ToGetResult<T>(this IJsonSerializer serializer, string operationResult)
         {           
             return serializer.Deserialize<GetResult<T>>(operationResult);
         }
 
-        public static IndexResult ToIndexResult(this IJsonSerializer serializer, OperationResult operationResult)
+        public static IndexResult ToIndexResult(this IJsonSerializer serializer, string operationResult)
         {
             return serializer.Deserialize<IndexResult>(operationResult);
         }
 
-        public static DeleteResult ToDeleteResult(this IJsonSerializer serializer, OperationResult operationResult)
+        public static DeleteResult ToDeleteResult(this IJsonSerializer serializer, string operationResult)
         {
             return serializer.Deserialize<DeleteResult>(operationResult);
         }
 
-        public static SearchResult<T> ToSearchResult<T>(this IJsonSerializer serializer, OperationResult operationResult)
+        public static SearchResult<T> ToSearchResult<T>(this IJsonSerializer serializer, string operationResult)
         {
             return serializer.Deserialize<SearchResult<T>>(operationResult);
-        } 
+        }
+
+        public static CommandResult ToCommandResult(this IJsonSerializer serializer, string operationResult)
+        {
+            return serializer.Deserialize<CommandResult>(operationResult);
+        }
+
+
     }
 
 }

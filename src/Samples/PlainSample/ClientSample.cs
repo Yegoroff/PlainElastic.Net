@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using PlainElastic.Net;
 using PlainElastic.Net.QueryBuilder;
 using PlainElastic.Net.Serialization;
@@ -12,7 +11,7 @@ namespace PlainSample
         {
             Console.WriteLine("CLIENT SAMPLE");
 
-            var client = new ElasticClient(defaultHost: "localhost", defaultPort: 9200);
+            var client = new ElasticClient<Tweet>(defaultHost: "localhost", defaultPort: 9200);
             
             var firstTweet = new Tweet
             {
@@ -27,15 +26,15 @@ namespace PlainSample
             };
 
 
-            IndexResult indexResult1 = client.Index(ElasticCommands.Index(index: "twitter", type: "tweet", id: "1").Refresh(true),
+            IndexResult indexResult1 = client.Index(new IndexCommand(index: "twitter", type: "tweet", id: "1").Refresh(),
                          firstTweet);
 
-            IndexResult indexResult2 = client.Index(ElasticCommands.Index(index: "twitter", type: "tweet", id: "2").Refresh(true),
+            IndexResult indexResult2 = client.Index(Commands.Index(index: "twitter", type: "tweet", id: "2").Refresh(),
                          anotherTweet);
 
-            GetResult<Tweet> getResult = client.Get<Tweet>(ElasticCommands.Get(index: "twitter", type: "tweet", id: "2"));
+            GetResult<Tweet> getResult = client.Get(new GetCommand(index: "twitter", type: "tweet", id: "2"));
 
-            SearchResult<Tweet> searchResult = client.Search(ElasticCommands.Search("twitter", "tweet"),
+            SearchResult<Tweet> searchResult = client.Search(new SearchCommand("twitter", "tweet"),
                                                             new QueryBuilder<Tweet>()
                                                             .Query(q => q
                                                                 .Term(t => t
@@ -45,7 +44,7 @@ namespace PlainSample
                                                                 )
                                                             ));
 
-            DeleteResult deleteResult = client.Delete(ElasticCommands.Delete(index: "twitter"));
+            DeleteResult deleteResult = client.Delete(Commands.Delete(index: "twitter"));
 
 
             PrintIndexResult(indexResult1);

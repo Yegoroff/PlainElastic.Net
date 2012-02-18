@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using PlainElastic.Net;
-using PlainElastic.Net.QueryBuilder;
+using PlainElastic.Net.Queries;
 using PlainElastic.Net.Serialization;
 
 namespace PlainSample

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace PlainElastic.Net.Mapping
+namespace PlainElastic.Net.Mappings
 {
     public class Map<T>
     {

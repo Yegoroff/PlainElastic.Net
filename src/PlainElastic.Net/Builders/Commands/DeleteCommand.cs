@@ -55,7 +55,7 @@
 
         public DeleteCommand Version(long version)
         {
-            Parameters.Add("version", version.ToString());
+            Parameters.Add("version", version.AsString());
             return this;
         }
 

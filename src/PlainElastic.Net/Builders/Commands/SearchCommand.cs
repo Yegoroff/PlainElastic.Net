@@ -85,7 +85,7 @@ namespace PlainElastic.Net
         /// </summary>
         public SearchCommand From(int fromIndex = 0)
         {
-            Parameters.Add("from", fromIndex.ToString());
+            Parameters.Add("from", fromIndex.AsString());
             return this;
         }
 
@@ -125,7 +125,7 @@ namespace PlainElastic.Net
         /// </summary>
         public SearchCommand Size(int size = 10)
         {
-            Parameters.Add("size", size.ToString());
+            Parameters.Add("size", size.AsString());
             return this;
         }
 

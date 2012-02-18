@@ -1,23 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using PlainElastic.Net.Builders;
 using PlainElastic.Net.Utils;
 
 
-namespace PlainElastic.Net.QueryBuilder
+namespace PlainElastic.Net.Queries
 {
     public class Term<T> : IJsonConvertible
     {
-        #region Query Templates
-
-        private const string termTemplate = "{{ \"term\": {{ {0} : {{ {1} }} }}  }}";
-
-        private const string valueTemplate = "\"value\" :{0}";
-        private const string boostTemplate = "\"boost\": {0}";
-
-        #endregion
-
-
         private string termValue;
         private string termField;
         private string boostValue;
@@ -60,7 +51,7 @@ namespace PlainElastic.Net.QueryBuilder
 
         public Term<T> Boost(double boost)
         {
-            boostValue = boost.ToString().Quotate();
+            boostValue = boost.AsString();
             
             return this;
         }
@@ -71,12 +62,12 @@ namespace PlainElastic.Net.QueryBuilder
             if (termValue.IsNullOrEmpty())
                 return "";
 
-            var body = valueTemplate.F(termValue);
+            var body = "'value': {0}".SmartQuoteF(termValue);
 
             if (!boostValue.IsNullOrEmpty())
-                body += ", " + boostTemplate.F(boostValue);
+                body += ", 'boost': {0}".SmartQuoteF(boostValue);
 
-            var result = termTemplate.F(termField, body);
+            var result = "{{ 'term': {{ {0} : {{ {1} }} }} }}".SmartQuoteF(termField, body);
 
             return result;
         }

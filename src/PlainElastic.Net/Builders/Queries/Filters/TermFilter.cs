@@ -1,14 +1,13 @@
 using System;
 using System.Linq.Expressions;
+using PlainElastic.Net.Builders;
 using PlainElastic.Net.Utils;
 
 
-namespace PlainElastic.Net.QueryBuilder
+namespace PlainElastic.Net.Queries
 {
     public class TermFilter<T> : IJsonConvertible
     {
-        private const string termFilterTemplate = "{{  \"term\": {{ {0} : {1} }} }}";
-
         private string termField;
         private string termValue;
 
@@ -41,7 +40,7 @@ namespace PlainElastic.Net.QueryBuilder
             if (termValue.IsNullOrEmpty())
                 return "";
 
-            var result = termFilterTemplate.F(termField, termValue);
+            var result = "{{ 'term': {{ {0} : {1} }} }}".SmartQuoteF(termField, termValue);
 
             return result;
         }

@@ -1,23 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using PlainElastic.Net.Builders;
 using PlainElastic.Net.Utils;
 
 
-namespace PlainElastic.Net.QueryBuilder
+namespace PlainElastic.Net.Queries
 {
     public class Terms<T> : IJsonConvertible
     {
-
-        #region Query Templates
-
-        private const string termsTemplate =  "{{ \"terms\": {{ {0} : [ {1} ] {2} }} }}";
-
-        private const string minimumMatchTemplate = "\"minimum_match\" :{0}";
-
-        #endregion
-
-
         private string termsValues;
         private string termsField;
         private string minimumMatchValue;
@@ -40,7 +31,7 @@ namespace PlainElastic.Net.QueryBuilder
     
         public Terms<T> MinimumMatch(int count)
         {
-            minimumMatchValue = count.ToString();
+            minimumMatchValue = count.AsString();
 
             return this;
         }
@@ -54,9 +45,9 @@ namespace PlainElastic.Net.QueryBuilder
 
             var minimumMatchPart = "";
             if (!minimumMatchValue.IsNullOrEmpty())
-                minimumMatchPart = ", " + minimumMatchTemplate.F(minimumMatchValue);
+                minimumMatchPart = ", 'minimum_match' :{0}".SmartQuoteF(minimumMatchValue);
 
-            var result = termsTemplate.F(termsField, termsValues, minimumMatchPart);
+            var result = "{{ 'terms': {{ {0} : [ {1} ] {2} }} }}".SmartQuoteF(termsField, termsValues, minimumMatchPart);
 
             return result;
         }

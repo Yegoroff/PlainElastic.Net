@@ -1,15 +1,13 @@
 using System;
 using System.Linq.Expressions;
+using PlainElastic.Net.Builders;
 using PlainElastic.Net.Utils;
 
 
-namespace PlainElastic.Net.QueryBuilder
+namespace PlainElastic.Net.Queries
 {
     public class ExistsFilter<T> : IJsonConvertible
     {
-        private const string existsFilterTemplate = "{{ \"exists\": {{ \"field\" : {0} }} }}";
-
-
         private string existsField;
         private bool shouldExists;
 
@@ -34,7 +32,7 @@ namespace PlainElastic.Net.QueryBuilder
             if (!shouldExists)
                 return "";
 
-            var result = existsFilterTemplate.F(existsField);
+            var result = "{{ 'exists': {{ 'field' : {0} }} }}".SmartQuoteF(existsField);
 
             return result;
         }

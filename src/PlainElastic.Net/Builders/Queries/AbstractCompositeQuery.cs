@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using PlainElastic.Net.Builders;
 
-namespace PlainElastic.Net.QueryBuilder
+namespace PlainElastic.Net.Queries
 {
     public abstract class AbstractCompositeQuery<T> : IJsonConvertible
     {
@@ -43,7 +44,7 @@ namespace PlainElastic.Net.QueryBuilder
                 return "";
 
             var body = Queries.JoinWithSeparator(", ");
-            return QueryTemplate.F(body);
+            return QueryTemplate.SmartQuoteF(body);
         }
 
     }

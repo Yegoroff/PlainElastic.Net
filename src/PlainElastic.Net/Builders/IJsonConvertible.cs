@@ -1,4 +1,4 @@
-namespace PlainElastic.Net.QueryBuilder
+namespace PlainElastic.Net.Builders
 {
     public interface IJsonConvertible
     {

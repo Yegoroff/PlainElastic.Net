@@ -1,26 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using PlainElastic.Net.Builders;
 using PlainElastic.Net.Utils;
 
 
-namespace PlainElastic.Net.QueryBuilder
+namespace PlainElastic.Net.Queries
 {
     public class Sort<T> : IJsonConvertible
     {
-        #region Query Templates
-
-        private const string sortTemplate = "\"sort\": [{0}]";
-
-        private const string fieldTemplate = "{{ {0} : {{ {1} }} }}";
-        private const string orderTemplate = "\"order\": {0}";
-        private const string missingTemplate = "\"_missing\": {0}";
-        private const string scriptTemplate = "\"_script\" : {0}, \"type\": {1}, \"order\": {2}, \"params\": {3} ";
-        private const string customTemplate = "{{ {0} }}";
-
-        #endregion
-
-
         private readonly List<string> sortExpressions = new List<string>();
 
 
@@ -51,15 +39,15 @@ namespace PlainElastic.Net.QueryBuilder
         {
             var fieldParams = "";
             if (order != SortDirection.desc)
-                fieldParams = orderTemplate.F(order);
+                fieldParams = "'order': {0}".SmartQuoteF(order.ToString().Quotate());
 
             if (!missing.IsNullOrEmpty())
-                fieldParams = fieldParams + ", " + missingTemplate.F(missing);  
+                fieldParams = fieldParams + ", " + "'_missing': {0}".SmartQuoteF(missing.Quotate());
 
             if (fieldParams.IsNullOrEmpty())
                 sortExpressions.Add(field.Quotate());
-            else 
-                sortExpressions.Add(fieldTemplate.F(field.Quotate(), fieldParams));
+            else
+                sortExpressions.Add("{{ {0} : {{ {1} }} }}".SmartQuoteF(field.Quotate(), fieldParams));
 
             return this;
         }
@@ -67,8 +55,7 @@ namespace PlainElastic.Net.QueryBuilder
 
         public Sort<T> Script(string script, string type, SortDirection order, string [] @params)
         {
-
-            var expression = scriptTemplate.F(script, type, order.ToString(), @params.JoinWithComma() );
+            var expression = "'_script' : {0}, 'type': {1}, 'order': {2}, 'params': {3} ".SmartQuoteF(script, type.Quotate(), order.ToString().Quotate(), @params.JoinWithComma());
             sortExpressions.Add(expression);
 
             return this;
@@ -76,7 +63,7 @@ namespace PlainElastic.Net.QueryBuilder
 
         public Sort<T> Custom(string customSortExpression)
         {
-            var expression = customTemplate.F(customSortExpression);
+            var expression = "{{ {0} }}".SmartQuoteF(customSortExpression);
             sortExpressions.Add(expression);
             return this;
         }
@@ -87,7 +74,7 @@ namespace PlainElastic.Net.QueryBuilder
             if (sortExpressions.Count == 0)
                 return "";
 
-            var result = sortTemplate.F(sortExpressions.JoinWithComma());
+            var result = "'sort': [{0}]".SmartQuoteF(sortExpressions.JoinWithComma());
             return result;
         }
     }

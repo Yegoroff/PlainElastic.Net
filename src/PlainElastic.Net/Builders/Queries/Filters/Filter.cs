@@ -1,16 +1,14 @@
 using System;
+using PlainElastic.Net.Queries;
 
-namespace PlainElastic.Net.QueryBuilder
+namespace PlainElastic.Net.Queries
 {
     public class Filter<T> : AbstractCompositeQuery<T>
     {
 
-        private const string filterTemplate = " \"filter\": {{ {0} }}";
-
-
         protected override string QueryTemplate
         {
-            get { return filterTemplate; }
+            get { return " 'filter': {{ {0} }}"; }
         }
 
 

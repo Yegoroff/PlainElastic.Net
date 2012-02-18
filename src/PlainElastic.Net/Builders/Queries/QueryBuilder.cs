@@ -1,23 +1,15 @@
 using System;
+using PlainElastic.Net.Builders;
 
 
-namespace PlainElastic.Net.QueryBuilder
+namespace PlainElastic.Net.Queries
 {
     public class QueryBuilder<T> : AbstractCompositeQuery<T>
     {
-        #region Query Templates
-
-        private const string mainQueryTemplate ="{{ {0} }}";
-        private const string fromTemplate = "  \"from\": {0}";
-        private const string sizeTemplate = "  \"size\": {0}";
-        private const string sortTemplate = "  \"sort\": [{0}]";
-
-        #endregion
-
 
         protected override string QueryTemplate
         {
-            get { return mainQueryTemplate; }
+            get { return "{{ {0} }}"; }
         }
 
 
@@ -35,7 +27,7 @@ namespace PlainElastic.Net.QueryBuilder
 
         public QueryBuilder<T> From (int from)
         {
-            var fromQuery = fromTemplate.F(from);
+            var fromQuery = " 'from': {0}".SmartQuoteF(from);
             Queries.Add(fromQuery);
 
             return this;
@@ -43,11 +35,10 @@ namespace PlainElastic.Net.QueryBuilder
 
         public QueryBuilder<T> Size(int size)
         {
-            var sizeQuery = sizeTemplate.F(size);
+            var sizeQuery = " 'size': {0}".SmartQuoteF(size);
             Queries.Add(sizeQuery);
 
             return this;
-
         }
 
         public QueryBuilder<T> Sort(Func<Sort<T>, Sort<T>> sort)

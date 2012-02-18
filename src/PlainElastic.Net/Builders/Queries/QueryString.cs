@@ -2,29 +2,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using PlainElastic.Net.Builders;
 using PlainElastic.Net.Utils;
 
 
-namespace PlainElastic.Net.QueryBuilder
+namespace PlainElastic.Net.Queries
 {
     public enum Rewrite { ConstantScoreDefault, ScoringBoolean, ConstantScoreBoolean, ConstantScoreFilter, TopTermsN, TopTermsBoostN }
 
 
     public class QueryString<T> : IJsonConvertible
     {
-
-        #region Query Templates
-
-        private const string mainTemplate =         "{{ \"query_string\": {{ {0} }} }}";
-
-        private const string defaultFieldTemplate = " \"default_field\": {0}";
-        private const string boostTemplate =        " \"boost\": {0}";
-        private const string rewriteTemplate =      " \"rewrite\": {0}";
-        private const string queryTemplate =        " \"query\": {0}";
-        private const string fieldsTemplate =       " \"fields\": [{0}]";
-
-        #endregion
-
 
         private readonly List<string> queryFields = new List<string>();
 
@@ -37,7 +25,7 @@ namespace PlainElastic.Net.QueryBuilder
         public QueryString<T> DefaultField(Expression<Func<T, object>> field)
         {
             var defaultField = field.GetQuotatedPropertyName();
-            var defaultPart = defaultFieldTemplate.F(defaultField);
+            var defaultPart = " 'default_field': {0}".SmartQuoteF(defaultField);
 
             queryParts.Add(defaultPart);
 
@@ -78,7 +66,7 @@ namespace PlainElastic.Net.QueryBuilder
 
             var fullTextQuery = values.JoinWithSeparator(" ").LowerAndQuotate();
 
-            queryValue = queryTemplate.F(fullTextQuery);
+            queryValue = " 'query': {0}".SmartQuoteF(fullTextQuery);
 
             queryParts.Add(queryValue);
 
@@ -87,7 +75,7 @@ namespace PlainElastic.Net.QueryBuilder
 
         public QueryString<T> Boost(double boost)
         {
-            var boostPart = boostTemplate.F(boost.ToString());
+            var boostPart = " 'boost': {0}".SmartQuoteF(boost.AsString());
             queryParts.Add(boostPart);
 
             return this;
@@ -96,7 +84,7 @@ namespace PlainElastic.Net.QueryBuilder
         public QueryString<T> Rewrite(Rewrite rewrite, int n = 0)
         {
             var rewriteValue = GetRewriteValue(rewrite, n).Quotate();
-            var rewritePart = rewriteTemplate.F(rewriteValue);
+            var rewritePart = " 'rewrite': {0}".SmartQuoteF(rewriteValue);
 
             queryParts.Add(rewritePart);
 
@@ -104,28 +92,26 @@ namespace PlainElastic.Net.QueryBuilder
         }
 
 
-
-
         private static string GetRewriteValue(Rewrite rewrite, int n)
         {            
             switch(rewrite)
             {
-                case QueryBuilder.Rewrite.ConstantScoreDefault:
+                case Queries.Rewrite.ConstantScoreDefault:
                     return "constant_score_default";
 
-                case QueryBuilder.Rewrite.ConstantScoreBoolean:
+                case Queries.Rewrite.ConstantScoreBoolean:
                     return "constant_score_boolean";
 
-                case QueryBuilder.Rewrite.ConstantScoreFilter:
+                case Queries.Rewrite.ConstantScoreFilter:
                     return "constant_score_filter";
 
-                case QueryBuilder.Rewrite.ScoringBoolean:
+                case Queries.Rewrite.ScoringBoolean:
                     return "scoring_boolean";
 
-                case QueryBuilder.Rewrite.TopTermsBoostN:
+                case Queries.Rewrite.TopTermsBoostN:
                     return "top_terms_boost_" + n;
 
-                case QueryBuilder.Rewrite.TopTermsN:
+                case Queries.Rewrite.TopTermsN:
                     return "top_terms_" + n;
             }
             return "";
@@ -135,7 +121,7 @@ namespace PlainElastic.Net.QueryBuilder
         private string GenerateFieldsQueryPart()
         {
             var fields = queryFields.JoinWithComma();
-            var fieldPart = fieldsTemplate.F(fields);
+            var fieldPart = " 'fields': [{0}]".SmartQuoteF(fields);
             return fieldPart;
         }
 
@@ -148,7 +134,7 @@ namespace PlainElastic.Net.QueryBuilder
             queryParts.Insert(0, GenerateFieldsQueryPart());
 
             var body = queryParts.JoinWithSeparator(", ");
-            var result = mainTemplate.F(body);
+            var result = "{{ 'query_string': {{ {0} }} }}".SmartQuoteF(body);
 
             return result;
         }

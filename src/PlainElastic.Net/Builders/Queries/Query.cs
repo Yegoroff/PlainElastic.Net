@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using PlainElastic.Net.Utils;
 
-namespace PlainElastic.Net.QueryBuilder
+namespace PlainElastic.Net.Queries
 {
     public class Query<T> : AbstractCompositeQuery<T>
     {
-        private const string queryTemplate = " \"query\": {0} ";
-
-
         protected override string QueryTemplate
         {
-            get { return queryTemplate; }
+            get { return " 'query': {0} "; }
         }
 
 
@@ -40,6 +37,12 @@ namespace PlainElastic.Net.QueryBuilder
             return this;
         }
 
+
+        /// <summary>
+        /// Adds a custom mapping to Object Map.
+        /// You can use ' instead of " to simplify queryFormat creation.
+        /// Name of passed field param will be the first format argument.
+        /// </summary>
         public Query<T> Custom(string queryFormat, Expression<Func<T, object>> field, params string[] args)
         {
             var formatArgs = new List<string>(args);
@@ -48,12 +51,13 @@ namespace PlainElastic.Net.QueryBuilder
             return Custom(queryFormat, formatArgs.ToArray());
         }
 
-
+        /// <summary>
+        /// Adds a custom mapping to Object Map.
+        /// You can use ' instead of " to simplify queryFormat creation.
+        /// </summary>
         public Query<T> Custom(string queryFormat, params string[] args)
         {
-            queryFormat = queryFormat.Replace('\'', '\"');
-
-            var query = queryFormat.F(args);
+            var query = queryFormat.SmartQuoteF(args);
             Queries.Add(query);
             return this;
         }

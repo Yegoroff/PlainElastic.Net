@@ -1,23 +1,16 @@
 using System;
 
 
-namespace PlainElastic.Net.QueryBuilder
+namespace PlainElastic.Net.Queries
 {
     public class BoolQuery<T> : AbstractCompositeQuery<T>
     {
-        private const string queryTemplate = "{{ \"bool\": {{ {0} }} }}";
-
-        private const string boostTemplate = "   \"boost\": {0}";
-        private const string minimumNumberShouldMatchTemplate = "   \"minimum_number_should_match\": {0}";
-        private const string disableCoordTemplate = "   \"disable_coord\": {0}";       
-
-
         private int shouldPartsCount;
 
 
         protected override string QueryTemplate
         {
-            get { return queryTemplate; }
+            get { return "{{ 'bool': {{ {0} }} }}"; }
         }
 
 
@@ -53,7 +46,7 @@ namespace PlainElastic.Net.QueryBuilder
                 if (useActualShouldCount && number > shouldPartsCount)
                     number = shouldPartsCount;
 
-                var query = minimumNumberShouldMatchTemplate.F(number);
+                var query = " 'minimum_number_should_match': {0}".SmartQuoteF(number.AsString());
                 Queries.Add(query);
             }
 
@@ -62,7 +55,7 @@ namespace PlainElastic.Net.QueryBuilder
 
         public BoolQuery<T> Boost(double boost)
         {
-            var boostQuery = boostTemplate.F(boost);
+            var boostQuery = " 'boost': {0}".SmartQuoteF(boost.AsString());
             Queries.Add(boostQuery);
 
             return this;
@@ -70,7 +63,7 @@ namespace PlainElastic.Net.QueryBuilder
 
         public BoolQuery<T> DisableCoord(bool disableCoord)
         {
-            var disableCoordQuery = disableCoordTemplate.F(disableCoord.AsString());
+            var disableCoordQuery = " 'disable_coord': {0}".SmartQuoteF(disableCoord.AsString());
             Queries.Add(disableCoordQuery);
 
             return this;

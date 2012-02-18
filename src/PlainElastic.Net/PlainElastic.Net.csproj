@@ -21,6 +21,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Net40\PlainElastic.Net.XML</DocumentationFile>
+    <NoWarn>1591</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -38,43 +40,60 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\CommandBuilder.cs" />
-    <Compile Include="Commands\CloseCommand.cs" />
-    <Compile Include="Commands\UpdateSettingsCommand.cs" />
-    <Compile Include="Commands\OpenCommand.cs" />
-    <Compile Include="Commands\IndexExistsCommand.cs" />
-    <Compile Include="Commands\FlushCommand.cs" />
-    <Compile Include="Commands\GetMappingCommand.cs" />
-    <Compile Include="Commands\PutMappingCommand.cs" />
-    <Compile Include="Commands\DeleteMappingCommand.cs" />
-    <Compile Include="Commands\DeleteCommand.cs" />
-    <Compile Include="Commands\Enums.cs" />
-    <Compile Include="Commands\IndexCommand.cs" />
-    <Compile Include="Commands\GetCommand.cs" />
-    <Compile Include="Commands\Commands.cs" />
-    <Compile Include="Commands\SearchCommand.cs" />
+    <Compile Include="Builders\Commands\CommandBuilder.cs" />
+    <Compile Include="Builders\Commands\CloseCommand.cs" />
+    <Compile Include="Builders\Commands\UpdateSettingsCommand.cs" />
+    <Compile Include="Builders\Commands\OpenCommand.cs" />
+    <Compile Include="Builders\Commands\IndexExistsCommand.cs" />
+    <Compile Include="Builders\Commands\FlushCommand.cs" />
+    <Compile Include="Builders\Commands\GetMappingCommand.cs" />
+    <Compile Include="Builders\Commands\PutMappingCommand.cs" />
+    <Compile Include="Builders\Commands\DeleteMappingCommand.cs" />
+    <Compile Include="Builders\Commands\DeleteCommand.cs" />
+    <Compile Include="Builders\Commands\Enums.cs" />
+    <Compile Include="Builders\Commands\IndexCommand.cs" />
+    <Compile Include="Builders\Commands\GetCommand.cs" />
+    <Compile Include="Builders\Commands\Commands.cs" />
+    <Compile Include="Builders\Commands\SearchCommand.cs" />
+    <Compile Include="Builders\Mappings\NestedObject.cs" />
+    <Compile Include="Builders\Mappings\Core\BinaryMap.cs" />
+    <Compile Include="Builders\Mappings\Core\BooleanMap.cs" />
+    <Compile Include="Builders\Mappings\Enums.cs" />
+    <Compile Include="Builders\Mappings\Core\PropertyBase.cs" />
+    <Compile Include="Builders\Mappings\Fields\AllMap.cs" />
+    <Compile Include="Builders\Mappings\Fields\ParentFieldMap.cs" />
+    <Compile Include="Builders\Mappings\Fields\IdFieldMap.cs" />
+    <Compile Include="Builders\Mappings\MappingBase.cs" />
+    <Compile Include="Builders\Mappings\Core\DateMap.cs" />
+    <Compile Include="Builders\Mappings\Core\NumberMap.cs" />
+    <Compile Include="Builders\Mappings\Object.cs" />
+    <Compile Include="Builders\Mappings\ObjectBase.cs" />
+    <Compile Include="Builders\Mappings\Properties.cs" />
+    <Compile Include="Builders\Mappings\RootObject.cs" />
+    <Compile Include="Builders\Mappings\Core\StringMap.cs" />
     <Compile Include="Connection\OperationExeception.cs" />
     <Compile Include="Connection\ElasticConnection.cs" />
     <Compile Include="Connection\OperationResult.cs" />
     <Compile Include="Connection\IElasticConnection.cs" />
-    <Compile Include="Mapping\Map.cs" />
+    <Compile Include="Builders\Mappings\Map.cs" />
+    <Compile Include="Builders\Mappings\MapBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QueryBuilder\AbstractCompositeQuery.cs" />
-    <Compile Include="QueryBuilder\Filters\AndFilter.cs" />
-    <Compile Include="QueryBuilder\BoolQuery.cs" />
-    <Compile Include="QueryBuilder\Sort.cs" />
-    <Compile Include="QueryBuilder\MustNotQuery.cs" />
-    <Compile Include="QueryBuilder\Filters\ExistsFilter.cs" />
-    <Compile Include="QueryBuilder\Filters\Filter.cs" />
-    <Compile Include="QueryBuilder\IJsonConvertible.cs" />
-    <Compile Include="QueryBuilder\MustQuery.cs" />
-    <Compile Include="QueryBuilder\Query.cs" />
-    <Compile Include="QueryBuilder\QueryBuilder.cs" />
-    <Compile Include="QueryBuilder\QueryString.cs" />
-    <Compile Include="QueryBuilder\ShouldQuery.cs" />
-    <Compile Include="QueryBuilder\Term.cs" />
-    <Compile Include="QueryBuilder\Filters\TermFilter.cs" />
-    <Compile Include="QueryBuilder\Terms.cs" />
+    <Compile Include="Builders\Queries\AbstractCompositeQuery.cs" />
+    <Compile Include="Builders\Queries\Filters\AndFilter.cs" />
+    <Compile Include="Builders\Queries\BoolQuery.cs" />
+    <Compile Include="Builders\Queries\Sort.cs" />
+    <Compile Include="Builders\Queries\MustNotQuery.cs" />
+    <Compile Include="Builders\Queries\Filters\ExistsFilter.cs" />
+    <Compile Include="Builders\Queries\Filters\Filter.cs" />
+    <Compile Include="Builders\IJsonConvertible.cs" />
+    <Compile Include="Builders\Queries\MustQuery.cs" />
+    <Compile Include="Builders\Queries\Query.cs" />
+    <Compile Include="Builders\Queries\QueryBuilder.cs" />
+    <Compile Include="Builders\Queries\QueryString.cs" />
+    <Compile Include="Builders\Queries\ShouldQuery.cs" />
+    <Compile Include="Builders\Queries\Term.cs" />
+    <Compile Include="Builders\Queries\Filters\TermFilter.cs" />
+    <Compile Include="Builders\Queries\Terms.cs" />
     <Compile Include="Serialization\Results\BaseResult.cs" />
     <Compile Include="Serialization\Results\CommandResult.cs" />
     <Compile Include="Serialization\Results\SearchResult.cs" />
@@ -93,6 +112,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

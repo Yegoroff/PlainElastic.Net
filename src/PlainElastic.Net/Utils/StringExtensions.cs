@@ -10,16 +10,29 @@ namespace PlainElastic.Net
     {
         private static readonly Regex splitBySpaceAndCommaRegex = new Regex("(?:^|,|\\s)(\"(?:[^\"]+|\"\")*\"|[^,\\s]*)", RegexOptions.Compiled);
 
-        
-        public static string F(this string source, params object[] args)
+
+        public static string F(this string format, params object[] args)
         {
-            return String.Format(source, args);
+            return String.Format(format, args);
+        }
+
+        /// <summary>
+        /// Provide string formatting alongside with replacing ' by " quotation sign.
+        /// </summary>
+        public static string SmartQuoteF(this string format, params object[] args)
+        {
+            if (format.IsNullOrEmpty())
+                return null;
+
+            format = format.Replace('\'', '\"');
+            return String.Format(format, args);
         }
 
         public static bool IsNullOrEmpty(this string source)
         {
             return String.IsNullOrEmpty(source);
         }
+
 
         public static string ToCamelCase(this string value)
         {
@@ -28,15 +41,7 @@ namespace PlainElastic.Net
             return Char.ToLower(value[0]) + value.Substring(1);
         }
 
-        public static string JoinWithSeparator(this IEnumerable<string> list, string separator)
-        {
-            return list == null ? "" : String.Join(separator, list);
-        }
 
-        public static string JoinWithComma(this IEnumerable<string> list)
-        {
-            return list == null ? "" : String.Join(",", list);
-        }
 
         public static string Quotate(this string value)
         {
@@ -53,6 +58,9 @@ namespace PlainElastic.Net
             return values.Select(v => v.LowerAndQuotate());
         }
 
+
+
+
         public static string[] SplitByCommaAndSpaces(this string text)
         {
             // Split text by commas and spaces unless it quoted.
@@ -62,6 +70,17 @@ namespace PlainElastic.Net
 
             return textsToSearch.ToArray();
         }
+
+        public static string JoinWithSeparator(this IEnumerable<string> list, string separator)
+        {
+            return list == null ? "" : String.Join(separator, list);
+        }
+
+        public static string JoinWithComma(this IEnumerable<string> list)
+        {
+            return list == null ? "" : String.Join(",", list);
+        }
+
 
 
         public static string ButifyJson(this string json)
@@ -73,5 +92,22 @@ namespace PlainElastic.Net
         {
             return value.ToString(CultureInfo.InvariantCulture).ToLower();
         }
+
+        public static string AsString(this double value)
+        {
+            return value.ToString(CultureInfo.InvariantCulture);
+        }
+
+        public static string AsString(this int value)
+        {
+            return value.ToString(CultureInfo.InvariantCulture);
+        }
+
+        public static string AsString(this long value)
+        {
+            return value.ToString(CultureInfo.InvariantCulture);
+        }
+
+
     }
 }

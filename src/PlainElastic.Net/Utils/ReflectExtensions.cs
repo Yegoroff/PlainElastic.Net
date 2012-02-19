@@ -5,15 +5,15 @@ namespace PlainElastic.Net.Utils
 {
     public static class ReflectExtensions
     {
-        public static string GetQuotatedPropertyName<TClass, TProp>(this Expression<Func<TClass, TProp>> property)
+        public static string GetQuotatedPropertyPath<TClass, TProp>(this Expression<Func<TClass, TProp>> property)
         {
-            return Reflect<TClass>.PropertyName(property)
+            return Reflect<TClass>.PropertyPath(property)
                 .Quotate();
         }
 
-        public static string GetPropertyName<TClass, TProp>(this Expression<Func<TClass, TProp>> property)
+        public static string GetPropertyPath<TClass, TProp>(this Expression<Func<TClass, TProp>> property)
         {
-            return Reflect<TClass>.PropertyName(property);
+            return Reflect<TClass>.PropertyPath(property);
         }
     }
 }

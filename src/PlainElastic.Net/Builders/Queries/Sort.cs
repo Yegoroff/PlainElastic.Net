@@ -22,7 +22,7 @@ namespace PlainElastic.Net.Queries
         /// <returns></returns>
         public Sort<T> Field(Expression<Func<T, object>> field, SortDirection order = SortDirection.desc, string missing = null)
         {
-            var fieldName = field.GetPropertyName();
+            var fieldName = field.GetPropertyPath();
             
             return Field(fieldName, order, missing);
         }

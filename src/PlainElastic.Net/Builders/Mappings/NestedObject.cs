@@ -17,7 +17,7 @@ namespace PlainElastic.Net.Mappings
         /// </summary>
         public NestedObject<TField> Field<TField>(Expression<Func<T, TField>> field)
         {
-            var fieldName = field.GetPropertyName();
+            var fieldName = field.GetPropertyPath();
 
             var objectForField = new NestedObject<TField> {Name = fieldName};
 
@@ -27,7 +27,7 @@ namespace PlainElastic.Net.Mappings
 
         public NestedObject<TField> Field<TField>(Expression<Func<T, IEnumerable<TField>>> field)
         {
-            var fieldName = field.GetPropertyName();
+            var fieldName = field.GetPropertyPath();
 
             var objectForField = new NestedObject<TField> { Name = fieldName };
 
@@ -57,7 +57,7 @@ namespace PlainElastic.Net.Mappings
 
         protected override string ApplyMappingTemplate(string mappingBody)
         {
-            return " '{0}': {{ 'type': 'nested', {1} }}".F(Name.Quotate(), mappingBody);
+            return " {0}: {{ 'type': 'nested', {1} }}".SmartQuoteF(Name.Quotate(), mappingBody);
         }
 
 

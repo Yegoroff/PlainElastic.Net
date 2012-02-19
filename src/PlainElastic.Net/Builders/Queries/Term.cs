@@ -7,6 +7,10 @@ using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Queries
 {
+    /// <summary>
+    /// Matches documents that have fields that contain a term (not analyzed). The term query maps to Lucene TermQuery
+    /// see http://www.elasticsearch.org/guide/reference/query-dsl/term-query.html
+    /// </summary>
     public class Term<T> : IJsonConvertible
     {
         private string termValue;
@@ -16,15 +20,15 @@ namespace PlainElastic.Net.Queries
 
         public Term<T> Field(Expression<Func<T, object>> field)
         {
-            termField = field.GetQuotatedPropertyName();
+            termField = field.GetQuotatedPropertyPath();
 
             return this;
         }
 
         public Term<T> FieldOfCollection<TProp>(Expression<Func<T, IEnumerable<TProp>>> collectionField, Expression<Func<TProp, object>> field)
         {
-            var collectionProperty = collectionField.GetPropertyName();
-            var fieldName = collectionProperty + "." + field.GetPropertyName();
+            var collectionProperty = collectionField.GetPropertyPath();
+            var fieldName = collectionProperty + "." + field.GetPropertyPath();
 
             termField = fieldName.Quotate();
 

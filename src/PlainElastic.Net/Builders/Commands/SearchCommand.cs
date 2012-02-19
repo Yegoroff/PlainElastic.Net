@@ -75,7 +75,7 @@ namespace PlainElastic.Net
         /// </summary>
         public SearchCommand Fields<T>(params Expression<Func<T, object>>[] properties)
         {
-            string fields = properties.Select(prop => prop.GetPropertyName()).JoinWithComma();
+            string fields = properties.Select(prop => prop.GetPropertyPath()).JoinWithComma();
             Parameters.Add("fields", fields);
             return this;
         }
@@ -144,7 +144,7 @@ namespace PlainElastic.Net
         /// </summary>
         public SearchCommand Sort<T>(Expression<Func<T, object>> property, SortDirection direction)
         {
-            string fieldname = property.GetPropertyName();
+            string fieldname = property.GetPropertyPath();
             Parameters.Add("sort", fieldname + ":" + direction.ToString());
             return this;            
         }

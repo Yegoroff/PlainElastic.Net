@@ -7,6 +7,11 @@ using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Queries
 {
+    /// <summary>
+    /// A query that match on any (configurable) of the provided terms.
+    /// This is a simpler syntax query for using a bool query with several term queries in the should clauses
+    /// see: http://www.elasticsearch.org/guide/reference/query-dsl/terms-query.html
+    /// </summary>    
     public class Terms<T> : IJsonConvertible
     {
         private string termsValues;
@@ -16,10 +21,21 @@ namespace PlainElastic.Net.Queries
 
         public Terms<T> Field(Expression<Func<T, object>> field)
         {
-            termsField = field.GetQuotatedPropertyName();
+            termsField = field.GetQuotatedPropertyPath();
 
             return this;
         }
+
+        public Terms<T> FieldOfCollection<TProp>(Expression<Func<T, IEnumerable<TProp>>> collectionField, Expression<Func<TProp, object>> field)
+        {
+            var collectionProperty = collectionField.GetPropertyPath();
+            var fieldName = collectionProperty + "." + field.GetPropertyPath();
+
+            termsField = fieldName.Quotate();
+
+            return this;
+        }
+
 
         public Terms<T> Values(IEnumerable<string> values)
         {
@@ -36,7 +52,6 @@ namespace PlainElastic.Net.Queries
             return this;
         }
 
-        
 
         string IJsonConvertible.ToJson()
         {

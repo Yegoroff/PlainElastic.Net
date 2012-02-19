@@ -15,7 +15,7 @@ namespace PlainElastic.Net.Mappings
         /// </summary>
         public Object<TField> Field<TField>(Expression<Func<T, TField>> field)
         {
-            var fieldName = field.GetPropertyName();
+            var fieldName = field.GetPropertyPath();
 
             var objectForField = new Object<TField>{Name = fieldName};
 

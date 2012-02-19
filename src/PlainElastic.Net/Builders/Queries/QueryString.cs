@@ -8,9 +8,10 @@ using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Queries
 {
-    public enum Rewrite { ConstantScoreDefault, ScoringBoolean, ConstantScoreBoolean, ConstantScoreFilter, TopTermsN, TopTermsBoostN }
-
-
+    /// <summary>
+    /// A query that uses a query parser in order to parse its content
+    /// see http://www.elasticsearch.org/guide/reference/query-dsl/query-string-query.html
+    /// </summary>    
     public class QueryString<T> : IJsonConvertible
     {
 
@@ -24,7 +25,7 @@ namespace PlainElastic.Net.Queries
 
         public QueryString<T> DefaultField(Expression<Func<T, object>> field)
         {
-            var defaultField = field.GetQuotatedPropertyName();
+            var defaultField = field.GetQuotatedPropertyPath();
             var defaultPart = " 'default_field': {0}".SmartQuoteF(defaultField);
 
             queryParts.Add(defaultPart);
@@ -35,18 +36,18 @@ namespace PlainElastic.Net.Queries
         public QueryString<T> Fields(params Expression<Func<T, object>> [] fields)
         {
             foreach (var field in fields)
-                queryFields.Add(field.GetQuotatedPropertyName());
+                queryFields.Add(field.GetQuotatedPropertyPath());
 
             return this;
         }
 
         public QueryString<T> FieldsOfCollection<TProp>(Expression<Func<T, IEnumerable<TProp>>> collectionField, params Expression<Func<TProp, object>>[] fields)
         {
-            var collectionProperty = collectionField.GetPropertyName();
+            var collectionProperty = collectionField.GetPropertyPath();
 
             foreach (var field in fields)
             {
-                var fieldName = collectionProperty + "." + field.GetPropertyName();
+                var fieldName = collectionProperty + "." + field.GetPropertyPath();
                 fieldName = fieldName.Quotate();
                 queryFields.Add(fieldName);
             }
@@ -96,25 +97,13 @@ namespace PlainElastic.Net.Queries
         {            
             switch(rewrite)
             {
-                case Queries.Rewrite.ConstantScoreDefault:
-                    return "constant_score_default";
-
-                case Queries.Rewrite.ConstantScoreBoolean:
-                    return "constant_score_boolean";
-
-                case Queries.Rewrite.ConstantScoreFilter:
-                    return "constant_score_filter";
-
-                case Queries.Rewrite.ScoringBoolean:
-                    return "scoring_boolean";
-
-                case Queries.Rewrite.TopTermsBoostN:
+                case Queries.Rewrite.top_terms_boost_n:
                     return "top_terms_boost_" + n;
 
-                case Queries.Rewrite.TopTermsN:
+                case Queries.Rewrite.top_terms_n:
                     return "top_terms_" + n;
             }
-            return "";
+            return rewrite.ToString();
         }
 
 

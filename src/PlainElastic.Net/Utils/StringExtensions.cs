@@ -24,9 +24,22 @@ namespace PlainElastic.Net
             if (format.IsNullOrEmpty())
                 return null;
 
-            format = format.Replace('\'', '\"');
+            format = format.SmartQuote();
+
+            if (args == null || args.Length == 0)
+                return format;
+
             return String.Format(format, args);
         }
+
+        /// <summary>
+        /// Replaces ' by " quotation sign.
+        /// </summary>
+        public static string SmartQuote(this string quotedString)
+        {
+            return quotedString.Replace('\'', '\"');
+        }
+
 
         public static bool IsNullOrEmpty(this string source)
         {

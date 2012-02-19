@@ -6,14 +6,19 @@ using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Queries
 {
+    /// <summary>
+    /// Filters documents where a specific field has a value in them.
+    /// see http://www.elasticsearch.org/guide/reference/query-dsl/exists-filter.html
+    /// </summary>
     public class ExistsFilter<T> : IJsonConvertible
     {
         private string existsField;
         private bool shouldExists;
 
+
         public ExistsFilter<T> Field(Expression<Func<T, object>> field)
         {
-            existsField = field.GetQuotatedPropertyName();
+            existsField = field.GetQuotatedPropertyPath();
 
             return this;
         }

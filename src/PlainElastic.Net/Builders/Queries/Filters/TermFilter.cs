@@ -6,6 +6,10 @@ using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Queries
 {
+    /// <summary>
+    /// Filters documents that have fields that contain a term (not analyzed).
+    /// see http://www.elasticsearch.org/guide/reference/query-dsl/term-filter.html
+    /// </summary>    
     public class TermFilter<T> : IJsonConvertible
     {
         private string termField;
@@ -14,7 +18,7 @@ namespace PlainElastic.Net.Queries
 
         public TermFilter<T> Field(Expression<Func<T, object>> field)
         {
-            termField = field.GetQuotatedPropertyName();
+            termField = field.GetQuotatedPropertyPath();
 
             return this;
         }
@@ -34,6 +38,8 @@ namespace PlainElastic.Net.Queries
             return this;
         }
 
+
+        //TODO: Common filter Cache ??
 
         string IJsonConvertible.ToJson()
         {

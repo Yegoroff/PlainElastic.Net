@@ -3,7 +3,14 @@ using System;
 
 namespace PlainElastic.Net.Queries
 {
-    public class BoolQuery<T> : AbstractCompositeQuery<T>
+
+    /// <summary>
+    /// A query that matches documents matching boolean combinations of other queries. 
+    /// The bool query maps to Lucene BooleanQuery. It is built using one or more boolean clauses, 
+    /// each clause with a typed occurrence
+    /// see: http://www.elasticsearch.org/guide/reference/query-dsl/bool-query.html
+    /// </summary>    
+    public class BoolQuery<T> : CompositeQueryBase
     {
         private int shouldPartsCount;
 
@@ -16,23 +23,23 @@ namespace PlainElastic.Net.Queries
 
         public BoolQuery<T> Must(Func<MustQuery<T>, Query<T>> mustQuery)
         {
-            RegisterQueryAsJson(mustQuery);
+            RegisterQueryExpression(mustQuery);
 
             return this;
         }
 
         public BoolQuery<T> MustNot(Func<MustNotQuery<T>, Query<T>> mustQuery)
         {
-            RegisterQueryAsJson(mustQuery);
+            RegisterQueryExpression(mustQuery);
 
             return this;
         }
 
         public BoolQuery<T> Should(Func<ShouldQuery<T>, Query<T>> shouldQuery)
         {
-            var shouldResult = RegisterQueryAsJson(shouldQuery);
+            var shouldResult = RegisterQueryExpression(shouldQuery);
 
-            shouldPartsCount = shouldResult.Queries.Count;
+            shouldPartsCount = shouldResult.QueryParts.Count;
 
             return this;
         }
@@ -46,8 +53,8 @@ namespace PlainElastic.Net.Queries
                 if (useActualShouldCount && number > shouldPartsCount)
                     number = shouldPartsCount;
 
-                var query = " 'minimum_number_should_match': {0}".SmartQuoteF(number.AsString());
-                Queries.Add(query);
+                var param = " 'minimum_number_should_match': {0}".SmartQuoteF(number.AsString());
+                base.RegisterJsonParam(param);
             }
 
             return this;
@@ -55,16 +62,16 @@ namespace PlainElastic.Net.Queries
 
         public BoolQuery<T> Boost(double boost)
         {
-            var boostQuery = " 'boost': {0}".SmartQuoteF(boost.AsString());
-            Queries.Add(boostQuery);
+            var boostParam = " 'boost': {0}".SmartQuoteF(boost.AsString());
+            base.RegisterJsonParam(boostParam);
 
             return this;
         }
 
         public BoolQuery<T> DisableCoord(bool disableCoord)
         {
-            var disableCoordQuery = " 'disable_coord': {0}".SmartQuoteF(disableCoord.AsString());
-            Queries.Add(disableCoordQuery);
+            var disableCoordParam = " 'disable_coord': {0}".SmartQuoteF(disableCoord.AsString());
+            base.RegisterJsonParam(disableCoordParam);
 
             return this;
         }

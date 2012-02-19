@@ -21,7 +21,7 @@ namespace PlainElastic.Net.Mappings
         /// </summary>
         public StringMap<T> OmitNorms(bool omitNorms = false)
         {
-            RegisterCustomJsonMap("'omit_norms': {0} ", omitNorms.AsString().Quotate());
+            RegisterCustomJsonMap("'omit_norms': {0} ", omitNorms.AsString());
             return this;
         }
 
@@ -30,7 +30,7 @@ namespace PlainElastic.Net.Mappings
         /// </summary>
         public StringMap<T> OmitTermFreqAndPositions(bool omitTermFreqAndPositions = false)
         {
-            RegisterCustomJsonMap("'omit_term_freq_and_positions': {0} ", omitTermFreqAndPositions.AsString().Quotate());
+            RegisterCustomJsonMap("'omit_term_freq_and_positions': {0} ", omitTermFreqAndPositions.AsString());
             return this;
         }
         
@@ -93,7 +93,7 @@ namespace PlainElastic.Net.Mappings
 
 
 
-        protected override string GetFieldType(Type fieldType)
+        protected override string GetElasticFieldType(Type fieldType)
         {
             return "string";
         }

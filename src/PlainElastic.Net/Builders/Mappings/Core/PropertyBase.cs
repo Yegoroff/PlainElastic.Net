@@ -16,16 +16,16 @@ namespace PlainElastic.Net.Mappings
 
         public TMapping Field<TField>(Expression<Func<T, TField>> field)
         {
-            FieldName = field.GetPropertyName();           
-            FieldType = GetFieldType(typeof(TField));
+            FieldName = field.GetPropertyPath();           
+            FieldType = GetElasticFieldType(typeof(TField));
 
             return (TMapping)this;
         }
 
         public TMapping Field<TField>(Expression<Func<T, IEnumerable<TField>>> field)
         {
-            FieldName = field.GetPropertyName();
-            FieldType = GetFieldType(typeof(TField));
+            FieldName = field.GetPropertyPath();
+            FieldType = GetElasticFieldType(typeof(TField));
 
             return (TMapping)this;
         }
@@ -97,9 +97,12 @@ namespace PlainElastic.Net.Mappings
 
         protected override string ApplyMappingTemplate(string mappingBody)
         {
-            return "{0}: {{ 'type':{1},  {2} }}".SmartQuoteF(FieldName, FieldType, mappingBody);
+            if (mappingBody.IsNullOrEmpty())
+                return "{0}: {{ 'type':{1} }}".SmartQuoteF(FieldName.Quotate(), FieldType.Quotate());
+
+            return "{0}: {{ 'type':{1},  {2} }}".SmartQuoteF(FieldName.Quotate(), FieldType.Quotate(), mappingBody);
         }
 
-        protected abstract string GetFieldType(Type fieldType);
+        protected abstract string GetElasticFieldType(Type fieldType);
     }
 }

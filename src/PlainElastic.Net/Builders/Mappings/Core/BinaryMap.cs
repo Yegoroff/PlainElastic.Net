@@ -9,7 +9,7 @@ namespace PlainElastic.Net.Mappings
     public class BinaryMap<T> : PropertyBase<T, BinaryMap<T>>
     {
 
-        protected override string GetFieldType(Type fieldType)
+        protected override string GetElasticFieldType(Type fieldType)
         {
             return "binary";
         }

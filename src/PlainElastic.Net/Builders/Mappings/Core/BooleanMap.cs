@@ -8,7 +8,7 @@ namespace PlainElastic.Net.Mappings
     /// </summary>
     public class BooleanMap<T> : PropertyBase<T, BooleanMap<T>>
     {
-        protected override string GetFieldType(Type fieldType)
+        protected override string GetElasticFieldType(Type fieldType)
         {
             return "boolean";
         }

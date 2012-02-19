@@ -31,7 +31,7 @@ namespace PlainElastic.Net.Mappings
         }
 
 
-        protected override string GetFieldType(Type fieldType)
+        protected override string GetElasticFieldType(Type fieldType)
         {
             return "date";
         }

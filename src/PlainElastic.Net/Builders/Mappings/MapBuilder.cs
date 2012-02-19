@@ -1,8 +1,6 @@
 using System;
 using PlainElastic.Net.Builders;
 
-
-
 namespace PlainElastic.Net.Mappings
 {
     public class MapBuilder<T> 

@@ -56,14 +56,14 @@ namespace PlainElastic.Net.Mappings
 
         string IJsonConvertible.ToJson()
         {
-            // Return empty string if no mappings registered to eliminate empty mapping body in final JSON.
-            if (!Mappings.Any())
-                return "";
-
             var body = Mappings.JoinWithSeparator(", ");
             return ApplyMappingTemplate(body);
         }
 
 
+        public override string ToString()
+        {
+            return ((IJsonConvertible) this).ToJson();
+        }
     }
 }

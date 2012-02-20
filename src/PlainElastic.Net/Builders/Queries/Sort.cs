@@ -77,5 +77,10 @@ namespace PlainElastic.Net.Queries
             var result = "'sort': [{0}]".SmartQuoteF(sortExpressions.JoinWithComma());
             return result;
         }
+
+        public override string ToString()
+        {
+            return ((IJsonConvertible)this).ToJson();
+        }
     }
 }

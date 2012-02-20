@@ -31,7 +31,6 @@ namespace PlainElastic.Net.Queries
         }
 
 
-
         string IJsonConvertible.ToJson()
         {
             if (!shouldExists)
@@ -40,6 +39,11 @@ namespace PlainElastic.Net.Queries
             var result = "{{ 'exists': {{ 'field' : {0} }} }}".SmartQuoteF(existsField);
 
             return result;
+        }
+
+        public override string ToString()
+        {
+            return ((IJsonConvertible) this).ToJson();
         }
     }
 }

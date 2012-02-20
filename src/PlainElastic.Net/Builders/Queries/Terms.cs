@@ -67,5 +67,10 @@ namespace PlainElastic.Net.Queries
             return result;
         }
 
+
+        public override string ToString()
+        {
+            return ((IJsonConvertible)this).ToJson();
+        }
     }
 }

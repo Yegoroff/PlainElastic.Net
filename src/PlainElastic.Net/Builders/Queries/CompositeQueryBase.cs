@@ -78,5 +78,9 @@ namespace PlainElastic.Net.Queries
             return QueryTemplate.SmartQuoteF(body);
         }
 
+        public override string ToString()
+        {
+            return ((IJsonConvertible) this).ToJson();
+        }
     }
 }

@@ -44,7 +44,7 @@ namespace PlainElastic.Net.Queries
         public QueryBuilder<T> From (int from = 0 )
         {
             var fromParam = " 'from': {0}".SmartQuoteF(from);
-            RegisterJsonParam(fromParam);
+            RegisterJsonQuery(fromParam);
 
             return this;
         }
@@ -55,7 +55,7 @@ namespace PlainElastic.Net.Queries
         public QueryBuilder<T> Size(int size = 10)
         {
             var sizeParam = " 'size': {0}".SmartQuoteF(size);
-            RegisterJsonParam(sizeParam);
+            RegisterJsonQuery(sizeParam);
 
             return this;
         }
@@ -80,7 +80,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public QueryBuilder<T> Sort(Func<Sort<T>, Sort<T>> sort)
         {
-            RegisterParamExpression(sort);
+            RegisterQueryExpression(sort);
             return this;
         }
 

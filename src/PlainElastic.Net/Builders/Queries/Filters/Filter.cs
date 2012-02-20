@@ -54,5 +54,28 @@ namespace PlainElastic.Net.Queries
             return this;
         }
 
+        /// <summary>
+        /// A filter that allows to filter nested objects / docs.
+        /// The filter is executed against the nested objects / docs as if they were indexed 
+        /// as separate docs (they are, internally) and resulting in the root parent doc (or parent nested mapping)
+        /// see http://www.elasticsearch.org/guide/reference/query-dsl/nested-filter.html
+        /// </summary>
+        public Filter<T> Nested(Func<NestedFilter<T>, NestedFilter<T>> nestedFilter)
+        {
+            RegisterQueryExpression(nestedFilter);
+            return this;
+        }
+
+        /// <summary>
+        /// Filters documents with fields that have terms within a certain range.
+        /// Similar to range query, except that it acts as a filter
+        /// see http://www.elasticsearch.org/guide/reference/query-dsl/range-filter.html
+        /// </summary>
+        public Filter<T> Range(Func<RangeFilter<T>, RangeFilter<T>> rangeFilter)
+        {
+            RegisterQueryExpression(rangeFilter);
+            return this;
+        }
+
     }
 }

@@ -64,6 +64,17 @@ namespace PlainElastic.Net.Queries
         }
 
         /// <summary>
+        /// Matches documents with fields that have terms within a certain range. 
+        /// see http://www.elasticsearch.org/guide/reference/query-dsl/range-query.html
+        /// </summary>
+        public Query<T> Range(Func<RangeQuery<T>, RangeQuery<T>> rangeQuery)
+        {
+            RegisterQueryExpression(rangeQuery);
+            return this;
+        }
+        
+
+        /// <summary>
         /// Matches documents that have fields that contain a term (not analyzed). The term query maps to Lucene TermQuery
         /// see http://www.elasticsearch.org/guide/reference/query-dsl/term-query.html
         /// </summary>

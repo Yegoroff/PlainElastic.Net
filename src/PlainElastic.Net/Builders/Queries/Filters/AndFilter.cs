@@ -11,7 +11,7 @@ namespace PlainElastic.Net.Queries
 
         protected override string QueryTemplate
         {
-            get { return " 'and': [ {0} ]"; }
+            get { return "{{ 'and': [ {0} ] }}"; }
         }
 
     }

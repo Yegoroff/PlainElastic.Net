@@ -8,7 +8,7 @@ namespace PlainElastic.Net.Queries
 
         protected override string QueryTemplate
         {
-            get { return " 'filter': {{ {0} }}"; }
+            get { return " 'filter':  {0} "; }
         }
 
 

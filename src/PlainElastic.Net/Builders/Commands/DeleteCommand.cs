@@ -35,7 +35,7 @@
             return this;
         }
 
-        public DeleteCommand Refresh(bool refresh)
+        public DeleteCommand Refresh(bool refresh = true)
         {
             Parameters.Add("refresh", refresh.AsString());
             return this;

@@ -53,13 +53,13 @@ namespace PlainElastic.Net
             return this;
         }
 
-        public GetCommand Realtime(bool realtime)
+        public GetCommand Realtime(bool realtime = true)
         {
             Parameters.Add("realtime", realtime.AsString());
             return this;
         }
 
-        public GetCommand Refresh(bool refresh)
+        public GetCommand Refresh(bool refresh = true)
         {
             Parameters.Add("refresh", refresh.AsString());
             return this;

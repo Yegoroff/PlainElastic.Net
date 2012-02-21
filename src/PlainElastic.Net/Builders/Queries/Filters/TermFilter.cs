@@ -40,14 +40,16 @@ namespace PlainElastic.Net.Queries
 
         public TermFilter<T> Value(object value)
         {
-            termValue = value.ToString().LowerAndQuotate();
+            if (value == null)
+                return this;
 
-            return this;
+            return Value(value.ToString());
         }      
 
         public TermFilter<T> Value(string value)
         {
-            termValue = value.Quotate();            
+            if(!value.IsNullOrEmpty())
+                termValue = value.LowerAndQuotate();
 
             return this;
         }

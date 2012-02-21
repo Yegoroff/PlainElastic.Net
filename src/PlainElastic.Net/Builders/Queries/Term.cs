@@ -39,10 +39,10 @@ namespace PlainElastic.Net.Queries
 
         public Term<T> Value(object value)
         {
-            if (value != null)
-                termValue = value.ToString().LowerAndQuotate();
+            if (value == null)
+                return this;
 
-            return this;
+            return Value(value.ToString());
         }
 
         public Term<T> Value(string value)

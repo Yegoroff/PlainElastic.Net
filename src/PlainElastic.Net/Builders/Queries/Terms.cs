@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using PlainElastic.Net.Builders;
 using PlainElastic.Net.Utils;
@@ -40,7 +41,7 @@ namespace PlainElastic.Net.Queries
         public Terms<T> Values(IEnumerable<string> values)
         {
             if (values != null)
-                termsValues = values.LowerAndQuotate().JoinWithComma();
+                termsValues = values.Where(v => !v.IsNullOrEmpty()).LowerAndQuotate().JoinWithComma();
 
             return this;
         }

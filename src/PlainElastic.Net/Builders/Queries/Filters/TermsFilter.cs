@@ -44,7 +44,7 @@ namespace PlainElastic.Net.Queries
         public TermsFilter<T> Values(IEnumerable<string> values)
         {
             if (values != null)
-                termsValues = values.LowerAndQuotate().JoinWithComma();
+                termsValues = values.Where(v => !v.IsNullOrEmpty()).LowerAndQuotate().JoinWithComma();
 
             return this;
         }

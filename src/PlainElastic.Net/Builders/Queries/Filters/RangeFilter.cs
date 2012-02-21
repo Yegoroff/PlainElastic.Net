@@ -55,7 +55,7 @@ namespace PlainElastic.Net.Queries
         {
             if (!value.IsNullOrEmpty())
             {
-                parts.Add("'from' : {0}".F(value.Quotate()));
+                parts.Add("'from' : {0}".SmartQuoteF(value.Quotate()));
             }
             return this;
         }
@@ -67,7 +67,7 @@ namespace PlainElastic.Net.Queries
         {
             if (!value.IsNullOrEmpty())
             {
-                parts.Add("'to' : {0}".F(value.Quotate()));
+                parts.Add("'to' : {0}".SmartQuoteF(value.Quotate()));
             }
             return this;
         }
@@ -77,7 +77,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public RangeFilter<T> IncludeLower(bool includeLower = true)
         {
-            parts.Add("'include_lower' : {0}".F(includeLower.AsString()));
+            parts.Add("'include_lower' : {0}".SmartQuoteF(includeLower.AsString()));
             return this;
         }
 
@@ -86,7 +86,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public RangeFilter<T> IncludeUpper(bool includeUpper = true)
         {
-            parts.Add("'include_upper' : {0}".F(includeUpper.AsString()));
+            parts.Add("'include_upper' : {0}".SmartQuoteF(includeUpper.AsString()));
             return this;
         }
 
@@ -97,7 +97,7 @@ namespace PlainElastic.Net.Queries
         {
             if (!value.IsNullOrEmpty())
             {
-                parts.Add("'gt' : {0}".F(value.Quotate()));
+                parts.Add("'gt' : {0}".SmartQuoteF(value.Quotate()));
             }
             return this;
         }
@@ -109,7 +109,7 @@ namespace PlainElastic.Net.Queries
         {
             if (!value.IsNullOrEmpty())
             {
-                parts.Add("'gte' : {0}".F(value.Quotate()));
+                parts.Add("'gte' : {0}".SmartQuoteF(value.Quotate()));
             }
             return this;
         }
@@ -121,7 +121,7 @@ namespace PlainElastic.Net.Queries
         {
             if (!value.IsNullOrEmpty())
             {
-                parts.Add("'lt' : {0}".F(value.Quotate()));
+                parts.Add("'lt' : {0}".SmartQuoteF(value.Quotate()));
             }
             return this;
         }
@@ -133,7 +133,7 @@ namespace PlainElastic.Net.Queries
         {
             if (!value.IsNullOrEmpty())
             {
-                parts.Add("'lte' : {0}".F(value.Quotate()));
+                parts.Add("'lte' : {0}".SmartQuoteF(value.Quotate()));
             }
             return this;
         }

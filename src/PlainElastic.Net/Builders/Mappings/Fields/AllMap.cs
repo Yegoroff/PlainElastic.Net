@@ -4,7 +4,7 @@ namespace PlainElastic.Net.Mappings
     /// Allows to control _all field behavior 
     /// see http://www.elasticsearch.org/guide/reference/mapping/all-field.html
     /// </summary>
-    public class AllField<T> : MappingBase
+    public class AllField<T> : MappingBase<AllField<T>>
     {
 
         /// <summary>

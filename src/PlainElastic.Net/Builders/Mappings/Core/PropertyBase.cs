@@ -5,13 +5,22 @@ using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Mappings
 {
-    public abstract class PropertyBase<T, TMapping> : MappingBase where TMapping : PropertyBase<T, TMapping>
+    public abstract class PropertyBase<T, TMapping> : MappingBase<TMapping> where TMapping : PropertyBase<T, TMapping>
     {
 
         public string FieldName { get; set; }
 
         public string FieldType { get; set; }
 
+
+
+        public TMapping Field(string fieldName)
+        {
+            FieldName = fieldName;
+            FieldType = GetElasticFieldType(typeof(object));
+
+            return (TMapping)this;
+        }
 
 
         public TMapping Field<TField>(Expression<Func<T, TField>> field)
@@ -81,17 +90,6 @@ namespace PlainElastic.Net.Mappings
         {
             RegisterCustomJsonMap("'include_in_all': {0} ", includeInAll.AsString());
             return (TMapping) this;            
-        }
-
-
-        /// <summary>
-        /// Adds a custom mapping to Field Map.
-        /// You can use ' instead of " to simplify mapFormat creation.
-        /// </summary>
-        public TMapping Custom(string mapFormat, params string[] args)
-        {
-            RegisterCustomJsonMap(mapFormat, args);
-            return (TMapping)this;                        
         }
 
 

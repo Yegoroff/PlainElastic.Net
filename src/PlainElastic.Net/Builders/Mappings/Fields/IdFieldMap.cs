@@ -4,7 +4,7 @@ namespace PlainElastic.Net.Mappings
     /// Allows to control _id field behavior 
     /// see http://www.elasticsearch.org/guide/reference/mapping/id-field.html
     /// </summary>
-    public class IdField<T> : MappingBase
+    public class IdField<T> : MappingBase<IdField<T>>
     {
 
         /// <summary>

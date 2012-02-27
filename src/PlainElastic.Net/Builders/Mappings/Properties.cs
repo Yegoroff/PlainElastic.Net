@@ -2,7 +2,7 @@ using System;
 
 namespace PlainElastic.Net.Mappings
 {
-    public class Properties<T> : MappingBase
+    public class Properties<T> : MappingBase<Properties<T>>
     {
         /// <summary>
         /// Represents text fields mapping.
@@ -74,18 +74,6 @@ namespace PlainElastic.Net.Mappings
             RegisterMapAsJson(nestedObjectProperty);
             return this;
         }
-
-        /// <summary>
-        /// Adds a custom mapping to properties Map.
-        /// You can use ' instead of " to simplify mapFormat creation.
-        /// </summary>
-        public Properties<T> Custom(string mapFormat, params string[] args)
-        {
-            RegisterCustomJsonMap(mapFormat, args);
-
-            return this;
-        }
-
 
 
         protected override string ApplyMappingTemplate(string mappingBody)

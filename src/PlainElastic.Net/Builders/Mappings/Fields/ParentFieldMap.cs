@@ -4,7 +4,7 @@ namespace PlainElastic.Net.Mappings
     /// Allows to control _parent field behavior 
     /// see http://www.elasticsearch.org/guide/reference/mapping/parent-field.html
     /// </summary>
-    public class ParentField<T> : MappingBase
+    public class ParentField<T> : MappingBase<ParentField<T>>
     {
 
         /// <summary>

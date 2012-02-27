@@ -1,11 +1,8 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using PlainElastic.Net.Builders;
 
 namespace PlainElastic.Net.Mappings
 {
-    public abstract class ObjectBase<T, TMapping> : MappingBase where TMapping : ObjectBase<T, TMapping>
+    public abstract class ObjectBase<T, TMapping> : MappingBase<TMapping> where TMapping : ObjectBase<T, TMapping>
     {
 
         /// <summary>
@@ -57,17 +54,6 @@ namespace PlainElastic.Net.Mappings
             return Custom(" 'include_in_all': {0}", includeInAll.AsString());
         }
 
-
-        /// <summary>
-        /// Adds a custom mapping to Object Map.
-        /// You can use ' instead of " to simplify mapFormat creation.
-        /// </summary>
-        public TMapping Custom(string mapFormat, params string[] args)
-        {
-            RegisterCustomJsonMap(mapFormat, args);
-
-            return (TMapping)this;
-        }
 
 
         protected override string ApplyMappingTemplate(string mappingBody)

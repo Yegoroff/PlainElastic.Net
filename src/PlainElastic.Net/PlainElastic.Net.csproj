@@ -72,6 +72,7 @@
     <Compile Include="Builders\Mappings\Properties.cs" />
     <Compile Include="Builders\Mappings\RootObject.cs" />
     <Compile Include="Builders\Mappings\Core\StringMap.cs" />
+    <Compile Include="Builders\Queries\RangeBase.cs" />
     <Compile Include="Builders\Queries\FieldQueryBase.cs" />
     <Compile Include="Builders\Queries\Filters\RangeFilter.cs" />
     <Compile Include="Builders\Queries\NestedBase.cs" />

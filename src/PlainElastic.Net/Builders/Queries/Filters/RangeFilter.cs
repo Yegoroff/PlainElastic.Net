@@ -11,12 +11,15 @@ namespace PlainElastic.Net.Queries
     /// Similar to range query, except that it acts as a filter
     /// see http://www.elasticsearch.org/guide/reference/query-dsl/range-filter.html
     /// </summary>
-    public class RangeFilter<T> : IJsonConvertible
+    public class RangeFilter<T>: IJsonConvertible
     {
         private string rangeField;
         private readonly List<string> parts = new List<string>();
         private string cacheMode;
 
+
+        //TODO: filter_name
+        //TODO:  cache_key
 
         /// <summary>
         /// The field to apply filtering to.
@@ -55,7 +58,7 @@ namespace PlainElastic.Net.Queries
         {
             if (!value.IsNullOrEmpty())
             {
-                parts.Add("'from' : {0}".SmartQuoteF(value.Quotate()));
+                parts.Add("'from': {0}".SmartQuoteF(value.Quotate()));
             }
             return this;
         }
@@ -67,7 +70,7 @@ namespace PlainElastic.Net.Queries
         {
             if (!value.IsNullOrEmpty())
             {
-                parts.Add("'to' : {0}".SmartQuoteF(value.Quotate()));
+                parts.Add("'to': {0}".SmartQuoteF(value.Quotate()));
             }
             return this;
         }
@@ -77,7 +80,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public RangeFilter<T> IncludeLower(bool includeLower = true)
         {
-            parts.Add("'include_lower' : {0}".SmartQuoteF(includeLower.AsString()));
+            parts.Add("'include_lower': {0}".SmartQuoteF(includeLower.AsString()));
             return this;
         }
 
@@ -86,7 +89,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public RangeFilter<T> IncludeUpper(bool includeUpper = true)
         {
-            parts.Add("'include_upper' : {0}".SmartQuoteF(includeUpper.AsString()));
+            parts.Add("'include_upper': {0}".SmartQuoteF(includeUpper.AsString()));
             return this;
         }
 
@@ -97,7 +100,7 @@ namespace PlainElastic.Net.Queries
         {
             if (!value.IsNullOrEmpty())
             {
-                parts.Add("'gt' : {0}".SmartQuoteF(value.Quotate()));
+                parts.Add("'gt': {0}".SmartQuoteF(value.Quotate()));
             }
             return this;
         }
@@ -109,7 +112,7 @@ namespace PlainElastic.Net.Queries
         {
             if (!value.IsNullOrEmpty())
             {
-                parts.Add("'gte' : {0}".SmartQuoteF(value.Quotate()));
+                parts.Add("'gte': {0}".SmartQuoteF(value.Quotate()));
             }
             return this;
         }
@@ -121,7 +124,7 @@ namespace PlainElastic.Net.Queries
         {
             if (!value.IsNullOrEmpty())
             {
-                parts.Add("'lt' : {0}".SmartQuoteF(value.Quotate()));
+                parts.Add("'lt': {0}".SmartQuoteF(value.Quotate()));
             }
             return this;
         }
@@ -133,7 +136,7 @@ namespace PlainElastic.Net.Queries
         {
             if (!value.IsNullOrEmpty())
             {
-                parts.Add("'lte' : {0}".SmartQuoteF(value.Quotate()));
+                parts.Add("'lte': {0}".SmartQuoteF(value.Quotate()));
             }
             return this;
         }
@@ -144,10 +147,19 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public RangeFilter<T> Cache(bool cache)
         {
-            cacheMode = ", '_cache': {0}".SmartQuoteF(cache.AsString());
+            cacheMode = ",'_cache': {0}".SmartQuoteF(cache.AsString());
 
             return this;
         }
+
+        public RangeFilter<T> Custom(string queryFormat, params string[] args)
+        {
+            var query = queryFormat.SmartQuoteF(args);
+            parts.Add(query);
+
+            return this;
+        }
+
 
 
         string IJsonConvertible.ToJson()
@@ -157,9 +169,9 @@ namespace PlainElastic.Net.Queries
                 return "";
 
             if (cacheMode.IsNullOrEmpty())
-                return "{{ 'range': {{ {0} : {{ {1} }} }} }}".SmartQuoteF(rangeField, body);
+                return "{{ 'range': {{ {0}: {{ {1} }} }} }}".SmartQuoteF(rangeField, body);
 
-            return "{{ 'range': {{ {0} : {{ {1} }} {2} }} }}".SmartQuoteF(rangeField, body, cacheMode);
+            return "{{ 'range': {{ {0}: {{ {1} }}{2} }} }}".SmartQuoteF(rangeField, body, cacheMode);
         }
 
 

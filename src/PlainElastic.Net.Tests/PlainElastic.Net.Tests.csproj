@@ -31,9 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Machine.Specifications">
-      <HintPath>..\..\packages\Machine.Specifications.0.5.2.0\lib\Machine.Specifications.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Machine.Specifications, Version=0.5.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Machine.Specifications.0.5.3.0\lib\Machine.Specifications.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -48,6 +48,11 @@
     <Compile Include="Buildres\Commands\When_complete_IndexCommand_built.cs" />
     <Compile Include="Buildres\Commands\When_GetCommand_with_reflected_fields_built.cs" />
     <Compile Include="Buildres\Commands\When_complete_GetCommand_built.cs" />
+    <Compile Include="Buildres\Queries\Filters\When_complete_RangeQuery_built.cs" />
+    <Compile Include="Buildres\Queries\Filters\When_RangeQuery_without_range_parts_built.cs" />
+    <Compile Include="Buildres\Queries\When_RangeQuery_without_range_parts_built.cs" />
+    <Compile Include="Buildres\Queries\When_RangeQuery_with_only_custom_part_built.cs" />
+    <Compile Include="Buildres\Queries\When_complete_RangeQuery_built.cs" />
     <Compile Include="Buildres\Queries\When_TermQuery_with_only_custom_part_built.cs" />
     <Compile Include="Buildres\Queries\When_complete_Query_built.cs" />
     <Compile Include="Buildres\Queries\When_Sort_with_desc_order_built.cs" />

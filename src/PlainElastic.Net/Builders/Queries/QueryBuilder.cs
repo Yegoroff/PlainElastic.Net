@@ -115,6 +115,9 @@ namespace PlainElastic.Net.Queries
         }
 
 
+        /// <summary>
+        /// Returns a <see cref="System.String"/> that represents beautified JSON query.
+        /// </summary>
         public override string ToString()
         {
             return BuildBeautified();

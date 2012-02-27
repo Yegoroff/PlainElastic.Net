@@ -72,6 +72,7 @@
     <Compile Include="Builders\Mappings\Properties.cs" />
     <Compile Include="Builders\Mappings\RootObject.cs" />
     <Compile Include="Builders\Mappings\Core\StringMap.cs" />
+    <Compile Include="Builders\Queries\FieldQueryBase.cs" />
     <Compile Include="Builders\Queries\Filters\RangeFilter.cs" />
     <Compile Include="Builders\Queries\NestedBase.cs" />
     <Compile Include="Builders\Queries\Filters\NestedFilter.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="Builders\Queries\DisMaxQuery.cs" />
     <Compile Include="Builders\Queries\DisMaxQueries.cs" />
     <Compile Include="Builders\Queries\Enums.cs" />
+    <Compile Include="Builders\Queries\QueryBase.cs" />
     <Compile Include="Builders\Queries\RangeQuery.cs" />
     <Compile Include="Connection\OperationExeception.cs" />
     <Compile Include="Connection\ElasticConnection.cs" />
@@ -100,9 +102,9 @@
     <Compile Include="Builders\Queries\QueryBuilder.cs" />
     <Compile Include="Builders\Queries\QueryString.cs" />
     <Compile Include="Builders\Queries\ShouldQuery.cs" />
-    <Compile Include="Builders\Queries\Term.cs" />
+    <Compile Include="Builders\Queries\TermQuery.cs" />
     <Compile Include="Builders\Queries\Filters\TermFilter.cs" />
-    <Compile Include="Builders\Queries\Terms.cs" />
+    <Compile Include="Builders\Queries\TermsQuery.cs" />
     <Compile Include="Serialization\Results\BaseResult.cs" />
     <Compile Include="Serialization\Results\CommandResult.cs" />
     <Compile Include="Serialization\Results\SearchResult.cs" />

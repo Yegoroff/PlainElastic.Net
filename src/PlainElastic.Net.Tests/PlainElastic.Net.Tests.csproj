@@ -39,15 +39,24 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\When_SearchCommand_with_reflected_sort_fields_built.cs" />
-    <Compile Include="Commands\When_SearchCommand_with_reflected_fields_built.cs" />
-    <Compile Include="Commands\FieldsTestClass.cs" />
-    <Compile Include="Commands\When_SearchCommand_with_multiple_indexes_and_types_built.cs" />
-    <Compile Include="Commands\When_complete_SearchCommand_built.cs" />
-    <Compile Include="Commands\When_complete_DeleteCommand_built.cs" />
-    <Compile Include="Commands\When_complete_IndexCommand_built.cs" />
-    <Compile Include="Commands\When_GetCommand_with_reflected_fields_built.cs" />
-    <Compile Include="Commands\When_complete_GetCommand_built.cs" />
+    <Compile Include="Buildres\Commands\When_SearchCommand_with_reflected_sort_fields_built.cs" />
+    <Compile Include="Buildres\Commands\When_SearchCommand_with_reflected_fields_built.cs" />
+    <Compile Include="Buildres\FieldsTestClass.cs" />
+    <Compile Include="Buildres\Commands\When_SearchCommand_with_multiple_indexes_and_types_built.cs" />
+    <Compile Include="Buildres\Commands\When_complete_SearchCommand_built.cs" />
+    <Compile Include="Buildres\Commands\When_complete_DeleteCommand_built.cs" />
+    <Compile Include="Buildres\Commands\When_complete_IndexCommand_built.cs" />
+    <Compile Include="Buildres\Commands\When_GetCommand_with_reflected_fields_built.cs" />
+    <Compile Include="Buildres\Commands\When_complete_GetCommand_built.cs" />
+    <Compile Include="Buildres\Queries\When_TermQuery_with_only_custom_part_built.cs" />
+    <Compile Include="Buildres\Queries\When_complete_Query_built.cs" />
+    <Compile Include="Buildres\Queries\When_Sort_with_desc_order_built.cs" />
+    <Compile Include="Buildres\Queries\When_Sort_with_reflected_field_built.cs" />
+    <Compile Include="Buildres\Queries\When_TermQuery_with_custom_part_built.cs" />
+    <Compile Include="Buildres\Queries\When_TermQuery_without_value_built.cs" />
+    <Compile Include="Buildres\Queries\When_complete_TermQuery_built.cs" />
+    <Compile Include="Buildres\Queries\When_TermsQuery_without_values_built.cs" />
+    <Compile Include="Buildres\Queries\When_complete_TermsQuery_built.cs" />
     <Compile Include="Integration\Connection\When_invalid_GET_request_on_valid_ES_instance.cs" />
     <Compile Include="Integration\Connection\When_partial_GET_request_on_valid_ES_instance.cs" />
     <Compile Include="Integration\Connection\When_full_GET_request_on_valid_ES_instance.cs" />

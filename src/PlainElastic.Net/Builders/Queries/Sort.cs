@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using PlainElastic.Net.Builders;
 using PlainElastic.Net.Utils;
@@ -7,10 +8,8 @@ using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Queries
 {
-    public class Sort<T> : IJsonConvertible
+    public class Sort<T> : QueryBase<Sort<T>>
     {
-        private readonly List<string> sortExpressions = new List<string>();
-
 
         /// <summary>
         /// Sort result using specified field.
@@ -37,17 +36,17 @@ namespace PlainElastic.Net.Queries
         /// <returns></returns>
         public Sort<T> Field(string field, SortDirection order = SortDirection.desc, string missing = null)
         {
-            var fieldParams = "";
+            var fieldParams = new List<string>();
             if (order != SortDirection.desc)
-                fieldParams = "'order': {0}".SmartQuoteF(order.ToString().Quotate());
+                fieldParams.Add("'order': {0}".SmartQuoteF(order.ToString().Quotate()));
 
             if (!missing.IsNullOrEmpty())
-                fieldParams = fieldParams + ", " + "'_missing': {0}".SmartQuoteF(missing.Quotate());
+                fieldParams.Add("'missing': {0}".SmartQuoteF(missing.Quotate()));
 
-            if (fieldParams.IsNullOrEmpty())
-                sortExpressions.Add(field.Quotate());
+            if (fieldParams.Any())
+                RegisterJsonPart("{{ {0}: {{ {1} }} }}".SmartQuoteF(field.Quotate(), fieldParams.JoinWithComma()));
             else
-                sortExpressions.Add("{{ {0} : {{ {1} }} }}".SmartQuoteF(field.Quotate(), fieldParams));
+                RegisterJsonPart(field.Quotate());                
 
             return this;
         }
@@ -56,31 +55,22 @@ namespace PlainElastic.Net.Queries
         public Sort<T> Script(string script, string type, SortDirection order, string [] @params)
         {
             var expression = "'_script' : {0}, 'type': {1}, 'order': {2}, 'params': {3} ".SmartQuoteF(script, type.Quotate(), order.ToString().Quotate(), @params.JoinWithComma());
-            sortExpressions.Add(expression);
+            RegisterJsonPart(expression);
 
             return this;
         }
 
-        public Sort<T> Custom(string customSortExpression)
+
+        protected override bool HasRequiredParts()
         {
-            var expression = "{{ {0} }}".SmartQuoteF(customSortExpression);
-            sortExpressions.Add(expression);
-            return this;
+            return true;
         }
 
-   
-        string IJsonConvertible.ToJson()
-        {
-            if (sortExpressions.Count == 0)
-                return "";
 
-            var result = "'sort': [{0}]".SmartQuoteF(sortExpressions.JoinWithComma());
-            return result;
-        }
-
-        public override string ToString()
+        protected override string ApplyJsonTemplate(string body)
         {
-            return ((IJsonConvertible)this).ToJson();
+            return "'sort': [{0}]".SmartQuoteF(body);
+
         }
     }
 }

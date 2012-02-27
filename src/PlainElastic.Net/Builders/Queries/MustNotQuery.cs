@@ -2,9 +2,9 @@ namespace PlainElastic.Net.Queries
 {
     public class MustNotQuery<T> : Query<T>
     {
-        protected override string QueryTemplate
+        protected override string ApplyJsonTemplate(string body)
         {
-            get { return " 'must_not': [ {0} ]"; }
+            return " 'must_not': [ {0} ]".SmartQuoteF(body);
         }
 
     }

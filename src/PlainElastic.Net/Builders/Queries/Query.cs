@@ -9,13 +9,8 @@ namespace PlainElastic.Net.Queries
     /// The query element within the search request body allows to define a query using the Query DSL.
     /// see http://www.elasticsearch.org/guide/reference/api/search/query.html
     /// </summary>
-    public class Query<T> : CompositeQueryBase
+    public class Query<T> : QueryBase<Query<T>>
     {
-        protected override string QueryTemplate
-        {
-            get { return " 'query': {0} "; }
-        }
-
 
         /// <summary>
         /// A query that matches documents matching boolean combinations of other queries. 
@@ -25,7 +20,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>  
         public Query<T> Bool(Func<BoolQuery<T>, BoolQuery<T>> boolQuery)
         {
-            RegisterQueryExpression(boolQuery);
+            RegisterJsonPartExpression(boolQuery);
             return this;
         }
 
@@ -37,7 +32,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>   
         public Query<T> DisMax(Func<DisMaxQuery<T>, DisMaxQuery<T>> disMaxQuery)
         {
-            RegisterQueryExpression(disMaxQuery);
+            RegisterJsonPartExpression(disMaxQuery);
             return this;
         }
 
@@ -49,7 +44,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>   
         public Query<T> Nested(Func<NestedQuery<T>, NestedQuery<T>> nestedQuery)
         {
-            RegisterQueryExpression(nestedQuery);
+            RegisterJsonPartExpression(nestedQuery);
             return this;
         }
 
@@ -59,7 +54,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>    
         public Query<T> QueryString(Func<QueryString<T>, QueryString<T>> queryString)
         {
-            RegisterQueryExpression(queryString);
+            RegisterJsonPartExpression(queryString);
             return this;
         }
 
@@ -69,7 +64,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public Query<T> Range(Func<RangeQuery<T>, RangeQuery<T>> rangeQuery)
         {
-            RegisterQueryExpression(rangeQuery);
+            RegisterJsonPartExpression(rangeQuery);
             return this;
         }
         
@@ -78,9 +73,9 @@ namespace PlainElastic.Net.Queries
         /// Matches documents that have fields that contain a term (not analyzed). The term query maps to Lucene TermQuery
         /// see http://www.elasticsearch.org/guide/reference/query-dsl/term-query.html
         /// </summary>
-        public Query<T> Term(Func<Term<T>, Term<T>> termQuery)
+        public Query<T> Term(Func<TermQuery<T>, TermQuery<T>> termQuery)
         {
-            RegisterQueryExpression(termQuery);
+            RegisterJsonPartExpression(termQuery);
             return this;
         }
 
@@ -89,36 +84,21 @@ namespace PlainElastic.Net.Queries
         /// This is a simpler syntax query for using a bool query with several term queries in the should clauses
         /// see: http://www.elasticsearch.org/guide/reference/query-dsl/terms-query.html
         /// </summary>
-        public Query<T> Terms(Func<Terms<T>, Terms<T>> termsQuery)
+        public Query<T> Terms(Func<TermsQuery<T>, TermsQuery<T>> termsQuery)
         {
-            RegisterQueryExpression(termsQuery);
+            RegisterJsonPartExpression(termsQuery);
             return this;
         }
 
 
-        /// <summary>
-        /// Adds a custom query.
-        /// You can use ' instead of " to simplify queryFormat creation.
-        /// Name of passed field param will be the first format argument.
-        /// </summary>
-        public Query<T> Custom(string queryFormat, Expression<Func<T, object>> field, params string[] args)
+        protected override string ApplyJsonTemplate(string body)
         {
-            var formatArgs = new List<string>(args);
-            formatArgs.Insert(0, field.GetPropertyPath());
-
-            return Custom(queryFormat, formatArgs.ToArray());
+            return " 'query': {0}".SmartQuoteF(body);
         }
 
-        /// <summary>
-        /// Adds a custom query.
-        /// You can use ' instead of " to simplify queryFormat creation.
-        /// </summary>
-        public Query<T> Custom(string queryFormat, params string[] args)
+        protected override bool HasRequiredParts()
         {
-            var query = queryFormat.SmartQuoteF(args);
-            RegisterJsonQuery(query);
-            return this;
+            return true;
         }
-
     }
 }

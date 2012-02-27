@@ -19,7 +19,7 @@ namespace PlainElastic.Net.Queries
 
         private readonly List<string> queryParts = new List<string>();
 
-        private string queryValue;
+        private bool hasValue;
 
 
 
@@ -67,9 +67,11 @@ namespace PlainElastic.Net.Queries
 
             var fullTextQuery = values.JoinWithSeparator(" ").LowerAndQuotate();
 
-            queryValue = " 'query': {0}".SmartQuoteF(fullTextQuery);
+            var queryValue = " 'query': {0}".SmartQuoteF(fullTextQuery);
 
             queryParts.Add(queryValue);
+
+            hasValue = true;
 
             return this;
         }
@@ -93,8 +95,18 @@ namespace PlainElastic.Net.Queries
         }
 
 
+        public QueryString<T> Custom(string queryFormat, params string[] args)
+        {
+            var query = queryFormat.SmartQuoteF(args);
+            queryParts.Add(query);
+            hasValue = true;
+
+            return this;
+        }
+
+
         private static string GetRewriteValue(Rewrite rewrite, int n)
-        {            
+        {
             switch(rewrite)
             {
                 case Queries.Rewrite.top_terms_boost_n:
@@ -109,6 +121,9 @@ namespace PlainElastic.Net.Queries
 
         private string GenerateFieldsQueryPart()
         {
+            if (!queryFields.Any())
+                return "";
+
             var fields = queryFields.JoinWithComma();
             var fieldPart = " 'fields': [{0}]".SmartQuoteF(fields);
             return fieldPart;
@@ -117,12 +132,14 @@ namespace PlainElastic.Net.Queries
 
         string IJsonConvertible.ToJson()
         {
-            if (queryValue.IsNullOrEmpty())
+            if (!hasValue)
                 return "";
 
-            queryParts.Insert(0, GenerateFieldsQueryPart());
+            string fields = GenerateFieldsQueryPart();
+            if(!fields.IsNullOrEmpty())
+                queryParts.Insert(0, fields);
 
-            var body = queryParts.JoinWithSeparator(", ");
+            var body = queryParts.JoinWithComma();
             var result = "{{ 'query_string': {{ {0} }} }}".SmartQuoteF(body);
 
             return result;

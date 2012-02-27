@@ -3,9 +3,9 @@ namespace PlainElastic.Net.Queries
     public class ShouldQuery<T> : Query<T>
     {
 
-        protected override string QueryTemplate
+        protected override string ApplyJsonTemplate(string body)
         {
-            get { return " 'should': [ {0} ]"; }
+            return " 'should': [ {0} ]".SmartQuoteF(body);
         }
 
     }

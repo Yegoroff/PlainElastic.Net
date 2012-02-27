@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 
 
 namespace PlainElastic.Net.Queries
@@ -39,7 +40,7 @@ namespace PlainElastic.Net.Queries
         {
             var shouldResult = RegisterQueryExpression(shouldQuery);
 
-            shouldPartsCount = shouldResult.QueryParts.Count;
+            shouldPartsCount = shouldResult.JsonParts.Count();
 
             return this;
         }
@@ -73,6 +74,14 @@ namespace PlainElastic.Net.Queries
             var disableCoordParam = " 'disable_coord': {0}".SmartQuoteF(disableCoord.AsString());
             base.RegisterJsonParam(disableCoordParam);
 
+            return this;
+        }
+
+
+        public BoolQuery<T> Custom(string queryFormat, params string[] args)
+        {
+            var query = queryFormat.SmartQuoteF(args);
+            RegisterJsonQuery(query);
             return this;
         }
 

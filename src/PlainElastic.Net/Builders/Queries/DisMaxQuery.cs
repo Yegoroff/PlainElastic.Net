@@ -47,5 +47,17 @@ namespace PlainElastic.Net.Queries
             return this;
         }
 
+        /// <summary>
+        /// Adds a custom query.
+        /// You can use ' instead of " to simplify queryFormat creation.
+        /// </summary>
+        public DisMaxQuery<T> Custom(string queryFormat, params string[] args)
+        {
+            var query = queryFormat.SmartQuoteF(args);
+            RegisterJsonQuery(query);
+            return this;
+        }
+
+
     }
 }

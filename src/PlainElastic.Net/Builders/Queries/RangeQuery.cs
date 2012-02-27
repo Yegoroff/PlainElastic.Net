@@ -146,11 +146,24 @@ namespace PlainElastic.Net.Queries
         }
 
 
+        public RangeQuery<T> Custom(string queryFormat, params string[] args)
+        {
+            var query = queryFormat.SmartQuoteF(args);
+            parts.Add(query);
+
+            return this;
+        }
+
+
+
         string IJsonConvertible.ToJson()
         {
             var body = parts.JoinWithComma();
             if (body.IsNullOrEmpty())
                 return "";
+
+            if(rangeField.IsNullOrEmpty())
+                return "{{ 'range': {{ {0} }} }}".SmartQuoteF(body);
 
             return "{{ 'range': {{ {0} : {{ {1} }} }} }}".SmartQuoteF(rangeField, body);
         }

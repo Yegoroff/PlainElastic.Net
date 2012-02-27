@@ -1,6 +1,6 @@
 ﻿using Machine.Specifications;
 
-namespace PlainElastic.Net.Tests.Integration
+namespace PlainElastic.Net.Tests.Buildres.Commands
 {
     [Subject(typeof(SearchCommand))]
     class When_complete_SearchCommand_built

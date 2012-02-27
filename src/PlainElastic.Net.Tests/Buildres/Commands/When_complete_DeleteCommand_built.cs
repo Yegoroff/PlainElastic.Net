@@ -1,7 +1,6 @@
-﻿using System;
-using Machine.Specifications;
+﻿using Machine.Specifications;
 
-namespace PlainElastic.Net.Tests.Integration
+namespace PlainElastic.Net.Tests.Buildres.Commands
 {
     [Subject(typeof(DeleteCommand))]
     class When_complete_DeleteCommand_built

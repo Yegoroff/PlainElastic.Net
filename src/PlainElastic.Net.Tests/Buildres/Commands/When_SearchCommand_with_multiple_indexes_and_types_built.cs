@@ -1,6 +1,6 @@
 ﻿using Machine.Specifications;
 
-namespace PlainElastic.Net.Tests.Integration
+namespace PlainElastic.Net.Tests.Buildres.Commands
 {
     [Subject(typeof(SearchCommand))]
     class When_SearchCommand_with_multiple_indexes_and_types_built

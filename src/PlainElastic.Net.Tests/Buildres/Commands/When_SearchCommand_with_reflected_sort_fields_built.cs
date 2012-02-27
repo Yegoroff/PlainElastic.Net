@@ -1,6 +1,6 @@
 ﻿using Machine.Specifications;
 
-namespace PlainElastic.Net.Tests.Integration
+namespace PlainElastic.Net.Tests.Buildres.Commands
 {
     [Subject(typeof(SearchCommand))]
     class When_SearchCommand_with_reflected_sort_fields_built

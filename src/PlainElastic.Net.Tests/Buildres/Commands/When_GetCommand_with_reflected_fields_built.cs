@@ -1,6 +1,6 @@
 ﻿using Machine.Specifications;
 
-namespace PlainElastic.Net.Tests.Integration
+namespace PlainElastic.Net.Tests.Buildres.Commands
 {
     [Subject(typeof(GetCommand))]
     class When_GetCommand_with_reflected_fields_built

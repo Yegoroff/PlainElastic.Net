@@ -1,4 +1,4 @@
-namespace PlainElastic.Net.Tests.Integration
+namespace PlainElastic.Net.Tests.Buildres
 {
     public class FieldsTestClass
     {

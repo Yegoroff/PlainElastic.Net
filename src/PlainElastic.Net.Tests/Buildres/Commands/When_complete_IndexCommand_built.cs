@@ -1,7 +1,7 @@
 ﻿using System;
 using Machine.Specifications;
 
-namespace PlainElastic.Net.Tests.Integration
+namespace PlainElastic.Net.Tests.Buildres.Commands
 {
     [Subject(typeof(IndexCommand))]
     class When_complete_IndexCommand_built

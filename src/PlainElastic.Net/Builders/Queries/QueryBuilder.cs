@@ -6,8 +6,8 @@ namespace PlainElastic.Net.Queries
 {
     /// <summary>
     /// Provides sophisticated interface to construct ElasicSearch queries.
-    /// For details about ES querying see: http://www.elasticsearch.org/guide/reference/query-dsl/
-    /// and http://www.elasticsearch.org/guide/reference/api/search/
+    /// For details about ES querying see: http://www.elasticsearch.org/guide/reference/api/search/request-body.html ,
+    /// http://www.elasticsearch.org/guide/reference/query-dsl/ and http://www.elasticsearch.org/guide/reference/api/search/    
     /// </summary>
     public class QueryBuilder<T> : CompositeQueryBase
     {
@@ -28,8 +28,9 @@ namespace PlainElastic.Net.Queries
             return this;
         }
 
+
         /// <summary>
-        /// The filter element within the search request can be used to accomplish it.
+        /// Allows to filter result hits without changing facet results.
         /// see http://www.elasticsearch.org/guide/reference/api/search/filter.html
         /// </summary>
         public QueryBuilder<T> Filter(Func<Filter<T>, Filter<T>> filter)
@@ -83,6 +84,71 @@ namespace PlainElastic.Net.Queries
             RegisterQueryExpression(sort);
             return this;
         }
+
+
+        /// <summary>
+        /// Enables explanation for each hit on how its score was computed.
+        /// see http://www.elasticsearch.org/guide/reference/api/search/explain.html
+        /// </summary>
+        public QueryBuilder<T> Explain(bool explain = true)
+        {
+            var explainParam = " 'explain': {0}".SmartQuoteF(explain.AsString());
+            RegisterJsonQuery(explainParam);
+
+            return this;
+        }
+
+        /// <summary>
+        /// Enables explanation for each hit on how its score was computed.
+        /// see http://www.elasticsearch.org/guide/reference/api/search/version.html
+        /// </summary>
+        public QueryBuilder<T> Version(bool returnVersions = true)
+        {
+            var versionParam = " 'version': {0}".SmartQuoteF(returnVersions.AsString());
+            RegisterJsonQuery(versionParam);
+
+            return this;
+        }
+
+        /// <summary>
+        /// Allows to filter out documents based on a minimum score.
+        /// see http://www.elasticsearch.org/guide/reference/api/search/min-score.html
+        /// </summary>
+        public QueryBuilder<T> MinScore(double minScore)
+        {
+            var sizeParam = " 'min_score': {0}".SmartQuoteF(minScore.AsString());
+            RegisterJsonQuery(sizeParam);
+
+            return this;
+        }
+
+
+        // A search timeout, bounding the search request to be executed within the specified time value and bail with the hits accumulated up to that point when expired. Defaults to no timeout.
+        //TODO: timeout
+
+        // Allows to highlight search results on one or more fields.
+        // see http://www.elasticsearch.org/guide/reference/api/search/highlighting.html
+        //TODO: highlight
+
+        // Allows to selectively load specific fields for each document represented by a search hit. Defaults to load the internal _source field.
+        // see  http://www.elasticsearch.org/guide/reference/api/search/fields.html
+        //TODO: fields
+
+        // Allows to return a script evaluation (based on different fields) for each hit.
+        // see http://www.elasticsearch.org/guide/reference/api/search/script-fields.html
+        //TODO: script_fields
+
+        // Controls a preference of which shard replicas to execute the search request on. By default, the operation is randomized between the each shard replicas.
+        // see http://www.elasticsearch.org/guide/reference/api/search/preference.html
+        //TODO: preference 
+
+        // Allows to collect aggregated data based on a search query.
+        // see http://www.elasticsearch.org/guide/reference/api/search/facets/
+        //TODO: facets 
+
+        // Allows to configure different boost level per index when searching across more than one indices.
+        // http://www.elasticsearch.org/guide/reference/api/search/index-boost.html
+        //TODO: indices_boost
 
 
         /// <summary>

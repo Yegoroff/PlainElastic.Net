@@ -3,6 +3,10 @@ using PlainElastic.Net.Queries;
 
 namespace PlainElastic.Net.Queries
 {
+    /// <summary>
+    /// Allows to filter result hits without changing facet results.
+    /// see http://www.elasticsearch.org/guide/reference/api/search/filter.html
+    /// </summary>
     public class Filter<T> : CompositeQueryBase
     {
 
@@ -77,5 +81,8 @@ namespace PlainElastic.Net.Queries
             return this;
         }
 
+
+        // http://www.elasticsearch.org/guide/reference/api/search/named-filters.html
+        //fquery
     }
 }

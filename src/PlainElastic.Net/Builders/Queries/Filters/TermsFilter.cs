@@ -70,6 +70,10 @@ namespace PlainElastic.Net.Queries
         }
 
 
+        // http://www.elasticsearch.org/guide/reference/api/search/named-filters.html
+        //TODO: _name
+
+
         string IJsonConvertible.ToJson()
         {
             if (termsValues.IsNullOrEmpty())

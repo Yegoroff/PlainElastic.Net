@@ -108,6 +108,11 @@ namespace PlainElastic.Net
             return this;
         }
 
+        /// <summary>
+        /// The scroll parameter is a time value parameter (for example: scroll=5m), 
+        /// indicating for how long the nodes that participate in the search will maintain relevant resources in order to continue and support it.
+        /// see http://www.elasticsearch.org/guide/reference/api/search/scroll.html
+        /// </summary>
         public SearchCommand Scroll(string scrollActiveTime)
         {
             Parameters.Add("scroll", scrollActiveTime);

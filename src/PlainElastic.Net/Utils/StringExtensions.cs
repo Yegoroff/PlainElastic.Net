@@ -122,5 +122,26 @@ namespace PlainElastic.Net
         }
 
 
+        public static string AsString(this bool? value)
+        {
+            return value.HasValue ? value.Value.AsString(): null;
+        }
+
+        public static string AsString(this double? value)
+        {
+            return value.HasValue ? value.Value.AsString() : null;
+        }
+
+        public static string AsString(this int? value)
+        {
+            return value.HasValue ? value.Value.AsString() : null;
+        }
+
+        public static string AsString(this long? value)
+        {
+            return value.HasValue ? value.Value.AsString() : null;
+        }
+
+
     }
 }

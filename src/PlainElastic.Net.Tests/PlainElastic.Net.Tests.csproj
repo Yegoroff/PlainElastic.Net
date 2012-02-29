@@ -48,8 +48,8 @@
     <Compile Include="Buildres\Commands\When_complete_IndexCommand_built.cs" />
     <Compile Include="Buildres\Commands\When_GetCommand_with_reflected_fields_built.cs" />
     <Compile Include="Buildres\Commands\When_complete_GetCommand_built.cs" />
-    <Compile Include="Buildres\Queries\Filters\When_complete_RangeQuery_built.cs" />
-    <Compile Include="Buildres\Queries\Filters\When_RangeQuery_without_range_parts_built.cs" />
+    <Compile Include="Buildres\Queries\Filters\When_complete_RangeFilter_built.cs" />
+    <Compile Include="Buildres\Queries\Filters\When_RangeFilter_without_range_parts_built.cs" />
     <Compile Include="Buildres\Queries\When_RangeQuery_without_range_parts_built.cs" />
     <Compile Include="Buildres\Queries\When_RangeQuery_with_only_custom_part_built.cs" />
     <Compile Include="Buildres\Queries\When_complete_RangeQuery_built.cs" />

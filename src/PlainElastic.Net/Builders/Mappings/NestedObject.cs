@@ -11,29 +11,6 @@ namespace PlainElastic.Net.Mappings
     /// </summary>
     public class NestedObject<T> : ObjectBase<T, NestedObject<T>>
     {
-        
-        /// <summary>
-        /// The object type field to map.
-        /// </summary>
-        public NestedObject<TField> Field<TField>(Expression<Func<T, TField>> field)
-        {
-            var fieldName = field.GetPropertyPath();
-
-            var objectForField = new NestedObject<TField> {Name = fieldName};
-
-            return objectForField;
-        }
-
-
-        public NestedObject<TField> Field<TField>(Expression<Func<T, IEnumerable<TField>>> field)
-        {
-            var fieldName = field.GetPropertyPath();
-
-            var objectForField = new NestedObject<TField> { Name = fieldName };
-
-            return objectForField;
-        }
-
 
         /// <summary>
         /// Allows to object fields be automatically added to the immediate parent.
@@ -52,15 +29,12 @@ namespace PlainElastic.Net.Mappings
             RegisterCustomJsonMap("'include_in_root ': {0} ", includeInRoot.AsString());
             return this;
         }
-
         
 
         protected override string ApplyMappingTemplate(string mappingBody)
         {
             return " {0}: {{ 'type': 'nested', {1} }}".SmartQuoteF(Name.Quotate(), mappingBody);
         }
-
-
 
     }
 }

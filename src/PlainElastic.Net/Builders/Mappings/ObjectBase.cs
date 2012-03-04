@@ -1,9 +1,43 @@
 using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
+using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Mappings
 {
-    public abstract class ObjectBase<T, TMapping> : MappingBase<TMapping> where TMapping : ObjectBase<T, TMapping>
+    public abstract class ObjectBase<T, TMapping> : MappingBase<TMapping> where TMapping : ObjectBase<T, TMapping>, new() 
     {
+
+        /// <summary>
+        /// The field name to assign to object mapping.
+        /// </summary>
+        public TMapping Field(string fieldName)
+        {           
+            var objectForField = new TMapping { Name = fieldName };
+
+            return objectForField;
+        }
+
+        /// <summary>
+        /// The field to assign to object mapping.
+        /// </summary>
+        public TMapping Field<TField>(Expression<Func<T, TField>> field)
+        {
+            var fieldName = field.GetPropertyPath();
+
+            return Field(fieldName);
+        }
+
+        /// <summary>
+        /// The field which is collection to assign to object mapping.
+        /// </summary>
+        public TMapping Field<TField>(Expression<Func<T, IEnumerable<TField>>> field)
+        {
+            var fieldName = field.GetPropertyPath();
+
+            return Field(fieldName);
+        }
+
 
         /// <summary>
         /// The name of mapped object.

@@ -15,6 +15,8 @@ namespace PlainElastic.Net.Mappings
             Name = mappingTypeName;
         }
 
+        public RootObject() {}
+
 
         /// <summary>
         /// The type mapping level analyzer used to analyze the text contents when analyzed during indexing.

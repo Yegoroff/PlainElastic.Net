@@ -36,7 +36,7 @@ namespace PlainElastic.Net.Queries
             if (!shouldExists)
                 return "";
 
-            var result = "{{ 'exists': {{ 'field' : {0} }} }}".SmartQuoteF(existsField);
+            var result = "{{ 'exists': {{ 'field' : {0} }} }}".AltQuoteF(existsField);
 
             return result;
         }

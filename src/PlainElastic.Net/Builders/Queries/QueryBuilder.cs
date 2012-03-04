@@ -1,5 +1,6 @@
 using System;
 using PlainElastic.Net.Builders;
+using PlainElastic.Net.Utils;
 
 
 namespace PlainElastic.Net.Queries
@@ -44,7 +45,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public QueryBuilder<T> From (int from = 0 )
         {
-            var fromParam = " 'from': {0}".SmartQuoteF(from);
+            var fromParam = " 'from': {0}".AltQuoteF(from);
             RegisterJsonQuery(fromParam);
 
             return this;
@@ -55,7 +56,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public QueryBuilder<T> Size(int size = 10)
         {
-            var sizeParam = " 'size': {0}".SmartQuoteF(size);
+            var sizeParam = " 'size': {0}".AltQuoteF(size);
             RegisterJsonQuery(sizeParam);
 
             return this;
@@ -68,7 +69,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public QueryBuilder<T> TrackScores(bool trackScores = false)
         {
-            var param = " 'track_scores': {0}".SmartQuoteF(trackScores.AsString());
+            var param = " 'track_scores': {0}".AltQuoteF(trackScores.AsString());
             RegisterJsonParam(param);
 
             return this;
@@ -92,7 +93,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public QueryBuilder<T> Explain(bool explain = true)
         {
-            var explainParam = " 'explain': {0}".SmartQuoteF(explain.AsString());
+            var explainParam = " 'explain': {0}".AltQuoteF(explain.AsString());
             RegisterJsonQuery(explainParam);
 
             return this;
@@ -104,7 +105,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public QueryBuilder<T> Version(bool returnVersions = true)
         {
-            var versionParam = " 'version': {0}".SmartQuoteF(returnVersions.AsString());
+            var versionParam = " 'version': {0}".AltQuoteF(returnVersions.AsString());
             RegisterJsonQuery(versionParam);
 
             return this;
@@ -116,7 +117,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public QueryBuilder<T> MinScore(double minScore)
         {
-            var sizeParam = " 'min_score': {0}".SmartQuoteF(minScore.AsString());
+            var sizeParam = " 'min_score': {0}".AltQuoteF(minScore.AsString());
             RegisterJsonQuery(sizeParam);
 
             return this;
@@ -157,7 +158,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public QueryBuilder<T> Custom(string customFormat, params string[] args)
         {
-            var query = customFormat.SmartQuoteF(args);
+            var query = customFormat.AltQuoteF(args);
             RegisterJsonQuery(query);
             return this;
         }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using PlainElastic.Net;
 using PlainElastic.Net.Queries;
 using PlainElastic.Net.Serialization;
+using PlainElastic.Net.Utils;
 
 namespace PlainSample
 {

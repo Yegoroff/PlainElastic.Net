@@ -1,3 +1,5 @@
+using PlainElastic.Net.Utils;
+
 namespace PlainElastic.Net.Queries
 {
     /// <summary>
@@ -21,7 +23,7 @@ namespace PlainElastic.Net.Queries
         {
             if (!value.IsNullOrEmpty())
             {
-                RegisterJsonPart("'value': {0}".SmartQuoteF(value.LowerAndQuotate()));
+                RegisterJsonPart("'value': {0}".AltQuoteF(value.LowerAndQuotate()));
                 hasValue = true;
             }
 
@@ -31,7 +33,7 @@ namespace PlainElastic.Net.Queries
 
         public TermQuery<T> Boost(double boost)
         {
-            RegisterJsonPart("'boost': {0}".SmartQuoteF(boost.AsString()) );
+            RegisterJsonPart("'boost': {0}".AltQuoteF(boost.AsString()) );
             
             return this;
         }
@@ -45,9 +47,9 @@ namespace PlainElastic.Net.Queries
         protected override string ApplyJsonTemplate(string body)
         {
             if (RegisteredField.IsNullOrEmpty())
-                return "{{ 'term': {{ {0} }} }}".SmartQuoteF(body);
+                return "{{ 'term': {{ {0} }} }}".AltQuoteF(body);
 
-            return "{{ 'term': {{ {0}: {{ {1} }} }} }}".SmartQuoteF(RegisteredField, body);
+            return "{{ 'term': {{ {0}: {{ {1} }} }} }}".AltQuoteF(RegisteredField, body);
         }
         
     }

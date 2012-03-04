@@ -43,7 +43,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public TQuery Path(string path)
         {
-            var param = " 'path': {0}".SmartQuoteF(path.Quotate());
+            var param = " 'path': {0}".AltQuoteF(path.Quotate());
             RegisterJsonParam(param);
 
             return (TQuery)this;
@@ -57,7 +57,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public TQuery Custom(string queryFormat, params string[] args)
         {
-            var query = queryFormat.SmartQuoteF(args);
+            var query = queryFormat.AltQuoteF(args);
             RegisterJsonQuery(query);
             return (TQuery)this;
         }

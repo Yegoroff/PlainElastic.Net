@@ -93,7 +93,7 @@ namespace PlainElastic.Net.Queries
 
         protected override string ApplyJsonTemplate(string body)
         {
-            return " 'query': {0}".SmartQuoteF(body);
+            return " 'query': {0}".AltQuoteF(body);
         }
 
         protected override bool HasRequiredParts()

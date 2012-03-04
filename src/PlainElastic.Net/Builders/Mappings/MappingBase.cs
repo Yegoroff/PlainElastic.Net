@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using PlainElastic.Net.Builders;
+using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Mappings
 {
@@ -39,7 +39,7 @@ namespace PlainElastic.Net.Mappings
             if (mapFormat.IsNullOrEmpty())
                 return;
 
-            var map = mapFormat.SmartQuoteF(args);
+            var map = mapFormat.AltQuoteF(args);
             Mappings.Add(map);
         }
 

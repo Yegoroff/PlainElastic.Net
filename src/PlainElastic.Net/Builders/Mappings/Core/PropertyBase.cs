@@ -96,9 +96,9 @@ namespace PlainElastic.Net.Mappings
         protected override string ApplyMappingTemplate(string mappingBody)
         {
             if (mappingBody.IsNullOrEmpty())
-                return "{0}: {{ 'type':{1} }}".SmartQuoteF(FieldName.Quotate(), FieldType.Quotate());
+                return "{0}: {{ 'type':{1} }}".AltQuoteF(FieldName.Quotate(), FieldType.Quotate());
 
-            return "{0}: {{ 'type':{1},  {2} }}".SmartQuoteF(FieldName.Quotate(), FieldType.Quotate(), mappingBody);
+            return "{0}: {{ 'type':{1},  {2} }}".AltQuoteF(FieldName.Quotate(), FieldType.Quotate(), mappingBody);
         }
 
         protected abstract string GetElasticFieldType(Type fieldType);

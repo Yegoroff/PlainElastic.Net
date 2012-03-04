@@ -1,4 +1,5 @@
 using System;
+using PlainElastic.Net.Utils;
 
 
 namespace PlainElastic.Net.Queries
@@ -33,7 +34,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public DisMaxQuery<T> TieBreaker(double tieBreaker)
         {
-            var param = " 'tie_breaker': {0}".SmartQuoteF(tieBreaker.AsString());
+            var param = " 'tie_breaker': {0}".AltQuoteF(tieBreaker.AsString());
             base.RegisterJsonParam(param);
 
             return this;
@@ -41,7 +42,7 @@ namespace PlainElastic.Net.Queries
 
         public DisMaxQuery<T> Boost(double boost)
         {
-            var param = " 'boost': {0}".SmartQuoteF(boost.AsString());
+            var param = " 'boost': {0}".AltQuoteF(boost.AsString());
             base.RegisterJsonParam(param);
 
             return this;
@@ -53,7 +54,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public DisMaxQuery<T> Custom(string queryFormat, params string[] args)
         {
-            var query = queryFormat.SmartQuoteF(args);
+            var query = queryFormat.AltQuoteF(args);
             RegisterJsonQuery(query);
             return this;
         }

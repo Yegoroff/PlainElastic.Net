@@ -25,7 +25,7 @@ namespace PlainElastic.Net.Queries
                 var termsValues = values.Where(v => !v.IsNullOrEmpty()).LowerAndQuotate().JoinWithComma();
                 if (!termsValues.IsNullOrEmpty())
                 {
-                    RegisterJsonPart("[ {0} ]".SmartQuoteF(termsValues));
+                    RegisterJsonPart("[ {0} ]".AltQuoteF(termsValues));
                     hasValues = true;
                 }
             }
@@ -35,7 +35,7 @@ namespace PlainElastic.Net.Queries
     
         public TermsQuery<T> MinimumMatch(int count)
         {
-            RegisterJsonPart("'minimum_match': {0}".SmartQuoteF(count.AsString()));
+            RegisterJsonPart("'minimum_match': {0}".AltQuoteF(count.AsString()));
 
             return this;
         }
@@ -49,9 +49,9 @@ namespace PlainElastic.Net.Queries
         protected override string ApplyJsonTemplate(string body)
         {
             if (RegisteredField.IsNullOrEmpty())
-                return "{{ 'terms': {{ {0} }} }}".SmartQuoteF(body);
+                return "{{ 'terms': {{ {0} }} }}".AltQuoteF(body);
 
-            return "{{ 'terms': {{ {0}: {1} }} }}".SmartQuoteF(RegisteredField, body);
+            return "{{ 'terms': {{ {0}: {1} }} }}".AltQuoteF(RegisteredField, body);
         }
     }
 }

@@ -1,3 +1,5 @@
+using PlainElastic.Net.Utils;
+
 namespace PlainElastic.Net.Queries
 {
     /// <summary>
@@ -16,7 +18,7 @@ namespace PlainElastic.Net.Queries
             if (!value.IsNullOrEmpty())
             {
                 hasValue = true;
-                RegisterJsonPart("'from': {0}".SmartQuoteF(value.Quotate()));
+                RegisterJsonPart("'from': {0}".AltQuoteF(value.Quotate()));
             }
             return (TQuery)this;
         }
@@ -29,7 +31,7 @@ namespace PlainElastic.Net.Queries
             if (!value.IsNullOrEmpty())
             {
                 hasValue = true;
-                RegisterJsonPart("'to': {0}".SmartQuoteF(value.Quotate()));
+                RegisterJsonPart("'to': {0}".AltQuoteF(value.Quotate()));
             }
 
             return (TQuery)this;
@@ -40,7 +42,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public TQuery IncludeLower(bool includeLower = true)
         {
-            RegisterJsonPart("'include_lower': {0}".SmartQuoteF(includeLower.AsString()));
+            RegisterJsonPart("'include_lower': {0}".AltQuoteF(includeLower.AsString()));
             return (TQuery)this;
         }
 
@@ -49,7 +51,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public TQuery IncludeUpper(bool includeUpper = true)
         {
-            RegisterJsonPart("'include_upper': {0}".SmartQuoteF(includeUpper.AsString()));
+            RegisterJsonPart("'include_upper': {0}".AltQuoteF(includeUpper.AsString()));
             return (TQuery)this;
         }
 
@@ -61,7 +63,7 @@ namespace PlainElastic.Net.Queries
             if (!value.IsNullOrEmpty())
             {
                 hasValue = true;
-                RegisterJsonPart("'gt': {0}".SmartQuoteF(value.Quotate()));
+                RegisterJsonPart("'gt': {0}".AltQuoteF(value.Quotate()));
             }
             return (TQuery)this;
         }
@@ -74,7 +76,7 @@ namespace PlainElastic.Net.Queries
             if (!value.IsNullOrEmpty())
             {
                 hasValue = true;
-                RegisterJsonPart("'gte': {0}".SmartQuoteF(value.Quotate()));
+                RegisterJsonPart("'gte': {0}".AltQuoteF(value.Quotate()));
             }
             return (TQuery)this;
         }
@@ -87,7 +89,7 @@ namespace PlainElastic.Net.Queries
             if (!value.IsNullOrEmpty())
             {
                 hasValue = true;
-                RegisterJsonPart("'lt': {0}".SmartQuoteF(value.Quotate()));
+                RegisterJsonPart("'lt': {0}".AltQuoteF(value.Quotate()));
             }
             return (TQuery)this;
         }
@@ -100,7 +102,7 @@ namespace PlainElastic.Net.Queries
             if (!value.IsNullOrEmpty())
             {
                 hasValue = true;
-                RegisterJsonPart("'lte': {0}".SmartQuoteF(value.Quotate()));
+                RegisterJsonPart("'lte': {0}".AltQuoteF(value.Quotate()));
             }
             return (TQuery)this;
         }
@@ -114,9 +116,9 @@ namespace PlainElastic.Net.Queries
         protected override string ApplyJsonTemplate(string body)
         {
             if (RegisteredField.IsNullOrEmpty())
-                return "{{ 'range': {{ {0} }} }}".SmartQuoteF(body);
+                return "{{ 'range': {{ {0} }} }}".AltQuoteF(body);
 
-            return "{{ 'range': {{ {0}: {{ {1} }} }} }}".SmartQuoteF(RegisteredField, body);
+            return "{{ 'range': {{ {0}: {{ {1} }} }} }}".AltQuoteF(RegisteredField, body);
         }
 
     }

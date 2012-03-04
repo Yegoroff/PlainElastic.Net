@@ -1,5 +1,6 @@
 ﻿using Machine.Specifications;
 using PlainElastic.Net.Queries;
+using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Tests.Buildres.Queries
 {
@@ -12,9 +13,9 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
                                                 .MinimumMatch(2)
                                                 .ToString();
 
-        It should_contain_minimum_match_part = () => result.ShouldContain(@"'minimum_match': 2 ".SmartQuote());
+        It should_contain_minimum_match_part = () => result.ShouldContain(@"'minimum_match': 2 ".AltQuote());
 
-        It should_return_correct_query = () => result.ShouldEqual(@"{ 'terms': { 'Property1': [ 'one','two' ],'minimum_match': 2 } }".SmartQuote());
+        It should_return_correct_query = () => result.ShouldEqual(@"{ 'terms': { 'Property1': [ 'one','two' ],'minimum_match': 2 } }".AltQuote());
 
         private static string result;
     }

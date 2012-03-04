@@ -1,5 +1,6 @@
 ﻿using Machine.Specifications;
 using PlainElastic.Net.Queries;
+using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Tests.Buildres.Queries
 {
@@ -12,9 +13,9 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
 
         It should_not_contain_order_part = () => result.ShouldNotContain("order");
 
-        It should_contain_correct_missing_value = () => result.ShouldContain("'missing': '_last'".SmartQuote());
+        It should_contain_correct_missing_value = () => result.ShouldContain("'missing': '_last'".AltQuote());
 
-        It should_return_correct_value = () => result.ShouldEqual("'sort': [{ 'field': { 'missing': '_last' } }]".SmartQuote());
+        It should_return_correct_value = () => result.ShouldEqual("'sort': [{ 'field': { 'missing': '_last' } }]".AltQuote());
 
         private static string result;
     }

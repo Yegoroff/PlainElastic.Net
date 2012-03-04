@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq.Expressions;
+using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net
 {

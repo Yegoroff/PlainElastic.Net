@@ -26,7 +26,7 @@ namespace PlainElastic.Net.Queries
         public QueryString<T> DefaultField(Expression<Func<T, object>> field)
         {
             var defaultField = field.GetQuotatedPropertyPath();
-            var defaultPart = " 'default_field': {0}".SmartQuoteF(defaultField);
+            var defaultPart = " 'default_field': {0}".AltQuoteF(defaultField);
 
             queryParts.Add(defaultPart);
 
@@ -67,7 +67,7 @@ namespace PlainElastic.Net.Queries
 
             var fullTextQuery = values.JoinWithSeparator(" ").LowerAndQuotate();
 
-            var queryValue = " 'query': {0}".SmartQuoteF(fullTextQuery);
+            var queryValue = " 'query': {0}".AltQuoteF(fullTextQuery);
 
             queryParts.Add(queryValue);
 
@@ -78,7 +78,7 @@ namespace PlainElastic.Net.Queries
 
         public QueryString<T> Boost(double boost)
         {
-            var boostPart = " 'boost': {0}".SmartQuoteF(boost.AsString());
+            var boostPart = " 'boost': {0}".AltQuoteF(boost.AsString());
             queryParts.Add(boostPart);
 
             return this;
@@ -87,7 +87,7 @@ namespace PlainElastic.Net.Queries
         public QueryString<T> Rewrite(Rewrite rewrite, int n = 0)
         {
             var rewriteValue = GetRewriteValue(rewrite, n).Quotate();
-            var rewritePart = " 'rewrite': {0}".SmartQuoteF(rewriteValue);
+            var rewritePart = " 'rewrite': {0}".AltQuoteF(rewriteValue);
 
             queryParts.Add(rewritePart);
 
@@ -97,7 +97,7 @@ namespace PlainElastic.Net.Queries
 
         public QueryString<T> Custom(string queryFormat, params string[] args)
         {
-            var query = queryFormat.SmartQuoteF(args);
+            var query = queryFormat.AltQuoteF(args);
             queryParts.Add(query);
             hasValue = true;
 
@@ -125,7 +125,7 @@ namespace PlainElastic.Net.Queries
                 return "";
 
             var fields = queryFields.JoinWithComma();
-            var fieldPart = " 'fields': [{0}]".SmartQuoteF(fields);
+            var fieldPart = " 'fields': [{0}]".AltQuoteF(fields);
             return fieldPart;
         }
 
@@ -140,7 +140,7 @@ namespace PlainElastic.Net.Queries
                 queryParts.Insert(0, fields);
 
             var body = queryParts.JoinWithComma();
-            var result = "{{ 'query_string': {{ {0} }} }}".SmartQuoteF(body);
+            var result = "{{ 'query_string': {{ {0} }} }}".AltQuoteF(body);
 
             return result;
         }

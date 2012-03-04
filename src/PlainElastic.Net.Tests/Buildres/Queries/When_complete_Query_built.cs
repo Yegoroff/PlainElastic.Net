@@ -1,5 +1,6 @@
 ﻿using Machine.Specifications;
 using PlainElastic.Net.Queries;
+using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Tests.Buildres.Queries
 {
@@ -16,7 +17,7 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
                                                 .Terms(ts => ts.Custom("terms query"))
                                                 .ToString();
 
-        It should_return_correct_result = () => result.ShouldEqual(@" 'query': { 'bool': { bool query } },{ 'dis_max': { dismax query } },{ 'nested': { nested query } },{ 'query_string': { query string } },{ 'range': { range query } },{ 'term': { term query } },{ 'terms': { terms query } }".SmartQuote());
+        It should_return_correct_result = () => result.ShouldEqual(@" 'query': { 'bool': { bool query } },{ 'dis_max': { dismax query } },{ 'nested': { nested query } },{ 'query_string': { query string } },{ 'range': { range query } },{ 'term': { term query } },{ 'terms': { terms query } }".AltQuote());
 
         private static string result;
     }

@@ -38,13 +38,13 @@ namespace PlainElastic.Net.Queries
         {
             var fieldParams = new List<string>();
             if (order != SortDirection.desc)
-                fieldParams.Add("'order': {0}".SmartQuoteF(order.ToString().Quotate()));
+                fieldParams.Add("'order': {0}".AltQuoteF(order.ToString().Quotate()));
 
             if (!missing.IsNullOrEmpty())
-                fieldParams.Add("'missing': {0}".SmartQuoteF(missing.Quotate()));
+                fieldParams.Add("'missing': {0}".AltQuoteF(missing.Quotate()));
 
             if (fieldParams.Any())
-                RegisterJsonPart("{{ {0}: {{ {1} }} }}".SmartQuoteF(field.Quotate(), fieldParams.JoinWithComma()));
+                RegisterJsonPart("{{ {0}: {{ {1} }} }}".AltQuoteF(field.Quotate(), fieldParams.JoinWithComma()));
             else
                 RegisterJsonPart(field.Quotate());                
 
@@ -54,7 +54,7 @@ namespace PlainElastic.Net.Queries
 
         public Sort<T> Script(string script, string type, SortDirection order, string [] @params)
         {
-            var expression = "'_script' : {0}, 'type': {1}, 'order': {2}, 'params': {3} ".SmartQuoteF(script, type.Quotate(), order.ToString().Quotate(), @params.JoinWithComma());
+            var expression = "'_script' : {0}, 'type': {1}, 'order': {2}, 'params': {3} ".AltQuoteF(script, type.Quotate(), order.ToString().Quotate(), @params.JoinWithComma());
             RegisterJsonPart(expression);
 
             return this;
@@ -69,7 +69,7 @@ namespace PlainElastic.Net.Queries
 
         protected override string ApplyJsonTemplate(string body)
         {
-            return "'sort': [{0}]".SmartQuoteF(body);
+            return "'sort': [{0}]".AltQuoteF(body);
 
         }
     }

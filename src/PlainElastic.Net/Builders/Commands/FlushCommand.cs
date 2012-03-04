@@ -1,4 +1,6 @@
-﻿namespace PlainElastic.Net
+﻿using PlainElastic.Net.Utils;
+
+namespace PlainElastic.Net
 {
     /// <summary>
     /// Builds a command that allows to flush one or more indices through an API. 

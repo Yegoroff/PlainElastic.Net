@@ -58,7 +58,7 @@ namespace PlainElastic.Net.Queries
         {
             if (!value.IsNullOrEmpty())
             {
-                parts.Add("'from': {0}".SmartQuoteF(value.Quotate()));
+                parts.Add("'from': {0}".AltQuoteF(value.Quotate()));
             }
             return this;
         }
@@ -70,7 +70,7 @@ namespace PlainElastic.Net.Queries
         {
             if (!value.IsNullOrEmpty())
             {
-                parts.Add("'to': {0}".SmartQuoteF(value.Quotate()));
+                parts.Add("'to': {0}".AltQuoteF(value.Quotate()));
             }
             return this;
         }
@@ -80,7 +80,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public RangeFilter<T> IncludeLower(bool includeLower = true)
         {
-            parts.Add("'include_lower': {0}".SmartQuoteF(includeLower.AsString()));
+            parts.Add("'include_lower': {0}".AltQuoteF(includeLower.AsString()));
             return this;
         }
 
@@ -89,7 +89,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public RangeFilter<T> IncludeUpper(bool includeUpper = true)
         {
-            parts.Add("'include_upper': {0}".SmartQuoteF(includeUpper.AsString()));
+            parts.Add("'include_upper': {0}".AltQuoteF(includeUpper.AsString()));
             return this;
         }
 
@@ -100,7 +100,7 @@ namespace PlainElastic.Net.Queries
         {
             if (!value.IsNullOrEmpty())
             {
-                parts.Add("'gt': {0}".SmartQuoteF(value.Quotate()));
+                parts.Add("'gt': {0}".AltQuoteF(value.Quotate()));
             }
             return this;
         }
@@ -112,7 +112,7 @@ namespace PlainElastic.Net.Queries
         {
             if (!value.IsNullOrEmpty())
             {
-                parts.Add("'gte': {0}".SmartQuoteF(value.Quotate()));
+                parts.Add("'gte': {0}".AltQuoteF(value.Quotate()));
             }
             return this;
         }
@@ -124,7 +124,7 @@ namespace PlainElastic.Net.Queries
         {
             if (!value.IsNullOrEmpty())
             {
-                parts.Add("'lt': {0}".SmartQuoteF(value.Quotate()));
+                parts.Add("'lt': {0}".AltQuoteF(value.Quotate()));
             }
             return this;
         }
@@ -136,7 +136,7 @@ namespace PlainElastic.Net.Queries
         {
             if (!value.IsNullOrEmpty())
             {
-                parts.Add("'lte': {0}".SmartQuoteF(value.Quotate()));
+                parts.Add("'lte': {0}".AltQuoteF(value.Quotate()));
             }
             return this;
         }
@@ -147,14 +147,14 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public RangeFilter<T> Cache(bool cache)
         {
-            cacheMode = ",'_cache': {0}".SmartQuoteF(cache.AsString());
+            cacheMode = ",'_cache': {0}".AltQuoteF(cache.AsString());
 
             return this;
         }
 
         public RangeFilter<T> Custom(string queryFormat, params string[] args)
         {
-            var query = queryFormat.SmartQuoteF(args);
+            var query = queryFormat.AltQuoteF(args);
             parts.Add(query);
 
             return this;
@@ -169,9 +169,9 @@ namespace PlainElastic.Net.Queries
                 return "";
 
             if (cacheMode.IsNullOrEmpty())
-                return "{{ 'range': {{ {0}: {{ {1} }} }} }}".SmartQuoteF(rangeField, body);
+                return "{{ 'range': {{ {0}: {{ {1} }} }} }}".AltQuoteF(rangeField, body);
 
-            return "{{ 'range': {{ {0}: {{ {1} }}{2} }} }}".SmartQuoteF(rangeField, body, cacheMode);
+            return "{{ 'range': {{ {0}: {{ {1} }}{2} }} }}".AltQuoteF(rangeField, body, cacheMode);
         }
 
 

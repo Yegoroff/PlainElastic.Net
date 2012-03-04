@@ -54,7 +54,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public TermsFilter<T> Execution(TermsFilterExecution execution)
         {
-            executionMode = "'execution': {0}".SmartQuoteF(execution.ToString().Quotate());
+            executionMode = "'execution': {0}".AltQuoteF(execution.ToString().Quotate());
 
             return this;
         }
@@ -64,7 +64,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public TermsFilter<T> Cache(bool cache)
         {
-            cacheMode = "'_cache': {0}".SmartQuoteF(cache.AsString());
+            cacheMode = "'_cache': {0}".AltQuoteF(cache.AsString());
 
             return this;
         }
@@ -82,9 +82,9 @@ namespace PlainElastic.Net.Queries
             var options = new[] {executionMode, cacheMode}.Where(m => !m.IsNullOrEmpty()).JoinWithComma();
 
             if (options.IsNullOrEmpty())
-                return "{{ 'terms': {{ {0} : [ {1} ] }} }}".SmartQuoteF(termsField, termsValues);
+                return "{{ 'terms': {{ {0} : [ {1} ] }} }}".AltQuoteF(termsField, termsValues);
 
-            return "{{ 'terms': {{ {0} : [ {1} ] {2} }} }}".SmartQuoteF(termsField, termsValues, options);
+            return "{{ 'terms': {{ {0} : [ {1} ] {2} }} }}".AltQuoteF(termsField, termsValues, options);
         }
     }
 }

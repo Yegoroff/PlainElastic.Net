@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using PlainElastic.Net.Builders;
+using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Queries
 {
@@ -75,7 +76,7 @@ namespace PlainElastic.Net.Queries
 
             var body =  QueryParts.JoinWithComma();
 
-            return QueryTemplate.SmartQuoteF(body);
+            return QueryTemplate.AltQuoteF(body);
         }
 
         public override string ToString()

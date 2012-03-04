@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using PlainElastic.Net.Utils;
 
 
 namespace PlainElastic.Net.Queries
@@ -54,7 +55,7 @@ namespace PlainElastic.Net.Queries
                 if (useActualShouldCount && number > shouldPartsCount)
                     number = shouldPartsCount;
 
-                var param = " 'minimum_number_should_match': {0}".SmartQuoteF(number.AsString());
+                var param = " 'minimum_number_should_match': {0}".AltQuoteF(number.AsString());
                 base.RegisterJsonParam(param);
             }
 
@@ -63,7 +64,7 @@ namespace PlainElastic.Net.Queries
 
         public BoolQuery<T> Boost(double boost)
         {
-            var boostParam = " 'boost': {0}".SmartQuoteF(boost.AsString());
+            var boostParam = " 'boost': {0}".AltQuoteF(boost.AsString());
             base.RegisterJsonParam(boostParam);
 
             return this;
@@ -71,7 +72,7 @@ namespace PlainElastic.Net.Queries
 
         public BoolQuery<T> DisableCoord(bool disableCoord)
         {
-            var disableCoordParam = " 'disable_coord': {0}".SmartQuoteF(disableCoord.AsString());
+            var disableCoordParam = " 'disable_coord': {0}".AltQuoteF(disableCoord.AsString());
             base.RegisterJsonParam(disableCoordParam);
 
             return this;
@@ -80,7 +81,7 @@ namespace PlainElastic.Net.Queries
 
         public BoolQuery<T> Custom(string queryFormat, params string[] args)
         {
-            var query = queryFormat.SmartQuoteF(args);
+            var query = queryFormat.AltQuoteF(args);
             RegisterJsonQuery(query);
             return this;
         }

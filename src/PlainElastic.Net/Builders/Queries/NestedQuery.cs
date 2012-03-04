@@ -1,3 +1,5 @@
+using PlainElastic.Net.Utils;
+
 namespace PlainElastic.Net.Queries
 {
     /// <summary>
@@ -14,7 +16,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public NestedQuery<T> ScoreMode(ScoreMode scoreMode = Net.Queries.ScoreMode.avg)
         {
-            var scoreParam = " 'score_mode': {0}".SmartQuoteF(scoreMode.ToString().Quotate());
+            var scoreParam = " 'score_mode': {0}".AltQuoteF(scoreMode.ToString().Quotate());
             RegisterJsonParam(scoreParam);
 
             return this;

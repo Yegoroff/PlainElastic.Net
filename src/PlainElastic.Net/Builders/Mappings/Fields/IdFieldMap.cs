@@ -1,3 +1,5 @@
+using PlainElastic.Net.Utils;
+
 namespace PlainElastic.Net.Mappings
 {
     /// <summary>
@@ -38,7 +40,7 @@ namespace PlainElastic.Net.Mappings
 
         protected override string ApplyMappingTemplate(string mappingBody)
         {
-            return " '_id': {{ {0} }}".SmartQuoteF(mappingBody);
+            return " '_id': {{ {0} }}".AltQuoteF(mappingBody);
         }
         
     }

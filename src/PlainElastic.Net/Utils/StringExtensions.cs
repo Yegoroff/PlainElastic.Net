@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace PlainElastic.Net
+namespace PlainElastic.Net.Utils
 {
     public static class StringExtensions
     {
@@ -19,12 +19,12 @@ namespace PlainElastic.Net
         /// <summary>
         /// Provide string formatting alongside with replacing ' by " quotation sign.
         /// </summary>
-        public static string SmartQuoteF(this string format, params object[] args)
+        public static string AltQuoteF(this string format, params object[] args)
         {
             if (format.IsNullOrEmpty())
                 return null;
 
-            format = format.SmartQuote();
+            format = format.AltQuote();
 
             if (args == null || args.Length == 0)
                 return format;
@@ -35,7 +35,7 @@ namespace PlainElastic.Net
         /// <summary>
         /// Replaces ' by " quotation sign.
         /// </summary>
-        public static string SmartQuote(this string quotedString)
+        public static string AltQuote(this string quotedString)
         {
             return quotedString.Replace('\'', '\"');
         }

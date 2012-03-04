@@ -1,3 +1,5 @@
+using PlainElastic.Net.Utils;
+
 namespace PlainElastic.Net.Mappings
 {
     /// <summary>
@@ -13,19 +15,19 @@ namespace PlainElastic.Net.Mappings
         /// </summary>
         public AllField<T> Enabled(bool enabled)
         {
-            RegisterCustomJsonMap("'enabled': {0} ", enabled.AsString());
+            RegisterCustomJsonMap("'enabled': {0}", enabled.AsString());
             return this;
         }
 
         public AllField<T> Store(bool store)
         {
-            RegisterCustomJsonMap("'store': {0} ", store.AsString());
+            RegisterCustomJsonMap("'store': {0}", store.AsString());
             return this;
         }
 
         public AllField<T> TermVector(TermVector termVector)
         {
-            RegisterCustomJsonMap("'term_vector': {0} ", termVector.ToString().Quotate());
+            RegisterCustomJsonMap("'term_vector': {0}", termVector.ToString().Quotate());
             return this;
         }
 
@@ -36,7 +38,7 @@ namespace PlainElastic.Net.Mappings
         /// </summary>
         public AllField<T> Analyzer(string analyzer)
         {
-            RegisterCustomJsonMap("'analyzer': {0} ", analyzer.Quotate());
+            RegisterCustomJsonMap("'analyzer': {0}", analyzer.Quotate());
             return this;
         }
 
@@ -55,7 +57,7 @@ namespace PlainElastic.Net.Mappings
         /// </summary>       
         public AllField<T> IndexAnalyzer(string analyzer)
         {
-            RegisterCustomJsonMap("'index_analyzer': {0} ", analyzer.Quotate());
+            RegisterCustomJsonMap("'index_analyzer': {0}", analyzer.Quotate());
             return this;
         }
 
@@ -74,7 +76,7 @@ namespace PlainElastic.Net.Mappings
         /// </summary>
         public AllField<T> SearchAnalyzer(string analyzer)
         {
-            RegisterCustomJsonMap("'search_analyzer': {0} ", analyzer.Quotate());
+            RegisterCustomJsonMap("'search_analyzer': {0}", analyzer.Quotate());
             return this;
         }
 
@@ -91,7 +93,7 @@ namespace PlainElastic.Net.Mappings
 
         protected override string ApplyMappingTemplate(string mappingBody)
         {
-            return " '_all': {{ {0} }}".SmartQuoteF(mappingBody);
+            return " '_all': {{ {0} }}".AltQuoteF(mappingBody);
         }
         
     }

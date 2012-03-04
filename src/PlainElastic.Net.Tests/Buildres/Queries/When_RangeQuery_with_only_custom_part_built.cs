@@ -1,5 +1,6 @@
 ﻿using Machine.Specifications;
 using PlainElastic.Net.Queries;
+using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Tests.Buildres.Queries
 {
@@ -10,7 +11,7 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
                                                 .Custom("'custom_range': {0}", "0-5")
                                                 .ToString();
 
-        It should_return_query_with_only_custom_part = () => result.ShouldEqual(@"{ 'range': { 'custom_range': 0-5 } }".SmartQuote());
+        It should_return_query_with_only_custom_part = () => result.ShouldEqual(@"{ 'range': { 'custom_range': 0-5 } }".AltQuote());
 
         private static string result;
     }

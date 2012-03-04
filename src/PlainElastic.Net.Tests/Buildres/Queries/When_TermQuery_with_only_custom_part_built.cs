@@ -1,5 +1,6 @@
 ﻿using Machine.Specifications;
 using PlainElastic.Net.Queries;
+using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Tests.Buildres.Queries
 {
@@ -10,9 +11,9 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
                                                 .Custom("'tag': {0}", "wow".Quotate())
                                                 .ToString();
 
-        It should_contain_custom_part = () => result.ShouldContain(@"'tag': 'wow'".SmartQuote());
+        It should_contain_custom_part = () => result.ShouldContain(@"'tag': 'wow'".AltQuote());
 
-        It should_return_correct_query = () => result.ShouldEqual(@"{ 'term': { 'tag': 'wow' } }".SmartQuote());
+        It should_return_correct_query = () => result.ShouldEqual(@"{ 'term': { 'tag': 'wow' } }".AltQuote());
 
         private static string result;
     }

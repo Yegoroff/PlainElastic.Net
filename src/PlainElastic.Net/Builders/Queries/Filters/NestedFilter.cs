@@ -1,3 +1,5 @@
+using PlainElastic.Net.Utils;
+
 namespace PlainElastic.Net.Queries
 {
     /// <summary>
@@ -13,7 +15,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public NestedFilter<T> Cache(bool cache)
         {
-            var scoreParam = " '_cache': {0}".SmartQuoteF(cache.AsString());
+            var scoreParam = " '_cache': {0}".AltQuoteF(cache.AsString());
             RegisterJsonParam(scoreParam);
 
             return this;

@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
 using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Mappings
@@ -33,7 +30,7 @@ namespace PlainElastic.Net.Mappings
 
         protected override string ApplyMappingTemplate(string mappingBody)
         {
-            return " {0}: {{ 'type': 'nested', {1} }}".SmartQuoteF(Name.Quotate(), mappingBody);
+            return " {0}: {{ 'type': 'nested', {1} }}".AltQuoteF(Name.Quotate(), mappingBody);
         }
 
     }

@@ -1,5 +1,6 @@
 ﻿using Machine.Specifications;
 using PlainElastic.Net.Queries;
+using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Tests.Buildres.Queries
 {
@@ -10,11 +11,11 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
                                                 .Field(f => f.Property1, order: SortDirection.ask, missing: "_last")
                                                 .ToString();
 
-        It should_contain_correct_order = () => result.ShouldContain(@"'order': 'ask'".SmartQuote());
+        It should_contain_correct_order = () => result.ShouldContain(@"'order': 'ask'".AltQuote());
 
-        It should_contain_correct_missing_value = () => result.ShouldContain(@"'missing': '_last'".SmartQuote());
+        It should_contain_correct_missing_value = () => result.ShouldContain(@"'missing': '_last'".AltQuote());
 
-        It should_return_correct_value = () => result.ShouldEqual(@"'sort': [{ 'Property1': { 'order': 'ask','missing': '_last' } }]".SmartQuote());
+        It should_return_correct_value = () => result.ShouldEqual(@"'sort': [{ 'Property1': { 'order': 'ask','missing': '_last' } }]".AltQuote());
 
         private static string result;
     }

@@ -62,7 +62,7 @@ namespace PlainElastic.Net.Queries
             if (termValue.IsNullOrEmpty())
                 return "";
 
-            var result = "{{ 'term': {{ {0} : {1} }} }}".SmartQuoteF(termField, termValue);
+            var result = "{{ 'term': {{ {0} : {1} }} }}".AltQuoteF(termField, termValue);
 
             return result;
         }

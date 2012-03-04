@@ -92,7 +92,7 @@ namespace PlainElastic.Net.Mappings
 
         protected override string ApplyMappingTemplate(string mappingBody)
         {
-            return " {0}: {{ 'type': 'object', {1} }}".SmartQuoteF(Name.Quotate(), mappingBody);
+            return " {0}: {{ 'type': 'object', {1} }}".AltQuoteF(Name.Quotate(), mappingBody);
         }
     }
 }

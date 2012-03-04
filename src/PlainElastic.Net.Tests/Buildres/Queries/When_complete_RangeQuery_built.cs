@@ -1,5 +1,6 @@
 ﻿using Machine.Specifications;
 using PlainElastic.Net.Queries;
+using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Tests.Buildres.Queries
 {
@@ -16,9 +17,9 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
                                                 .Custom("'custom': {0}", "123")
                                                 .ToString();
 
-        It should_contain_boost_part = () => result.ShouldContain(@"'boost': 5".SmartQuote());
+        It should_contain_boost_part = () => result.ShouldContain(@"'boost': 5".AltQuote());
 
-        It should_return_correct_query = () => result.ShouldEqual(@"{ 'range': { 'Property1': { 'from': '1','to': '100','include_lower': true,'include_upper': false,'boost': 5,'custom': 123 } } }".SmartQuote());
+        It should_return_correct_query = () => result.ShouldEqual(@"{ 'range': { 'Property1': { 'from': '1','to': '100','include_lower': true,'include_upper': false,'boost': 5,'custom': 123 } } }".AltQuote());
 
         private static string result;
     }

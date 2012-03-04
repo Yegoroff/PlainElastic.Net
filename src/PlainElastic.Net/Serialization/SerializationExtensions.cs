@@ -1,4 +1,6 @@
-﻿namespace PlainElastic.Net.Serialization
+﻿using PlainElastic.Net.Utils;
+
+namespace PlainElastic.Net.Serialization
 {
     public static class SerializationExtensions
     {

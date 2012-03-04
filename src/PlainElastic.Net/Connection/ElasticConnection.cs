@@ -2,6 +2,7 @@
 using System.IO;
 using System.Net;
 using System.Text;
+using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net
 {

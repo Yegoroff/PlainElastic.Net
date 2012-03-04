@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using PlainElastic.Net.Builders;
+using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Queries
 {
@@ -33,7 +34,7 @@ namespace PlainElastic.Net.Queries
             if (jsonPart.IsNullOrEmpty())
                 return;
 
-            var json = jsonPart.SmartQuoteF(args);
+            var json = jsonPart.AltQuoteF(args);
             jsonParts.Add(json);
         }
 

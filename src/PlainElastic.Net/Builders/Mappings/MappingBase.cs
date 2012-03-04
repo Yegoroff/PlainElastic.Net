@@ -68,7 +68,7 @@ namespace PlainElastic.Net.Mappings
 
         string IJsonConvertible.ToJson()
         {
-            var body = Mappings.JoinWithSeparator(", ");
+            var body = Mappings.JoinWithComma();
             return ApplyMappingTemplate(body);
         }
 

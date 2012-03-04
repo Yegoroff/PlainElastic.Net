@@ -258,7 +258,7 @@ namespace PlainElastic.Net.Mappings
 
         protected override string ApplyMappingTemplate(string mappingBody)
         {
-            return " 'properties': {{ {0} }}".AltQuoteF(mappingBody);
+            return "'properties': {{ {0} }}".AltQuoteF(mappingBody);
         }
     }
 }

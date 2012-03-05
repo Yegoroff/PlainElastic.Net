@@ -12,7 +12,7 @@ namespace PlainElastic.Net.Mappings
    
         public StringMap<T> TermVector(TermVector termVector)
         {
-            RegisterCustomJsonMap("'term_vector': {0} ", termVector.ToString().Quotate());
+            RegisterCustomJsonMap("'term_vector': {0}", termVector.ToString().Quotate());
             return this;
         }
 
@@ -22,7 +22,7 @@ namespace PlainElastic.Net.Mappings
         /// </summary>
         public StringMap<T> OmitNorms(bool omitNorms = false)
         {
-            RegisterCustomJsonMap("'omit_norms': {0} ", omitNorms.AsString());
+            RegisterCustomJsonMap("'omit_norms': {0}", omitNorms.AsString());
             return this;
         }
 
@@ -31,7 +31,7 @@ namespace PlainElastic.Net.Mappings
         /// </summary>
         public StringMap<T> OmitTermFreqAndPositions(bool omitTermFreqAndPositions = false)
         {
-            RegisterCustomJsonMap("'omit_term_freq_and_positions': {0} ", omitTermFreqAndPositions.AsString());
+            RegisterCustomJsonMap("'omit_term_freq_and_positions': {0}", omitTermFreqAndPositions.AsString());
             return this;
         }
         
@@ -41,7 +41,7 @@ namespace PlainElastic.Net.Mappings
         /// </summary>
         public StringMap<T> Analyzer(string analyzer)
         {
-            RegisterCustomJsonMap("'analyzer': {0} ", analyzer.Quotate());
+            RegisterCustomJsonMap("'analyzer': {0}", analyzer.Quotate());
             return this;
         }
 
@@ -60,7 +60,7 @@ namespace PlainElastic.Net.Mappings
         /// </summary>       
         public StringMap<T> IndexAnalyzer(string analyzer)
         {
-            RegisterCustomJsonMap("'index_analyzer': {0} ", analyzer.Quotate());
+            RegisterCustomJsonMap("'index_analyzer': {0}", analyzer.Quotate());
             return this;
         }
 
@@ -79,7 +79,7 @@ namespace PlainElastic.Net.Mappings
         /// </summary>
         public StringMap<T> SearchAnalyzer(string analyzer)
         {
-            RegisterCustomJsonMap("'search_analyzer': {0} ", analyzer.Quotate());
+            RegisterCustomJsonMap("'search_analyzer': {0}", analyzer.Quotate());
             return this;
         }
 

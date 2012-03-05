@@ -14,7 +14,7 @@ namespace PlainElastic.Net.Mappings
         /// </summary>
         public NestedObject<T> IncludeInParent(bool includeInParent = false)
         {
-            RegisterCustomJsonMap("'include_in_parent ': {0} ", includeInParent.AsString());
+            RegisterCustomJsonMap("'include_in_parent ': {0}", includeInParent.AsString());
             return this;
         }
 
@@ -23,14 +23,14 @@ namespace PlainElastic.Net.Mappings
         /// </summary>
         public NestedObject<T> IncludeInRoot(bool includeInRoot = false)
         {
-            RegisterCustomJsonMap("'include_in_root ': {0} ", includeInRoot.AsString());
+            RegisterCustomJsonMap("'include_in_root ': {0}", includeInRoot.AsString());
             return this;
         }
         
 
         protected override string ApplyMappingTemplate(string mappingBody)
         {
-            return " {0}: {{ 'type': 'nested', {1} }}".AltQuoteF(Name.Quotate(), mappingBody);
+            return " {0}: {{ 'type': 'nested',{1} }}".AltQuoteF(Name.Quotate(), mappingBody);
         }
 
     }

@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Linq.Expressions;
 using PlainElastic.Net.Utils;
 
@@ -14,10 +13,10 @@ namespace PlainElastic.Net.Mappings
 
 
 
-        public TMapping Field(string fieldName)
+        public TMapping Field(string fieldName, Type fieldType = null)
         {
             FieldName = fieldName;
-            FieldType = GetElasticFieldType(typeof(object));
+            FieldType = GetElasticFieldType(fieldType ?? typeof(object));
 
             return (TMapping)this;
         }
@@ -25,19 +24,9 @@ namespace PlainElastic.Net.Mappings
 
         public TMapping Field<TField>(Expression<Func<T, TField>> field)
         {
-            FieldName = field.GetPropertyPath();           
-            FieldType = GetElasticFieldType(typeof(TField));
-
-            return (TMapping)this;
+            return Field(field.GetPropertyPath(), typeof (TField));
         }
 
-        public TMapping Field<TField>(Expression<Func<T, IEnumerable<TField>>> field)
-        {
-            FieldName = field.GetPropertyPath();
-            FieldType = GetElasticFieldType(typeof(TField));
-
-            return (TMapping)this;
-        }
 
 
         /// <summary>
@@ -45,7 +34,7 @@ namespace PlainElastic.Net.Mappings
         /// </summary>
         public TMapping IndexName(string indexName)
         {
-            RegisterCustomJsonMap("'index_name': {0} ", indexName.Quotate());
+            RegisterCustomJsonMap("'index_name': {0}", indexName.Quotate());
             return (TMapping) this;
         }
 
@@ -54,7 +43,7 @@ namespace PlainElastic.Net.Mappings
         /// </summary>
         public TMapping Store(bool store = false)
         {
-            RegisterCustomJsonMap("'store': {0} ", store.AsString());
+            RegisterCustomJsonMap("'store': {0}", store.AsString());
             return (TMapping) this;            
         }
 
@@ -63,14 +52,14 @@ namespace PlainElastic.Net.Mappings
         /// </summary>
         public TMapping Index(IndexState index)
         {
-            RegisterCustomJsonMap("'index': {0} ", index.ToString().Quotate());
+            RegisterCustomJsonMap("'index': {0}", index.ToString().Quotate());
             return (TMapping) this;            
         }
         
 
         public TMapping Boost(double boost)
         {
-            RegisterCustomJsonMap("'boost': {0} ", boost.AsString().Quotate());
+            RegisterCustomJsonMap("'boost': {0}", boost.AsString().Quotate());
             return (TMapping) this;            
         }
 
@@ -79,7 +68,7 @@ namespace PlainElastic.Net.Mappings
         /// </summary>
         public TMapping NullValue(string nullValue)
         {
-            RegisterCustomJsonMap("'null_value': {0} ", nullValue.Quotate());
+            RegisterCustomJsonMap("'null_value': {0}", nullValue.Quotate());
             return (TMapping) this;            
         }
 
@@ -88,7 +77,7 @@ namespace PlainElastic.Net.Mappings
         /// </summary>
         public TMapping IncludeInAll(bool includeInAll)
         {
-            RegisterCustomJsonMap("'include_in_all': {0} ", includeInAll.AsString());
+            RegisterCustomJsonMap("'include_in_all': {0}", includeInAll.AsString());
             return (TMapping) this;            
         }
 
@@ -96,9 +85,9 @@ namespace PlainElastic.Net.Mappings
         protected override string ApplyMappingTemplate(string mappingBody)
         {
             if (mappingBody.IsNullOrEmpty())
-                return "{0}: {{ 'type':{1} }}".AltQuoteF(FieldName.Quotate(), FieldType.Quotate());
+                return "{0}: {{ 'type': {1} }}".AltQuoteF(FieldName.Quotate(), FieldType.Quotate());
 
-            return "{0}: {{ 'type':{1},  {2} }}".AltQuoteF(FieldName.Quotate(), FieldType.Quotate(), mappingBody);
+            return "{0}: {{ 'type': {1},{2} }}".AltQuoteF(FieldName.Quotate(), FieldType.Quotate(), mappingBody);
         }
 
         protected abstract string GetElasticFieldType(Type fieldType);

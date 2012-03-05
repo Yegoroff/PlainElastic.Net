@@ -13,9 +13,9 @@ namespace PlainElastic.Net.Mappings
         /// </summary>
         public TMapping Field(string fieldName)
         {           
-            var objectForField = new TMapping { Name = fieldName };
+            Name = fieldName;
 
-            return objectForField;
+            return (TMapping)this;
         }
 
         /// <summary>

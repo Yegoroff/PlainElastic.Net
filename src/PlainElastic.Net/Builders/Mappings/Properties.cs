@@ -22,17 +22,6 @@ namespace PlainElastic.Net.Mappings
         /// Represents text fields mapping.
         /// see http://www.elasticsearch.org/guide/reference/mapping/core-types.html
         /// </summary>
-        public Properties<T> String<TField>(Expression<Func<T, IEnumerable<TField>>> field, Func<StringMap<T>, StringMap<T>> stringProperty = null)
-        {
-            var fieldName = field.GetPropertyPath();
-
-            return String(fieldName, stringProperty);
-        }
-
-        /// <summary>
-        /// Represents text fields mapping.
-        /// see http://www.elasticsearch.org/guide/reference/mapping/core-types.html
-        /// </summary>
         public Properties<T> String(string fieldName, Func<StringMap<T>, StringMap<T>> stringProperty = null)
         {
             RegisterMapAsJson(SpecifyPropertyName(stringProperty, fieldName));
@@ -48,19 +37,8 @@ namespace PlainElastic.Net.Mappings
         public Properties<T> Number<TField>(Expression<Func<T, TField>> field, Func<NumberMap<T>, NumberMap<T>> numberProperty = null)
         {
             var fieldName = field.GetPropertyPath();
-
-            return Number(fieldName, numberProperty);
-        }
-
-        /// <summary>
-        /// Represents numeric fields mapping.
-        /// see http://www.elasticsearch.org/guide/reference/mapping/core-types.html
-        /// </summary>
-        public Properties<T> Number<TField>(Expression<Func<T, IEnumerable<TField>>> field, Func<NumberMap<T>, NumberMap<T>> numberProperty = null)
-        {
-            var fieldName = field.GetPropertyPath();
-
-            return Number(fieldName, numberProperty);
+            RegisterMapAsJson(SpecifyPropertyName(numberProperty, fieldName, typeof(TField)));
+            return this;
         }
 
         /// <summary>
@@ -90,17 +68,6 @@ namespace PlainElastic.Net.Mappings
         /// Represents Date fields mapping.
         /// see http://www.elasticsearch.org/guide/reference/mapping/core-types.html
         /// </summary>
-        public Properties<T> Date<TField>(Expression<Func<T, IEnumerable<TField>>> field, Func<DateMap<T>, DateMap<T>> dateProperty = null)
-        {
-            var fieldName = field.GetPropertyPath();
-
-            return Date(fieldName, dateProperty);
-        }
-
-        /// <summary>
-        /// Represents Date fields mapping.
-        /// see http://www.elasticsearch.org/guide/reference/mapping/core-types.html
-        /// </summary>
         public Properties<T> Date(string fieldName, Func<DateMap<T>, DateMap<T>> dateProperty = null)
         {
             RegisterMapAsJson(SpecifyPropertyName(dateProperty, fieldName));
@@ -108,17 +75,6 @@ namespace PlainElastic.Net.Mappings
         }
 
 
-
-        /// <summary>
-        /// Represents boolean fields mapping.
-        /// see http://www.elasticsearch.org/guide/reference/mapping/core-types.html
-        /// </summary>
-        public Properties<T> Boolean<TField>(Expression<Func<T, IEnumerable<TField>>> field, Func<BooleanMap<T>, BooleanMap<T>> booleanProperty = null)
-        {
-            var fieldName = field.GetPropertyPath();
-
-            return Boolean(fieldName, booleanProperty);
-        }
 
         /// <summary>
         /// Represents boolean fields mapping.
@@ -142,17 +98,6 @@ namespace PlainElastic.Net.Mappings
         }
 
 
-
-        /// <summary>
-        /// Represents binary data fields mapping.
-        /// see http://www.elasticsearch.org/guide/reference/mapping/core-types.html
-        /// </summary>
-        public Properties<T> Binary<TField>(Expression<Func<T, IEnumerable<TField>>> field, Func<BinaryMap<T>, BinaryMap<T>> binaryProperty = null)
-        {
-            var fieldName = field.GetPropertyPath();
-
-            return Binary(fieldName, binaryProperty);
-        }
 
         /// <summary>
         /// Represents binary data fields mapping.
@@ -205,7 +150,12 @@ namespace PlainElastic.Net.Mappings
         /// </summary>
         public Properties<T> Object<TField>(string fieldName, Func<Object<TField>, Object<TField>> objectProperty = null)
         {
-            Func<Object<TField>, Object<TField>> namedObjectProperty = obj => objectProperty(obj).Field(fieldName);
+            Func<Object<TField>, Object<TField>> namedObjectProperty;
+            if(objectProperty == null)
+                namedObjectProperty = obj => obj.Field(fieldName);
+            else 
+                namedObjectProperty = obj => objectProperty(obj.Field(fieldName));
+
             RegisterMapAsJson(namedObjectProperty);
             return this;
         }
@@ -247,12 +197,12 @@ namespace PlainElastic.Net.Mappings
 
 
 
-        private static Func<TProp, TProp> SpecifyPropertyName<TProp>(Func<TProp, TProp> property, string fieldName) where TProp : PropertyBase<T, TProp>
+        private static Func<TPropMapping, TPropMapping> SpecifyPropertyName<TPropMapping>(Func<TPropMapping, TPropMapping> property, string fieldName, Type fieldType = null) where TPropMapping : PropertyBase<T, TPropMapping>
         {
             if (property == null)
-                return obj => obj.Field(fieldName);
+                return obj => obj.Field(fieldName, fieldType);
 
-            return obj => property(obj.Field(fieldName));
+            return obj => property(obj.Field(fieldName, fieldType));
         }
         
 

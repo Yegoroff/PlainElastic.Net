@@ -8,7 +8,7 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
     class When_complete_RangeQuery_built
     {
         private Because of = () => result = new RangeQuery<FieldsTestClass>()
-                                                .Field(f => f.Property1)
+                                                .Field(f => f.StringProperty)
                                                 .From("1")
                                                 .To("100")
                                                 .IncludeLower(true)
@@ -19,7 +19,7 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
 
         It should_contain_boost_part = () => result.ShouldContain(@"'boost': 5".AltQuote());
 
-        It should_return_correct_query = () => result.ShouldEqual(@"{ 'range': { 'Property1': { 'from': '1','to': '100','include_lower': true,'include_upper': false,'boost': 5,'custom': 123 } } }".AltQuote());
+        It should_return_correct_query = () => result.ShouldEqual(@"{ 'range': { 'StringProperty': { 'from': '1','to': '100','include_lower': true,'include_upper': false,'boost': 5,'custom': 123 } } }".AltQuote());
 
         private static string result;
     }

@@ -8,14 +8,14 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
     class When_TermQuery_with_custom_part_built
     {
         private Because of = () => result = new TermQuery<FieldsTestClass>()
-                                                .Field(f => f.Property1)
+                                                .Field(f => f.StringProperty)
                                                 .Value("One")
                                                 .Custom("'boost': {0}", "5")
                                                 .ToString();
 
         It should_contain_custom_part = () => result.ShouldContain(@"'boost': 5".AltQuote());
 
-        It should_return_correct_query = () => result.ShouldEqual(@"{ 'term': { 'Property1': { 'value': 'one','boost': 5 } } }".AltQuote());
+        It should_return_correct_query = () => result.ShouldEqual(@"{ 'term': { 'StringProperty': { 'value': 'one','boost': 5 } } }".AltQuote());
 
         private static string result;
     }

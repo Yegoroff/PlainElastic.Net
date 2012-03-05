@@ -7,7 +7,7 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
     class When_RangeFilter_without_range_parts_built
     {
         private Because of = () => result = new RangeFilter<FieldsTestClass>()                                                
-                                                .Field(f=> f.Property1)
+                                                .Field(f=> f.StringProperty)
                                                 .ToString();
 
         It should_return_empty_query = () => result.ShouldEqual("");

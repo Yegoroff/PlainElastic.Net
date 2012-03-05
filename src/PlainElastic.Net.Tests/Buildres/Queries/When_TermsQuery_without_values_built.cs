@@ -7,7 +7,7 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
     class When_TermsQuery_without_values_built
     {
         private Because of = () => result = new TermsQuery<FieldsTestClass>()
-                                                .Field(f => f.Property1)
+                                                .Field(f => f.StringProperty)
                                                 .MinimumMatch(2)
                                                 .ToString();
 

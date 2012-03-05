@@ -9,13 +9,13 @@ namespace PlainElastic.Net.Tests.Buildres.Mappings
     class When_complete_Object_mapping_built
     {
         private Because of = () => result = new Object<FieldsTestClass>()
-                                                .Field("TestObject")
                                                 .Dynamic(false)
                                                 .IncludeInAll(false)
+                                                .Field("TestObject")
                                                 .Enabled(true)
                                                 .Path("TestObject.Path")
                                                 .Properties(p => p
-                                                    .String(f => f.Property1)
+                                                    .String(f => f.StringProperty)
                                                 )
                                                 .ToString();
 
@@ -33,9 +33,9 @@ namespace PlainElastic.Net.Tests.Buildres.Mappings
 
         It should_contain_properties_part = () => result.ShouldContain("'properties': { ".AltQuote());
 
-        It should_contain_properties_mapping_part = () => result.ShouldContain("'properties': { 'Property1': { 'type':'string' } }".AltQuote());
+        It should_contain_properties_mapping_part = () => result.ShouldContain("'properties': { 'StringProperty': { 'type': 'string' } }".AltQuote());
 
-        It should_generate_correct_JSON_result = () => result.ShouldEqual("'TestObject': { 'type': 'object','dynamic': false,'include_in_all': false,'enabled': true,'path': 'TestObject.Path','properties': { 'Property1': { 'type':'string' } } }".AltQuote());
+        It should_generate_correct_JSON_result = () => result.ShouldEqual("'TestObject': { 'type': 'object','dynamic': false,'include_in_all': false,'enabled': true,'path': 'TestObject.Path','properties': { 'StringProperty': { 'type': 'string' } } }".AltQuote());
 
         private static string result;
     }

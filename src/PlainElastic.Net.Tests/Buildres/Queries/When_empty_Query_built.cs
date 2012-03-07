@@ -7,7 +7,7 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
     [Subject(typeof(Query<>))]
     class When_empty_Query_built
     {
-        private Because of = () => 
+        Because of = () => 
             result = new Query<FieldsTestClass>()                         
                         .ToString();
 

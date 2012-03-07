@@ -7,7 +7,7 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
     [Subject(typeof(RangeQuery<>))]
     class When_complete_RangeQuery_built
     {
-        private Because of = () => result = new RangeQuery<FieldsTestClass>()
+        Because of = () => result = new RangeQuery<FieldsTestClass>()
                                                 .Field(f => f.StringProperty)
                                                 .From("1")
                                                 .To("100")

@@ -7,7 +7,7 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
     [Subject(typeof(Facets<>))]
     class When_Facets_with_several_facets_built
     {
-        private Because of = () => result = new Facets<FieldsTestClass>()
+        Because of = () => result = new Facets<FieldsTestClass>()
                                                 .Terms(t=>t
                                                     .FacetName("First")
                                                     .Field(f=>f.StringProperty)

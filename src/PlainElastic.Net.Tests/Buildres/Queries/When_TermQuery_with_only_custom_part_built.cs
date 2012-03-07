@@ -7,7 +7,7 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
     [Subject(typeof(TermQuery<>))]
     class When_TermQuery_with_only_custom_part_built
     {
-        private Because of = () => result = new TermQuery<FieldsTestClass>()
+        Because of = () => result = new TermQuery<FieldsTestClass>()
                                                 .Custom("'tag': {0}", "wow".Quotate())
                                                 .ToString();
 

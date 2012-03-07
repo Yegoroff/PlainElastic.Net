@@ -7,7 +7,7 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
     [Subject(typeof(Sort<>))]
     class When_Sort_with_reflected_field_built
     {
-        private Because of = () => result = new Sort<FieldsTestClass>()
+        Because of = () => result = new Sort<FieldsTestClass>()
                                                 .Field(f => f.StringProperty, order: SortDirection.ask, missing: "_last")
                                                 .ToString();
 

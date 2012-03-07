@@ -7,7 +7,7 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
     [Subject(typeof(TermQuery<>))]
     class When_complete_TermQuery_built
     {
-        private Because of = () => result = new TermQuery<FieldsTestClass>()
+        Because of = () => result = new TermQuery<FieldsTestClass>()
                                                 .Field(f => f.StringProperty)
                                                 .Value("One")
                                                 .Boost(5)

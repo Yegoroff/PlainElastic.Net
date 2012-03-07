@@ -7,7 +7,7 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
     [Subject(typeof(ConstantScoreQuery<>))]
     class When_complete_ConstantScoreQuery_built
     {
-        private Because of = () => result = new ConstantScoreQuery<FieldsTestClass>()
+        Because of = () => result = new ConstantScoreQuery<FieldsTestClass>()
                                                 .Query(q => q.Custom("{ query }"))
                                                 .Filter(f => f.Custom("{ filter }"))
                                                 .Boost(5)

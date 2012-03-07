@@ -6,7 +6,7 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
     [Subject(typeof(TermQuery<>))]
     class When_TermQuery_without_value_built
     {
-        private Because of = () => result = new TermQuery<FieldsTestClass>()
+        Because of = () => result = new TermQuery<FieldsTestClass>()
                                                 .Field(f => f.StringProperty)
                                                 .Boost(5)
                                                 .ToString();

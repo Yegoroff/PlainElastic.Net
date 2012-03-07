@@ -7,7 +7,7 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
     [Subject(typeof(Sort<>))]
     class When_Sort_with_desc_order_built
     {
-        private Because of = () => result = new Sort<FieldsTestClass>()
+        Because of = () => result = new Sort<FieldsTestClass>()
                                                 .Field("field", order: SortDirection.desc, missing: "_last")
                                                 .ToString();
 

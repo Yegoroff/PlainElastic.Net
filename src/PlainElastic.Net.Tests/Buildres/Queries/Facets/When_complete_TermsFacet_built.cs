@@ -7,7 +7,7 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
     [Subject(typeof(TermsFacet<>))]
     class When_complete_TermsFacet_built
     {
-        private Because of = () => result = new TermsFacet<FieldsTestClass>()
+        Because of = () => result = new TermsFacet<FieldsTestClass>()
                                                 .FacetName("TestFacet")
                                                 .Field(f => f.StringProperty)
                                                 .Order(TermsFacetOrder.term)

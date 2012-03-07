@@ -7,7 +7,7 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
     [Subject(typeof(RangeFilter<>))]
     class When_complete_RangeFilter_built
     {
-        private Because of = () => result = new RangeFilter<FieldsTestClass>()
+        Because of = () => result = new RangeFilter<FieldsTestClass>()
                                                 .Field(f => f.StringProperty)
                                                 .From("1")
                                                 .To("100")

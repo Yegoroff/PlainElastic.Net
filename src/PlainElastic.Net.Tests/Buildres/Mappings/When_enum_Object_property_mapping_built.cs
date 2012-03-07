@@ -8,7 +8,7 @@ namespace PlainElastic.Net.Tests.Buildres.Mappings
     [Subject(typeof(Object<>))]
     class When_enum_Object_property_mapping_built
     {
-        private Because of = () => result = new Object<FieldsTestClass>()
+        Because of = () => result = new Object<FieldsTestClass>()
                                                 .Field("TestObject")
                                                 .Properties(p => p
                                                     .Number(f => f.EnumProperty, opt => opt.Boost(5))
@@ -21,9 +21,9 @@ namespace PlainElastic.Net.Tests.Buildres.Mappings
 
         It should_contain_properties_part = () => result.ShouldContain("'properties': { ".AltQuote());
 
-        It should_contain_properties_mapping_part = () => result.ShouldContain("'properties': { 'EnumProperty': { 'type': 'long','boost': '5' } }".AltQuote());
+        It should_contain_properties_mapping_part = () => result.ShouldContain("'properties': { 'EnumProperty': { 'type': 'long','boost': 5 } }".AltQuote());
 
-        It should_generate_correct_JSON_result = () => result.ShouldEqual("'TestObject': { 'type': 'object','properties': { 'EnumProperty': { 'type': 'long','boost': '5' } } }".AltQuote());
+        It should_generate_correct_JSON_result = () => result.ShouldEqual("'TestObject': { 'type': 'object','properties': { 'EnumProperty': { 'type': 'long','boost': 5 } } }".AltQuote());
 
         private static string result;
     }

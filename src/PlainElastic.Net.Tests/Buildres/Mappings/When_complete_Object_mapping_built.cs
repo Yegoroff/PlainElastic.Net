@@ -8,7 +8,7 @@ namespace PlainElastic.Net.Tests.Buildres.Mappings
     [Subject(typeof(Object<>))]
     class When_complete_Object_mapping_built
     {
-        private Because of = () => result = new Object<FieldsTestClass>()
+        Because of = () => result = new Object<FieldsTestClass>()
                                                 .Dynamic(false)
                                                 .IncludeInAll(false)
                                                 .Field("TestObject")

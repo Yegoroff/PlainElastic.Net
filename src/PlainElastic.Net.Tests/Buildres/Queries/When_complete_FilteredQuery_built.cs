@@ -7,7 +7,7 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
     [Subject(typeof(FilteredQuery<>))]
     class When_complete_FilteredQuery_built
     {
-        private Because of = () => result = new FilteredQuery<FieldsTestClass>()
+        Because of = () => result = new FilteredQuery<FieldsTestClass>()
                                                 .Query(q => q.Custom("{ query }"))
                                                 .Filter(f => f.Custom("{ filter }"))
                                                 .Custom("{ custom part }")

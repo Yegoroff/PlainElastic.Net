@@ -7,7 +7,7 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
     [Subject(typeof(TermsQuery<>))]
     class When_complete_TermsQuery_built
     {
-        private Because of = () => result = new TermsQuery<FieldsTestClass>()
+        Because of = () => result = new TermsQuery<FieldsTestClass>()
                                                 .Field(f => f.StringProperty)
                                                 .Values(new[] { "One", "Two" })
                                                 .MinimumMatch(2)

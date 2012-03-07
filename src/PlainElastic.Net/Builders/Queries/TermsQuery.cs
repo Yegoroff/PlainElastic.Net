@@ -25,7 +25,7 @@ namespace PlainElastic.Net.Queries
                 var termsValues = values.Where(v => !v.IsNullOrEmpty()).Quotate().JoinWithComma();
                 if (!termsValues.IsNullOrEmpty())
                 {
-                    RegisterJsonPart("[ {0} ]".AltQuoteF(termsValues));
+                    RegisterJsonPart("[ {0} ]", termsValues);
                     hasValues = true;
                 }
             }
@@ -35,7 +35,7 @@ namespace PlainElastic.Net.Queries
     
         public TermsQuery<T> MinimumMatch(int count)
         {
-            RegisterJsonPart("'minimum_match': {0}".AltQuoteF(count.AsString()));
+            RegisterJsonPart("'minimum_match': {0}", count.AsString());
 
             return this;
         }

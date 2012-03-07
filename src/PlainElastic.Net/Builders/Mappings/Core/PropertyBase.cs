@@ -59,7 +59,7 @@ namespace PlainElastic.Net.Mappings
 
         public TMapping Boost(double boost)
         {
-            RegisterCustomJsonMap("'boost': {0}", boost.AsString().Quotate());
+            RegisterCustomJsonMap("'boost': {0}", boost.AsString());
             return (TMapping) this;            
         }
 

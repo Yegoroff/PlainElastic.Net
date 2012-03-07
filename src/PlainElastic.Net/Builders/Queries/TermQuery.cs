@@ -23,7 +23,7 @@ namespace PlainElastic.Net.Queries
         {
             if (!value.IsNullOrEmpty())
             {
-                RegisterJsonPart("'value': {0}".AltQuoteF(value.Quotate()));
+                RegisterJsonPart("'value': {0}", value.Quotate());
                 hasValue = true;
             }
 
@@ -33,7 +33,7 @@ namespace PlainElastic.Net.Queries
 
         public TermQuery<T> Boost(double boost)
         {
-            RegisterJsonPart("'boost': {0}".AltQuoteF(boost.AsString()) );
+            RegisterJsonPart("'boost': {0}", boost.AsString());
             
             return this;
         }

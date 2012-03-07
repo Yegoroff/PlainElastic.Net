@@ -18,7 +18,7 @@ namespace PlainElastic.Net.Queries
             if (!value.IsNullOrEmpty())
             {
                 hasValue = true;
-                RegisterJsonPart("'from': {0}".AltQuoteF(value.Quotate()));
+                RegisterJsonPart("'from': {0}", value.Quotate());
             }
             return (TQuery)this;
         }
@@ -31,7 +31,7 @@ namespace PlainElastic.Net.Queries
             if (!value.IsNullOrEmpty())
             {
                 hasValue = true;
-                RegisterJsonPart("'to': {0}".AltQuoteF(value.Quotate()));
+                RegisterJsonPart("'to': {0}", value.Quotate());
             }
 
             return (TQuery)this;
@@ -42,7 +42,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public TQuery IncludeLower(bool includeLower = true)
         {
-            RegisterJsonPart("'include_lower': {0}".AltQuoteF(includeLower.AsString()));
+            RegisterJsonPart("'include_lower': {0}", includeLower.AsString());
             return (TQuery)this;
         }
 
@@ -51,7 +51,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public TQuery IncludeUpper(bool includeUpper = true)
         {
-            RegisterJsonPart("'include_upper': {0}".AltQuoteF(includeUpper.AsString()));
+            RegisterJsonPart("'include_upper': {0}", includeUpper.AsString());
             return (TQuery)this;
         }
 
@@ -63,7 +63,7 @@ namespace PlainElastic.Net.Queries
             if (!value.IsNullOrEmpty())
             {
                 hasValue = true;
-                RegisterJsonPart("'gt': {0}".AltQuoteF(value.Quotate()));
+                RegisterJsonPart("'gt': {0}", value.Quotate());
             }
             return (TQuery)this;
         }
@@ -76,7 +76,7 @@ namespace PlainElastic.Net.Queries
             if (!value.IsNullOrEmpty())
             {
                 hasValue = true;
-                RegisterJsonPart("'gte': {0}".AltQuoteF(value.Quotate()));
+                RegisterJsonPart("'gte': {0}", value.Quotate());
             }
             return (TQuery)this;
         }
@@ -89,7 +89,7 @@ namespace PlainElastic.Net.Queries
             if (!value.IsNullOrEmpty())
             {
                 hasValue = true;
-                RegisterJsonPart("'lt': {0}".AltQuoteF(value.Quotate()));
+                RegisterJsonPart("'lt': {0}", value.Quotate());
             }
             return (TQuery)this;
         }
@@ -102,7 +102,7 @@ namespace PlainElastic.Net.Queries
             if (!value.IsNullOrEmpty())
             {
                 hasValue = true;
-                RegisterJsonPart("'lte': {0}".AltQuoteF(value.Quotate()));
+                RegisterJsonPart("'lte': {0}", value.Quotate());
             }
             return (TQuery)this;
         }

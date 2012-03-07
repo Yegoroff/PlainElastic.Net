@@ -43,7 +43,7 @@ namespace PlainElastic.Net.Queries
                 fieldParams.Add("'missing': {0}".AltQuoteF(missing.Quotate()));
 
             if (fieldParams.Any())
-                RegisterJsonPart("{{ {0}: {{ {1} }} }}".AltQuoteF(field.Quotate(), fieldParams.JoinWithComma()));
+                RegisterJsonPart("{{ {0}: {{ {1} }} }}", field.Quotate(), fieldParams.JoinWithComma());
             else
                 RegisterJsonPart(field.Quotate());                
 

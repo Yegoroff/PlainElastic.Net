@@ -11,7 +11,7 @@ namespace PlainElastic.Net.Queries
 
         public RangeQuery<T> Boost(double boost)
         {
-            RegisterJsonPart("'boost': {0}".AltQuoteF(boost.AsString()));
+            RegisterJsonPart("'boost': {0}", boost.AsString());
             return this;
         }
     }

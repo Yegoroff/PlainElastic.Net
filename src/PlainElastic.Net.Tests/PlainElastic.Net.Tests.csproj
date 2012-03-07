@@ -50,6 +50,9 @@
     <Compile Include="Buildres\Commands\When_complete_GetCommand_built.cs" />
     <Compile Include="Buildres\Mappings\When_enum_Object_property_mapping_built.cs" />
     <Compile Include="Buildres\Mappings\When_complete_Object_mapping_built.cs" />
+    <Compile Include="Buildres\Queries\When_empty_DisMaxQuery_built.cs" />
+    <Compile Include="Buildres\Queries\When_complete_DisMaxQuery_built.cs" />
+    <Compile Include="Buildres\Queries\When_empty_FilteredQuery_built.cs" />
     <Compile Include="Buildres\Queries\When_empty_QueryBuilder_built.cs" />
     <Compile Include="Buildres\Queries\When_empty_NestedQuery_built.cs" />
     <Compile Include="Buildres\Queries\When_complete_NestedQuery_built.cs" />

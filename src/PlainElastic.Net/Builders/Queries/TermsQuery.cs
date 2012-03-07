@@ -22,7 +22,7 @@ namespace PlainElastic.Net.Queries
         {
             if (values != null)
             {
-                var termsValues = values.Where(v => !v.IsNullOrEmpty()).LowerAndQuotate().JoinWithComma();
+                var termsValues = values.Where(v => !v.IsNullOrEmpty()).Quotate().JoinWithComma();
                 if (!termsValues.IsNullOrEmpty())
                 {
                     RegisterJsonPart("[ {0} ]".AltQuoteF(termsValues));

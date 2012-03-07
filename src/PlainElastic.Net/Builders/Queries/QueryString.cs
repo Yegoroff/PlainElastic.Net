@@ -65,7 +65,7 @@ namespace PlainElastic.Net.Queries
             if (wrapInWildcard)
                 values = values.Select(v => "*" + v + "*").ToArray();
 
-            var fullTextQuery = values.JoinWithSeparator(" ").LowerAndQuotate();
+            var fullTextQuery = values.JoinWithSeparator(" ").Quotate();
 
             var queryValue = " 'query': {0}".AltQuoteF(fullTextQuery);
 

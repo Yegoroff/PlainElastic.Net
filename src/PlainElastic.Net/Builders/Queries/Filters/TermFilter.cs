@@ -49,7 +49,7 @@ namespace PlainElastic.Net.Queries
         public TermFilter<T> Value(string value)
         {
             if(!value.IsNullOrEmpty())
-                termValue = value.LowerAndQuotate();
+                termValue = value.Quotate();
 
             return this;
         }

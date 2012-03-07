@@ -23,7 +23,7 @@ namespace PlainElastic.Net.Queries
         {
             if (!value.IsNullOrEmpty())
             {
-                RegisterJsonPart("'value': {0}".AltQuoteF(value.LowerAndQuotate()));
+                RegisterJsonPart("'value': {0}".AltQuoteF(value.Quotate()));
                 hasValue = true;
             }
 

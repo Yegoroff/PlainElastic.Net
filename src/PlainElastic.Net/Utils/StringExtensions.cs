@@ -66,9 +66,9 @@ namespace PlainElastic.Net.Utils
             return value.ToLower().Quotate();
         }
 
-        public static IEnumerable<string> LowerAndQuotate(this IEnumerable<string> values)
+        public static IEnumerable<string> Quotate(this IEnumerable<string> values)
         {
-            return values.Select(v => v.LowerAndQuotate());
+            return values.Select(v => v.Quotate());
         }
 
 

@@ -44,11 +44,11 @@ namespace PlainElastic.Net.Queries
         public TermsFilter<T> Values(IEnumerable<string> values)
         {
             if (values != null)
-                termsValues = values.Where(v => !v.IsNullOrEmpty()).LowerAndQuotate().JoinWithComma();
+                termsValues = values.Where(v => !v.IsNullOrEmpty()).Quotate().JoinWithComma();
 
             return this;
         }
-
+         
         /// <summary>
         /// Controls the way terms filter executes.
         /// </summary>

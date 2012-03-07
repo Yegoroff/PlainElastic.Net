@@ -15,7 +15,7 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
 
         It should_contain_boost_part = () => result.ShouldContain(@"'boost': 5".AltQuote());
 
-        It should_return_correct_query = () => result.ShouldEqual(@"{ 'term': { 'StringProperty': { 'value': 'one','boost': 5 } } }".AltQuote());
+        It should_return_correct_query = () => result.ShouldEqual(@"{ 'term': { 'StringProperty': { 'value': 'One','boost': 5 } } }".AltQuote());
 
         private static string result;
     }

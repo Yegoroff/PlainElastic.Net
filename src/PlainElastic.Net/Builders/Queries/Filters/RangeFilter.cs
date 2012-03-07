@@ -1,7 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Linq.Expressions;
-using PlainElastic.Net.Builders;
 using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Queries
@@ -11,173 +8,51 @@ namespace PlainElastic.Net.Queries
     /// Similar to range query, except that it acts as a filter
     /// see http://www.elasticsearch.org/guide/reference/query-dsl/range-filter.html
     /// </summary>
-    public class RangeFilter<T>: IJsonConvertible
+    public class RangeFilter<T> : RangeBase<T, RangeFilter<T>>
     {
-        private string rangeField;
-        private readonly List<string> parts = new List<string>();
-        private string cacheMode;
+        private readonly List<string> modes = new List<string>();
 
-
-        //TODO: filter_name
-        //TODO:  cache_key
 
         /// <summary>
-        /// The field to apply filtering to.
+        /// Allows to specify filter Name.
         /// </summary>
-        public RangeFilter<T> Field(string field)
+        public RangeFilter<T> Name(string filterName)
         {
-            rangeField = field.Quotate();
+            modes.Add("'_name': {0}".AltQuoteF(filterName.Quotate()));
 
             return this;
         }
 
         /// <summary>
-        /// The field to apply filtering to.
+        /// Allows to specify Cache Key that will be used as the caching key for that filter.
         /// </summary>
-        public RangeFilter<T> Field(Expression<Func<T, object>> field)
+        public RangeFilter<T> CacheKey(string cacheKey)
         {
-            return Field(field.GetPropertyPath());
-        }
+            modes.Add("'_cache_key': {0}".AltQuoteF(cacheKey.Quotate()));
 
-        /// <summary>
-        /// The field of object from collection to apply filtering to.
-        /// </summary>
-        public RangeFilter<T> FieldOfCollection<TProp>(Expression<Func<T, IEnumerable<TProp>>> collectionField, Expression<Func<TProp, object>> field)
-        {
-            var collectionProperty = collectionField.GetPropertyPath();
-            var fieldName = collectionProperty + "." + field.GetPropertyPath();
-
-            return Field(fieldName);
-        }
-
-
-        /// <summary>
-        /// The lower bound. Defaults to start from the first.
-        /// </summary>
-        public RangeFilter<T> From(string value)
-        {
-            if (!value.IsNullOrEmpty())
-            {
-                parts.Add("'from': {0}".AltQuoteF(value.Quotate()));
-            }
             return this;
         }
-
-        /// <summary>
-        /// The upper bound. Defaults to unbounded.
-        /// </summary>
-        public RangeFilter<T> To(string value)
-        {
-            if (!value.IsNullOrEmpty())
-            {
-                parts.Add("'to': {0}".AltQuoteF(value.Quotate()));
-            }
-            return this;
-        }
-
-        /// <summary>
-        /// Should the first from (if set) be inclusive or not. Defaults to true
-        /// </summary>
-        public RangeFilter<T> IncludeLower(bool includeLower = true)
-        {
-            parts.Add("'include_lower': {0}".AltQuoteF(includeLower.AsString()));
-            return this;
-        }
-
-        /// <summary>
-        /// Should the last to (if set) be inclusive or not. Defaults to true.
-        /// </summary>
-        public RangeFilter<T> IncludeUpper(bool includeUpper = true)
-        {
-            parts.Add("'include_upper': {0}".AltQuoteF(includeUpper.AsString()));
-            return this;
-        }
-
-        /// <summary>
-        /// Same as setting from to the value, and include_lower to false.
-        /// </summary>
-        public RangeFilter<T> Gt(string value)
-        {
-            if (!value.IsNullOrEmpty())
-            {
-                parts.Add("'gt': {0}".AltQuoteF(value.Quotate()));
-            }
-            return this;
-        }
-
-        /// <summary>
-        /// Same as setting from to the value, and include_lower to true.
-        /// </summary>
-        public RangeFilter<T> Gte(string value)
-        {
-            if (!value.IsNullOrEmpty())
-            {
-                parts.Add("'gte': {0}".AltQuoteF(value.Quotate()));
-            }
-            return this;
-        }
-
-        /// <summary>
-        /// Same as setting to to the value, and include_upper to false.
-        /// </summary>
-        public RangeFilter<T> Lt(string value)
-        {
-            if (!value.IsNullOrEmpty())
-            {
-                parts.Add("'lt': {0}".AltQuoteF(value.Quotate()));
-            }
-            return this;
-        }
-
-        /// <summary>
-        /// Same as setting to to the value, and include_upper to true.
-        /// </summary>
-        public RangeFilter<T> Lte(string value)
-        {
-            if (!value.IsNullOrEmpty())
-            {
-                parts.Add("'lte': {0}".AltQuoteF(value.Quotate()));
-            }
-            return this;
-        }
-
 
         /// <summary>
         /// Controls whether the filter will be cached.
         /// </summary>
         public RangeFilter<T> Cache(bool cache)
         {
-            cacheMode = ",'_cache': {0}".AltQuoteF(cache.AsString());
-
-            return this;
-        }
-
-        public RangeFilter<T> Custom(string queryFormat, params string[] args)
-        {
-            var query = queryFormat.AltQuoteF(args);
-            parts.Add(query);
+            modes.Add("'_cache': {0}".AltQuoteF(cache.AsString()));
 
             return this;
         }
 
 
-
-        string IJsonConvertible.ToJson()
+        protected override string ApplyJsonTemplate(string body)
         {
-            var body = parts.JoinWithComma();
-            if (body.IsNullOrEmpty())
-                return "";
+            string criterion = RegisteredField.IsNullOrEmpty() ? "{{ {0} }}".F(body) 
+                                                               : "{0}: {{ {1} }}".F(RegisteredField, body);
+            modes.Insert(0, criterion);
 
-            if (cacheMode.IsNullOrEmpty())
-                return "{{ 'range': {{ {0}: {{ {1} }} }} }}".AltQuoteF(rangeField, body);
+            string filterBody = modes.JoinWithComma();
 
-            return "{{ 'range': {{ {0}: {{ {1} }}{2} }} }}".AltQuoteF(rangeField, body, cacheMode);
+            return "{{ 'range': {{ {0} }} }}".AltQuoteF(filterBody);
         }
-
-
-        public override string ToString()
-        {
-            return ((IJsonConvertible)this).ToJson();
-        }    
     }
 }

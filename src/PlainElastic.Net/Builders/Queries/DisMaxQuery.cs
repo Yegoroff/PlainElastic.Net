@@ -12,10 +12,12 @@ namespace PlainElastic.Net.Queries
     /// </summary>   
     public class DisMaxQuery<T> : QueryBase<DisMaxQuery<T>>
     {
+        private bool hasRequiredParts;
 
         public DisMaxQuery<T> Queries(Func<DisMaxQueries<T>, Query<T>> queries)
         {
-            RegisterJsonPartExpression(queries);
+            var result = RegisterJsonPartExpression(queries);
+            hasRequiredParts = !result.GetIsEmpty();
 
             return this;
         }
@@ -43,7 +45,7 @@ namespace PlainElastic.Net.Queries
 
         protected override bool HasRequiredParts()
         {
-            return true;
+            return hasRequiredParts;
         }
 
         protected override string ApplyJsonTemplate(string body)

@@ -4,13 +4,9 @@ using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Queries
 {
-    public abstract class NestedBase<TQuery, T> : CompositeQueryBase where TQuery : NestedBase<TQuery, T>
+    public abstract class NestedBase<TQuery, T> : QueryBase<TQuery> where TQuery : NestedBase<TQuery, T>
     {
-
-        protected override string QueryTemplate
-        {
-            get { return "{{ 'nested': {{ {0} }} }}"; }
-        }
+        private bool hasRequiredPart;
 
 
         /// <summary>
@@ -19,7 +15,8 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public TQuery Query(Func<Query<T>, Query<T>> queries)
         {
-            RegisterQueryExpression(queries);
+            var result =RegisterJsonPartExpression(queries);
+            hasRequiredPart = !result.GetIsEmpty();
 
             return (TQuery)this;
         }
@@ -43,23 +40,20 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public TQuery Path(string path)
         {
-            var param = " 'path': {0}".AltQuoteF(path.Quotate());
-            RegisterJsonParam(param);
+            RegisterJsonPart("'path': {0}", path.Quotate());
 
             return (TQuery)this;
         }
 
-        //TODO: Move to common part.
 
-        /// <summary>
-        /// Adds a custom query.
-        /// You can use ' instead of " to simplify queryFormat creation.
-        /// </summary>
-        public TQuery Custom(string queryFormat, params string[] args)
+        protected override bool HasRequiredParts()
         {
-            var query = queryFormat.AltQuoteF(args);
-            RegisterJsonQuery(query);
-            return (TQuery)this;
+            return hasRequiredPart;
+        }
+
+        protected override string ApplyJsonTemplate(string body)
+        {
+            return "{{ 'nested': {{ {0} }} }}".AltQuoteF(body);
         }
 
     }

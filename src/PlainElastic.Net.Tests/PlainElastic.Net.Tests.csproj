@@ -50,6 +50,17 @@
     <Compile Include="Buildres\Commands\When_complete_GetCommand_built.cs" />
     <Compile Include="Buildres\Mappings\When_enum_Object_property_mapping_built.cs" />
     <Compile Include="Buildres\Mappings\When_complete_Object_mapping_built.cs" />
+    <Compile Include="Buildres\Queries\When_empty_QueryBuilder_built.cs" />
+    <Compile Include="Buildres\Queries\When_empty_NestedQuery_built.cs" />
+    <Compile Include="Buildres\Queries\When_complete_NestedQuery_built.cs" />
+    <Compile Include="Buildres\Queries\Facets\When_Facets_with_one_facet_built.cs" />
+    <Compile Include="Buildres\Queries\Facets\When_Facets_with_several_facets_built.cs" />
+    <Compile Include="Buildres\Queries\Facets\When_complete_TermsFacet_built.cs" />
+    <Compile Include="Buildres\Queries\When_custom_ConstantScoreQuery_built.cs" />
+    <Compile Include="Buildres\Queries\When_empty_ConstantScoreQuery_built.cs" />
+    <Compile Include="Buildres\Queries\When_complete_ConstantScoreQuery_built.cs" />
+    <Compile Include="Buildres\Queries\When_complete_FilteredQuery_built.cs" />
+    <Compile Include="Buildres\Queries\When_empty_Query_built.cs" />
     <Compile Include="Buildres\Queries\Filters\When_complete_RangeFilter_built.cs" />
     <Compile Include="Buildres\Queries\Filters\When_RangeFilter_without_range_parts_built.cs" />
     <Compile Include="Buildres\Queries\When_RangeQuery_without_range_parts_built.cs" />

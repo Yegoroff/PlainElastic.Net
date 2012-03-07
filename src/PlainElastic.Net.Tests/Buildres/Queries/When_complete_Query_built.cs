@@ -7,7 +7,7 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
     [Subject(typeof(Query<>))]
     class When_complete_Query_built
     {
-        private Because of = () => result = new Query<FieldsTestClass>()
+        Because of = () => result = new Query<FieldsTestClass>()
                                                 .Bool(b => b.Custom("bool query"))
                                                 .DisMax(d => d.Custom("dismax query"))
                                                 .Nested(n => n.Custom("nested query"))

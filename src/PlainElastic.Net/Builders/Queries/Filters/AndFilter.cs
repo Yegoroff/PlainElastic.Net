@@ -1,3 +1,5 @@
+using PlainElastic.Net.Utils;
+
 namespace PlainElastic.Net.Queries
 {
     /// <summary>
@@ -9,9 +11,9 @@ namespace PlainElastic.Net.Queries
     public class AndFilter<T> : Filter<T>
     {
 
-        protected override string QueryTemplate
+        protected override string ApplyJsonTemplate(string body)
         {
-            get { return "{{ 'and': [ {0} ] }}"; }
+            return "{{ 'and': [ {0} ] }}".AltQuoteF(body);
         }
 
     }

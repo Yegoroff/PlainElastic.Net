@@ -1,5 +1,6 @@
 using System;
 using PlainElastic.Net.Queries;
+using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Queries
 {
@@ -7,13 +8,8 @@ namespace PlainElastic.Net.Queries
     /// Allows to filter result hits without changing facet results.
     /// see http://www.elasticsearch.org/guide/reference/api/search/filter.html
     /// </summary>
-    public class Filter<T> : CompositeQueryBase
+    public class Filter<T> : QueryBase<Filter<T>>
     {
-
-        protected override string QueryTemplate
-        {
-            get { return " 'filter':  {0} "; }
-        }
 
 
         /// <summary>
@@ -24,7 +20,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public Filter<T> And (Func<AndFilter<T>, Filter<T>> andFilter)
         {
-            RegisterQueryExpression(andFilter);
+            RegisterJsonPartExpression(andFilter);
             return this;
         }
 
@@ -34,7 +30,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public Filter<T> Term(Func<TermFilter<T>, TermFilter<T>> termFilter)
         {
-            RegisterQueryExpression(termFilter);
+            RegisterJsonPartExpression(termFilter);
             return this;
         }
 
@@ -44,7 +40,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public Filter<T> Terms(Func<TermsFilter<T>, TermsFilter<T>> termsFilter)
         {
-            RegisterQueryExpression(termsFilter);
+            RegisterJsonPartExpression(termsFilter);
             return this;
         }
         
@@ -54,7 +50,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public Filter<T> Exists(Func<ExistsFilter<T>, ExistsFilter<T>> existsFilter)
         {
-            RegisterQueryExpression(existsFilter);
+            RegisterJsonPartExpression(existsFilter);
             return this;
         }
 
@@ -66,7 +62,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public Filter<T> Nested(Func<NestedFilter<T>, NestedFilter<T>> nestedFilter)
         {
-            RegisterQueryExpression(nestedFilter);
+            RegisterJsonPartExpression(nestedFilter);
             return this;
         }
 
@@ -77,12 +73,22 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public Filter<T> Range(Func<RangeFilter<T>, RangeFilter<T>> rangeFilter)
         {
-            RegisterQueryExpression(rangeFilter);
+            RegisterJsonPartExpression(rangeFilter);
             return this;
         }
 
 
         // http://www.elasticsearch.org/guide/reference/api/search/named-filters.html
-        //fquery
+        //TODO: fquery
+
+        protected override bool HasRequiredParts()
+        {
+            return true;
+        }
+
+        protected override string ApplyJsonTemplate(string body)
+        {
+            return "'filter': {0}".AltQuoteF(body);
+        }
     }
 }

@@ -15,8 +15,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public NestedFilter<T> Cache(bool cache)
         {
-            var scoreParam = " '_cache': {0}".AltQuoteF(cache.AsString());
-            RegisterJsonParam(scoreParam);
+            RegisterJsonPart("'_cache': {0}", cache.AsString());
 
             return this;
         }

@@ -16,10 +16,12 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public NestedQuery<T> ScoreMode(ScoreMode scoreMode = Net.Queries.ScoreMode.avg)
         {
-            var scoreParam = " 'score_mode': {0}".AltQuoteF(scoreMode.ToString().Quotate());
-            RegisterJsonParam(scoreParam);
+            RegisterJsonPart("'score_mode': {0}", scoreMode.ToString().Quotate());
 
             return this;
         }
+
+
+        // TODO: _scope 
     }
 }

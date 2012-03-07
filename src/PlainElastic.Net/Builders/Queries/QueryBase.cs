@@ -58,6 +58,11 @@ namespace PlainElastic.Net.Queries
         protected abstract string ApplyJsonTemplate(string body);
 
 
+        public bool GetIsEmpty()
+        {
+            return ((IJsonConvertible) this).ToJson().IsNullOrEmpty();
+        }
+
 
         string IJsonConvertible.ToJson()
         {

@@ -10,14 +10,9 @@ namespace PlainElastic.Net.Queries
     /// For details about ES querying see: http://www.elasticsearch.org/guide/reference/api/search/request-body.html ,
     /// http://www.elasticsearch.org/guide/reference/query-dsl/ and http://www.elasticsearch.org/guide/reference/api/search/    
     /// </summary>
-    public class QueryBuilder<T> : CompositeQueryBase
+    public class QueryBuilder<T> : QueryBase<QueryBuilder<T>>
     {
-
-        protected override string QueryTemplate
-        {
-            get { return "{{ {0} }}"; }
-        }
-
+        private bool hasRequiredParts;
 
         /// <summary>
         /// The query element within the search request body allows to define a query using the Query DSL.
@@ -25,10 +20,11 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public QueryBuilder<T> Query(Func<Query<T>, Query<T>> query)
         {
-            RegisterQueryExpression(query);
+            var result = RegisterJsonPartExpression(query);
+            hasRequiredParts = hasRequiredParts || !result.GetIsEmpty();
+
             return this;
         }
-
 
         /// <summary>
         /// Allows to filter result hits without changing facet results.
@@ -36,7 +32,19 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public QueryBuilder<T> Filter(Func<Filter<T>, Filter<T>> filter)
         {
-            RegisterQueryExpression(filter);
+            var result = RegisterJsonPartExpression(filter);
+            hasRequiredParts = hasRequiredParts || !result.GetIsEmpty();
+            return this;
+        }
+
+        /// <summary>
+        /// Allows to collect aggregated data based on a search query. 
+        /// see http://www.elasticsearch.org/guide/reference/api/search/facets/
+        /// </summary>
+        public QueryBuilder<T> Facets(Func<Facets<T>, Facets<T>> facets)
+        {
+            var result = RegisterJsonPartExpression(facets);
+            hasRequiredParts = hasRequiredParts || !result.GetIsEmpty();
             return this;
         }
 
@@ -45,8 +53,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public QueryBuilder<T> From (int from = 0 )
         {
-            var fromParam = " 'from': {0}".AltQuoteF(from);
-            RegisterJsonQuery(fromParam);
+            RegisterJsonPart("'from': {0}", from.AsString());
 
             return this;
         }
@@ -55,9 +62,8 @@ namespace PlainElastic.Net.Queries
         /// The number of hits to return. Defaults to 10.
         /// </summary>
         public QueryBuilder<T> Size(int size = 10)
-        {
-            var sizeParam = " 'size': {0}".AltQuoteF(size);
-            RegisterJsonQuery(sizeParam);
+        {            
+            RegisterJsonPart("'size': {0}", size.AsString());
 
             return this;
         }
@@ -68,9 +74,8 @@ namespace PlainElastic.Net.Queries
         /// see http://www.elasticsearch.org/guide/reference/api/search/sort.html
         /// </summary>
         public QueryBuilder<T> TrackScores(bool trackScores = false)
-        {
-            var param = " 'track_scores': {0}".AltQuoteF(trackScores.AsString());
-            RegisterJsonParam(param);
+        {            
+            RegisterJsonPart("'track_scores': {0}", trackScores.AsString());
 
             return this;
         }
@@ -82,7 +87,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public QueryBuilder<T> Sort(Func<Sort<T>, Sort<T>> sort)
         {
-            RegisterQueryExpression(sort);
+            RegisterJsonPartExpression(sort);
             return this;
         }
 
@@ -93,8 +98,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public QueryBuilder<T> Explain(bool explain = true)
         {
-            var explainParam = " 'explain': {0}".AltQuoteF(explain.AsString());
-            RegisterJsonQuery(explainParam);
+            RegisterJsonPart("'explain': {0}", explain.AsString());
 
             return this;
         }
@@ -105,8 +109,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public QueryBuilder<T> Version(bool returnVersions = true)
         {
-            var versionParam = " 'version': {0}".AltQuoteF(returnVersions.AsString());
-            RegisterJsonQuery(versionParam);
+            RegisterJsonPart("'version': {0}", returnVersions.AsString());
 
             return this;
         }
@@ -117,8 +120,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public QueryBuilder<T> MinScore(double minScore)
         {
-            var sizeParam = " 'min_score': {0}".AltQuoteF(minScore.AsString());
-            RegisterJsonQuery(sizeParam);
+            RegisterJsonPart("'min_score': {0}", minScore.AsString());
 
             return this;
         }
@@ -143,25 +145,12 @@ namespace PlainElastic.Net.Queries
         // see http://www.elasticsearch.org/guide/reference/api/search/preference.html
         //TODO: preference 
 
-        // Allows to collect aggregated data based on a search query.
-        // see http://www.elasticsearch.org/guide/reference/api/search/facets/
-        //TODO: facets 
+
 
         // Allows to configure different boost level per index when searching across more than one indices.
         // http://www.elasticsearch.org/guide/reference/api/search/index-boost.html
         //TODO: indices_boost
 
-
-        /// <summary>
-        /// Adds a custom section.
-        /// You can use ' instead of " to simplify queryFormat creation.
-        /// </summary>
-        public QueryBuilder<T> Custom(string customFormat, params string[] args)
-        {
-            var query = customFormat.AltQuoteF(args);
-            RegisterJsonQuery(query);
-            return this;
-        }
 
 
         /// <summary>
@@ -188,6 +177,17 @@ namespace PlainElastic.Net.Queries
         public override string ToString()
         {
             return BuildBeautified();
+        }
+
+
+        protected override bool HasRequiredParts()
+        {
+            return hasRequiredParts;
+        }
+
+        protected override string ApplyJsonTemplate(string body)
+        {
+            return "{{ {0} }}".AltQuoteF(body);
         }
     }
 }

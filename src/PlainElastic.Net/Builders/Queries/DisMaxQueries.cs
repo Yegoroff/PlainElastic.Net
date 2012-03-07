@@ -6,7 +6,7 @@ namespace PlainElastic.Net.Queries
     {
         protected override string ApplyJsonTemplate(string body)
         {
-            return " 'queries': [ {0} ]".AltQuoteF(body);
+            return "'queries': [ {0} ]".AltQuoteF(body);
         }
 
     }

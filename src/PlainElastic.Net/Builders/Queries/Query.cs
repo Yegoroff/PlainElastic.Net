@@ -49,6 +49,29 @@ namespace PlainElastic.Net.Queries
         }
 
         /// <summary>
+        /// A query that wraps a filter or another query and simply returns a constant score equal 
+        /// to the query boost for every document in the filter. Maps to Lucene ConstantScoreQuery.
+        /// see http://www.elasticsearch.org/guide/reference/query-dsl/constant-score-query.html
+        /// </summary>   
+        public Query<T> ConstantScore(Func<ConstantScoreQuery<T>, ConstantScoreQuery<T>> constantScoreQuery)
+        {
+            RegisterJsonPartExpression(constantScoreQuery);
+            return this;
+        }
+
+        /// <summary>
+        /// A query that applies a filter to the results of another query. This query maps to Lucene FilteredQuery.
+        /// see http://www.elasticsearch.org/guide/reference/query-dsl/filtered-query.html
+        /// </summary>   
+        public Query<T> Filtered(Func<FilteredQuery<T>, FilteredQuery<T>> filteredQuery)
+        {
+            RegisterJsonPartExpression(filteredQuery);
+            return this;
+        }
+
+
+
+        /// <summary>
         /// A query that uses a query parser in order to parse its content
         /// see http://www.elasticsearch.org/guide/reference/query-dsl/query-string-query.html
         /// </summary>    

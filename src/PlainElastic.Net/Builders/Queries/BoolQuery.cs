@@ -12,34 +12,28 @@ namespace PlainElastic.Net.Queries
     /// each clause with a typed occurrence
     /// see: http://www.elasticsearch.org/guide/reference/query-dsl/bool-query.html
     /// </summary>    
-    public class BoolQuery<T> : CompositeQueryBase
+    public class BoolQuery<T> : QueryBase<BoolQuery<T>>
     {
         private int shouldPartsCount;
 
 
-        protected override string QueryTemplate
-        {
-            get { return "{{ 'bool': {{ {0} }} }}"; }
-        }
-
-
         public BoolQuery<T> Must(Func<MustQuery<T>, Query<T>> mustQuery)
         {
-            RegisterQueryExpression(mustQuery);
+            RegisterJsonPartExpression(mustQuery);
 
             return this;
         }
 
         public BoolQuery<T> MustNot(Func<MustNotQuery<T>, Query<T>> mustQuery)
         {
-            RegisterQueryExpression(mustQuery);
+            RegisterJsonPartExpression(mustQuery);
 
             return this;
         }
 
         public BoolQuery<T> Should(Func<ShouldQuery<T>, Query<T>> shouldQuery)
         {
-            var shouldResult = RegisterQueryExpression(shouldQuery);
+            var shouldResult = RegisterJsonPartExpression(shouldQuery);
 
             shouldPartsCount = shouldResult.JsonParts.Count();
 
@@ -55,8 +49,7 @@ namespace PlainElastic.Net.Queries
                 if (useActualShouldCount && number > shouldPartsCount)
                     number = shouldPartsCount;
 
-                var param = " 'minimum_number_should_match': {0}".AltQuoteF(number.AsString());
-                base.RegisterJsonParam(param);
+                RegisterJsonPart("'minimum_number_should_match': {0}", number.AsString());
             }
 
             return this;
@@ -64,26 +57,28 @@ namespace PlainElastic.Net.Queries
 
         public BoolQuery<T> Boost(double boost)
         {
-            var boostParam = " 'boost': {0}".AltQuoteF(boost.AsString());
-            base.RegisterJsonParam(boostParam);
+            RegisterJsonPart("'boost': {0}", boost.AsString());
 
             return this;
         }
 
         public BoolQuery<T> DisableCoord(bool disableCoord)
         {
-            var disableCoordParam = " 'disable_coord': {0}".AltQuoteF(disableCoord.AsString());
-            base.RegisterJsonParam(disableCoordParam);
+
+            RegisterJsonPart("'disable_coord': {0}", disableCoord.AsString());
 
             return this;
         }
 
 
-        public BoolQuery<T> Custom(string queryFormat, params string[] args)
+        protected override bool HasRequiredParts()
         {
-            var query = queryFormat.AltQuoteF(args);
-            RegisterJsonQuery(query);
-            return this;
+            return true;
+        }
+
+        protected override string ApplyJsonTemplate(string body)
+        {
+            return "{{ 'bool': {{ {0} }} }}".AltQuoteF(body);
         }
 
     }

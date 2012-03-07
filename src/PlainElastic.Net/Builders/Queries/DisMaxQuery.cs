@@ -10,18 +10,12 @@ namespace PlainElastic.Net.Queries
     /// plus a tie breaking increment for any additional matching subqueries.
     /// see http://www.elasticsearch.org/guide/reference/query-dsl/dis-max-query.html
     /// </summary>   
-    public class DisMaxQuery<T> : CompositeQueryBase
+    public class DisMaxQuery<T> : QueryBase<DisMaxQuery<T>>
     {
-
-        protected override string QueryTemplate
-        {
-            get { return "{{ 'dis_max': {{ {0} }} }}"; }
-        }
-
 
         public DisMaxQuery<T> Queries(Func<DisMaxQueries<T>, Query<T>> queries)
         {
-            RegisterQueryExpression(queries);
+            RegisterJsonPartExpression(queries);
 
             return this;
         }
@@ -34,31 +28,27 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public DisMaxQuery<T> TieBreaker(double tieBreaker)
         {
-            var param = " 'tie_breaker': {0}".AltQuoteF(tieBreaker.AsString());
-            base.RegisterJsonParam(param);
+            RegisterJsonPart("'tie_breaker': {0}", tieBreaker.AsString());
 
             return this;
         }
 
         public DisMaxQuery<T> Boost(double boost)
         {
-            var param = " 'boost': {0}".AltQuoteF(boost.AsString());
-            base.RegisterJsonParam(param);
+            RegisterJsonPart("'boost': {0}", boost.AsString());
 
             return this;
         }
 
-        /// <summary>
-        /// Adds a custom query.
-        /// You can use ' instead of " to simplify queryFormat creation.
-        /// </summary>
-        public DisMaxQuery<T> Custom(string queryFormat, params string[] args)
+
+        protected override bool HasRequiredParts()
         {
-            var query = queryFormat.AltQuoteF(args);
-            RegisterJsonQuery(query);
-            return this;
+            return true;
         }
 
-
+        protected override string ApplyJsonTemplate(string body)
+        {
+            return "{{ 'dis_max': {{ {0} }} }}".AltQuoteF(body);
+        }
     }
 }

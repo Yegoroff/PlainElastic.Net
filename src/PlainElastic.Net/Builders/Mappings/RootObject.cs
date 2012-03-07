@@ -65,7 +65,7 @@ namespace PlainElastic.Net.Mappings
         /// </summary>
         public RootObject<T> DynamicDateFormats(string[] dynamicDateFormats)
         {
-            RegisterCustomJsonMap("'dynamic_date_formats': [ {0} ] ", dynamicDateFormats.Select(f => f.Quotate()).JoinWithComma());
+            RegisterCustomJsonMap("'dynamic_date_formats': [ {0} ] ", dynamicDateFormats.Quotate().JoinWithComma());
             return this;
         }
 

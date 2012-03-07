@@ -1,9 +1,8 @@
 ﻿using System.Linq;
-using PlainElastic.Net.Utils;
 
-namespace PlainElastic.Net
+namespace PlainElastic.Net.Utils
 {
-    public class UrlBuilder
+    public static class UrlBuilder
     {
 
         public static string BuildUrlPath(params string[] urlParts)

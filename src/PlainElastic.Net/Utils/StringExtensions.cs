@@ -40,6 +40,17 @@ namespace PlainElastic.Net.Utils
             return quotedString.Replace('\'', '\"');
         }
 
+        public static string Quotate(this string value)
+        {
+            return "\"" + value + "\"";
+        }
+
+        public static IEnumerable<string> Quotate(this IEnumerable<string> values)
+        {
+            return values.Select(v => v.Quotate());
+        }
+
+
 
         public static bool IsNullOrEmpty(this string source)
         {
@@ -53,25 +64,6 @@ namespace PlainElastic.Net.Utils
                 return value;
             return Char.ToLower(value[0]) + value.Substring(1);
         }
-
-
-
-        public static string Quotate(this string value)
-        {
-            return "\"" + value + "\"";
-        }
-
-        public static string LowerAndQuotate(this string value)
-        {
-            return value.ToLower().Quotate();
-        }
-
-        public static IEnumerable<string> Quotate(this IEnumerable<string> values)
-        {
-            return values.Select(v => v.Quotate());
-        }
-
-
 
 
         public static string[] SplitByCommaAndSpaces(this string text)

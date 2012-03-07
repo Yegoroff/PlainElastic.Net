@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
-using PlainElastic.Net.Utils;
 
-namespace PlainElastic.Net
+namespace PlainElastic.Net.Utils
 {
     public static class Reflect<T>
     {

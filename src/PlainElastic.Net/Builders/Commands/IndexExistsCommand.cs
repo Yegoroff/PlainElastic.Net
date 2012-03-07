@@ -1,4 +1,6 @@
-﻿namespace PlainElastic.Net
+﻿using PlainElastic.Net.Utils;
+
+namespace PlainElastic.Net
 {
     /// <summary>
     /// Builds a command that allows check if the index (indices) exists or not. 

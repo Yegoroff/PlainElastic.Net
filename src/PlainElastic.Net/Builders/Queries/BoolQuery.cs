@@ -15,25 +15,26 @@ namespace PlainElastic.Net.Queries
     public class BoolQuery<T> : QueryBase<BoolQuery<T>>
     {
         private int shouldPartsCount;
-
+        private bool hasRequiredParts;
 
         public BoolQuery<T> Must(Func<MustQuery<T>, Query<T>> mustQuery)
         {
-            RegisterJsonPartExpression(mustQuery);
-
+            var result = RegisterJsonPartExpression(mustQuery);
+            hasRequiredParts = hasRequiredParts || !result.GetIsEmpty();
             return this;
         }
 
-        public BoolQuery<T> MustNot(Func<MustNotQuery<T>, Query<T>> mustQuery)
+        public BoolQuery<T> MustNot(Func<MustNotQuery<T>, Query<T>> mustNotQuery)
         {
-            RegisterJsonPartExpression(mustQuery);
-
+            var result = RegisterJsonPartExpression(mustNotQuery);
+            hasRequiredParts = hasRequiredParts || !result.GetIsEmpty();
             return this;
         }
 
         public BoolQuery<T> Should(Func<ShouldQuery<T>, Query<T>> shouldQuery)
         {
             var shouldResult = RegisterJsonPartExpression(shouldQuery);
+            hasRequiredParts = hasRequiredParts || !shouldResult.GetIsEmpty();
 
             shouldPartsCount = shouldResult.JsonParts.Count();
 
@@ -73,7 +74,7 @@ namespace PlainElastic.Net.Queries
 
         protected override bool HasRequiredParts()
         {
-            return true;
+            return hasRequiredParts;
         }
 
         protected override string ApplyJsonTemplate(string body)

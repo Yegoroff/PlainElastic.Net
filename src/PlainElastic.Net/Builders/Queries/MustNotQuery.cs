@@ -6,7 +6,7 @@ namespace PlainElastic.Net.Queries
     {
         protected override string ApplyJsonTemplate(string body)
         {
-            return " 'must_not': [ {0} ]".AltQuoteF(body);
+            return "'must_not': [ {0} ]".AltQuoteF(body);
         }
 
     }

@@ -68,6 +68,7 @@
     <Compile Include="Buildres\Queries\When_empty_Query_built.cs" />
     <Compile Include="Buildres\Queries\Filters\When_complete_RangeFilter_built.cs" />
     <Compile Include="Buildres\Queries\Filters\When_RangeFilter_without_range_parts_built.cs" />
+    <Compile Include="Buildres\Queries\When_QueryString_Query_called_for_html_injection.cs" />
     <Compile Include="Buildres\Queries\When_RangeQuery_without_range_parts_built.cs" />
     <Compile Include="Buildres\Queries\When_RangeQuery_with_only_custom_part_built.cs" />
     <Compile Include="Buildres\Queries\When_complete_RangeQuery_built.cs" />

@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace PlainElastic.Net.Utils
 {
     public static class StringExtensions
     {
-        private static readonly Regex splitBySpaceAndCommaRegex = new Regex("(?:^|,|\\s)(\"(?:[^\"]+|\"\")*\"|[^,\\s]*)", RegexOptions.Compiled);
-
-
         public static string F(this string format, params object[] args)
         {
             return String.Format(format, args);
@@ -68,12 +66,52 @@ namespace PlainElastic.Net.Utils
 
         public static string[] SplitByCommaAndSpaces(this string text)
         {
-            // Split text by commas and spaces unless it quoted.
-            var textsToSearch = from Match m in splitBySpaceAndCommaRegex.Matches(text)
-                                where !(m.Value.Trim(' ', ',', '"').IsNullOrEmpty()) // skip empty matches..
-                                select m.Value.Trim(' ', ',', '"');
+            return SplitByCommaAndSpacesImpl(text).ToArray();
+        }
 
-            return textsToSearch.ToArray();
+        private static IEnumerable<string> SplitByCommaAndSpacesImpl(string text)
+        {
+            var chunkBuilder = new StringBuilder();
+
+            bool areWeOutsideQuotedBlock = true;
+
+            foreach (char character in text)
+            {
+                bool isCurrentChunkComplete = IsCommaOrSpace(character) && areWeOutsideQuotedBlock;
+
+                if (isCurrentChunkComplete)
+                {
+                    if (chunkBuilder.Length > 0)
+                    {
+                        yield return chunkBuilder.ToString();
+                        chunkBuilder.Clear();
+                    }
+
+                    continue;
+                }
+
+                chunkBuilder.Append(character);
+
+                if (IsDoubleQuote(character))
+                {
+                    areWeOutsideQuotedBlock = !areWeOutsideQuotedBlock;
+                }
+            }
+
+            if (chunkBuilder.Length > 0)
+            {
+                yield return chunkBuilder.ToString();
+            }
+        }
+
+        private static bool IsCommaOrSpace(char character)
+        {
+            return character == ',' || character == ' ';
+        }
+
+        private static bool IsDoubleQuote(char character)
+        {
+            return character == '"';
         }
 
         public static string JoinWithSeparator(this IEnumerable<string> list, string separator)

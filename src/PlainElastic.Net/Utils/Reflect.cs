@@ -6,36 +6,19 @@ namespace PlainElastic.Net.Utils
     public static class Reflect<T>
     {
 
-        public static string LowerCasedPropertyType<TPropertyType>(Expression<Func<T, TPropertyType>> exp)
-        {
-            return PropertyTypeFromExpresion(exp.Body).ToLower();
-        }
-
         public static string PropertyType<TPropertyType>(Expression<Func<T, TPropertyType>> exp)
         {
             return PropertyTypeFromExpresion(exp.Body);
         }
 
-
-        public static string CamelCasedPropertyName<TPropertyType>(Expression<Func<T, TPropertyType>> exp)
-        {
-            return PropertyNameFromExpresion(exp.Body, camelCase: true, fullPath: false);
-        }
-
-        public static string CamelCasedPropertyPath<TPropertyType>(Expression<Func<T, TPropertyType>> exp)
-        {
-            return PropertyNameFromExpresion(exp.Body, camelCase: true);
-        }
-
-
         public static string PropertyName<TPropertyType>(Expression<Func<T, TPropertyType>> exp)
         {
-            return PropertyNameFromExpresion(exp.Body, camelCase: false, fullPath: false);
+            return PropertyNameFromExpresion(exp.Body, fullPath: false);
         }
 
         public static string PropertyPath<TPropertyType>(Expression<Func<T, TPropertyType>> exp)
         {
-            return PropertyNameFromExpresion(exp.Body, camelCase: false);
+            return PropertyNameFromExpresion(exp.Body);
         }
 
 
@@ -54,7 +37,7 @@ namespace PlainElastic.Net.Utils
             return memberExpression.Type.Name;
         }
 
-        private static string PropertyNameFromExpresion(Expression exp, bool camelCase, bool fullPath = true)
+        private static string PropertyNameFromExpresion(Expression exp, bool fullPath = true)
         {
             MemberExpression memberExpression = exp as MemberExpression;
             if (memberExpression == null && exp is UnaryExpression)
@@ -68,11 +51,9 @@ namespace PlainElastic.Net.Utils
 
             string prefix = "";
             if (fullPath)
-                prefix = PropertyNameFromExpresion(memberExpression.Expression, camelCase);
+                prefix = PropertyNameFromExpresion(memberExpression.Expression);
 
             var name = memberExpression.Member.Name;
-            if (camelCase)
-                name = name.ToCamelCase();
 
             if (!prefix.IsNullOrEmpty())
                 return prefix + "." + name;

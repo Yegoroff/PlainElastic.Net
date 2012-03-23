@@ -56,64 +56,6 @@ namespace PlainElastic.Net.Utils
         }
 
 
-        public static string ToCamelCase(this string value)
-        {
-            if (!Char.IsUpper(value, 0))
-                return value;
-            return Char.ToLower(value[0]) + value.Substring(1);
-        }
-
-
-        public static string[] SplitByCommaAndSpaces(this string text)
-        {
-            return SplitByCommaAndSpacesImpl(text).ToArray();
-        }
-
-        private static IEnumerable<string> SplitByCommaAndSpacesImpl(string text)
-        {
-            var chunkBuilder = new StringBuilder();
-
-            bool areWeOutsideQuotedBlock = true;
-
-            foreach (char character in text)
-            {
-                bool isCurrentChunkComplete = IsCommaOrSpace(character) && areWeOutsideQuotedBlock;
-
-                if (isCurrentChunkComplete)
-                {
-                    if (chunkBuilder.Length > 0)
-                    {
-                        yield return chunkBuilder.ToString();
-                        chunkBuilder.Clear();
-                    }
-
-                    continue;
-                }
-
-                chunkBuilder.Append(character);
-
-                if (IsDoubleQuote(character))
-                {
-                    areWeOutsideQuotedBlock = !areWeOutsideQuotedBlock;
-                }
-            }
-
-            if (chunkBuilder.Length > 0)
-            {
-                yield return chunkBuilder.ToString();
-            }
-        }
-
-        private static bool IsCommaOrSpace(char character)
-        {
-            return character == ',' || character == ' ';
-        }
-
-        private static bool IsDoubleQuote(char character)
-        {
-            return character == '"';
-        }
-
         public static string JoinWithSeparator(this IEnumerable<string> list, string separator)
         {
             return list == null ? "" : String.Join(separator, list);
@@ -123,7 +65,6 @@ namespace PlainElastic.Net.Utils
         {
             return list == null ? "" : String.Join(",", list);
         }
-
 
 
         public static string ButifyJson(this string json)

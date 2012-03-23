@@ -22,6 +22,7 @@ namespace PlainElastic.Net.Queries
 
         /// <summary>
         /// All facets can be configured with an additional filter, which will reduce the documents they use for computing results.
+        /// see http://www.elasticsearch.org/guide/reference/api/search/facets/index.html
         /// </summary>
         public Facets<T> FacetFilter(Func<FacetFilter<T>, FacetFilter<T>> facetFilter)
         {

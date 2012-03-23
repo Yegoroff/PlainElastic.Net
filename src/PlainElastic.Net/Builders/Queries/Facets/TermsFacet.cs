@@ -61,8 +61,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public TermsFacet<T> Fields(params string[] fields)
         {
-            facetFields.AddRange(fields.Select(f => f.Quotate()));
-
+            facetFields.AddRange(fields.Quotate());
             return this;
         }
 
@@ -174,7 +173,7 @@ namespace PlainElastic.Net.Queries
         }
 
 
-        private string GenerateFieldsQueryPart()
+        private string GenerateFieldsFacetPart()
         {
             var fields = facetFields.JoinWithComma();
             if (fields.IsNullOrEmpty())
@@ -191,9 +190,9 @@ namespace PlainElastic.Net.Queries
 
         protected override string ApplyJsonTemplate(string body)
         {
-            string fields = GenerateFieldsQueryPart();
+            string fields = GenerateFieldsFacetPart();
             if (!fields.IsNullOrEmpty())
-                body = new[] {fields, body}.JoinWithComma();            
+                body = new[] {fields, body}.JoinWithComma();
 
             return "{0}: {{ 'terms': {{ {1} }} }}".AltQuoteF(facetName, body);
         }

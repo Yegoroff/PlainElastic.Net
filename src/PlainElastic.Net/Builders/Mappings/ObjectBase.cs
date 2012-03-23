@@ -29,7 +29,7 @@ namespace PlainElastic.Net.Mappings
         }
 
         /// <summary>
-        /// The field which is collection to assign to object mapping.
+        /// The field which is a collection to assign to object mapping.
         /// </summary>
         public TMapping Field<TField>(Expression<Func<T, IEnumerable<TField>>> field)
         {

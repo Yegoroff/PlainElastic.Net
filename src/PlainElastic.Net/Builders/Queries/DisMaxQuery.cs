@@ -14,6 +14,9 @@ namespace PlainElastic.Net.Queries
     {
         private bool hasRequiredParts;
 
+        /// <summary>
+        /// Dis Max subqueries.
+        /// </summary>
         public DisMaxQuery<T> Queries(Func<DisMaxQueries<T>, Query<T>> queries)
         {
             var result = RegisterJsonPartExpression(queries);
@@ -34,7 +37,10 @@ namespace PlainElastic.Net.Queries
 
             return this;
         }
-
+        
+        /// <summary>
+        /// Sets the boost value of the query. Defaults to 1.0.
+        /// </summary>
         public DisMaxQuery<T> Boost(double boost)
         {
             RegisterJsonPart("'boost': {0}", boost.AsString());

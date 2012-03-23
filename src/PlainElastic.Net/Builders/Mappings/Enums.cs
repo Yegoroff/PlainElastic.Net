@@ -13,13 +13,13 @@ namespace PlainElastic.Net.Mappings
     /// </summary>
     public enum DefaultAnalizers
     {
-        Standard,
-        Simple,
-        Whitespace,
-        Stop,
-        Keyword,
-        Pattern,
-        Language,
-        Snowball
+        standard,
+        simple,
+        whitespace,
+        stop,
+        reyword,
+        pattern,
+        language,
+        snowball
     }
 }

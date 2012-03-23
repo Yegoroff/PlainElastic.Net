@@ -35,6 +35,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Machine.Specifications.0.5.3.0\lib\Machine.Specifications.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.4.0.7\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
@@ -50,41 +53,62 @@
     <Compile Include="Buildres\Commands\When_complete_GetCommand_built.cs" />
     <Compile Include="Buildres\Mappings\When_enum_Object_property_mapping_built.cs" />
     <Compile Include="Buildres\Mappings\When_complete_Object_mapping_built.cs" />
-    <Compile Include="Buildres\Queries\When_empty_BoolQuery_built.cs" />
-    <Compile Include="Buildres\Queries\When_complete_BoolQuery_built.cs" />
-    <Compile Include="Buildres\Queries\When_empty_DisMaxQuery_built.cs" />
-    <Compile Include="Buildres\Queries\When_complete_DisMaxQuery_built.cs" />
-    <Compile Include="Buildres\Queries\When_empty_FilteredQuery_built.cs" />
+    <Compile Include="Buildres\Queries\Terms\When_complete_TermQuery_built.cs" />
+    <Compile Include="Buildres\Queries\Term\When_TermQuery_with_collection_field_built.cs" />
+    <Compile Include="Buildres\Queries\_Filters\And\When_complete_AndFilter_built.cs" />
+    <Compile Include="Buildres\Queries\_Filters\And\When_empty_AndFilter_built.cs" />
+    <Compile Include="Buildres\Queries\_Filters\When_empty_Filter_built.cs" />
+    <Compile Include="Buildres\Queries\_Filters\When_complete_Filter_built.cs" />
+    <Compile Include="Buildres\Queries\_Filters\Term\When_complete_TermFilter_built.cs" />
+    <Compile Include="Buildres\Queries\_Filters\Exists\When_ExistsFilter_without_field_specified_built.cs" />
+    <Compile Include="Buildres\Queries\_Filters\Exists\When_ExistsFilter_with_SouldExists_null_built.cs" />
+    <Compile Include="Buildres\Queries\_Filters\Exists\When_ExistsFilter_with_SouldExists_false_built.cs" />
+    <Compile Include="Buildres\Queries\_Filters\Exists\When_complete_ExistsFilter_built.cs" />
+    <Compile Include="Buildres\Queries\_Filters\Nested\When_complete_NestedFilter_built.cs" />
+    <Compile Include="Buildres\Queries\_Filters\Nested\When_empty_NestedFilter_built.cs" />
+    <Compile Include="Buildres\Queries\_Filters\Term\When_TermQuery_without_value_built.cs" />
+    <Compile Include="Buildres\Queries\_Filters\Term\When_TermFilter_with_custom_part_built.cs" />
+    <Compile Include="Buildres\Queries\_Filters\Term\When_TermFilter_with_only_custom_part_built.cs" />
+    <Compile Include="Buildres\Queries\_Filters\Terms\When_TermsFilter_without_values_built.cs" />
+    <Compile Include="Buildres\Queries\QueryString\When_QueryString_with_custom_part_built.cs" />
+    <Compile Include="Buildres\Queries\QueryString\When_empty_QueryString_built.cs" />
+    <Compile Include="Buildres\Queries\QueryString\When_complete_QueryString_built.cs" />
+    <Compile Include="Buildres\Queries\Bool\When_empty_BoolQuery_built.cs" />
+    <Compile Include="Buildres\Queries\Bool\When_complete_BoolQuery_built.cs" />
+    <Compile Include="Buildres\Queries\DisMax\When_empty_DisMaxQuery_built.cs" />
+    <Compile Include="Buildres\Queries\DisMax\When_complete_DisMaxQuery_built.cs" />
+    <Compile Include="Buildres\Queries\Filtered\When_empty_FilteredQuery_built.cs" />
     <Compile Include="Buildres\Queries\When_empty_QueryBuilder_built.cs" />
-    <Compile Include="Buildres\Queries\When_empty_NestedQuery_built.cs" />
-    <Compile Include="Buildres\Queries\When_complete_NestedQuery_built.cs" />
-    <Compile Include="Buildres\Queries\Facets\When_Facets_with_one_facet_built.cs" />
-    <Compile Include="Buildres\Queries\Facets\When_Facets_with_several_facets_built.cs" />
-    <Compile Include="Buildres\Queries\Facets\When_complete_TermsFacet_built.cs" />
-    <Compile Include="Buildres\Queries\When_custom_ConstantScoreQuery_built.cs" />
-    <Compile Include="Buildres\Queries\When_empty_ConstantScoreQuery_built.cs" />
-    <Compile Include="Buildres\Queries\When_complete_ConstantScoreQuery_built.cs" />
-    <Compile Include="Buildres\Queries\When_complete_FilteredQuery_built.cs" />
-    <Compile Include="Buildres\Queries\When_empty_Query_built.cs" />
-    <Compile Include="Buildres\Queries\Filters\When_complete_RangeFilter_built.cs" />
-    <Compile Include="Buildres\Queries\Filters\When_RangeFilter_without_range_parts_built.cs" />
-    <Compile Include="Buildres\Queries\When_QueryString_Query_called_for_html_injection.cs" />
-    <Compile Include="Buildres\Queries\When_RangeQuery_without_range_parts_built.cs" />
-    <Compile Include="Buildres\Queries\When_RangeQuery_with_only_custom_part_built.cs" />
-    <Compile Include="Buildres\Queries\When_complete_RangeQuery_built.cs" />
-    <Compile Include="Buildres\Queries\When_TermQuery_with_only_custom_part_built.cs" />
-    <Compile Include="Buildres\Queries\When_complete_Query_built.cs" />
-    <Compile Include="Buildres\Queries\When_Sort_with_desc_order_built.cs" />
-    <Compile Include="Buildres\Queries\When_Sort_with_reflected_field_built.cs" />
-    <Compile Include="Buildres\Queries\When_TermQuery_with_custom_part_built.cs" />
-    <Compile Include="Buildres\Queries\When_TermQuery_without_value_built.cs" />
-    <Compile Include="Buildres\Queries\When_complete_TermQuery_built.cs" />
-    <Compile Include="Buildres\Queries\When_TermsQuery_without_values_built.cs" />
-    <Compile Include="Buildres\Queries\When_complete_TermsQuery_built.cs" />
+    <Compile Include="Buildres\Queries\Nested\When_empty_NestedQuery_built.cs" />
+    <Compile Include="Buildres\Queries\Nested\When_complete_NestedQuery_built.cs" />
+    <Compile Include="Buildres\Queries\_Facets\When_Facets_with_one_facet_built.cs" />
+    <Compile Include="Buildres\Queries\_Facets\When_Facets_with_several_facets_built.cs" />
+    <Compile Include="Buildres\Queries\_Facets\When_complete_TermsFacet_built.cs" />
+    <Compile Include="Buildres\Queries\ConstantScore\When_custom_ConstantScoreQuery_built.cs" />
+    <Compile Include="Buildres\Queries\ConstantScore\When_empty_ConstantScoreQuery_built.cs" />
+    <Compile Include="Buildres\Queries\ConstantScore\When_complete_ConstantScoreQuery_built.cs" />
+    <Compile Include="Buildres\Queries\Filtered\When_complete_FilteredQuery_built.cs" />
+    <Compile Include="Buildres\Queries\Query\When_empty_Query_built.cs" />
+    <Compile Include="Buildres\Queries\_Filters\Range\When_complete_RangeFilter_built.cs" />
+    <Compile Include="Buildres\Queries\_Filters\Range\When_RangeFilter_without_range_parts_built.cs" />
+    <Compile Include="Buildres\Queries\QueryString\When_QueryString_Query_called_for_html_injection.cs" />
+    <Compile Include="Buildres\Queries\Range\When_RangeQuery_without_range_parts_built.cs" />
+    <Compile Include="Buildres\Queries\Range\When_RangeQuery_with_only_custom_part_built.cs" />
+    <Compile Include="Buildres\Queries\Range\When_complete_RangeQuery_built.cs" />
+    <Compile Include="Buildres\Queries\Term\When_TermQuery_with_only_custom_part_built.cs" />
+    <Compile Include="Buildres\Queries\Query\When_complete_Query_built.cs" />
+    <Compile Include="Buildres\Queries\Sort\When_Sort_with_desc_order_built.cs" />
+    <Compile Include="Buildres\Queries\Sort\When_Sort_with_reflected_field_built.cs" />
+    <Compile Include="Buildres\Queries\Term\When_TermQuery_with_custom_part_built.cs" />
+    <Compile Include="Buildres\Queries\Term\When_TermQuery_without_value_built.cs" />
+    <Compile Include="Buildres\Queries\Term\When_complete_TermQuery_built.cs" />
+    <Compile Include="Buildres\Queries\Terms\When_TermsQuery_without_values_built.cs" />
+    <Compile Include="Buildres\Queries\_Filters\Terms\When_complete_TermsFilter_built.cs" />
     <Compile Include="Integration\Connection\When_invalid_GET_request_on_valid_ES_instance.cs" />
     <Compile Include="Integration\Connection\When_partial_GET_request_on_valid_ES_instance.cs" />
     <Compile Include="Integration\Connection\When_full_GET_request_on_valid_ES_instance.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Serialization\When_deserializing_terms_facets_result.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

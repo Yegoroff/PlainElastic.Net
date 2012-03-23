@@ -77,7 +77,7 @@
     <Compile Include="Builders\Queries\ConstantScoreQuery.cs" />
     <Compile Include="Builders\Queries\Facets\FacetFilter.cs" />
     <Compile Include="Builders\Queries\Facets\Facets.cs" />
-    <Compile Include="Builders\Queries\Facets\TermFacet.cs" />
+    <Compile Include="Builders\Queries\Facets\TermsFacet.cs" />
     <Compile Include="Builders\Queries\FilteredQuery.cs" />
     <Compile Include="Builders\Queries\RangeBase.cs" />
     <Compile Include="Builders\Queries\FieldQueryBase.cs" />
@@ -112,13 +112,15 @@
     <Compile Include="Builders\Queries\TermQuery.cs" />
     <Compile Include="Builders\Queries\Filters\TermFilter.cs" />
     <Compile Include="Builders\Queries\TermsQuery.cs" />
+    <Compile Include="Serialization\JsonNet\FacetCreationConverter.cs" />
     <Compile Include="Serialization\Results\BaseResult.cs" />
     <Compile Include="Serialization\Results\CommandResult.cs" />
+    <Compile Include="Serialization\Results\FacetResult.cs" />
     <Compile Include="Serialization\Results\SearchResult.cs" />
     <Compile Include="Serialization\Results\DeleteResult.cs" />
     <Compile Include="Serialization\Results\IndexResult.cs" />
     <Compile Include="Serialization\Results\GetResult.cs" />
-    <Compile Include="Serialization\JsonNetSerializer.cs" />
+    <Compile Include="Serialization\JsonNet\JsonNetSerializer.cs" />
     <Compile Include="Serialization\IJsonSerializer.cs" />
     <Compile Include="Serialization\SerializationExtensions.cs" />
     <Compile Include="Utils\JsonBeautifier.cs" />

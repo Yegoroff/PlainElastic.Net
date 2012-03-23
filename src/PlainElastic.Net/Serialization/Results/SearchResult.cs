@@ -9,7 +9,8 @@ namespace PlainElastic.Net.Serialization
         public bool timed_out;
         public ShardsResult _shards;
         public Hits hits;
-
+        public Facets facets;
+        
         public IEnumerable<T> Documents
         {
             get { return hits.hits.Select(hit => hit._source); }
@@ -37,6 +38,14 @@ namespace PlainElastic.Net.Serialization
             public string _id;
             public double _score;
             public T _source;
+        }
+
+        public class Facets : Dictionary<string, FacetResult>
+        {
+            public TFacet Facet<TFacet>(string facetName) where TFacet : FacetResult
+            {
+                return this[facetName] as TFacet;
+            }
         }
     }
 }

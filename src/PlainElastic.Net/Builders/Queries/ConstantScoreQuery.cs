@@ -43,7 +43,7 @@ namespace PlainElastic.Net.Queries
 
         protected override string ApplyJsonTemplate(string body)
         {
-            return "{{ 'constant_score': {{{0}}} }}".AltQuoteF(body);
+            return "{{ 'constant_score': {{ {0} }} }}".AltQuoteF(body);
         }
 
     }

@@ -33,7 +33,7 @@ namespace PlainElastic.Net.Queries
 
         protected override string ApplyJsonTemplate(string body)
         {
-            return "{{ 'filtered': {{{0}}} }}".AltQuoteF(body);
+            return "{{ 'filtered': {{ {0} }} }}".AltQuoteF(body);
         }
 
     }

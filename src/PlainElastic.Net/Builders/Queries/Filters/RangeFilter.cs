@@ -14,7 +14,9 @@ namespace PlainElastic.Net.Queries
 
 
         /// <summary>
-        /// Allows to specify filter Name.
+        /// Allows to name filter, so the search response will include for each hit the matched_filters 
+        /// it matched on (note, this feature make sense for or / bool filters).
+        /// http://www.elasticsearch.org/guide/reference/api/search/named-filters.html 
         /// </summary>
         public RangeFilter<T> Name(string filterName)
         {
@@ -46,7 +48,7 @@ namespace PlainElastic.Net.Queries
 
         protected override string ApplyJsonTemplate(string body)
         {
-            string criterion = RegisteredField.IsNullOrEmpty() ? "{{ {0} }}".F(body) 
+            string criterion = RegisteredField.IsNullOrEmpty() ? body 
                                                                : "{0}: {{ {1} }}".F(RegisteredField, body);
             modes.Insert(0, criterion);
 

@@ -1,9 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
-using PlainElastic.Net.Builders;
 using PlainElastic.Net.Utils;
-
 
 namespace PlainElastic.Net.Queries
 {
@@ -11,66 +6,52 @@ namespace PlainElastic.Net.Queries
     /// Filters documents that have fields that contain a term (not analyzed).
     /// see http://www.elasticsearch.org/guide/reference/query-dsl/term-filter.html
     /// </summary>    
-    public class TermFilter<T> : IJsonConvertible
+    public class TermFilter<T>: FieldQueryBase<T, TermFilter<T>>
     {
-        private string termField;
-        private string termValue;
+        private bool hasValue;
 
-
-        public TermFilter<T> Field(string field)
-        {
-            termField = field.Quotate();
-
-            return this;
-        }
-
-        public TermFilter<T> Field(Expression<Func<T, object>> field)
-        {
-            return Field(field.GetPropertyPath());
-        }
-
-        public TermFilter<T> FieldOfCollection<TProp>(Expression<Func<T, IEnumerable<TProp>>> collectionField, Expression<Func<TProp, object>> field)
-        {
-            var collectionProperty = collectionField.GetPropertyPath();
-            var fieldName = collectionProperty + "." + field.GetPropertyPath();
-
-            return Field(fieldName);
-        }
-
-
-        public TermFilter<T> Value(object value)
-        {
-            if (value == null)
-                return this;
-
-            return Value(value.ToString());
-        }      
 
         public TermFilter<T> Value(string value)
         {
-            if(!value.IsNullOrEmpty())
-                termValue = value.Quotate();
+            if (!value.IsNullOrEmpty())
+            {
+                RegisterJsonPart("'value': {0}", value.Quotate());
+                hasValue = true;
+            }
 
             return this;
         }
 
-
-        //TODO: Common filter Cache ??
-
-        string IJsonConvertible.ToJson()
+        public TermFilter<T> Cache(bool cache)
         {
-            if (termValue.IsNullOrEmpty())
-                return "";
+            RegisterJsonPart("'_cache': {0}", cache.AsString());
+            return this;
+        }
 
-            var result = "{{ 'term': {{ {0} : {1} }} }}".AltQuoteF(termField, termValue);
-
-            return result;
+        /// <summary>
+        /// Allows to name filter, so the search response will include for each hit the matched_filters 
+        /// it matched on (note, this feature make sense for or / bool filters).
+        /// http://www.elasticsearch.org/guide/reference/api/search/named-filters.html 
+        /// </summary>
+        public TermFilter<T> Name(string filterName)
+        {
+            RegisterJsonPart("'_name': {0}", filterName.Quotate());
+            return this;
         }
 
 
-        public override string ToString()
+
+        protected override bool HasRequiredParts()
         {
-            return ((IJsonConvertible)this).ToJson();
-        }    
+            return hasValue;
+        }
+
+        protected override string ApplyJsonTemplate(string body)
+        {
+            if (RegisteredField.IsNullOrEmpty())
+                return "{{ 'term': {{ {0} }} }}".AltQuoteF(body);
+
+            return "{{ 'term': {{ {0}: {{ {1} }} }} }}".AltQuoteF(RegisteredField, body);
+        }
     }
 }

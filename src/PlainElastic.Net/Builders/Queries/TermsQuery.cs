@@ -18,6 +18,11 @@ namespace PlainElastic.Net.Queries
         private bool hasValues;
 
 
+        public TermsQuery<T> Values(params string[] values)
+        {
+            return Values((IEnumerable<string>)values);
+        }
+
         public TermsQuery<T> Values(IEnumerable<string> values)
         {
             if (values != null)

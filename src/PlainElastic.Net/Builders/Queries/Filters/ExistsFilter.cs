@@ -10,40 +10,37 @@ namespace PlainElastic.Net.Queries
     /// Filters documents where a specific field has a value in them.
     /// see http://www.elasticsearch.org/guide/reference/query-dsl/exists-filter.html
     /// </summary>
-    public class ExistsFilter<T> : IJsonConvertible
+    public class ExistsFilter<T> : FieldQueryBase<T, ExistsFilter<T>>
     {
-        private string existsField;
-        private bool shouldExists;
-
-
-        public ExistsFilter<T> Field(Expression<Func<T, object>> field)
-        {
-            existsField = field.GetQuotatedPropertyPath();
-
-            return this;
-        }
+        private bool hasRequiredParts;
 
 
         public ExistsFilter<T> ShouldExists(bool? value)
         {
-            shouldExists = value.HasValue && value.Value;
+            if (RegisteredField.IsNullOrEmpty())
+                return this;
+
+            hasRequiredParts = value.HasValue && value.Value;
+            RegisterJsonPart("'field': {0}", RegisteredField);
+            return this;
+        }
+
+        public ExistsFilter<T> Name(string filterName)
+        {
+            RegisterJsonPart("'_name': {0}", filterName.Quotate());
             return this;
         }
 
 
-        string IJsonConvertible.ToJson()
+        protected override bool HasRequiredParts()
         {
-            if (!shouldExists)
-                return "";
-
-            var result = "{{ 'exists': {{ 'field' : {0} }} }}".AltQuoteF(existsField);
-
-            return result;
+            return hasRequiredParts;
         }
 
-        public override string ToString()
+
+        protected override string ApplyJsonTemplate(string body)
         {
-            return ((IJsonConvertible) this).ToJson();
+            return "{{ 'exists': {{ {0} }} }}".AltQuoteF(body);
         }
     }
 }

@@ -10,15 +10,6 @@ namespace PlainElastic.Net.Queries
     {
         private bool hasValue;
 
-
-        public TermQuery<T> Value(object value)
-        {
-            if (value == null)
-                return this;
-
-            return Value(value.ToString());
-        }
-
         public TermQuery<T> Value(string value)
         {
             if (!value.IsNullOrEmpty())

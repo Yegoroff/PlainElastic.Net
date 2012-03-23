@@ -1,8 +1,5 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
-using PlainElastic.Net.Builders;
 using PlainElastic.Net.Utils;
 
 
@@ -12,40 +9,21 @@ namespace PlainElastic.Net.Queries
     /// Filters documents that have fields that match any of the provided terms (not analyzed).
     /// see http://www.elasticsearch.org/guide/reference/query-dsl/terms-filter.html
     /// </summary>
-    public class TermsFilter<T> : IJsonConvertible
+    public class TermsFilter<T>: FieldQueryBase<T, TermsFilter<T>>
     {
-        private string termsField;
-        private string termsValues;
-        private string executionMode;
-        private string cacheMode;
-
-
-        public TermsFilter<T> Field(string field)
-        {
-            termsField = field.Quotate();
-
-            return this;
-        }
-
-        public TermsFilter<T> Field(Expression<Func<T, object>> field)
-        {
-            return Field(field.GetPropertyPath());
-        }
-
-        public TermsFilter<T> FieldOfCollection<TProp>(Expression<Func<T, IEnumerable<TProp>>> collectionField, Expression<Func<TProp, object>> field)
-        {
-            var collectionProperty = collectionField.GetPropertyPath();
-            var fieldName = collectionProperty + "." + field.GetPropertyPath();
-
-            return Field(fieldName);
-        }
-
+        private bool hasValues;
 
         public TermsFilter<T> Values(IEnumerable<string> values)
         {
             if (values != null)
-                termsValues = values.Where(v => !v.IsNullOrEmpty()).Quotate().JoinWithComma();
-
+            {
+                var termsValues = values.Where(v => !v.IsNullOrEmpty()).Quotate().JoinWithComma();
+                if (!termsValues.IsNullOrEmpty())
+                {
+                    RegisterJsonPart("[ {0} ]", termsValues);
+                    hasValues = true;
+                }
+            }
             return this;
         }
          
@@ -54,8 +32,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public TermsFilter<T> Execution(TermsFilterExecution execution)
         {
-            executionMode = "'execution': {0}".AltQuoteF(execution.ToString().Quotate());
-
+            RegisterJsonPart("'execution': {0}", execution.ToString().Quotate());
             return this;
         }
 
@@ -64,27 +41,34 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public TermsFilter<T> Cache(bool cache)
         {
-            cacheMode = "'_cache': {0}".AltQuoteF(cache.AsString());
-
+            RegisterJsonPart("'_cache': {0}", cache.AsString());
             return this;
         }
 
-
-        // http://www.elasticsearch.org/guide/reference/api/search/named-filters.html
-        //TODO: _name
-
-
-        string IJsonConvertible.ToJson()
+        /// <summary>
+        /// Allows to name filter, so the search response will include for each hit the matched_filters 
+        /// it matched on (note, this feature make sense for or / bool filters).
+        /// http://www.elasticsearch.org/guide/reference/api/search/named-filters.html 
+        /// </summary>
+        public TermsFilter<T> Name(string filterName)
         {
-            if (termsValues.IsNullOrEmpty())
-                return "";
-
-            var options = new[] {executionMode, cacheMode}.Where(m => !m.IsNullOrEmpty()).JoinWithComma();
-
-            if (options.IsNullOrEmpty())
-                return "{{ 'terms': {{ {0} : [ {1} ] }} }}".AltQuoteF(termsField, termsValues);
-
-            return "{{ 'terms': {{ {0} : [ {1} ] {2} }} }}".AltQuoteF(termsField, termsValues, options);
+            RegisterJsonPart("'_name': {0}", filterName.Quotate());
+            return this;
         }
+        
+
+        protected override bool HasRequiredParts()
+        {
+            return hasValues;
+        }
+
+        protected override string ApplyJsonTemplate(string body)
+        {
+            if (RegisteredField.IsNullOrEmpty())
+                return "{{ 'terms': {{ {0} }} }}".AltQuoteF(body);
+
+            return "{{ 'terms': {{ {0}: {1} }} }}".AltQuoteF(RegisteredField, body);
+        }
+
     }
 }

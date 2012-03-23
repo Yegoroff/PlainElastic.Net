@@ -23,7 +23,7 @@ namespace PlainElastic.Net.Serialization
                 facetType = typeof(FacetResult);
 
             var facet = Activator.CreateInstance(facetType);
-            serializer.Populate(jFacet.CreateReader(), facet);
+            serializer.Populate(new JTokenReader(jFacet), facet);
 
             return facet;
         }

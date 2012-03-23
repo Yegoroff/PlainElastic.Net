@@ -13,7 +13,7 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
                                                 .Custom("{ custom part }")
                                                 .ToString();
 
-        It should_return_correct_result = () => result.ShouldEqual(@"{ 'filtered': { 'query': { query },'filter': { filter },{ custom part }} }".AltQuote());
+        It should_return_correct_result = () => result.ShouldEqual(@"{ 'filtered': { 'query': { query },'filter': { filter },{ custom part } } }".AltQuote());
 
         private static string result;
     }

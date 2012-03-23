@@ -15,9 +15,11 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
                                                 .Range(r => r.Custom("range query"))
                                                 .Term(t=> t.Custom("term query"))
                                                 .Terms(ts => ts.Custom("terms query"))
+                                                .ConstantScore(c => c.Custom("constant score"))
+                                                .Filtered(f => f.Custom("filtered"))
                                                 .ToString();
 
-        It should_return_correct_result = () => result.ShouldEqual(@" 'query': { 'bool': { bool query } },{ 'dis_max': { dismax query } },{ 'nested': { nested query } },{ 'query_string': { query string } },{ 'range': { range query } },{ 'term': { term query } },{ 'terms': { terms query } }".AltQuote());
+        It should_return_correct_result = () => result.ShouldEqual(@"'query': { 'bool': { bool query } },{ 'dis_max': { dismax query } },{ 'nested': { nested query } },{ 'query_string': { query string } },{ 'range': { range query } },{ 'term': { term query } },{ 'terms': { terms query } },{ 'constant_score': { constant score } },{ 'filtered': { filtered } }".AltQuote());
 
         private static string result;
     }

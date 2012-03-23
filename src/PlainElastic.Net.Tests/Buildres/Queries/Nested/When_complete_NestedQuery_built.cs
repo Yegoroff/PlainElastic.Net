@@ -7,7 +7,7 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
     [Subject(typeof(NestedQuery<>))]
     class When_complete_NestedQuery_built
     {
-        Because of = () => result = new NestedQuery<FieldsTestClass>()                                                
+        Because of = () => result = new NestedQuery<FieldsTestClass>()
                                                 .ScoreMode(ScoreMode.max)
                                                 .Path(f=>f.StringProperty)
                                                 .Query( q=>q
@@ -23,7 +23,7 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
         
         It should_contain_query_part = () => result.ShouldContain(@"'query': Query ".AltQuote());
 
-        It should_return_correct_result = () => result.ShouldEqual(@"{ 'nested': { 'score_mode': 'max','path': 'StringProperty', 'query': Query } }".AltQuote());
+        It should_return_correct_result = () => result.ShouldEqual(@"{ 'nested': { 'score_mode': 'max','path': 'StringProperty','query': Query } }".AltQuote());
 
         private static string result;
     }

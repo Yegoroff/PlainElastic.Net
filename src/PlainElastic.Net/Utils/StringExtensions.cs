@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 
 
 namespace PlainElastic.Net.Utils
@@ -11,6 +10,9 @@ namespace PlainElastic.Net.Utils
     {
         public static string F(this string format, params object[] args)
         {
+            if (args == null || !args.Any())
+                return format;
+
             return String.Format(format, args);
         }
 
@@ -49,7 +51,6 @@ namespace PlainElastic.Net.Utils
         }
 
 
-
         public static bool IsNullOrEmpty(this string source)
         {
             return String.IsNullOrEmpty(source);
@@ -71,6 +72,7 @@ namespace PlainElastic.Net.Utils
         {
             return JsonBeautifier.Beautify(json);
         }
+
 
         public static string AsString(this bool value)
         {

@@ -57,6 +57,7 @@ namespace PlainSample
 
             PrintDeleteResult(deleteResult);
 
+            Console.WriteLine("Press any key");
             Console.ReadKey();
         }
 

@@ -39,6 +39,7 @@ namespace PlainSample
 
             DeleteTweeterIndex(connection, serializer);
 
+            Console.WriteLine("Press any key");
             Console.ReadKey();
         }
 

@@ -8,7 +8,7 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
     class When_TermQuery_with_only_custom_part_built
     {
         Because of = () => result = new TermQuery<FieldsTestClass>()
-                                                .Custom("'tag': {0}", "wow".Quotate())
+                                                .Custom("'tag': {0}".AltQuote(), "wow".Quotate())
                                                 .ToString();
 
         It should_contain_custom_part = () => result.ShouldContain(@"'tag': 'wow'".AltQuote());

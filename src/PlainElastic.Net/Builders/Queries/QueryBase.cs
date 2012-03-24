@@ -18,11 +18,15 @@ namespace PlainElastic.Net.Queries
 
         /// <summary>
         /// Adds a custom part to Query or Filter.
-        /// You can use ' instead of " to simplify mapFormat creation.
         /// </summary>
         public TPart Custom(string partFormat, params string[] args)
         {
-            RegisterJsonPart(partFormat, args);
+            if (partFormat.IsNullOrEmpty())
+                return (TPart)this;
+
+            var json = partFormat.F(args);
+            AddJsonPart(json);
+
             HasCustomPatrs = true;
             return (TPart)this;
         }
@@ -35,7 +39,7 @@ namespace PlainElastic.Net.Queries
                 return;
 
             var json = jsonPart.AltQuoteF(args);
-            jsonParts.Add(json);
+            AddJsonPart(json);
         }
 
         protected TResultJsonPart RegisterJsonPartExpression<TJsonPart, TResultJsonPart>(Func<TJsonPart, TResultJsonPart> partExpression)
@@ -47,7 +51,7 @@ namespace PlainElastic.Net.Queries
            
             var json = resultPart.ToJson();
 
-            RegisterJsonPart(json);
+            AddJsonPart(json);
 
             return resultPart;
         }
@@ -61,6 +65,14 @@ namespace PlainElastic.Net.Queries
         public bool GetIsEmpty()
         {
             return ((IJsonConvertible) this).ToJson().IsNullOrEmpty();
+        }
+
+
+        private void AddJsonPart(string json)
+        {
+            if (json.IsNullOrEmpty())
+                return;
+            jsonParts.Add(json);
         }
 
 

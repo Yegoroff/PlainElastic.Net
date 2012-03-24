@@ -53,7 +53,10 @@
     <Compile Include="Buildres\Commands\When_complete_GetCommand_built.cs" />
     <Compile Include="Buildres\Mappings\When_enum_Object_property_mapping_built.cs" />
     <Compile Include="Buildres\Mappings\When_complete_Object_mapping_built.cs" />
+    <Compile Include="Buildres\Queries\Query\When_empty_Query_built.cs" />
+    <Compile Include="Buildres\Queries\Query\When_Query_with_nested_custom_text_built.cs" />
     <Compile Include="Buildres\Queries\Terms\When_complete_TermQuery_built.cs" />
+    <Compile Include="Buildres\Queries\Term\When_TermQuery_with_empty_custom_part_built.cs" />
     <Compile Include="Buildres\Queries\Term\When_TermQuery_with_collection_field_built.cs" />
     <Compile Include="Buildres\Queries\_Filters\And\When_complete_AndFilter_built.cs" />
     <Compile Include="Buildres\Queries\_Filters\And\When_empty_AndFilter_built.cs" />
@@ -88,7 +91,7 @@
     <Compile Include="Buildres\Queries\ConstantScore\When_empty_ConstantScoreQuery_built.cs" />
     <Compile Include="Buildres\Queries\ConstantScore\When_complete_ConstantScoreQuery_built.cs" />
     <Compile Include="Buildres\Queries\Filtered\When_complete_FilteredQuery_built.cs" />
-    <Compile Include="Buildres\Queries\Query\When_empty_Query_built.cs" />
+    <Compile Include="Buildres\Queries\Query\When_Query_with_empty_subqueries_built.cs" />
     <Compile Include="Buildres\Queries\_Filters\Range\When_complete_RangeFilter_built.cs" />
     <Compile Include="Buildres\Queries\_Filters\Range\When_RangeFilter_without_range_parts_built.cs" />
     <Compile Include="Buildres\Queries\QueryString\When_QueryString_Query_called_for_html_injection.cs" />
@@ -109,13 +112,18 @@
     <Compile Include="Integration\Connection\When_full_GET_request_on_valid_ES_instance.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Serialization\When_deserializing_terms_facets_result.cs" />
+    <Compile Include="Utils\When_AltQuoteFormat_with_null_format_called.cs" />
+    <Compile Include="Utils\When_AltQuoteFormat_with_non_empty_args_called.cs" />
+    <Compile Include="Utils\When_AltQuoteFormat_with_null_args_called.cs" />
+    <Compile Include="Utils\When_AltQuoteFormat_with_empty_args_called.cs" />
+    <Compile Include="Utils\When_Format_with_empty_args_called.cs" />
+    <Compile Include="Utils\When_Format_with_non_empty_args_called.cs" />
+    <Compile Include="Utils\When_Format_with_null_args_called.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Utils\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\PlainElastic.Net\PlainElastic.Net.csproj">
       <Project>{7881C0A1-3020-45AC-944D-36DA5AE2D734}</Project>

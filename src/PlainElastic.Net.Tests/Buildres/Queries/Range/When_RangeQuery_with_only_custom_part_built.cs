@@ -8,7 +8,7 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
     class When_RangeQuery_with_only_custom_part_built
     {
         Because of = () => result = new RangeQuery<FieldsTestClass>()                                                
-                                                .Custom("'custom_range': {0}", "0-5")
+                                                .Custom("'custom_range': {0}".AltQuote(), "0-5")
                                                 .ToString();
 
         It should_return_query_with_only_custom_part = () => result.ShouldEqual(@"{ 'range': { 'custom_range': 0-5 } }".AltQuote());

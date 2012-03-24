@@ -16,7 +16,7 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
                                                 .Cache(false)
                                                 .CacheKey("CacheKey")
                                                 .Name("FilterName")
-                                                .Custom("'custom': {0}", "123")
+                                                .Custom("'custom': {0}".AltQuote(), "123")
                                                 .ToString();
 
         It should_contain_cache_part = () => result.ShouldContain(@"'_cache': false".AltQuote());

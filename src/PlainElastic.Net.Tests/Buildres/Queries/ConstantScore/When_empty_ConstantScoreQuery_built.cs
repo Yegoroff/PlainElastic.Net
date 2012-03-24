@@ -1,6 +1,6 @@
 ﻿using Machine.Specifications;
 using PlainElastic.Net.Queries;
-using PlainElastic.Net.Utils;
+
 
 namespace PlainElastic.Net.Tests.Buildres.Queries
 {

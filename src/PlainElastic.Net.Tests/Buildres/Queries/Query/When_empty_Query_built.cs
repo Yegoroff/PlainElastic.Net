@@ -1,6 +1,6 @@
 ﻿using Machine.Specifications;
 using PlainElastic.Net.Queries;
-using PlainElastic.Net.Utils;
+
 
 namespace PlainElastic.Net.Tests.Buildres.Queries
 {
@@ -8,7 +8,7 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
     class When_empty_Query_built
     {
         Because of = () => 
-            result = new Query<FieldsTestClass>()                         
+            result = new Query<FieldsTestClass>()
                         .ToString();
 
         It should_return_empty_string = () =>

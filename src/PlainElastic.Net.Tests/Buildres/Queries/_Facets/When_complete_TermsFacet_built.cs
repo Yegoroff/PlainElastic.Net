@@ -17,7 +17,7 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
                                                 .RegexFlags(RegexFlags.UNICODE_CASE)
                                                 .Script("Script")
                                                 .ScriptField("Script.Field")
-                                                .Custom("'custom': {0}", "123")
+                                                .Custom("'custom': {0}".AltQuote(), "123")
                                                 .ToString();
 
 

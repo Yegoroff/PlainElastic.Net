@@ -19,7 +19,7 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
                                                 .Filtered(f => f.Custom("filtered"))
                                                 .ToString();
 
-        It should_return_correct_result = () => result.ShouldEqual(@"'query': { 'bool': { bool query } },{ 'dis_max': { dismax query } },{ 'nested': { nested query } },{ 'query_string': { query string } },{ 'range': { range query } },{ 'term': { term query } },{ 'terms': { terms query } },{ 'constant_score': { constant score } },{ 'filtered': { filtered } }".AltQuote());
+        It should_return_correct_result = () => result.ShouldEqual("'query': { 'bool': { bool query } },{ 'dis_max': { dismax query } },{ 'nested': { nested query } },{ 'query_string': { query string } },{ 'range': { range query } },{ 'term': { term query } },{ 'terms': { terms query } },{ 'constant_score': { constant score } },{ 'filtered': { filtered } }".AltQuote());
 
         private static string result;
     }

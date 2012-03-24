@@ -15,7 +15,7 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
 
         It should_contain_default_field_part = () => result.ShouldContain("'default_field': 'StringProperty'".AltQuote());
 
-        It should_contain_custom_part = () => result.ShouldContain("custom part".AltQuote());
+        It should_contain_custom_part = () => result.ShouldContain("custom part");
 
         It should_return_correct_query = () => result.ShouldEqual("{ 'query_string': { 'default_field': 'StringProperty',custom part } }".AltQuote());
 

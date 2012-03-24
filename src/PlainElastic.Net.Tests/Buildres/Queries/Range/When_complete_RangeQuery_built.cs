@@ -14,7 +14,7 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
                                                 .IncludeLower(true)
                                                 .IncludeUpper(false)
                                                 .Boost(5)
-                                                .Custom("'custom': {0}", "123")
+                                                .Custom("'custom': {0}".AltQuote(), "123")
                                                 .ToString();
 
         It should_contain_boost_part = () => result.ShouldContain(@"'boost': 5".AltQuote());

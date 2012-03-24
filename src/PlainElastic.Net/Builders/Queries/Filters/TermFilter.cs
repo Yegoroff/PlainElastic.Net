@@ -15,7 +15,7 @@ namespace PlainElastic.Net.Queries
         {
             if (!value.IsNullOrEmpty())
             {
-                RegisterJsonPart("'value': {0}", value.Quotate());
+                RegisterJsonPart("{0}: {1}", RegisteredField, value.Quotate());
                 hasValue = true;
             }
 
@@ -48,10 +48,7 @@ namespace PlainElastic.Net.Queries
 
         protected override string ApplyJsonTemplate(string body)
         {
-            if (RegisteredField.IsNullOrEmpty())
-                return "{{ 'term': {{ {0} }} }}".AltQuoteF(body);
-
-            return "{{ 'term': {{ {0}: {{ {1} }} }} }}".AltQuoteF(RegisteredField, body);
+            return "{{ 'term': {{ {0} }} }}".AltQuoteF(body);
         }
     }
 }

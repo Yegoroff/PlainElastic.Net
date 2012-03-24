@@ -20,7 +20,7 @@ namespace PlainElastic.Net.Queries
                 var termsValues = values.Where(v => !v.IsNullOrEmpty()).Quotate().JoinWithComma();
                 if (!termsValues.IsNullOrEmpty())
                 {
-                    RegisterJsonPart("[ {0} ]", termsValues);
+                    RegisterJsonPart("{0}: [ {1} ]", RegisteredField, termsValues);
                     hasValues = true;
                 }
             }
@@ -64,10 +64,8 @@ namespace PlainElastic.Net.Queries
 
         protected override string ApplyJsonTemplate(string body)
         {
-            if (RegisteredField.IsNullOrEmpty())
-                return "{{ 'terms': {{ {0} }} }}".AltQuoteF(body);
-
-            return "{{ 'terms': {{ {0}: {1} }} }}".AltQuoteF(RegisteredField, body);
+            
+            return "{{ 'terms': {{ {0} }} }}".AltQuoteF(body);
         }
 
     }

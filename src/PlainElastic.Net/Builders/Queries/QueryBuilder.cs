@@ -12,7 +12,6 @@ namespace PlainElastic.Net.Queries
     /// </summary>
     public class QueryBuilder<T> : QueryBase<QueryBuilder<T>>
     {
-        private bool hasRequiredParts;
 
         /// <summary>
         /// The query element within the search request body allows to define a query using the Query DSL.
@@ -20,9 +19,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public QueryBuilder<T> Query(Func<Query<T>, Query<T>> query)
         {
-            var result = RegisterJsonPartExpression(query);
-            hasRequiredParts = hasRequiredParts || !result.GetIsEmpty();
-
+            RegisterJsonPartExpression(query);
             return this;
         }
 
@@ -32,8 +29,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public QueryBuilder<T> Filter(Func<Filter<T>, Filter<T>> filter)
         {
-            var result = RegisterJsonPartExpression(filter);
-            hasRequiredParts = hasRequiredParts || !result.GetIsEmpty();
+            RegisterJsonPartExpression(filter);
             return this;
         }
 
@@ -43,8 +39,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public QueryBuilder<T> Facets(Func<Facets<T>, Facets<T>> facets)
         {
-            var result = RegisterJsonPartExpression(facets);
-            hasRequiredParts = hasRequiredParts || !result.GetIsEmpty();
+            RegisterJsonPartExpression(facets);
             return this;
         }
 
@@ -54,7 +49,6 @@ namespace PlainElastic.Net.Queries
         public QueryBuilder<T> From (int from = 0 )
         {
             RegisterJsonPart("'from': {0}", from.AsString());
-
             return this;
         }
 
@@ -64,7 +58,6 @@ namespace PlainElastic.Net.Queries
         public QueryBuilder<T> Size(int size = 10)
         {            
             RegisterJsonPart("'size': {0}", size.AsString());
-
             return this;
         }
 
@@ -76,7 +69,6 @@ namespace PlainElastic.Net.Queries
         public QueryBuilder<T> TrackScores(bool trackScores = false)
         {            
             RegisterJsonPart("'track_scores': {0}", trackScores.AsString());
-
             return this;
         }
 
@@ -99,7 +91,6 @@ namespace PlainElastic.Net.Queries
         public QueryBuilder<T> Explain(bool explain = true)
         {
             RegisterJsonPart("'explain': {0}", explain.AsString());
-
             return this;
         }
 
@@ -110,7 +101,6 @@ namespace PlainElastic.Net.Queries
         public QueryBuilder<T> Version(bool returnVersions = true)
         {
             RegisterJsonPart("'version': {0}", returnVersions.AsString());
-
             return this;
         }
 
@@ -121,7 +111,6 @@ namespace PlainElastic.Net.Queries
         public QueryBuilder<T> MinScore(double minScore)
         {
             RegisterJsonPart("'min_score': {0}", minScore.AsString());
-
             return this;
         }
 
@@ -182,7 +171,7 @@ namespace PlainElastic.Net.Queries
 
         protected override bool HasRequiredParts()
         {
-            return hasRequiredParts;
+            return true;
         }
 
         protected override string ApplyJsonTemplate(string body)

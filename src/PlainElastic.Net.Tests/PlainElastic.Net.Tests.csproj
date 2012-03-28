@@ -81,7 +81,7 @@
     <Compile Include="Buildres\Queries\DisMax\When_empty_DisMaxQuery_built.cs" />
     <Compile Include="Buildres\Queries\DisMax\When_complete_DisMaxQuery_built.cs" />
     <Compile Include="Buildres\Queries\Filtered\When_empty_FilteredQuery_built.cs" />
-    <Compile Include="Buildres\Queries\When_empty_QueryBuilder_built.cs" />
+    <Compile Include="Buildres\Queries\When_QueryBuilder_withot_query_part_built.cs" />
     <Compile Include="Buildres\Queries\Nested\When_empty_NestedQuery_built.cs" />
     <Compile Include="Buildres\Queries\Nested\When_complete_NestedQuery_built.cs" />
     <Compile Include="Buildres\Queries\_Facets\When_Facets_with_one_facet_built.cs" />

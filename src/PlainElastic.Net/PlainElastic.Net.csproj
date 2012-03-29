@@ -45,6 +45,11 @@
   <ItemGroup>
     <Compile Include="Builders\Commands\CommandBuilder.cs" />
     <Compile Include="Builders\Commands\CloseCommand.cs" />
+    <Compile Include="Builders\Commands\BulkCommand.cs" />
+    <Compile Include="Builders\Commands\CreateIndexCommand.cs" />
+    <Compile Include="Builders\Commands\OptimizeCommand.cs" />
+    <Compile Include="Builders\Commands\CountCommand.cs" />
+    <Compile Include="Builders\Commands\RefreshCommand.cs" />
     <Compile Include="Builders\Commands\UpdateSettingsCommand.cs" />
     <Compile Include="Builders\Commands\OpenCommand.cs" />
     <Compile Include="Builders\Commands\IndexExistsCommand.cs" />
@@ -58,6 +63,7 @@
     <Compile Include="Builders\Commands\GetCommand.cs" />
     <Compile Include="Builders\Commands\Commands.cs" />
     <Compile Include="Builders\Commands\SearchCommand.cs" />
+    <Compile Include="Builders\Enums.cs" />
     <Compile Include="Builders\Mappings\NestedObject.cs" />
     <Compile Include="Builders\Mappings\Core\BinaryMap.cs" />
     <Compile Include="Builders\Mappings\Core\BooleanMap.cs" />

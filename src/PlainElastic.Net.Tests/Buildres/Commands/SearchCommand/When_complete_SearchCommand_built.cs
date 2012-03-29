@@ -9,7 +9,7 @@ namespace PlainElastic.Net.Tests.Buildres.Commands
         Because of = () => result = new SearchCommand(index:"Index", type:"Type")
             .AnalyzeWildcard(true)
             .Analyzer("analyzer")
-            .DefaultOperator(DefaultQueryOperator.OR)
+            .DefaultOperator(Operator.OR)
             .Df("defaultField")
             .Explain()
             .Fields("field1, field2")
@@ -29,6 +29,7 @@ namespace PlainElastic.Net.Tests.Buildres.Commands
 
         It should_starts_with_index_type = () => result.ShouldStartWith("index/type");
 
+        It should_contains_search_verb = () => result.ShouldContain("_search");
 
 
         It should_contain_first_parameter_AnalyzeWildcard_equals_to_true = () => result.ShouldContain("?analyze_wildcard=true");

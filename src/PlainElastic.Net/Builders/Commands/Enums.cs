@@ -10,8 +10,6 @@ namespace PlainElastic.Net
 
     public enum DocumentReplication { sync, async }
 
-    public enum DefaultQueryOperator { AND, OR }
-
     public enum SortDirection { ask, desc }
 
     public enum SearchType { query_and_fetch, query_then_fetch, dfs_query_and_fetch, dfs_query_then_fetch, count, scan }

@@ -31,30 +31,56 @@ namespace PlainElastic.Net
 
         #region Query Parameters
 
+        /// <summary>
+        /// The analyzer name to be used when analyzing the query string.
+        /// </summary>
         public SearchCommand Analyzer(string analyzer)
         {
             Parameters.Add("analyzer", analyzer);
             return this;
         }
 
+        /// <summary>
+        /// The analyzer name to be used when analyzing the query string.
+        /// </summary>
+        public SearchCommand Analyzer(DefaultAnalizers analyzer)
+        {
+            Parameters.Add("analyzer", analyzer.ToString());
+            return this;
+        }
+
+
+
+        /// <summary>
+        /// Should wildcard and prefix queries be analyzed or not. Defaults to false.
+        /// </summary>
         public SearchCommand AnalyzeWildcard(bool analyzeWildcard = false)
         {
             Parameters.Add("analyze_wildcard", analyzeWildcard.AsString());
             return this;
         }
 
+        /// <summary>
+        /// The default field to use when no field prefix is defined within the query.
+        /// </summary>
         public SearchCommand Df(string defaultField)
         {
             Parameters.Add("df", defaultField);
             return this;
         }
 
-        public SearchCommand DefaultOperator(DefaultQueryOperator defaultOperator)
+        /// <summary>
+        /// The default operator to be used, can be AND or OR. Defaults to OR.
+        /// </summary>
+        public SearchCommand DefaultOperator(Operator defaultOperator = Operator.OR)
         {
             Parameters.Add("default_operator", defaultOperator.ToString());
             return this;
         }
 
+        /// <summary>
+        /// Includes explanation of how scoring of the hits was computed for each hit.
+        /// </summary>
         public SearchCommand Explain()
         {
             Parameters.Add("explain", "true");
@@ -89,6 +115,9 @@ namespace PlainElastic.Net
             return this;
         }
 
+        /// <summary>
+        /// Determines whether terms should be automatically lowercased or not. Defaults to true.
+        /// </summary>
         public SearchCommand LowercaseExpandedTerms(bool lowercaseExpandedTerms = true)
         {
             Parameters.Add("lowercase_expanded_terms", lowercaseExpandedTerms.AsString());
@@ -96,12 +125,19 @@ namespace PlainElastic.Net
 
         }
 
+
+        /// <summary>
+        /// The query string (maps to the query_string query).
+        /// </summary>
         public SearchCommand Q(string query)
         {
             Parameters.Add("q", query);
             return this;
         }
 
+        /// <summary>
+        /// A comma separated list of the routing values to control which shards the count request will be executed on.
+        /// </summary>
         public SearchCommand Routing(string routing)
         {
             Parameters.Add("routing", routing);
@@ -119,6 +155,11 @@ namespace PlainElastic.Net
             return this;
         }
 
+        /// <summary>
+        /// The type of the search operation to perform.
+        /// Defaults to query_then_fetch.
+        /// see http://www.elasticsearch.org/guide/reference/api/search/search-type.html
+        /// </summary>
         public SearchCommand SearchType(SearchType searchType)
         {
             Parameters.Add("search_type", searchType.ToString());

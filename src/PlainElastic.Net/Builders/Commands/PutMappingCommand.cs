@@ -28,6 +28,9 @@ namespace PlainElastic.Net
 
         #region Query Parameters
 
+        /// <summary>
+        /// Used to control if conflicts should be ignored or not, by default, it is set to false which means conflicts are not ignored.
+        /// </summary>
         public PutMappingCommand IgnoreConflicts(bool ignore)
         {
             Parameters.Add("ignore_conflicts", ignore.AsString());

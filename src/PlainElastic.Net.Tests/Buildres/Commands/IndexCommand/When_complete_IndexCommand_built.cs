@@ -47,7 +47,7 @@ namespace PlainElastic.Net.Tests.Buildres.Commands
 
         It should_contain_parameter_version_equals_to_3 = () => result.ShouldContain("&version=3");
 
-        It should_return_correct_value = () => result.ShouldEqual(@"index/type/id?consistency=quorum&op_type=create&parent=parentId&percolate=color:green&refresh=true&replication=async&routing=route&ttl=1h&timeout=1d&timestamp=2007-10-08T00:00:00&version=3&pretty=true");
+        It should_return_correct_value = () => result.ShouldEqual("index/type/id?consistency=quorum&op_type=create&parent=parentId&percolate=color:green&refresh=true&replication=async&routing=route&ttl=1h&timeout=1d&timestamp=2007-10-08T00:00:00&version=3&pretty=true");
 
 
         private static string result;

@@ -28,7 +28,7 @@ namespace PlainElastic.Net
 
         #region Query Parameters
 
-        public FlushCommand Refresh(bool refresh)
+        public FlushCommand Refresh(bool refresh = true)
         {
             Parameters.Add("refresh", refresh.AsString());
             return this;

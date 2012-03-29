@@ -95,7 +95,7 @@ namespace PlainElastic.Net.Queries
         }
 
         /// <summary>
-        /// Enables explanation for each hit on how its score was computed.
+        /// Returns a version for each search hit.
         /// see http://www.elasticsearch.org/guide/reference/api/search/version.html
         /// </summary>
         public QueryBuilder<T> Version(bool returnVersions = true)

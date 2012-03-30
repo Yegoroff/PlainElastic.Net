@@ -20,9 +20,15 @@ namespace PlainElastic.Net.Queries
             return this;
         }
 
-
-
-
+        /// <summary>
+        /// Allows you to return a count of the hits matching the filter.
+        /// see http://www.elasticsearch.org/guide/reference/api/search/facets/filter-facet.html
+        /// </summary>
+        public Facets<T> FilterFacets(Func<FilterFacet<T>, FilterFacet<T>> filterFacet)
+        {
+            RegisterJsonPartExpression(filterFacet);
+            return this;
+        }
 
 
         protected override bool HasRequiredParts()

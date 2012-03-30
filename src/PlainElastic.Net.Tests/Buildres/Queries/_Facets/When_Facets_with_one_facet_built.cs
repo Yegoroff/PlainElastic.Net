@@ -11,7 +11,7 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
                                                 .Terms(t=>t
                                                     .FacetName("First")
                                                     .Field(f=>f.StringProperty)
-                                                )                                              
+                                                )
                                                 .ToString();
 
         It should_return_correct_JSON = () => result.ShouldEqual("'facets': { 'First': { 'terms': { 'field': 'StringProperty' } } }".AltQuote());

@@ -159,6 +159,7 @@ namespace PlainElastic.Net.Queries
             return this;
         }
 
+
         private string GenerateFieldsFacetPart()
         {
             var fields = facetFields.JoinWithComma();
@@ -168,11 +169,6 @@ namespace PlainElastic.Net.Queries
             return "'fields': [{0}]".AltQuoteF(fields);
         }
 
-
-        protected override bool HasRequiredParts()
-        {
-            return true;
-        }
 
         protected override string ApplyFacetBodyJsonTemplate(string body)
         {

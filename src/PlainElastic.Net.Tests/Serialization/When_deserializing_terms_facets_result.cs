@@ -10,7 +10,7 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
     {
         #region Terms Facets Json Result
         private const string termsFacetsJsonResult =
-            @"{
+@"{
     'took': 0,
     'timed_out': false,
     '_shards': {
@@ -73,13 +73,13 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
             result.facets["TestTerms"].ShouldBeOfType<TermsFacetResult>();
 
         It should_contain_TestTerms_facet_with_correct_total_count = () =>
-            result.facets["TestTerms"].total.ShouldEqual(6000);
+            result.facets["TestTerms"].As<TermsFacetResult>().total.ShouldEqual(6000);
 
         It should_contain_TestTerms_facet_with_correct_missing_count = () =>
-            result.facets["TestTerms"].missing.ShouldEqual(200);
+            result.facets["TestTerms"].As<TermsFacetResult>().missing.ShouldEqual(200);
 
         It should_contain_TestTerms_facet_with_correct_other_count = () =>
-            result.facets["TestTerms"].other.ShouldEqual(3000);
+            result.facets["TestTerms"].As<TermsFacetResult>().other.ShouldEqual(3000);
 
         It should_contain_TestTerms_facet_with_3_terms_facets = () =>
             result.facets["TestTerms"].As<TermsFacetResult>().terms.Count.ShouldEqual(3);

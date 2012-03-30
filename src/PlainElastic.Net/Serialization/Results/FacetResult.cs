@@ -5,9 +5,7 @@ namespace PlainElastic.Net.Serialization
     public class FacetResult
     {
         public string _type;
-        public int total;
-        public int missing;
-        public int other;
+
 
         public T As<T>() where T: FacetResult
         {
@@ -18,6 +16,9 @@ namespace PlainElastic.Net.Serialization
 
     public class TermsFacetResult : FacetResult
     {
+        public int total;
+        public int missing;
+        public int other;
         public List<Term> terms;
 
         public class Term
@@ -26,4 +27,11 @@ namespace PlainElastic.Net.Serialization
             public int count;
         }
     }
+
+    public class FilterFacetResult : FacetResult
+    {
+        public int count;
+    }
+
+
 }

@@ -9,7 +9,8 @@ namespace PlainElastic.Net.Serialization
     {
         private readonly Dictionary<string, Type> facetRegistration = new Dictionary<string, Type>
         {
-            {"terms", typeof(TermsFacetResult)}
+            {"terms", typeof(TermsFacetResult)},
+            {"filter", typeof(FilterFacetResult)}
         };
 
 

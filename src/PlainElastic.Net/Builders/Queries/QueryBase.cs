@@ -56,7 +56,13 @@ namespace PlainElastic.Net.Queries
             return resultPart;
         }
 
-
+        /// <summary>
+        /// Determines whether this query/filter should generate any JSON.
+        /// e.g. in case of "Term" query, if Value parameter not defined or empty -
+        /// Term query will not be generated to JSON, 
+        /// and empty string will be returned from ToJson/ToString call.
+        /// Note: This check is not performed if there are no JSON parts registered.
+        /// </summary>
         protected abstract bool HasRequiredParts();
 
         protected abstract string ApplyJsonTemplate(string body);

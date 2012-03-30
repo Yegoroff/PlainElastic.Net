@@ -9,7 +9,10 @@ namespace PlainElastic.Net.Queries
     public class RangeQuery<T>: RangeBase<T, RangeQuery<T>>
     {
 
-        public RangeQuery<T> Boost(double boost)
+        /// <summary>
+        /// Sets the boost value of the query. Defaults to 1.0.
+        /// </summary>
+        public RangeQuery<T> Boost(double boost = 1)
         {
             RegisterJsonPart("'boost': {0}", boost.AsString());
             return this;

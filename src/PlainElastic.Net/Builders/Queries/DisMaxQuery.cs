@@ -41,7 +41,7 @@ namespace PlainElastic.Net.Queries
         /// <summary>
         /// Sets the boost value of the query. Defaults to 1.0.
         /// </summary>
-        public DisMaxQuery<T> Boost(double boost)
+        public DisMaxQuery<T> Boost(double boost = 1)
         {
             RegisterJsonPart("'boost': {0}", boost.AsString());
 

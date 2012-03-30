@@ -55,8 +55,10 @@ namespace PlainElastic.Net.Mappings
             RegisterCustomJsonMap("'index': {0}", index.ToString().Quotate());
             return (TMapping) this;            
         }
-        
 
+        /// <summary>
+        /// Sets the boost value of the property. Defaults to 1.0.
+        /// </summary>
         public TMapping Boost(double boost)
         {
             RegisterCustomJsonMap("'boost': {0}", boost.AsString());

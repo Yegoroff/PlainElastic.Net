@@ -45,6 +45,16 @@ namespace PlainElastic.Net.Queries
             return this;
         }
 
+        /// <summary>
+        /// Sets the boost value of the query. Defaults to 1.0.
+        /// </summary>
+        public TermsQuery<T> Boost(double boost = 1)
+        {
+            RegisterJsonPart("'boost': {0}", boost.AsString());
+
+            return this;
+        }
+
 
         protected override bool HasRequiredParts()
         {

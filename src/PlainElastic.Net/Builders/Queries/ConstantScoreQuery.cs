@@ -28,7 +28,10 @@ namespace PlainElastic.Net.Queries
             return this;
         }
 
-        public ConstantScoreQuery<T> Boost(double boost)
+        /// <summary>
+        /// Sets the boost value of the query. Defaults to 1.0.
+        /// </summary>
+        public ConstantScoreQuery<T> Boost(double boost = 1)
         {
             RegisterJsonPart("'boost': {0}", boost.AsString());
 

@@ -21,7 +21,14 @@ namespace PlainElastic.Net.Queries
             return this;
         }
 
+        /// <summary>
+        /// Allows to define scope associated with query.
+        /// </summary>
+        public NestedQuery<T> Scope(string scope)
+        {
+            RegisterJsonPart("'_scope': {0}", scope.Quotate());
 
-        // TODO: _scope 
+            return this;
+        }
     }
 }

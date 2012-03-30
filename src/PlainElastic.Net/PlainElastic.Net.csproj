@@ -81,6 +81,7 @@
     <Compile Include="Builders\Mappings\RootObject.cs" />
     <Compile Include="Builders\Mappings\Core\StringMap.cs" />
     <Compile Include="Builders\Queries\ConstantScoreQuery.cs" />
+    <Compile Include="Builders\Queries\Facets\FacetBase.cs" />
     <Compile Include="Builders\Queries\Facets\FacetFilter.cs" />
     <Compile Include="Builders\Queries\Facets\Facets.cs" />
     <Compile Include="Builders\Queries\Facets\TermsFacet.cs" />

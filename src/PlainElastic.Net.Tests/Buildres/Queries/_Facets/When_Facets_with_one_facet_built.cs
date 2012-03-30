@@ -14,7 +14,7 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
                                                 )                                              
                                                 .ToString();
 
-        It should_return_correct_JSON = () => result.ShouldEqual(@"'facets': { 'First': { 'terms': { 'field': 'StringProperty' } } }".AltQuote());
+        It should_return_correct_JSON = () => result.ShouldEqual("'facets': { 'First': { 'terms': { 'field': 'StringProperty' } } }".AltQuote());
 
         private static string result;
     }

@@ -10,22 +10,9 @@ namespace PlainElastic.Net.Queries
     /// Allows to specify field facets that return the N most frequent terms
     /// see http://www.elasticsearch.org/guide/reference/api/search/facets/terms-facet.html
     /// </summary>
-    public class TermsFacet<T> : QueryBase<TermsFacet<T>>
+    public class TermsFacet<T> : FacetBase<TermsFacet<T>, T>
     {
-        private string facetName;
         private readonly List<string> facetFields = new List<string>();
-
-
-        /// <summary>
-        /// The name of the facet used to identify facets results.
-        /// </summary>
-        public TermsFacet<T> FacetName(string facetName)
-        {
-            this.facetName = facetName.Quotate();
-
-            return this;
-        }
-
 
         /// <summary>
         /// The field to execute term facet against.
@@ -172,7 +159,6 @@ namespace PlainElastic.Net.Queries
             return this;
         }
 
-
         private string GenerateFieldsFacetPart()
         {
             var fields = facetFields.JoinWithComma();
@@ -188,13 +174,13 @@ namespace PlainElastic.Net.Queries
             return true;
         }
 
-        protected override string ApplyJsonTemplate(string body)
+        protected override string ApplyFacetBodyJsonTemplate(string body)
         {
             string fields = GenerateFieldsFacetPart();
             if (!fields.IsNullOrEmpty())
                 body = new[] {fields, body}.JoinWithComma();
 
-            return "{0}: {{ 'terms': {{ {1} }} }}".AltQuoteF(facetName, body);
+            return "'terms': {{ {0} }}".AltQuoteF(body);
         }
         
     }

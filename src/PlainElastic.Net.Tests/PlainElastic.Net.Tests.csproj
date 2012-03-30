@@ -79,6 +79,9 @@
     <Compile Include="Buildres\Queries\Terms\When_complete_TermQuery_built.cs" />
     <Compile Include="Buildres\Queries\Term\When_TermQuery_with_empty_custom_part_built.cs" />
     <Compile Include="Buildres\Queries\Term\When_TermQuery_with_collection_field_built.cs" />
+    <Compile Include="Buildres\Queries\_Facets\FacetFiler\When_empty_FacetFilter_built.cs" />
+    <Compile Include="Buildres\Queries\_Facets\Terms\When_custom_TermsFacet_with_FacetFilter_built.cs" />
+    <Compile Include="Buildres\Queries\_Facets\FacetFiler\When_complete_FacetFilter_built.cs" />
     <Compile Include="Buildres\Queries\_Filters\And\When_complete_AndFilter_built.cs" />
     <Compile Include="Buildres\Queries\_Filters\And\When_empty_AndFilter_built.cs" />
     <Compile Include="Buildres\Queries\_Filters\When_empty_Filter_built.cs" />
@@ -107,7 +110,7 @@
     <Compile Include="Buildres\Queries\Nested\When_complete_NestedQuery_built.cs" />
     <Compile Include="Buildres\Queries\_Facets\When_Facets_with_one_facet_built.cs" />
     <Compile Include="Buildres\Queries\_Facets\When_Facets_with_several_facets_built.cs" />
-    <Compile Include="Buildres\Queries\_Facets\When_complete_TermsFacet_built.cs" />
+    <Compile Include="Buildres\Queries\_Facets\Terms\When_complete_TermsFacet_built.cs" />
     <Compile Include="Buildres\Queries\ConstantScore\When_custom_ConstantScoreQuery_built.cs" />
     <Compile Include="Buildres\Queries\ConstantScore\When_empty_ConstantScoreQuery_built.cs" />
     <Compile Include="Buildres\Queries\ConstantScore\When_complete_ConstantScoreQuery_built.cs" />

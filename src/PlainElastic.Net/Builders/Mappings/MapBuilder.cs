@@ -29,7 +29,7 @@ namespace PlainElastic.Net.Mappings
 
         public string BuildBeautified()
         {
-            return Build().ButifyJson();
+            return Build().BeautifyJson();
         }
 
 

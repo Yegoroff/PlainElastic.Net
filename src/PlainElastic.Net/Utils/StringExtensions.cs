@@ -68,7 +68,7 @@ namespace PlainElastic.Net.Utils
         }
 
 
-        public static string ButifyJson(this string json)
+        public static string BeautifyJson(this string json)
         {
             return JsonBeautifier.Beautify(json);
         }

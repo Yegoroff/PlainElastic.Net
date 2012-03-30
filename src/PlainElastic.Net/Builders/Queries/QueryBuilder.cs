@@ -156,7 +156,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public string BuildBeautified()
         {
-            return Build().ButifyJson();
+            return Build().BeautifyJson();
         }
 
 

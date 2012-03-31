@@ -97,6 +97,22 @@ namespace PlainElastic.Net
             return this;
         }
 
+        /// <summary>
+        /// Allows to enable external versioning.
+        /// By default internal versioning used,
+        /// to supplemented version number with an external value (for example, if maintained in a database),
+        /// version_type should be set to external
+        /// </summary>
+        public IndexCommand VersionType(VersionType versionType)
+        {
+            Parameters.Add("version_type", versionType.ToString());
+            return this;
+        }
+
+        /// <summary>
+        /// Allows to specify document version that will be used to 
+        /// provide optimistic concurrency control.
+        /// </summary>
         public IndexCommand Version(long version)
         {
             Parameters.Add("version", version.AsString());

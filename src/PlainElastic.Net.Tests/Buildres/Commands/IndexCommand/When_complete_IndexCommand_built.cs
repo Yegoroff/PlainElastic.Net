@@ -18,6 +18,7 @@ namespace PlainElastic.Net.Tests.Buildres.Commands
             .TTL("1h")
             .Timeout("1d")
             .Timestamp(new DateTime(2007, 10, 8))
+            .VersionType(VersionType.external)
             .Version(3)
             .Pretty()
             .BuildCommand();
@@ -45,9 +46,11 @@ namespace PlainElastic.Net.Tests.Buildres.Commands
 
         It should_contain_parameter_timestamp_equals_to_2007_10_08 = () => result.ShouldContain("&timestamp=2007-10-08T00:00:00");
 
+        It should_contain_parameter_version_tyoe_equals_to_external = () => result.ShouldContain("&version_type=external");
+
         It should_contain_parameter_version_equals_to_3 = () => result.ShouldContain("&version=3");
 
-        It should_return_correct_value = () => result.ShouldEqual("index/type/id?consistency=quorum&op_type=create&parent=parentId&percolate=color:green&refresh=true&replication=async&routing=route&ttl=1h&timeout=1d&timestamp=2007-10-08T00:00:00&version=3&pretty=true");
+        It should_return_correct_value = () => result.ShouldEqual("index/type/id?consistency=quorum&op_type=create&parent=parentId&percolate=color:green&refresh=true&replication=async&routing=route&ttl=1h&timeout=1d&timestamp=2007-10-08T00:00:00&version_type=external&version=3&pretty=true");
 
 
         private static string result;

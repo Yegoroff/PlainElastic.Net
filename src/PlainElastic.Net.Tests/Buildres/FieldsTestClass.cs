@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace PlainElastic.Net.Tests.Buildres
 {
-    public enum State {Active, UnderTest, Disabled }
+    public enum State {Active, UnderTest, Disabled, New }
 
     public class FieldsTestClass
     {

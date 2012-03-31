@@ -43,6 +43,10 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Builders\Bulk\BulkBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Builders\Bulk\BulkOperationOptions.cs" />
     <Compile Include="Builders\Commands\CommandBuilder.cs" />
     <Compile Include="Builders\Commands\CloseCommand.cs" />
     <Compile Include="Builders\Commands\BulkCommand.cs" />

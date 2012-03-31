@@ -35,6 +35,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Machine.Specifications.0.5.3.0\lib\Machine.Specifications.dll</HintPath>
     </Reference>
+    <Reference Include="Moq">
+      <HintPath>..\..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\packages\Newtonsoft.Json.4.0.7\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -42,6 +45,12 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Buildres\Bulk\When_Bulk_mixed_operations_built_from_collection.cs" />
+    <Compile Include="Buildres\Bulk\When_Bulk_indexes_pipelined_from_collection.cs" />
+    <Compile Include="Buildres\Bulk\When_Delete_Bulk_operation_built.cs" />
+    <Compile Include="Buildres\Bulk\When_Create_Bulk_operation_built.cs" />
+    <Compile Include="Buildres\Bulk\When_Index_Bulk_operation_built.cs" />
+    <Compile Include="Buildres\Bulk\When_Bulk_indexes_built_from_collection.cs" />
     <Compile Include="Buildres\Commands\CloseCommand\When_complete_CloseCommand_built.cs" />
     <Compile Include="Buildres\Commands\BulkCommand\When_complete_BulkCommand_built.cs" />
     <Compile Include="Buildres\Commands\CreateIndexCommand\When_complete_CreateIndexCommand_built.cs" />
@@ -89,7 +98,7 @@
     <Compile Include="Buildres\Queries\_Filters\And\When_complete_AndFilter_built.cs" />
     <Compile Include="Buildres\Queries\_Filters\And\When_empty_AndFilter_built.cs" />
     <Compile Include="Buildres\Queries\_Filters\Bool\When_complete_BoolFilter_built.cs" />
-    <Compile Include="Buildres\Queries\_Filters\Bool\When_empty_BoolQuery_built.cs" />
+    <Compile Include="Buildres\Queries\_Filters\Bool\When_empty_BoolFilter_built.cs" />
     <Compile Include="Buildres\Queries\_Filters\When_empty_Filter_built.cs" />
     <Compile Include="Buildres\Queries\_Filters\When_complete_Filter_built.cs" />
     <Compile Include="Buildres\Queries\_Filters\Term\When_complete_TermFilter_built.cs" />

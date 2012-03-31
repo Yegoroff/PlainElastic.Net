@@ -42,6 +42,9 @@ namespace PlainElastic.Net.Utils
 
         public static string Quotate(this string value)
         {
+            if (value.IsNullOrEmpty())
+                return "";
+
             return "\"" + value + "\"";
         }
 
@@ -54,6 +57,12 @@ namespace PlainElastic.Net.Utils
         public static bool IsNullOrEmpty(this string source)
         {
             return String.IsNullOrEmpty(source);
+        }
+
+
+        public static string Join(this IEnumerable<string> list)
+        {
+            return list == null ? "" : String.Join("", list);
         }
 
 

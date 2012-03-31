@@ -87,6 +87,10 @@
     <Compile Include="Builders\Queries\Facets\Facets.cs" />
     <Compile Include="Builders\Queries\Facets\TermsFacet.cs" />
     <Compile Include="Builders\Queries\FilteredQuery.cs" />
+    <Compile Include="Builders\Queries\Filters\BoolFilter.cs" />
+    <Compile Include="Builders\Queries\Filters\ShouldFilter.cs" />
+    <Compile Include="Builders\Queries\Filters\MustNotFilter.cs" />
+    <Compile Include="Builders\Queries\Filters\MustFilter.cs" />
     <Compile Include="Builders\Queries\RangeBase.cs" />
     <Compile Include="Builders\Queries\FieldQueryBase.cs" />
     <Compile Include="Builders\Queries\Filters\RangeFilter.cs" />

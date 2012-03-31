@@ -4,10 +4,10 @@ using PlainElastic.Net.Queries;
 
 namespace PlainElastic.Net.Tests.Buildres.Queries
 {
-    [Subject(typeof(BoolQuery<>))]
-    class When_empty_BoolQuery_built
+    [Subject(typeof(BoolFilter<>))]
+    class When_empty_BoolFilter_built
     {
-        Because of = () => result = new BoolQuery<FieldsTestClass>()
+        Because of = () => result = new BoolFilter<FieldsTestClass>()
                                                 .Must(m => m
                                                 )
                                                 .MustNot(mn => mn                                                    
@@ -15,8 +15,6 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
                                                 .Should(s => s                                                    
                                                 )
                                                 .MinimumNumberShouldMatch(2)
-                                                .Boost(10)
-                                                .DisableCoord(true)
                                                 .ToString();
 
         It should_return_empty_string = () => result.ShouldBeEmpty();

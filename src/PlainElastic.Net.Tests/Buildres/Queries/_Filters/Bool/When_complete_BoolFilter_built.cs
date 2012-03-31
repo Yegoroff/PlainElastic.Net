@@ -4,10 +4,10 @@ using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Tests.Buildres.Queries
 {
-    [Subject(typeof(BoolQuery<>))]
-    class When_complete_BoolQuery_built
+    [Subject(typeof(BoolFilter<>))]
+    class When_complete_BoolFilter_built
     {
-        Because of = () => result = new BoolQuery<FieldsTestClass>()
+        Because of = () => result = new BoolFilter<FieldsTestClass>()
                                                 .Must( m => m
                                                     .Custom("Must")
                                                 )
@@ -18,8 +18,6 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
                                                     .Custom("Should")
                                                 )
                                                 .MinimumNumberShouldMatch(2)
-                                                .Boost(10)
-                                                .DisableCoord(true)
                                                 .Custom("Custom")
                                                 .ToString();
 
@@ -30,16 +28,13 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
 
         It should_contain_should_part = () => result.ShouldContain("'should': [ Should ]".AltQuote());
 
-
         It should_return_correct_result = () => result.ShouldEqual(("{ 'bool': { " +
-                                                                           "'must': [ Must ]," +
-                                                                           "'must_not': [ Must Not ]," +
-                                                                           "'should': [ Should ]," +
-                                                                           "'minimum_number_should_match': 2," +
-                                                                           "'boost': 10," +
-                                                                           "'disable_coord': true," +
-                                                                           "Custom " +
-                                                                       "} " +
+                                                                        "'must': [ Must ]," +
+                                                                        "'must_not': [ Must Not ]," +
+                                                                        "'should': [ Should ]," +
+                                                                        "'minimum_number_should_match': 2," +
+                                                                        "Custom " +
+                                                                      "} " +
                                                                    "}").AltQuote());
 
         private static string result;

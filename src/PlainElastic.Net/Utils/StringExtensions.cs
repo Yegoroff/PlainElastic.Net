@@ -76,6 +76,19 @@ namespace PlainElastic.Net.Utils
             return list == null ? "" : String.Join(",", list);
         }
 
+        public static IEnumerable<string> JoinInBatches(this IEnumerable<string> list, int batchSize)
+        {
+            if (list == null)
+                yield break;
+
+            int i = 0;
+            var batches = from value in list
+                          group value by i++ / batchSize into batch
+                          select batch.AsEnumerable();
+
+            foreach(var batch in batches)
+                yield return batch.Join();
+        }
 
         public static string BeautifyJson(this string json)
         {

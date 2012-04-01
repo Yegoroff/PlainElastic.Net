@@ -43,7 +43,10 @@ namespace PlainElastic.Net.Serialization
             return serializer.Deserialize<CommandResult>(operationResult);
         }
 
-
+        public static BulkResult ToBulkResult(this IJsonSerializer serializer, string operationResult)
+        {
+            return serializer.Deserialize<BulkResult>(operationResult);
+        }
     }
 
 }

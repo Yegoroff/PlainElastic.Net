@@ -131,6 +131,7 @@
     <Compile Include="Serialization\JsonNet\FacetCreationConverter.cs" />
     <Compile Include="Serialization\Results\BaseResult.cs" />
     <Compile Include="Serialization\Results\CommandResult.cs" />
+    <Compile Include="Serialization\Results\BulkResult.cs" />
     <Compile Include="Serialization\Results\FacetResult.cs" />
     <Compile Include="Serialization\Results\SearchResult.cs" />
     <Compile Include="Serialization\Results\DeleteResult.cs" />

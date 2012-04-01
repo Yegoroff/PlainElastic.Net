@@ -6,7 +6,7 @@ using PlainElastic.Net.Serialization;
 namespace PlainElastic.Net.Tests.Buildres.Queries
 {
     [Subject(typeof(JsonNetSerializer))]
-    class When_deserializing_terms_facets_result
+    class When_terms_facets_result_deserialized
     {
         #region Terms Facets Json Result
         private const string termsFacetsJsonResult =

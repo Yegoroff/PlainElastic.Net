@@ -29,9 +29,30 @@ namespace PlainSample
             };
 
 
+            var tweets = new List<Tweet> {
+                                    new Tweet
+                                    {
+                                        User = "firstUser",
+                                        Message = "first bulk tweet"
+                                    },
+                                    new Tweet
+                                    {
+                                        User = "secondUser",
+                                        Message = "second bulk tweet"
+                                    },
+                                    new Tweet
+                                    {
+                                        User = "thirdUser",
+                                        Message = "third bulk tweet"
+                                    },                                 
+                             };
+
+
             IndexTweet(tweet, "1", connection, serializer);
 
             IndexTweet(anotherTweet, "2", connection, serializer);
+
+            BulkTweetIndex(tweets, connection, serializer);
 
             GetTweet("1", serializer, connection);
 
@@ -42,6 +63,7 @@ namespace PlainSample
             Console.WriteLine("Press any key");
             Console.ReadKey();
         }
+
 
 
         private static void IndexTweet(Tweet tweet, string id, ElasticConnection connection, JsonNetSerializer serializer)
@@ -60,20 +82,20 @@ namespace PlainSample
 
             // This variable contains JSON of serialized tweet, thus we can check if our object serialized correctly 
             // or use it directly in ES admin console.
-            string data = serializer.ToJson(tweet);
+            string tweetJson = serializer.ToJson(tweet);
 
-            var result = connection.Put(indexCommand, data);
+            var result = connection.Put(indexCommand, tweetJson);
 
             // Parse index result.
             IndexResult indexResult = serializer.ToIndexResult(result);
 
 
-            PrintIndexCommand(result, indexResult, indexCommand, data);
+            PrintIndexCommand(result, indexResult, indexCommand, tweetJson);
         }
 
         private static void PrintIndexCommand(OperationResult result, IndexResult indexResult, string indexCommand, string data)
         {
-            Console.WriteLine("Executed: PUT \r\n{0} \r\n{1} \r\n".F(indexCommand, data ));
+            Console.WriteLine("Executed: \r\nPUT {0} \r\n{1} \r\n".F(indexCommand, data));
 
             Console.WriteLine("Index Results \r\n{0} \r\n".F(result));
 
@@ -84,6 +106,42 @@ namespace PlainSample
             Console.WriteLine(" _id: " + indexResult._id);
             Console.WriteLine(" _version: " + indexResult._version);
             Console.WriteLine();
+        }
+
+
+
+        private static void BulkTweetIndex(IEnumerable<Tweet> tweets, ElasticConnection connection, JsonNetSerializer serializer)
+        {
+            string bulkCommand = new BulkCommand(index: "twitter", type: "tweet").Refresh();
+
+            int id = 10; // start adding tweets from id = 10 
+            string bulkJson = new BulkBuilder(serializer)
+                                    .BuildCollection(tweets, 
+                                    (builder, tweet) => builder.Index(data: tweet, id: (id++).AsString())
+                                    );
+            
+            string result = connection.Post(bulkCommand, bulkJson);
+
+            //Parse bulk result;
+            BulkResult bulkResult = serializer.ToBulkResult(result);
+
+            PrintBulkCommand(bulkCommand, bulkJson, bulkResult);
+        }
+
+        private static void PrintBulkCommand(string bulkCommand, string bulkJson, BulkResult bulkResult)
+        {
+            Console.WriteLine("Executed: \r\nPOST {0} \r\n{1} \r\n".F(bulkCommand, bulkJson));
+
+            Console.WriteLine("Parsed Bulk Results");
+
+            foreach (var item in bulkResult.items)
+            {
+                Console.WriteLine(" operation: " + item.ResultType);
+                Console.WriteLine("     _index: " + item.Result._index);
+                Console.WriteLine("     _type: " + item.Result._type);
+                Console.WriteLine("     _id: " + item.Result._id);
+                Console.WriteLine();
+            }
         }
 
 
@@ -109,9 +167,9 @@ namespace PlainSample
 
         private static void PrintGetCommand(Tweet getTweet, OperationResult result, string getCommand)
         {
-            Console.WriteLine("Executed: GET \r\n {0} \r\n".F(getCommand));
+            Console.WriteLine("Executed: \r\nGET {0} \r\n".F(getCommand));
 
-            Console.WriteLine("Get Result: \r\n {0} \r\n".F(result));
+            Console.WriteLine("Get Result: \r\n {0} \r\n".F(result.Result.BeautifyJson()));
 
             Console.WriteLine("Parsed Get Result: ");
             Console.WriteLine(" User: " + getTweet.User);
@@ -139,12 +197,13 @@ namespace PlainSample
 
         private static void PrintDeleteCommand(string deleteCommand, DeleteResult deleteResult, OperationResult result)
         {
-            Console.WriteLine("Executed: DELETE \r\n {0} \r\n".F(deleteCommand));
+            Console.WriteLine("Executed: \r\nDELETE {0} \r\n".F(deleteCommand));
 
             Console.WriteLine("Delete RESULT: \r\n{0} \r\n".F(result));
 
             Console.WriteLine("Parsed Delete Results");
             Console.WriteLine(" ok: " + deleteResult.ok);
+            Console.WriteLine(" acknowledged: " + deleteResult.acknowledged);
             Console.WriteLine(" _index: " + deleteResult._index);
             Console.WriteLine(" _type: " + deleteResult._type);
             Console.WriteLine(" _id: " + deleteResult._id);
@@ -175,7 +234,7 @@ namespace PlainSample
                 .Query(qry => qry
                     .Term(term => term
                         .Field(tweet => tweet.User)
-                        .Value("testUser")
+                        .Value("testUser".ToLower()) // by default terms query requires lowercased values.
                         .Boost(5)
                      )
                     // Alternate way 
@@ -194,9 +253,7 @@ namespace PlainSample
 
         private static void PrintSearchResults(SearchResult<Tweet> searchResult, string searchCommand, string query, OperationResult results)
         {
-            Console.WriteLine("Executed: POST \r\n {0} \r\n".F(searchCommand));
-            Console.WriteLine(query);
-            Console.WriteLine();
+            Console.WriteLine("Executed: \r\nPOST {0} \r\n{1} \r\n".F(searchCommand, query));
 
             Console.WriteLine("Search Result: \r\n {0} \r\n".F(results));
 

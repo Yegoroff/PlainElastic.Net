@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using PlainElastic.Net.Serialization;
 using PlainElastic.Net.Utils;
 

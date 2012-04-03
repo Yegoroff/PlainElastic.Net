@@ -33,6 +33,12 @@ namespace PlainElastic.Net.Serialization
             return serializer.Deserialize<DeleteResult>(operationResult);
         }
 
+        public static CountResult ToCountResult(this IJsonSerializer serializer, string operationResult)
+        {
+            return serializer.Deserialize<CountResult>(operationResult);
+        }
+
+
         public static SearchResult<T> ToSearchResult<T>(this IJsonSerializer serializer, string operationResult)
         {
             return serializer.Deserialize<SearchResult<T>>(operationResult);

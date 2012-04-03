@@ -132,6 +132,7 @@
     <Compile Include="Serialization\Results\BaseResult.cs" />
     <Compile Include="Serialization\Results\CommandResult.cs" />
     <Compile Include="Serialization\Results\BulkResult.cs" />
+    <Compile Include="Serialization\Results\CountResult.cs" />
     <Compile Include="Serialization\Results\FacetResult.cs" />
     <Compile Include="Serialization\Results\SearchResult.cs" />
     <Compile Include="Serialization\Results\DeleteResult.cs" />
@@ -139,6 +140,7 @@
     <Compile Include="Serialization\Results\GetResult.cs" />
     <Compile Include="Serialization\JsonNet\JsonNetSerializer.cs" />
     <Compile Include="Serialization\IJsonSerializer.cs" />
+    <Compile Include="Serialization\Results\ShardsResult.cs" />
     <Compile Include="Serialization\SerializationExtensions.cs" />
     <Compile Include="Utils\JsonBeautifier.cs" />
     <Compile Include="Utils\UrlBuilder.cs" />

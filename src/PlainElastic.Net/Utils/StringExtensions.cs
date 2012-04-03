@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Text;
 
 
 namespace PlainElastic.Net.Utils
@@ -81,13 +82,22 @@ namespace PlainElastic.Net.Utils
             if (list == null)
                 yield break;
 
+            StringBuilder batch = new StringBuilder(batchSize * 30);
             int i = 0;
-            var batches = from value in list
-                          group value by i++ / batchSize into batch
-                          select batch.AsEnumerable();
+            foreach (var value in list)
+            {
+                if (i == batchSize)
+                {
+                    yield return batch.ToString();
+                    i = 0;
+                    batch.Clear();
+                }
 
-            foreach(var batch in batches)
-                yield return batch.Join();
+                batch.Append(value);
+                i++;
+            }
+
+            yield return batch.ToString();
         }
 
         public static string BeautifyJson(this string json)

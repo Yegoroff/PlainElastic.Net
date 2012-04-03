@@ -86,15 +86,15 @@ namespace PlainElastic.Net.Utils
             int i = 0;
             foreach (var value in list)
             {
+                batch.Append(value);
+                i++;
+
                 if (i == batchSize)
                 {
                     yield return batch.ToString();
                     i = 0;
                     batch.Clear();
                 }
-
-                batch.Append(value);
-                i++;
             }
 
             yield return batch.ToString();

@@ -19,7 +19,7 @@ namespace PlainElastic.Net.Mappings
         /// </summary>
         public NumberMap<T> Type(NumberMappingType mappingType)
         {           
-            customNumberType = mappingType.ToString();
+            customNumberType = mappingType.ToString().ToLower();
             FieldType = customNumberType;
 
             return this;

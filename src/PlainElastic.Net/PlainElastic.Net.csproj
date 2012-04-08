@@ -68,6 +68,10 @@
     <Compile Include="Builders\Commands\Commands.cs" />
     <Compile Include="Builders\Commands\SearchCommand.cs" />
     <Compile Include="Builders\Enums.cs" />
+    <Compile Include="Builders\Mappings\Attachment.cs" />
+    <Compile Include="Builders\Mappings\MultiField.cs" />
+    <Compile Include="Builders\Mappings\CoreFields.cs" />
+    <Compile Include="Builders\Mappings\Core\IpMap.cs" />
     <Compile Include="Builders\Mappings\NestedObject.cs" />
     <Compile Include="Builders\Mappings\Core\BinaryMap.cs" />
     <Compile Include="Builders\Mappings\Core\BooleanMap.cs" />

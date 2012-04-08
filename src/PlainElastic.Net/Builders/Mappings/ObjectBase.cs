@@ -92,6 +92,9 @@ namespace PlainElastic.Net.Mappings
 
         protected override string ApplyMappingTemplate(string mappingBody)
         {
+            if (mappingBody.IsNullOrEmpty())
+                return "{0}: {{ 'type': 'object' }}".AltQuoteF(Name.Quotate());
+
             return "{0}: {{ 'type': 'object',{1} }}".AltQuoteF(Name.Quotate(), mappingBody);
         }
     }

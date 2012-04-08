@@ -39,7 +39,7 @@ namespace PlainElastic.Net.Mappings
         }
 
         /// <summary>
-        /// Set to yes the store actual field in the index, no to not store it.
+        /// Set to true the store actual field in the index, false to not store it.
         /// </summary>
         public TMapping Store(bool store = false)
         {

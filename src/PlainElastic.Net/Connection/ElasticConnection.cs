@@ -9,16 +9,19 @@ namespace PlainElastic.Net
     public class ElasticConnection: IElasticConnection
     {
 
-        public ElasticConnection(string defaultHost = null, int defaultPort = 9200)
+        public ElasticConnection(string defaultHost = null, int defaultPort = 9200, ICredentials defaultCredentials = null)
         {
             DefaultHost = defaultHost;
             DefaultPort = defaultPort;
+            DefaultCredentials = defaultCredentials;
         }
 
         
         public string DefaultHost { get; private set; }
 
         public int DefaultPort { get; private set; }
+
+        public ICredentials DefaultCredentials { get; private set; }
 
 
         public OperationResult Get(string command, string jsonData = null)
@@ -106,6 +109,11 @@ namespace PlainElastic.Net
 
             //TODO: Setup Proxy
             // support HTTPS (with provided certificate) and digest (u/p)
+
+            if (DefaultCredentials != null)
+            {
+                request.Credentials = DefaultCredentials;
+            }
 
             return request;
         }

@@ -17,7 +17,7 @@ namespace PlainElastic.Net.Mappings
         /// </summary>
         public DateMap<T> Format(string dateFormat)
         {
-            RegisterCustomJsonMap("'format': {0} ", dateFormat.Quotate());
+            RegisterCustomJsonMap("'format': {0}", dateFormat.Quotate());
             return this;            
         }
 
@@ -27,7 +27,7 @@ namespace PlainElastic.Net.Mappings
         /// </summary>
         public DateMap<T> PrecisionStep(int precisionStep = 4)
         {
-            RegisterCustomJsonMap("'precision_step': {0} ", precisionStep.AsString().Quotate());
+            RegisterCustomJsonMap("'precision_step': {0}", precisionStep.AsString());
             return this;
         }
 

@@ -22,7 +22,7 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
 
         private static  IEnumerable<string> Enumeration()
         {
-            
+            enumeratorCallCount = 0;
             foreach (var value in data)
             {
                 enumeratorCallCount++;

@@ -31,37 +31,9 @@ namespace PlainElastic.Net.Mappings
             if (!customNumberType.IsNullOrEmpty())
                 return customNumberType;
 
-            // Elastic Search stores enums as long.
-            if (fieldType.IsEnum)
-                return "long";
+            string mappingType = ElasticCoreTypeMapper.GetElasticNumericType(fieldType);
 
-            var typeCode = System.Type.GetTypeCode(fieldType);
-            switch (typeCode)
-            {
-                case TypeCode.Byte:
-                case TypeCode.SByte:
-                    return "byte";
-
-                case TypeCode.UInt16:
-                case TypeCode.Int16:
-                    return "short";
-
-                case TypeCode.UInt32:
-                case TypeCode.Int32:
-                    return "integer";
-
-                case TypeCode.UInt64:
-                case TypeCode.Int64:
-                    return "long";
-
-                case TypeCode.Single:
-                    return "float";
-
-                case TypeCode.Double:
-                    return "double";
-            }
-
-            return "double";
+            return mappingType ?? "double";
         }
     }
 

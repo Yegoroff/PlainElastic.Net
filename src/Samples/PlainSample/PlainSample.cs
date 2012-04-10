@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using PlainElastic.Net;
+using PlainElastic.Net.Mappings;
 using PlainElastic.Net.Queries;
 using PlainElastic.Net.Serialization;
 using PlainElastic.Net.Utils;
@@ -238,7 +239,7 @@ namespace PlainSample
                         .Boost(5)
                      )
                     // Alternate way 
-                    //.Custom(" 'term': {{  '{0}': {{ 'value': '{1}', 'boost': '5' }} }}", tweet => tweet.User, "testuser")
+                    //.Custom(" 'term': {{  '{0}': {{ 'value': '{1}', 'boost': '5' }} }}".AltQuote(), "User", "testuser")
                 ).BuildBeautified();
 
             var results = connection.Post(searchCommand, query);

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using PlainElastic.Net.Utils;
 
@@ -192,6 +193,36 @@ namespace PlainElastic.Net.Mappings
         {
             Func<NestedObject<TField>, NestedObject<TField>> namedObjectProperty = obj => nestedObjectProperty(obj).Field(fieldName);
             RegisterMapAsJson(namedObjectProperty);
+            return this;
+        }
+
+
+        /// <summary>
+        /// Allows to register collection of custom property mappings.
+        /// </summary>
+        public Properties<T> CustomProperties(IEnumerable<CustomPropertyMap<T>> customProperties )
+        {
+            string propertiesJson = customProperties.Select(prop => prop.ToString()).JoinWithComma();
+            RegisterCustomJsonMap(propertiesJson);
+            return this;
+        }
+
+        /// <summary>
+        /// Represents custom property mapping mapping.
+        /// </summary>
+        public Properties<T> CustomProperty<TField>(Expression<Func<T, TField>> field, Func<CustomPropertyMap<T>, CustomPropertyMap<T>> customProperty = null)
+        {
+            var fieldName = field.GetPropertyPath();
+            RegisterMapAsJson(SpecifyPropertyName(customProperty, fieldName, typeof(TField)));
+            return this;
+        }
+
+        /// <summary>
+        /// Represents custom property mapping mapping.
+        /// </summary>
+        public Properties<T> CustomProperty(string fieldName, Func<CustomPropertyMap<T>, CustomPropertyMap<T>> customProperty = null)
+        {
+            RegisterMapAsJson(SpecifyPropertyName(customProperty, fieldName));
             return this;
         }
 

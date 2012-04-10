@@ -94,6 +94,7 @@
     <Compile Include="Buildres\Mappings\Core\Number\When_Number_mapping_for_bool_type_built.cs" />
     <Compile Include="Buildres\Mappings\Core\When_complete_Ip_mapping_built.cs" />
     <Compile Include="Buildres\Mappings\MultiField\When_complete_MultiField_mapping_built.cs" />
+    <Compile Include="Buildres\Mappings\Object\When_Object_with_custom_properties_built.cs" />
     <Compile Include="Buildres\Mappings\Object\When_simplest_Object_mapping_built.cs" />
     <Compile Include="Buildres\Mappings\Object\When_Object_with_enum_property_mapping_built.cs" />
     <Compile Include="Buildres\Mappings\Object\When_complete_Object_mapping_built.cs" />

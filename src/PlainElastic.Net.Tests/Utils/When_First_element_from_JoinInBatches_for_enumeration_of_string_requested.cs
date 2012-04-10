@@ -1,14 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Machine.Specifications;
-using Moq;
 using PlainElastic.Net.Utils;
 using It = Machine.Specifications.It;
 
 namespace PlainElastic.Net.Tests.Buildres.Queries
 {
     [Subject(typeof(StringExtensions))]
-    class When_First_element_JoinInBatches_for_enumeration_of_string_requested
+    class When_First_element_from_JoinInBatches_for_enumeration_of_string_requested
     {
         Because of = () =>
             Enumeration().JoinInBatches(batchSize: 2).First();
@@ -23,7 +22,7 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
 
         private static  IEnumerable<string> Enumeration()
         {
-            
+            enumeratorCallCount = 0;
             foreach (var value in data)
             {
                 enumeratorCallCount++;

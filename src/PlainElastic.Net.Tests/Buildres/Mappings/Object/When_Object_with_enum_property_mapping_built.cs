@@ -6,7 +6,7 @@ using PlainElastic.Net.Utils;
 namespace PlainElastic.Net.Tests.Buildres.Mappings
 {
     [Subject(typeof(Object<>))]
-    class When_enum_Object_property_mapping_built
+    class When_Object_with_enum_property_mapping_built
     {
         Because of = () => result = new Object<FieldsTestClass>()
                                                 .Field("TestObject")

@@ -16,9 +16,13 @@ namespace PlainElastic.Net
         }
 
         
-        public string DefaultHost { get; private set; }
+        public string DefaultHost { get; set; }
 
-        public int DefaultPort { get; private set; }
+        public int DefaultPort { get; set; }
+
+        public IWebProxy Proxy { get; set; }
+
+        public ICredentials Credentials { get; set; }
 
 
         public OperationResult Get(string command, string jsonData = null)
@@ -94,21 +98,25 @@ namespace PlainElastic.Net
 
         }
 
-        private HttpWebRequest CreateRequest(string method, string uri)
+        protected virtual HttpWebRequest CreateRequest(string method, string uri)
         {
             var request = (HttpWebRequest) WebRequest.Create(uri);
 
             request.Accept = "application/json";
             request.ContentType = "application/json";
-            request.Timeout = 1000 * 60;          // 1 minute timeout.
-            request.ReadWriteTimeout = 1000 * 60; // 1 minute timeout.
+            request.Timeout = 60 * 1000;
+            request.ReadWriteTimeout = 60 * 1000;
             request.Method = method;
 
-            //TODO: Setup Proxy
-            // support HTTPS (with provided certificate) and digest (u/p)
+            if (Proxy != null )
+                request.Proxy = Proxy;
+
+            if (Credentials != null)
+                request.Credentials = Credentials;
 
             return request;
         }
+
 
         private string CommandToUri(string command)
         {

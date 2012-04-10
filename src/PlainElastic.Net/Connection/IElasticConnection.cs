@@ -1,11 +1,18 @@
 ﻿
+using System.Net;
+
 namespace PlainElastic.Net
 {
     public interface IElasticConnection
     {
-        string DefaultHost { get; }
+        string DefaultHost { get; set; }
 
-        int DefaultPort { get; }
+        int DefaultPort { get; set; }
+
+        IWebProxy Proxy { get; set; }
+
+        ICredentials Credentials { get; set; }
+
 
         OperationResult Get(string command, string jsonData = null);
 

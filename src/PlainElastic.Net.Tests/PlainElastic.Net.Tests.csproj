@@ -162,6 +162,9 @@
     <Compile Include="Buildres\Queries\Term\When_complete_TermQuery_built.cs" />
     <Compile Include="Buildres\Queries\Terms\When_TermsQuery_without_values_built.cs" />
     <Compile Include="Buildres\Queries\_Filters\Terms\When_complete_TermsFilter_built.cs" />
+    <Compile Include="Connection\When_CreateRequest_with_Credentials_called.cs" />
+    <Compile Include="Connection\TestableConnection.cs" />
+    <Compile Include="Connection\When_CreateRequest_with_Proxy_called.cs" />
     <Compile Include="Integration\Connection\When_invalid_GET_request_on_valid_ES_instance.cs" />
     <Compile Include="Integration\Connection\When_partial_GET_request_on_valid_ES_instance.cs" />
     <Compile Include="Integration\Connection\When_full_GET_request_on_valid_ES_instance.cs" />

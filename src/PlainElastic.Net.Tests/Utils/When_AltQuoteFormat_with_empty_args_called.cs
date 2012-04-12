@@ -1,7 +1,7 @@
 ﻿using Machine.Specifications;
 using PlainElastic.Net.Utils;
 
-namespace PlainElastic.Net.Tests.Buildres.Queries
+namespace PlainElastic.Net.Tests.Utils
 {
     [Subject(typeof(StringExtensions))]
     class When_AltQuoteFormat_with_empty_args_called

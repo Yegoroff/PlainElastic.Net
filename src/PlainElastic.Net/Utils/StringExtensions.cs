@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using Newtonsoft.Json;
 
 
 namespace PlainElastic.Net.Utils
@@ -46,7 +47,7 @@ namespace PlainElastic.Net.Utils
             if (value.IsNullOrEmpty())
                 return "";
 
-            return "\"" + value + "\"";
+            return JsonConvert.ToString(value);
         }
 
         public static IEnumerable<string> Quotate(this IEnumerable<string> values)

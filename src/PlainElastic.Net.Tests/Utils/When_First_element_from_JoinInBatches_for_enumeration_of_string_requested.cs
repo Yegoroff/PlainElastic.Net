@@ -4,7 +4,7 @@ using Machine.Specifications;
 using PlainElastic.Net.Utils;
 using It = Machine.Specifications.It;
 
-namespace PlainElastic.Net.Tests.Buildres.Queries
+namespace PlainElastic.Net.Tests.Utils
 {
     [Subject(typeof(StringExtensions))]
     class When_First_element_from_JoinInBatches_for_enumeration_of_string_requested

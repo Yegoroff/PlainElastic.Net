@@ -3,7 +3,7 @@ using System.Linq;
 using Machine.Specifications;
 using PlainElastic.Net.Utils;
 
-namespace PlainElastic.Net.Tests.Buildres.Queries
+namespace PlainElastic.Net.Tests.Utils
 {
     [Subject(typeof(StringExtensions))]
     class When_JoinInBatches_for_string_list_called

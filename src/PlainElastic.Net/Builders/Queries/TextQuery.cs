@@ -10,6 +10,7 @@ namespace PlainElastic.Net.Queries
     {
         private bool hasQuery;
 
+
         /// <summary>
         /// The text query to analyze.
         /// </summary>
@@ -23,6 +24,7 @@ namespace PlainElastic.Net.Queries
 
             return this;
         }
+
 
         /// <summary>
         /// Sets the boost value of the query. Defaults to 1.0.
@@ -122,7 +124,7 @@ namespace PlainElastic.Net.Queries
 
             return this;
         }
-        
+
 
 
         protected override bool HasRequiredParts()

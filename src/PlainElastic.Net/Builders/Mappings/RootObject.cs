@@ -57,7 +57,6 @@ namespace PlainElastic.Net.Mappings
             return SearchAnalyzer(analyzer.ToString());
         }
 
-
         /// <summary>
         /// Allows to set one or more date formats that will be used to detect date fields.
         /// Note: dynamic_date_formats are used only for dynamically added date fields, not for date fields that you specify in your mapping.
@@ -96,7 +95,6 @@ namespace PlainElastic.Net.Mappings
             return this;
         }
 
-
         /// <summary>
         /// Simple storage for custom metadata associated with type mapping.
         /// see http://www.elasticsearch.org/guide/reference/mapping/meta.html
@@ -106,7 +104,6 @@ namespace PlainElastic.Net.Mappings
             RegisterCustomJsonMap("'_meta': {0}", metaJson);
             return this;
         }
-
 
         /// <summary>
         /// Allows to map _all field

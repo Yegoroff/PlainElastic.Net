@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
 using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Queries
@@ -89,8 +87,6 @@ namespace PlainElastic.Net.Queries
             return this;
         }
 
-
-
         /// <summary>
         /// A query that uses a query parser in order to parse its content
         /// see http://www.elasticsearch.org/guide/reference/query-dsl/query-string-query.html
@@ -110,7 +106,6 @@ namespace PlainElastic.Net.Queries
             RegisterJsonPartExpression(rangeQuery);
             return this;
         }
-        
 
         /// <summary>
         /// Matches documents that have fields that contain a term (not analyzed). The term query maps to Lucene TermQuery

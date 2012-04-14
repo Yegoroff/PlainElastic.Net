@@ -19,7 +19,8 @@ namespace PlainElastic.Net.Utils
         }
 
         /// <summary>
-        /// Provide string formatting alongside with replacing ' by " quotation sign.
+        /// Provide string formatting alongside 
+        /// with replacing ' by " quotation sign in passed format.
         /// </summary>
         public static string AltQuoteF(this string format, params object[] args)
         {
@@ -42,14 +43,17 @@ namespace PlainElastic.Net.Utils
             return quotedString.Replace('\'', '\"');
         }
 
+        /// <summary>
+        /// Quotates the specified value and escapes special JSON chars.
+        /// </summary>
         public static string Quotate(this string value)
         {
-            if (value.IsNullOrEmpty())
-                return "";
-
-            return JsonConvert.ToString(value);
+            return ToEscapedJson(value);
         }
 
+        /// <summary>
+        /// Quotates the specified values and escapes special JSON chars.
+        /// </summary>
         public static IEnumerable<string> Quotate(this IEnumerable<string> values)
         {
             return values.Select(v => v.Quotate());
@@ -147,6 +151,120 @@ namespace PlainElastic.Net.Utils
         {
             return value.HasValue ? value.Value.AsString() : null;
         }
+
+
+        public static string ToEscapedJson(this string json)
+        {
+            if (json.IsNullOrEmpty() || !HasAnyJsonEscapeChars(json))
+                return "\"" + json + "\"";
+
+            int length = json.Length;
+            var builder = new StringBuilder(length + 10);
+            builder.Append("\"");
+
+            var hex = new[] { '\\', 'u', '0', '0', '0', '0' };
+
+            for (int i = 0; i < length; i++)
+            {
+                var symbol = json[i];
+
+                if (symbol >= 32 && symbol < 128 && symbol != '\\' && symbol != '"')
+                {
+                    builder.Append(symbol);
+                    continue;
+                }
+
+                switch (symbol)
+                {
+                    case '\t':
+                        builder.Append(@"\t");
+                        continue;
+                    case '\n':
+                        builder.Append(@"\n");
+                        continue;
+                    case '\r':
+                        builder.Append(@"\r");
+                        continue;
+                    case '\f':
+                        builder.Append(@"\f");
+                        continue;
+                    case '\b':
+                        builder.Append(@"\b");
+                        continue;
+                    case '\\':
+                        builder.Append(@"\\");
+                        continue;
+                    case '\u0085': // Next Line
+                        builder.Append(@"\u0085");
+                        continue;
+                    case '\u2028': // Line Separator
+                        builder.Append(@"\u2028");
+                        continue;
+                    case '\u2029': // Paragraph Separator
+                        builder.Append(@"\u2029");
+                        continue;
+                    case '"':
+                        builder.Append("\\\"");
+                        continue;
+                    default:
+                        if (symbol <= '\u001f')
+                        {
+                            CharToUniHex(symbol, hex);
+                            builder.Append(hex);
+                        }
+                        else
+                            builder.Append(symbol);
+                        break;
+                }
+            }
+
+            builder.Append("\"");
+            return builder.ToString();
+        }
+
+        private static bool HasAnyJsonEscapeChars(string value)
+        {
+            var length = value.Length;
+            for (int i = 0; i < length; i++)
+            {
+                var symbol = value[i];
+                if(symbol <= '\u001f')
+                    return true;
+
+                switch (symbol)
+                {
+                    case '\n':
+                    case '\r':
+                    case '\t':
+                    case '\\':
+                    case '\f':
+                    case '\b':
+                    case '"':
+                    case '\u0085':
+                    case '\u2028':
+                    case '\u2029':
+                        return true;
+                }
+            }
+            return false;
+        }
+
+
+        private static void CharToUniHex(int intSymbol, char[] hex)
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                int digit = intSymbol & 0x0f;
+                if (digit < 10)
+                    hex[5 - i] = (char)('0' + digit);
+                else
+                    hex[5 - i] = (char)('a' + (digit - 10));
+
+                intSymbol >>= 4;
+            }
+        }
+
+
 
 
     }

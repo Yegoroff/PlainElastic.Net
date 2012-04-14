@@ -173,6 +173,7 @@
     <Compile Include="Serialization\When_bulk_operations_result_deserialized.cs" />
     <Compile Include="Serialization\When_filter_facets_result_deserialized.cs" />
     <Compile Include="Serialization\When_terms_facets_result_deserialized.cs" />
+    <Compile Include="Utils\When_Quotate_with_non_printable_characters_called.cs" />
     <Compile Include="Utils\When_Quotate_with_special_characters_called.cs" />
     <Compile Include="Utils\When_First_element_from_JoinInBatches_for_enumeration_of_string_requested.cs" />
     <Compile Include="Utils\When_JoinInBatches_for_string_list_called.cs" />

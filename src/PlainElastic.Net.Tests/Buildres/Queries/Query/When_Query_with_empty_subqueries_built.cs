@@ -13,6 +13,7 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
                         .ConstantScore(q => q)
                         .DisMax(q => q)
                         .Filtered(q => q)
+                        .Fuzzy(q => q)
                         .Nested(q => q)
                         .QueryString(q => q)
                         .Range(q => q)

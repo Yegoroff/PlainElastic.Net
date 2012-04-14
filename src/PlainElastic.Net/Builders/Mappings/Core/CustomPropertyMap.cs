@@ -160,7 +160,7 @@ namespace PlainElastic.Net.Mappings
             if (mappingType != null)
                 return mappingType;
 
-            return ElasticCoreTypeMapper.GetElasticType(fieldType) ?? "string";
+            return ElasticCoreTypeMapper.GetElasticType(fieldType);
         }
     }
 }

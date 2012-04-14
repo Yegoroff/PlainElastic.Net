@@ -7,13 +7,16 @@ namespace PlainElastic.Net.Mappings
 
         public static string GetElasticType(Type fieldType)
         {
+            if (fieldType == typeof(String))
+                return "string";
+
             if (fieldType == typeof(Boolean))
                 return "boolean";
 
             if (fieldType == typeof(DateTime))
                 return "date";
 
-            return GetElasticNumericType(fieldType);
+            return GetElasticNumericType(fieldType) ?? "string";
         }
 
 

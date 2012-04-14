@@ -23,7 +23,7 @@ namespace PlainElastic.Net
         simple,
         whitespace,
         stop,
-        reyword,
+        keyword,
         pattern,
         language,
         snowball

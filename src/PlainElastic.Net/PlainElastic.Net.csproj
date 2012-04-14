@@ -97,6 +97,8 @@
     <Compile Include="Builders\Mappings\RootObject.cs" />
     <Compile Include="Builders\Mappings\Core\StringMap.cs" />
     <Compile Include="Builders\Queries\ConstantScoreQuery.cs" />
+    <Compile Include="Builders\Queries\TextPhrasePrefixQuery.cs" />
+    <Compile Include="Builders\Queries\TextPhraseQuery.cs" />
     <Compile Include="Builders\Queries\TextQuery.cs" />
     <Compile Include="Builders\Queries\FuzzyQuery.cs" />
     <Compile Include="Builders\Queries\Facets\FilterFacet.cs" />

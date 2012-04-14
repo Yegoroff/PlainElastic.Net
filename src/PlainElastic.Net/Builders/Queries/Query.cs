@@ -21,6 +21,27 @@ namespace PlainElastic.Net.Queries
         }
 
         /// <summary>
+        /// Analyzes the text and creates a phrase query out of the analyzed text.
+        /// see http://www.elasticsearch.org/guide/reference/query-dsl/text-query.html
+        /// </summary>
+        public Query<T> TextPhrase(Func<TextPhraseQuery<T>, TextQuery<T>> textPhraseQuery)
+        {
+            RegisterJsonPartExpression(textPhraseQuery);
+            return this;
+        }
+
+        /// <summary>
+        /// Analyzes the text and creates a phrase query out of the analyzed text and
+        /// allows for prefix matches on the last term in the text.
+        /// see http://www.elasticsearch.org/guide/reference/query-dsl/text-query.html
+        /// </summary>
+        public Query<T> TextPhrasePrefix(Func<TextPhrasePrefixQuery<T>, TextQuery<T>> textPhrasePrefixQuery)
+        {
+            RegisterJsonPartExpression(textPhrasePrefixQuery);
+            return this;
+        }
+
+        /// <summary>
         /// A query that matches documents matching boolean combinations of other queries. 
         /// The bool query maps to Lucene BooleanQuery. It is built using one or more boolean clauses, 
         /// each clause with a typed occurrence

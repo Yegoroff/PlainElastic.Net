@@ -9,6 +9,8 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
     {
         Because of = () => result = new Query<FieldsTestClass>()
                                                 .Text(t => t.Custom("text query"))
+                                                .TextPhrase(t => t.Custom("text phrase query"))
+                                                .TextPhrasePrefix(t => t.Custom("text phrase prefix query"))
                                                 .Bool(b => b.Custom("bool query"))
                                                 .DisMax(d => d.Custom("dismax query"))
                                                 .Nested(n => n.Custom("nested query"))
@@ -25,6 +27,8 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
 
         It should_return_correct_result = () => result.ShouldEqual(("'query': " +
                                                                     "{ 'text': { text query } }," +
+                                                                    "{ 'text_phrase': { text phrase query } }," +
+                                                                    "{ 'text_phrase_prefix': { text phrase prefix query } }," +
                                                                     "{ 'bool': { bool query } }," +
                                                                     "{ 'dis_max': { dismax query } }," +
                                                                     "{ 'nested': { nested query } }," +

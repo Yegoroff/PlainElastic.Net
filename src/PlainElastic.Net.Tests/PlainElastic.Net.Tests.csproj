@@ -100,6 +100,8 @@
     <Compile Include="Buildres\Mappings\Object\When_complete_Object_mapping_built.cs" />
     <Compile Include="Buildres\Mappings\Object\When_Object_with_custom_property_built.cs" />
     <Compile Include="Buildres\Queries\Bool\When_BoolQuery_with_useActualShouldCount_built.cs" />
+    <Compile Include="Buildres\Queries\Text\When_complete_TextQuery_built.cs" />
+    <Compile Include="Buildres\Queries\Text\When_TextQuery_without_query_built.cs" />
     <Compile Include="Buildres\Queries\Fuzzy\When_complete_FuzzyQuery_built.cs" />
     <Compile Include="Buildres\Queries\Fuzzy\When_FuzzyQuery_without_value_built.cs" />
     <Compile Include="Buildres\Queries\Query\When_empty_Query_built.cs" />

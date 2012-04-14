@@ -11,6 +11,16 @@ namespace PlainElastic.Net.Queries
     /// </summary>
     public class Query<T> : QueryBase<Query<T>>
     {
+        
+        /// <summary>
+        /// A family of text queries that accept text, analyzes it, and constructs a query out of it.
+        /// see http://www.elasticsearch.org/guide/reference/query-dsl/text-query.html
+        /// </summary>  
+        public Query<T> Text(Func<TextQuery<T>, TextQuery<T>> textQuery)
+        {
+            RegisterJsonPartExpression(textQuery);
+            return this;
+        }
 
         /// <summary>
         /// A query that matches documents matching boolean combinations of other queries. 

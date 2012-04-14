@@ -9,6 +9,7 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
     {
         Because of = () => 
             result = new Query<FieldsTestClass>()
+                        .Text(q => q)
                         .Bool(q => q)
                         .ConstantScore(q => q)
                         .DisMax(q => q)

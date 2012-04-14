@@ -8,6 +8,7 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
     class When_complete_Query_built
     {
         Because of = () => result = new Query<FieldsTestClass>()
+                                                .Text(t => t.Custom("text query"))
                                                 .Bool(b => b.Custom("bool query"))
                                                 .DisMax(d => d.Custom("dismax query"))
                                                 .Nested(n => n.Custom("nested query"))
@@ -22,6 +23,7 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
 
 
         It should_return_correct_result = () => result.ShouldEqual(("'query': " +
+                                                                    "{ 'text': { text query } }," +
                                                                     "{ 'bool': { bool query } }," +
                                                                     "{ 'dis_max': { dismax query } }," +
                                                                     "{ 'nested': { nested query } }," +

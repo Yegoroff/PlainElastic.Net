@@ -93,4 +93,22 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         UNIX_LINES
     }
+
+    public enum TextQueryType
+    {
+        /// <summary>
+        /// The text provided is analyzed and the analysis process constructs a boolean query from the provided text.
+        /// </summary>
+        boolean,
+
+        /// <summary>
+        /// Analyzes the text and creates a phrase query out of the analyzed text.
+        /// </summary>
+        phrase,
+
+        /// <summary>
+        /// Analyzes the text and creates a phrase query out of the analyzed text. Allows for prefix matches on the last term in the text.
+        /// </summary>
+        phrase_prefix
+    }
 }

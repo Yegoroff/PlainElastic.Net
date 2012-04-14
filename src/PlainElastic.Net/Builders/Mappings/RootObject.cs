@@ -97,6 +97,16 @@ namespace PlainElastic.Net.Mappings
         }
 
 
+        /// <summary>
+        /// Simple storage for custom metadata associated with type mapping.
+        /// see http://www.elasticsearch.org/guide/reference/mapping/meta.html
+        /// </summary>
+        public RootObject<T> Meta(string metaJson)
+        {
+            RegisterCustomJsonMap("'_meta': {0}", metaJson);
+            return this;
+        }
+
 
         /// <summary>
         /// Allows to map _all field

@@ -11,8 +11,11 @@ namespace PlainElastic.Net.Tests.Buildres.Mappings
         Because of = () => result = new MultiField<FieldsTestClass>()
                                                 .Field(doc => doc.StringProperty)
                                                 .Fields(f => f
-                                                    .String("first", s=>s.Index(IndexState.analyzed))
-                                                    .String("second", s => s.Index(IndexState.not_analyzed))
+                                                    .Binary("binaryField")
+                                                    .Boolean("boolField")
+                                                    .Date("dateField")
+                                                    .Number("numberField", n => n.Type(NumberMappingType.Integer))
+                                                    .String("stringField", s => s.Index(IndexState.analyzed))
                                                 )
                                                 .ToString();
 
@@ -23,16 +26,25 @@ namespace PlainElastic.Net.Tests.Buildres.Mappings
 
         It should_contain_fields_part = () => result.ShouldContain("'fields': {".AltQuote());
 
-        It should_contain_first_string_property_mapping_part = () => result.ShouldContain("'first': { 'type': 'string','index': 'analyzed'".AltQuote());
+        It should_contain_binary_property_mapping_part = () => result.ShouldContain("'binaryField': { 'type': 'binary' }".AltQuote());
 
-        It should_contain_second_string_property_mapping_part = () => result.ShouldContain("'second': { 'type': 'string','index': 'not_analyzed'".AltQuote());
+        It should_contain_boolean_property_mapping_part = () => result.ShouldContain("'boolField': { 'type': 'boolean' }".AltQuote());
+
+        It should_contain_date_property_mapping_part = () => result.ShouldContain("'dateField': { 'type': 'date' }".AltQuote());
+
+        It should_contain_integer_property_mapping_part = () => result.ShouldContain("'numberField': { 'type': 'integer' }".AltQuote());
+
+        It should_contain_string_property_mapping_part = () => result.ShouldContain("'stringField': { 'type': 'string','index': 'analyzed' }".AltQuote());
 
 
         It should_generate_correct_JSON_result = () => result.ShouldEqual(("'StringProperty': { " +
                                                                             "'type': 'multi_field'," +
                                                                             "'fields': { " +
-                                                                                "'first': { 'type': 'string','index': 'analyzed' }," +
-                                                                                "'second': { 'type': 'string','index': 'not_analyzed' } " +                                                                           
+                                                                                "'binaryField': { 'type': 'binary' }," +
+                                                                                "'boolField': { 'type': 'boolean' }," +
+                                                                                "'dateField': { 'type': 'date' }," +
+                                                                                "'numberField': { 'type': 'integer' }," +
+                                                                                "'stringField': { 'type': 'string','index': 'analyzed' } " +
                                                                             "} " +
                                                                            "}").AltQuote());
 

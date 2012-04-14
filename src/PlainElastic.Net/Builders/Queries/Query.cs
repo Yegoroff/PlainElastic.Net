@@ -79,6 +79,16 @@ namespace PlainElastic.Net.Queries
             return this;
         }
 
+        /// <summary>
+        /// A fuzzy based query that uses similarity based on Levenshtein (edit distance) algorithm.
+        /// see http://www.elasticsearch.org/guide/reference/query-dsl/fuzzy-query.html
+        /// </summary>   
+        public Query<T> Fuzzy(Func<FuzzyQuery<T>, FuzzyQuery<T>> fuzzyQuery)
+        {
+            RegisterJsonPartExpression(fuzzyQuery);
+            return this;
+        }
+
 
 
         /// <summary>

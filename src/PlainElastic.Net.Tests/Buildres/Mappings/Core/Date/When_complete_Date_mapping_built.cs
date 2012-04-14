@@ -18,6 +18,7 @@ namespace PlainElastic.Net.Tests.Buildres.Mappings
                                                 .NullValue("null value")
                                                 .PrecisionStep(10)
                                                 .Store(true)
+                                                .FuzzyFactor(7)
                                                 .ToString();
 
 
@@ -41,7 +42,7 @@ namespace PlainElastic.Net.Tests.Buildres.Mappings
 
         It should_contain_store_part = () => result.ShouldContain("'store': true".AltQuote());
 
-
+        It should_contain_fuzzy_factor_declaration_part = () => result.ShouldContain("'fuzzy_factor': 7".AltQuote());
 
 
         It should_generate_correct_JSON_result = () =>
@@ -54,7 +55,8 @@ namespace PlainElastic.Net.Tests.Buildres.Mappings
                                     "'index_name': 'index name'," +
                                     "'null_value': 'null value'," +
                                     "'precision_step': 10," +
-                                    "'store': true " +
+                                    "'store': true," +
+                                    "'fuzzy_factor': 7 " +
                                 "}").AltQuote());
 
         private static string result;

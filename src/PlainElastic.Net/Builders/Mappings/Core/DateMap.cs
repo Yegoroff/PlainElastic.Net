@@ -32,6 +32,17 @@ namespace PlainElastic.Net.Mappings
         }
 
 
+        /// <summary>
+        /// Allow to configure a fuzzy_factor mapping value (defaults to 1), which will be used to multiply the fuzzy value by it when used in a query_string type query.
+        /// see http://www.elasticsearch.org/guide/reference/query-dsl/fuzzy-query.html
+        /// </summary>
+        public DateMap<T> FuzzyFactor(int fuzzyFactor = 1)
+        {
+            RegisterCustomJsonMap("'fuzzy_factor': {0}", fuzzyFactor.AsString());
+            return this;
+        }
+
+
         protected override string GetElasticFieldType(Type fieldType)
         {
             return "date";

@@ -76,5 +76,5 @@ The main Idea of PlainElastic.Net is to be a `Glass Box`. e.g. provide a full co
 
 ### License
 
-PlainElastic.Net is free software distributed under the terms of MIT License (see LICENSE.txt) these terms doesn’t apply to other 3rd party tools, utilities or code which may be used to develop this application.
+PlainElastic.Net is free software distributed under the terms of MIT License (see LICENSE.txt) these terms don’t apply to other 3rd party tools, utilities or code which may be used to develop this application.
 

@@ -23,7 +23,7 @@ The main Idea of PlainElastic.Net is to be a `Glass Box`. e.g. provide a full co
 2 Than you can write stings with ES command 
   
 ```csharp
-  string command = "http://localhost:9200/twitter/user/test";`
+  string command = "http://localhost:9200/twitter/user/test";
 ```
 
 3 And JSON string with data

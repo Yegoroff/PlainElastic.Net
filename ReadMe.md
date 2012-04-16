@@ -5,9 +5,9 @@ The really plain Elastic Search .Net client.
 
 ### Idea 
 
-Usually clients built using `Black Box` principle: there is a client interface and some unknown magic behind it.
-(client methods calls internally generate some commands and queries to external system, get responses and somehow process them and then retrieve result to user)
-as the result user hardly can debug connectivity issues or extent client functional with missed features. 
+Usually clients built using `Black Box` principle: *there is a client interface and some unknown magic behind it*.<br/>
+*(call of the client method internally generate some commands and queries to external system, get responses and somehow process them and then retrieve result to user)*<br/>
+As the result user hardly can debug connectivity issues or extend client functional with missed features. 
 
 The main Idea of PlainElastic.Net is to be a `Glass Box`. e.g. provide a full control over connectivity process to user.
 
@@ -46,7 +46,7 @@ The main Idea of PlainElastic.Net is to be a `Glass Box`. e.g. provide a full co
 	}
 ```
 
-**So, how PlainElastic can help you here?**
+#### So, how PlainElastic can help you here?
 
 ```csharp
   // 1. It provides ES HTTP connection

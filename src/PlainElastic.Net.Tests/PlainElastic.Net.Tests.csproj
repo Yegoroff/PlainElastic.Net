@@ -57,6 +57,7 @@
     <Compile Include="Buildres\Commands\OptimizeCommand\When_complete_OptimizeCommand_built.cs" />
     <Compile Include="Buildres\Commands\CountCommand\When_complete_CountCommand_built.cs" />
     <Compile Include="Buildres\Commands\CountCommand\When_CountCommand_with_multiple_indexes_and_types_built.cs" />
+    <Compile Include="Buildres\Commands\SearchCommand\When_SearchCommand_with_default_sort_direction_built.cs" />
     <Compile Include="Buildres\Commands\UpdateSettingsCommand\When_complete_UpdateSettingsCommand_built.cs" />
     <Compile Include="Buildres\Commands\PutMappingCommand\When_complete_PutMappingCommand_built.cs" />
     <Compile Include="Buildres\Commands\PutMappingCommand\When_PutMappingCommand_with_multiple_indexes_built.cs" />
@@ -118,6 +119,7 @@
     <Compile Include="Buildres\Mappings\Object\When_complete_Object_mapping_built.cs" />
     <Compile Include="Buildres\Mappings\Object\When_Object_with_custom_property_built.cs" />
     <Compile Include="Buildres\Queries\Bool\When_BoolQuery_with_useActualShouldCount_built.cs" />
+    <Compile Include="Buildres\Queries\Sort\When_Sort_with_default_order_built.cs" />
     <Compile Include="Buildres\Queries\TextPhrasePrefix\When_complete_TextPhrasePrefixQuery_built.cs" />
     <Compile Include="Buildres\Queries\TextPhrasePrefix\When_TextPhrasePrefixQuery_without_query_built.cs" />
     <Compile Include="Buildres\Queries\TextPhrase\When_complete_TextPhraseQuery_built.cs" />

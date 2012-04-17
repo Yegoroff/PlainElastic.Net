@@ -179,20 +179,23 @@ namespace PlainElastic.Net
         /// Sorting to perform. There can be several Sort parameters (order is important).
         /// Use "_score" to sort by query score.
         /// </summary>
-        public SearchCommand Sort(string fieldname, SortDirection direction)
+        public SearchCommand Sort(string fieldname, SortDirection direction = SortDirection.@default)
         {
-            Parameters.Add("sort", fieldname + ":" + direction.ToString());
-            return this;            
+            string value = fieldname;
+            if (direction != SortDirection.@default)
+                value += ":" + direction.ToString();
+
+            Parameters.Add("sort", value);
+            return this;
         }
 
         /// <summary>
         /// Sorting to perform. There can be several Sort parameters (order is important).
         /// </summary>
-        public SearchCommand Sort<T>(Expression<Func<T, object>> property, SortDirection direction)
+        public SearchCommand Sort<T>(Expression<Func<T, object>> property, SortDirection direction = SortDirection.@default)
         {
             string fieldname = property.GetPropertyPath();
-            Parameters.Add("sort", fieldname + ":" + direction.ToString());
-            return this;            
+            return Sort(fieldname, direction);
         }
 
 

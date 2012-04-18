@@ -30,7 +30,10 @@ namespace PlainElastic.Net.Mappings
 
         protected override string ApplyMappingTemplate(string mappingBody)
         {
-            return " {0}: {{ 'type': 'nested',{1} }}".AltQuoteF(Name.Quotate(), mappingBody);
+            if (mappingBody.IsNullOrEmpty())
+                return "{0}: {{ 'type': 'nested' }}".AltQuoteF(Name.Quotate());
+
+            return "{0}: {{ 'type': 'nested',{1} }}".AltQuoteF(Name.Quotate(), mappingBody);
         }
 
     }

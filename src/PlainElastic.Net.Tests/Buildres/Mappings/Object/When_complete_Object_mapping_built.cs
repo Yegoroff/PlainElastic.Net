@@ -20,6 +20,16 @@ namespace PlainElastic.Net.Tests.Buildres.Mappings
                                                     .Date( d=> d.DateProperty)
                                                     .Number( n=> n.IntProperty)
                                                     .String(f => f.StringProperty)
+                                                    .Attachment(f => f.ObjectProperty)
+                                                    .CustomProperty(f => f.EnumProperty)
+                                                    .Object(f => f.ObjectProperty)
+                                                    .NestedObject(f => f.ObjectProperty)
+                                                    .MultiField(f => f.StringProperty, opt => opt
+                                                        .Fields(f => f
+                                                            .String("stringField")
+                                                            .Boolean("boolField")
+                                                        )
+                                                    )
                                                 )
                                                 .ToString();
 
@@ -49,6 +59,15 @@ namespace PlainElastic.Net.Tests.Buildres.Mappings
 
         It should_contain_string_property_mapping_part = () => result.ShouldContain("'StringProperty': { 'type': 'string' }".AltQuote());
 
+        It should_contain_attachment_property_mapping_part = () => result.ShouldContain("'ObjectProperty': { 'type': 'attachment' }".AltQuote());
+
+        It should_contain_custom_property_mapping_part = () => result.ShouldContain("'EnumProperty': { 'type': 'long' }".AltQuote());
+
+        It should_contain_object_property_mapping_part = () => result.ShouldContain("'ObjectProperty': { 'type': 'object' }".AltQuote());
+
+        It should_contain_nested_object_property_mapping_part = () => result.ShouldContain("'ObjectProperty': { 'type': 'nested' }".AltQuote());
+
+        It should_contain_multi_field_property_mapping_part = () => result.ShouldContain("'StringProperty': { 'type': 'multi_field','fields': { 'stringField': { 'type': 'string' },'boolField': { 'type': 'boolean' } } }".AltQuote());
 
         It should_generate_correct_JSON_result = () => result.ShouldEqual(("'TestObject': {" +
                                                                             " 'type': 'object'," +
@@ -61,7 +80,17 @@ namespace PlainElastic.Net.Tests.Buildres.Mappings
                                                                                 "'BoolProperty': { 'type': 'boolean' }," +
                                                                                 "'DateProperty': { 'type': 'date' }," +
                                                                                 "'IntProperty': { 'type': 'integer' }," +
-                                                                                "'StringProperty': { 'type': 'string' } " +
+                                                                                "'StringProperty': { 'type': 'string' }," +
+                                                                                "'ObjectProperty': { 'type': 'attachment' }," +
+                                                                                "'EnumProperty': { 'type': 'long' }," +
+                                                                                "'ObjectProperty': { 'type': 'object' }," +
+                                                                                "'ObjectProperty': { 'type': 'nested' }," +
+                                                                                "'StringProperty': { 'type': 'multi_field'," +
+                                                                                                    "'fields': { " +
+                                                                                                        "'stringField': { 'type': 'string' }," +
+                                                                                                        "'boolField': { 'type': 'boolean' } " +
+                                                                                                    "} " +
+                                                                                "} " +
                                                                             "} " +
                                                                           "}").AltQuote());
 

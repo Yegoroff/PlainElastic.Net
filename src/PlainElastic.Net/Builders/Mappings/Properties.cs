@@ -191,7 +191,12 @@ namespace PlainElastic.Net.Mappings
         /// </summary>
         public Properties<T> NestedObject<TField>(string fieldName, Func<NestedObject<TField>, NestedObject<TField>> nestedObjectProperty = null)
         {
-            Func<NestedObject<TField>, NestedObject<TField>> namedObjectProperty = obj => nestedObjectProperty(obj).Field(fieldName);
+            Func<NestedObject<TField>, NestedObject<TField>> namedObjectProperty;
+            if (nestedObjectProperty == null)
+                namedObjectProperty = obj => obj.Field(fieldName);
+            else
+                namedObjectProperty = obj => nestedObjectProperty(obj.Field(fieldName));
+
             RegisterMapAsJson(namedObjectProperty);
             return this;
         }
@@ -223,6 +228,69 @@ namespace PlainElastic.Net.Mappings
         public Properties<T> CustomProperty(string fieldName, Func<CustomPropertyMap<T>, CustomPropertyMap<T>> customProperty = null)
         {
             RegisterMapAsJson(SpecifyPropertyName(customProperty, fieldName));
+            return this;
+        }
+
+
+
+        /// <summary>
+        /// The attachment type allows to index different “attachment” type field (encoded as base64),
+        /// for example, microsoft office formats, open document formats, ePub, HTML, and so on.
+        /// see http://www.elasticsearch.org/guide/reference/mapping/attachment-type.html
+        /// </summary>
+        public Properties<T> Attachment<TField>(Expression<Func<T, TField>> field, Func<Attachment<T>, Attachment<T>> attachmentProperty = null)
+        {
+            var fieldName = field.GetPropertyPath();
+
+            return Attachment(fieldName, attachmentProperty);
+        }
+
+        /// <summary>
+        /// The attachment type allows to index different “attachment” type field (encoded as base64),
+        /// for example, microsoft office formats, open document formats, ePub, HTML, and so on.
+        /// see http://www.elasticsearch.org/guide/reference/mapping/attachment-type.html
+        /// </summary>
+        public Properties<T> Attachment(string fieldName, Func<Attachment<T>, Attachment<T>> attachmentProperty = null)
+        {
+            Func<Attachment<T>, Attachment<T>> namedAttachmentProperty;
+            if (attachmentProperty == null)
+                namedAttachmentProperty = obj => obj.Field(fieldName);
+            else
+                namedAttachmentProperty = obj => attachmentProperty(obj.Field(fieldName));
+
+            RegisterMapAsJson(namedAttachmentProperty);
+            return this;
+        }
+
+
+        /// <summary>
+        /// The multi_field type allows to map several core types of the same value. 
+        /// This can come very handy, for example, when wanting to map a string type, 
+        /// once when its analyzed and once when its not_analyzed.
+        /// see http://www.elasticsearch.org/guide/reference/mapping/multi-field-type.html
+        /// </summary>
+        public Properties<T> MultiField<TField>(Expression<Func<T, TField>> field, Func<MultiField<T>, MultiField<T>> multiFieldProperty = null)
+        {
+            var fieldName = field.GetPropertyPath();
+
+            return MultiField(fieldName, multiFieldProperty);
+        }
+
+        /// <summary>
+        /// The multi_field type allows to map several core types of the same value. 
+        /// This can come very handy, for example, when wanting to map a string type, 
+        /// once when its analyzed and once when its not_analyzed.
+        /// see http://www.elasticsearch.org/guide/reference/mapping/multi-field-type.html
+        /// </summary>
+        public Properties<T> MultiField(string fieldName, Func<MultiField<T>, MultiField<T>> multiFieldProperty = null)
+        {
+            Func<MultiField<T>, MultiField<T>> namedMultiFieldProperty;
+            if (multiFieldProperty == null)
+                namedMultiFieldProperty = obj => obj.Field(fieldName);
+            else
+                namedMultiFieldProperty = obj => multiFieldProperty(obj.Field(fieldName));
+
+            RegisterMapAsJson(namedMultiFieldProperty);
             return this;
         }
 

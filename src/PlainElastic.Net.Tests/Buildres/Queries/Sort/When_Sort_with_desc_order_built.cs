@@ -11,11 +11,11 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
                                                 .Field("field", order: SortDirection.desc, missing: "_last")
                                                 .ToString();
 
-        It should_not_contain_order_part = () => result.ShouldNotContain("order");
+        It should_contain_correct_order = () => result.ShouldContain(@"'order': 'desc'".AltQuote());
 
         It should_contain_correct_missing_value = () => result.ShouldContain("'missing': '_last'".AltQuote());
 
-        It should_return_correct_value = () => result.ShouldEqual("'sort': [{ 'field': { 'missing': '_last' } }]".AltQuote());
+        It should_return_correct_value = () => result.ShouldEqual("'sort': [{ 'field': { 'order': 'desc','missing': '_last' } }]".AltQuote());
 
         private static string result;
     }

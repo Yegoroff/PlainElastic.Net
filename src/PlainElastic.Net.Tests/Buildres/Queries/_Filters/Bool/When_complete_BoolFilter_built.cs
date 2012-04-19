@@ -18,6 +18,7 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
                                                     .Custom("Should")
                                                 )
                                                 .MinimumNumberShouldMatch(2)
+                                                .Cache(true)
                                                 .Custom("Custom")
                                                 .ToString();
 
@@ -28,11 +29,14 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
 
         It should_contain_should_part = () => result.ShouldContain("'should': [ Should ]".AltQuote());
 
+        It should_contain_cache_part = () => result.ShouldContain("'_cache': true".AltQuote());
+
         It should_return_correct_result = () => result.ShouldEqual(("{ 'bool': { " +
                                                                         "'must': [ Must ]," +
                                                                         "'must_not': [ Must Not ]," +
                                                                         "'should': [ Should ]," +
                                                                         "'minimum_number_should_match': 2," +
+                                                                        "'_cache': true," +
                                                                         "Custom " +
                                                                       "} " +
                                                                    "}").AltQuote());

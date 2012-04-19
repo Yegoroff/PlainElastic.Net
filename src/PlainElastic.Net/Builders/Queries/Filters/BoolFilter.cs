@@ -69,6 +69,15 @@ namespace PlainElastic.Net.Queries
             return this;
         }
 
+        /// <summary>
+        /// Controls whether the filter will be cached.
+        /// </summary>
+        public BoolFilter<T> Cache(bool cache)
+        {
+            RegisterJsonPart("'_cache': {0}", cache.AsString());
+            return this;
+        }
+
 
         protected override bool HasRequiredParts()
         {

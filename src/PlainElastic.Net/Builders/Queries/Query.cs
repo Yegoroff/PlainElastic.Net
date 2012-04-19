@@ -109,6 +109,20 @@ namespace PlainElastic.Net.Queries
         }
 
         /// <summary>
+        /// A query that matches all documents. Maps to Lucene MatchAllDocsQuery.
+        /// see http://www.elasticsearch.org/guide/reference/query-dsl/match-all-query.html        
+        /// </summary>   
+        public Query<T> MatchAll(Func<MatchAllQuery<T>, MatchAllQuery<T>> matchAllQuery = null)
+        {
+            if (matchAllQuery == null)
+                matchAllQuery = m => m;
+
+            RegisterJsonPartExpression(matchAllQuery);
+            return this;
+        }
+
+
+        /// <summary>
         /// A query that uses a query parser in order to parse its content
         /// see http://www.elasticsearch.org/guide/reference/query-dsl/query-string-query.html
         /// </summary>    

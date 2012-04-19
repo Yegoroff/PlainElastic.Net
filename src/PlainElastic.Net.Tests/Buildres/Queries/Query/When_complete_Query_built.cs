@@ -20,6 +20,7 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
                                                 .Terms(ts => ts.Custom("terms query"))
                                                 .ConstantScore(c => c.Custom("constant score"))
                                                 .Filtered(f => f.Custom("filtered"))
+                                                .MatchAll()
                                                 .Fuzzy(f => f.Custom("fuzzy query"))
                                                 .ToString();
 
@@ -38,6 +39,7 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
                                                                     "{ 'terms': { terms query } }," +
                                                                     "{ 'constant_score': { constant score } }," +
                                                                     "{ 'filtered': { filtered } }," +
+                                                                    "{ 'match_all': {  } }," +
                                                                     "{ 'fuzzy': { fuzzy query } }").AltQuote());
 
         private static string result;

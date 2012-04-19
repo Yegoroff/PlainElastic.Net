@@ -11,7 +11,6 @@ namespace PlainElastic.Net.Queries
     public class Filter<T> : QueryBase<Filter<T>>
     {
 
-
         /// <summary>
         /// A filter that matches documents using AND boolean operator on other queries.
         /// This filter is more performant then bool filter. 
@@ -23,6 +22,30 @@ namespace PlainElastic.Net.Queries
             RegisterJsonPartExpression(andFilter);
             return this;
         }
+
+        /// <summary>
+        /// A filter that matches documents using OR boolean operator on other queries. 
+        /// This filter is more performant then bool filter. 
+        /// Can be placed within queries that accept a filter.
+        /// see http://www.elasticsearch.org/guide/reference/query-dsl/or-filter.html
+        /// </summary>
+        public Filter<T> Or(Func<OrFilter<T>, Filter<T>> orFilter)
+        {
+            RegisterJsonPartExpression(orFilter);
+            return this;
+        }
+
+        /// <summary>
+        /// A filter that filters out matched documents using a query.
+        /// This filter is more performant then bool filter. Can be placed within queries that accept a filter
+        /// see http://www.elasticsearch.org/guide/reference/query-dsl/not-filter.html
+        /// </summary>
+        public Filter<T> Not(Func<NotFilter<T>, NotFilter<T>> notFilter)
+        {
+            RegisterJsonPartExpression(notFilter);
+            return this;
+        }
+
 
         /// <summary>
         /// Filters documents that have fields that contain a term (not analyzed).
@@ -77,6 +100,38 @@ namespace PlainElastic.Net.Queries
             return this;
         }
 
+        /// <summary>
+        /// A filter that matches documents matching boolean combinations of other queries.
+        /// Similar in concept to Boolean query, except that the clauses are other filters. 
+        /// Can be placed within queries that accept a filter.
+        /// see http://www.elasticsearch.org/guide/reference/query-dsl/bool-filter.html
+        /// </summary>
+        public Filter<T> Bool(Func<BoolFilter<T>, BoolFilter<T>> boolFilter)
+        {
+            RegisterJsonPartExpression(boolFilter);
+            return this;
+        }
+
+        /// <summary>
+        /// A limit filter limits the number of documents (per shard) to execute on.
+        /// see http://www.elasticsearch.org/guide/reference/query-dsl/limit-filter.html
+        /// </summary>
+        public Filter<T> Limit(Func<LimitFilter<T>, LimitFilter<T>> limitFilter)
+        {
+            RegisterJsonPartExpression(limitFilter);
+            return this;
+        }
+
+        /// <summary>
+        /// Filters documents matching the provided document / mapping type. 
+        /// Note, this filter can work even when the _type field is not indexed (using the _uid field)
+        /// see http://www.elasticsearch.org/guide/reference/query-dsl/type-filter.html
+        /// </summary>
+        public Filter<T> Type(Func<TypeFilter<T>, TypeFilter<T>> typeFilter)
+        {
+            RegisterJsonPartExpression(typeFilter);
+            return this;
+        }
 
         // http://www.elasticsearch.org/guide/reference/api/search/named-filters.html
         //TODO: fquery

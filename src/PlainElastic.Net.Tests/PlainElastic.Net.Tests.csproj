@@ -119,6 +119,9 @@
     <Compile Include="Buildres\Mappings\Object\When_complete_Object_mapping_built.cs" />
     <Compile Include="Buildres\Mappings\Object\When_Object_with_custom_property_built.cs" />
     <Compile Include="Buildres\Queries\Bool\When_BoolQuery_with_useActualShouldCount_built.cs" />
+    <Compile Include="Buildres\Queries\MatchAll\When_complete_MatchAllQuery_built.cs" />
+    <Compile Include="Buildres\Queries\MatchAll\When_MatchAllQuery_without_value_built.cs" />
+    <Compile Include="Buildres\Queries\MatchAll\When_MatchAllQuery_with_collection_field_built.cs" />
     <Compile Include="Buildres\Queries\Sort\When_Sort_with_default_order_built.cs" />
     <Compile Include="Buildres\Queries\TextPhrasePrefix\When_complete_TextPhrasePrefixQuery_built.cs" />
     <Compile Include="Buildres\Queries\TextPhrasePrefix\When_TextPhrasePrefixQuery_without_query_built.cs" />
@@ -143,6 +146,14 @@
     <Compile Include="Buildres\Queries\_Filters\And\When_empty_AndFilter_built.cs" />
     <Compile Include="Buildres\Queries\_Filters\Bool\When_complete_BoolFilter_built.cs" />
     <Compile Include="Buildres\Queries\_Filters\Bool\When_empty_BoolFilter_built.cs" />
+    <Compile Include="Buildres\Queries\_Filters\Or\When_complete_OrFilter_built.cs" />
+    <Compile Include="Buildres\Queries\_Filters\Or\When_empty_OrFilter_built.cs" />
+    <Compile Include="Buildres\Queries\_Filters\Type\When_complete_TypeFilter_built.cs" />
+    <Compile Include="Buildres\Queries\_Filters\Type\When_empty_TypeFilter_built.cs" />
+    <Compile Include="Buildres\Queries\_Filters\Limit\When_complete_LimitFilter_built.cs" />
+    <Compile Include="Buildres\Queries\_Filters\Limit\When_empty_LimitFilter_built.cs" />
+    <Compile Include="Buildres\Queries\_Filters\Not\When_complete_NotFilter_built.cs" />
+    <Compile Include="Buildres\Queries\_Filters\Not\When_empty_NotFilter_built.cs" />
     <Compile Include="Buildres\Queries\_Filters\When_empty_Filter_built.cs" />
     <Compile Include="Buildres\Queries\_Filters\When_complete_Filter_built.cs" />
     <Compile Include="Buildres\Queries\_Filters\Term\When_complete_TermFilter_built.cs" />

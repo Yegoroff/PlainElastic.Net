@@ -8,18 +8,34 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
     class When_complete_Filter_built
     {
         Because of = () => result = new Filter<FieldsTestClass>()                                                
-                                            .And( a => a.Custom("And"))
+                                            .And(a => a.Custom("And"))
+                                            .Or(o => o.Custom("Or"))
+                                            .Not( n => n.Custom("Not") )
                                             .Exists(e => e.Custom("Exists"))
                                             .Nested(n => n.Custom("Nested"))
                                             .Range(r => r.Custom("Range"))
                                             .Term(t => t.Custom("Term"))
                                             .Terms(t => t.Custom("Terms"))
+                                            .Bool(b => b.Custom("Bool"))
+                                            .Limit(l => l.Custom("Limit"))
+                                            .Type(t => t.Custom("Type"))
                                             .ToString();
 
-        It should_starts_with_nested_declaration = () => result.ShouldStartWith("'filter': {".AltQuote());
+        It should_starts_with_filter_declaration = () => result.ShouldStartWith("'filter': {".AltQuote());
 
 
-        It should_return_correct_result = () => result.ShouldEqual("'filter': { 'and': [ And ] },{ 'exists': { Exists } },{ 'nested': { Nested } },{ 'range': { Range } },{ 'term': { Term } },{ 'terms': { Terms } }".AltQuote());
+        It should_return_correct_result = () => result.ShouldEqual(("'filter': " +
+                                                                        "{ 'and': [ And ] }," +
+                                                                        "{ 'or': [ Or ] }," +
+                                                                        "{ 'not': { Not } }," +
+                                                                        "{ 'exists': { Exists } }," +
+                                                                        "{ 'nested': { Nested } }," +
+                                                                        "{ 'range': { Range } }," +
+                                                                        "{ 'term': { Term } }," +
+                                                                        "{ 'terms': { Terms } }," +
+                                                                        "{ 'bool': { Bool } }," +
+                                                                        "{ 'limit': { Limit } }," +
+                                                                        "{ 'type': { Type } }").AltQuote());
 
         private static string result;
     }

@@ -4,10 +4,10 @@ using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Tests.Buildres.Queries
 {
-    [Subject(typeof(AndFilter<>))]
-    class When_complete_AndFilter_built
+    [Subject(typeof(OrFilter<>))]
+    class When_complete_OrFilter_built
     {
-        Because of = () => result = new AndFilter<FieldsTestClass>()                                                
+        Because of = () => result = new OrFilter<FieldsTestClass>()                                                
                                             .And( a => a.Custom("And"))
                                             .Exists(e => e.Custom("Exists"))
                                             .Nested(n => n.Custom("Nested"))
@@ -16,10 +16,10 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
                                             .Terms(t => t.Custom("Terms"))                                            
                                             .ToString();
 
-        It should_starts_with_and_declaration = () => result.ShouldStartWith("{ 'and': [".AltQuote());
+        It should_starts_with_or_declaration = () => result.ShouldStartWith("{ 'or': [".AltQuote());
 
 
-        It should_return_correct_result = () => result.ShouldEqual("{ 'and': [ { 'and': [ And ] },{ 'exists': { Exists } },{ 'nested': { Nested } },{ 'range': { Range } },{ 'term': { Term } },{ 'terms': { Terms } } ] }".AltQuote());
+        It should_return_correct_result = () => result.ShouldEqual("{ 'or': [ { 'and': [ And ] },{ 'exists': { Exists } },{ 'nested': { Nested } },{ 'range': { Range } },{ 'term': { Term } },{ 'terms': { Terms } } ] }".AltQuote());
 
         private static string result;
     }

@@ -97,6 +97,8 @@
     <Compile Include="Builders\Mappings\RootObject.cs" />
     <Compile Include="Builders\Mappings\Core\StringMap.cs" />
     <Compile Include="Builders\Queries\ConstantScoreQuery.cs" />
+    <Compile Include="Builders\Queries\Filters\MissingFilter.cs" />
+    <Compile Include="Builders\Queries\Filters\MatchAllFilter.cs" />
     <Compile Include="Builders\Queries\Filters\OrFilter.cs" />
     <Compile Include="Builders\Queries\Filters\TypeFilter.cs" />
     <Compile Include="Builders\Queries\Filters\LimitFilter.cs" />

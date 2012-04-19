@@ -12,6 +12,7 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
                                             .Or(o => o.Custom("Or"))
                                             .Not( n => n.Custom("Not") )
                                             .Exists(e => e.Custom("Exists"))
+                                            .Missing(m => m.Custom("Missing"))
                                             .Nested(n => n.Custom("Nested"))
                                             .Range(r => r.Custom("Range"))
                                             .Term(t => t.Custom("Term"))
@@ -19,6 +20,7 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
                                             .Bool(b => b.Custom("Bool"))
                                             .Limit(l => l.Custom("Limit"))
                                             .Type(t => t.Custom("Type"))
+                                            .MatchAll()
                                             .ToString();
 
         It should_starts_with_filter_declaration = () => result.ShouldStartWith("'filter': {".AltQuote());
@@ -29,13 +31,15 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
                                                                         "{ 'or': [ Or ] }," +
                                                                         "{ 'not': { Not } }," +
                                                                         "{ 'exists': { Exists } }," +
+                                                                        "{ 'missing': { Missing } }," +
                                                                         "{ 'nested': { Nested } }," +
                                                                         "{ 'range': { Range } }," +
                                                                         "{ 'term': { Term } }," +
                                                                         "{ 'terms': { Terms } }," +
                                                                         "{ 'bool': { Bool } }," +
                                                                         "{ 'limit': { Limit } }," +
-                                                                        "{ 'type': { Type } }").AltQuote());
+                                                                        "{ 'type': { Type } }," +
+                                                                        "{ 'match_all': {} }").AltQuote());
 
         private static string result;
     }

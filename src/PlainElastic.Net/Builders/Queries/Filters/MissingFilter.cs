@@ -7,17 +7,18 @@ using PlainElastic.Net.Utils;
 namespace PlainElastic.Net.Queries
 {
     /// <summary>
-    /// Filters documents where a specific field has a value in them.
-    /// see http://www.elasticsearch.org/guide/reference/query-dsl/exists-filter.html
+    /// Filters documents where a specific field has no value in them.
+    /// see http://www.elasticsearch.org/guide/reference/query-dsl/missing-filter.html
     /// </summary>
-    public class ExistsFilter<T> : FieldQueryBase<T, ExistsFilter<T>>
+    public class MissingFilter<T> : FieldQueryBase<T, MissingFilter<T>>
     {
         private bool hasRequiredParts;
+
 
         /// <summary>
         /// Controls whether filter will be applied.
         /// </summary>
-        public ExistsFilter<T> ShouldExists(bool? value)
+        public MissingFilter<T> ShouldMiss(bool? value)
         {
             if (RegisteredField.IsNullOrEmpty())
                 return this;
@@ -32,7 +33,7 @@ namespace PlainElastic.Net.Queries
         /// it matched on (note, this feature make sense for or / bool filters).
         /// http://www.elasticsearch.org/guide/reference/api/search/named-filters.html 
         /// </summary>
-        public ExistsFilter<T> Name(string filterName)
+        public MissingFilter<T> Name(string filterName)
         {
             RegisterJsonPart("'_name': {0}", filterName.Quotate());
             return this;
@@ -47,7 +48,7 @@ namespace PlainElastic.Net.Queries
 
         protected override string ApplyJsonTemplate(string body)
         {
-            return "{{ 'exists': {{ {0} }} }}".AltQuoteF(body);
+            return "{{ 'missing': {{ {0} }} }}".AltQuoteF(body);
         }
     }
 }

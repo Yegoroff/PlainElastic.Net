@@ -46,7 +46,6 @@ namespace PlainElastic.Net.Queries
             return this;
         }
 
-
         /// <summary>
         /// Filters documents that have fields that contain a term (not analyzed).
         /// see http://www.elasticsearch.org/guide/reference/query-dsl/term-filter.html
@@ -74,6 +73,16 @@ namespace PlainElastic.Net.Queries
         public Filter<T> Exists(Func<ExistsFilter<T>, ExistsFilter<T>> existsFilter)
         {
             RegisterJsonPartExpression(existsFilter);
+            return this;
+        }
+
+        /// <summary>
+        /// Filters documents where a specific field has no value in them.
+        /// see http://www.elasticsearch.org/guide/reference/query-dsl/missing-filter.html
+        /// </summary>
+        public Filter<T> Missing(Func<MissingFilter<T>, MissingFilter<T>> missingFilter)
+        {
+            RegisterJsonPartExpression(missingFilter);
             return this;
         }
 
@@ -132,6 +141,18 @@ namespace PlainElastic.Net.Queries
             RegisterJsonPartExpression(typeFilter);
             return this;
         }
+
+        /// <summary>
+        /// A filter that matches on all documents.
+        /// see http://www.elasticsearch.org/guide/reference/query-dsl/match-all-filter.html
+        /// </summary>    
+        public Filter<T> MatchAll()
+        {
+            Func<MatchAllFilter<T>, MatchAllFilter<T>> matchFilter = m => m;
+            RegisterJsonPartExpression(matchFilter);
+            return this;
+        }
+        
 
         // http://www.elasticsearch.org/guide/reference/api/search/named-filters.html
         //TODO: fquery

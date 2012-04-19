@@ -13,7 +13,7 @@ namespace PlainElastic.Net.Tests.Buildres.Queries
                                                 .Name("ExistsFilter")
                                                 .ToString();
 
-        It should_starts_with_nested_declaration = () => result.ShouldStartWith("{ 'exists': {".AltQuote());
+        It should_starts_with_exists_declaration = () => result.ShouldStartWith("{ 'exists': {".AltQuote());
 
         It should_contain_field_part = () => result.ShouldContain("'field': 'StringProperty'".AltQuote());
 

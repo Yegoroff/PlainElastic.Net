@@ -146,6 +146,11 @@
     <Compile Include="Buildres\Queries\_Filters\And\When_empty_AndFilter_built.cs" />
     <Compile Include="Buildres\Queries\_Filters\Bool\When_complete_BoolFilter_built.cs" />
     <Compile Include="Buildres\Queries\_Filters\Bool\When_empty_BoolFilter_built.cs" />
+    <Compile Include="Buildres\Queries\_Filters\MatchAll\When_complete_MatchAllFilter_built.cs" />
+    <Compile Include="Buildres\Queries\_Filters\Missing\When_complete_MissingFilter_built.cs" />
+    <Compile Include="Buildres\Queries\_Filters\Missing\When_MissingFilter_without_field_specified_built.cs" />
+    <Compile Include="Buildres\Queries\_Filters\Missing\When_MissingFilter_with_SouldExists_false_built.cs" />
+    <Compile Include="Buildres\Queries\_Filters\Missing\When_MissingFilter_with_SouldExists_null_built.cs" />
     <Compile Include="Buildres\Queries\_Filters\Or\When_complete_OrFilter_built.cs" />
     <Compile Include="Buildres\Queries\_Filters\Or\When_empty_OrFilter_built.cs" />
     <Compile Include="Buildres\Queries\_Filters\Type\When_complete_TypeFilter_built.cs" />

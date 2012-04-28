@@ -153,6 +153,8 @@
     <Compile Include="Builders\Queries\_Filters\Missing\When_MissingFilter_with_ShouldMiss_null_built.cs" />
     <Compile Include="Builders\Queries\_Filters\Or\When_complete_OrFilter_built.cs" />
     <Compile Include="Builders\Queries\_Filters\Or\When_empty_OrFilter_built.cs" />
+    <Compile Include="Builders\Queries\_Filters\Query\When_complete_QueryFilter_built.cs" />
+    <Compile Include="Builders\Queries\_Filters\Query\When_QueryFilter_without_query_parts_built.cs" />
     <Compile Include="Builders\Queries\_Filters\Type\When_complete_TypeFilter_built.cs" />
     <Compile Include="Builders\Queries\_Filters\Type\When_empty_TypeFilter_built.cs" />
     <Compile Include="Builders\Queries\_Filters\Limit\When_complete_LimitFilter_built.cs" />

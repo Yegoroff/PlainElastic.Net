@@ -40,7 +40,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                                                         "{ 'bool': { Bool } }," +
                                                                         "{ 'limit': { Limit } }," +
                                                                         "{ 'type': { Type } }," +
-                                                                        "{ 'query': Query }," +
+                                                                        "{ 'fquery': { 'query': Query } }," +
                                                                         "{ 'match_all': {} }").AltQuote());
 
         private static string result;

@@ -145,14 +145,9 @@ namespace PlainElastic.Net.Queries
         /// Wraps any query to be used as a filter. Can be placed within queries that accept a filter.
         /// see http://www.elasticsearch.org/guide/reference/query-dsl/query-filter.html
         /// </summary>
-        public Filter<T> Query(Func<Query<T>, Query<T>> query)
+        public Filter<T> Query(Func<QueryFilter<T>, Query<T>> queryFilter)
         {
-            var queryPart = query(new Query<T>());
-            if (!queryPart.GetIsEmpty())
-            {
-                RegisterJsonPart("{{ {0} }}", queryPart.ToString());
-            }
-
+            RegisterJsonPartExpression(queryFilter);
             return this;
         }
 

@@ -1,5 +1,4 @@
 using System;
-using PlainElastic.Net.Queries;
 using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Queries
@@ -17,7 +16,7 @@ namespace PlainElastic.Net.Queries
         /// Can be placed within queries that accept a filter.
         /// see http://www.elasticsearch.org/guide/reference/query-dsl/and-filter.html
         /// </summary>
-        public Filter<T> And (Func<AndFilter<T>, Filter<T>> andFilter)
+        public Filter<T> And(Func<AndFilter<T>, Filter<T>> andFilter)
         {
             RegisterJsonPartExpression(andFilter);
             return this;
@@ -139,6 +138,16 @@ namespace PlainElastic.Net.Queries
         public Filter<T> Type(Func<TypeFilter<T>, TypeFilter<T>> typeFilter)
         {
             RegisterJsonPartExpression(typeFilter);
+            return this;
+        }
+
+        /// <summary>
+        /// Wraps any query to be used as a filter. Can be placed within queries that accept a filter.
+        /// see http://www.elasticsearch.org/guide/reference/query-dsl/query-filter.html
+        /// </summary>
+        public Filter<T> Query(Func<Query<T>, Query<T>> query)
+        {
+            RegisterJsonPart("{{ {0} }}", query(new Query<T>()).ToString());
             return this;
         }
 

@@ -20,6 +20,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                             .Bool(b => b.Custom("Bool"))
                                             .Limit(l => l.Custom("Limit"))
                                             .Type(t => t.Custom("Type"))
+                                            .Query(q => q.Custom("Query"))
                                             .MatchAll()
                                             .ToString();
 
@@ -39,6 +40,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                                                         "{ 'bool': { Bool } }," +
                                                                         "{ 'limit': { Limit } }," +
                                                                         "{ 'type': { Type } }," +
+                                                                        "{ 'query': Query }," +
                                                                         "{ 'match_all': {} }").AltQuote());
 
         private static string result;

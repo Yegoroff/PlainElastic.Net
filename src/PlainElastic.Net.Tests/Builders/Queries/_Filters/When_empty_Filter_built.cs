@@ -8,6 +8,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
     class When_empty_Filter_built
     {
         Because of = () => result = new Filter<FieldsTestClass>()
+                                            .Query(q => q)
                                             .ToString();
 
         It should_return_empty_string = () => result.ShouldBeEmpty();

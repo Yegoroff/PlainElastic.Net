@@ -147,7 +147,12 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public Filter<T> Query(Func<Query<T>, Query<T>> query)
         {
-            RegisterJsonPart("{{ {0} }}", query(new Query<T>()).ToString());
+            var queryPart = query(new Query<T>());
+            if (!queryPart.GetIsEmpty())
+            {
+                RegisterJsonPart("{{ {0} }}", queryPart.ToString());
+            }
+
             return this;
         }
 

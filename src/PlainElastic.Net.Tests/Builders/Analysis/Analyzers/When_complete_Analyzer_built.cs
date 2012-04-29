@@ -12,9 +12,11 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
                                             .Standard("named_standard")
                                             .Simple(s => s.Custom("Simple"))
                                             .Simple("named_simple")
-                                            .Whitespace(s => s.Custom("Whitespace"))
+                                            .Whitespace(w => w.Custom("Whitespace"))
                                             .Whitespace("named_whitespace")
-                                            .Standard(AnalyzersDefaultAliases.@default, s => s.Custom("Default"))
+                                            .Stop(s => s.Custom("Stop"))
+                                            .Stop("named_stop")
+                                            .Standard(AnalyzersDefaultAliases.@default, d => d.Custom("Default"))
                                             .Custom("{ Custom }")
                                             .ToString();
 
@@ -28,7 +30,11 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
 
         It should_contain_whitespace_part = () => result.ShouldContain("'whitespace': { 'type': 'whitespace',Whitespace }".AltQuote());
 
-        It should_contain_named_whitespace_part = () => result.ShouldContain("'named_whitespace': { 'type': 'simple' }".AltQuote());
+        It should_contain_named_whitespace_part = () => result.ShouldContain("'named_whitespace': { 'type': 'whitespace' }".AltQuote());
+
+        It should_contain_stop_part = () => result.ShouldContain("'stop': { 'type': 'stop',Stop }".AltQuote());
+
+        It should_contain_named_stop_part = () => result.ShouldContain("'named_stop': { 'type': 'stop' }".AltQuote());
 
         It should_contain_default_part = () => result.ShouldContain("'default': { 'type': 'standard',Default }".AltQuote());
 
@@ -41,6 +47,8 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
                                                                     "'named_simple': { 'type': 'simple' }," +
                                                                     "'whitespace': { 'type': 'whitespace',Whitespace }," +
                                                                     "'named_whitespace': { 'type': 'whitespace' }," +
+                                                                    "'stop': { 'type': 'stop',Stop }," +
+                                                                    "'named_stop': { 'type': 'stop' }," +
                                                                     "'default': { 'type': 'standard',Default }," +
                                                                     "{ Custom } }").AltQuote());
 

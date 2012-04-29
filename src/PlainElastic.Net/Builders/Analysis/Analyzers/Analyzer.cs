@@ -109,6 +109,40 @@ namespace PlainElastic.Net.IndexSettings
 
 #endregion
 
+
+#region Stop
+
+        /// <summary>
+        /// An analyzer of type stop that is built using a Lower Case Tokenizer, with Stop Token Filter.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/stop-analyzer.html
+        /// </summary>
+        public Analyzer Stop(string name, Func<StopAnalyzer, StopAnalyzer> stop = null)
+        {
+            RegisterJsonPartExpression(SpecifyComponentName(stop, name));
+            return this;
+        }
+
+        /// <summary>
+        /// An analyzer of type stop that is built using a Lower Case Tokenizer, with Stop Token Filter.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/stop-analyzer.html
+        /// </summary>
+        public Analyzer Stop(AnalyzersDefaultAliases name, Func<StopAnalyzer, StopAnalyzer> stop = null)
+        {
+            return Stop(name.ToString(), stop);
+        }
+
+        /// <summary>
+        /// An analyzer of type stop that is built using a Lower Case Tokenizer, with Stop Token Filter.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/stop-analyzer.html
+        /// </summary>
+        public Analyzer Stop(Func<StopAnalyzer, StopAnalyzer> stop = null)
+        {
+            return Stop(DefaultAnalyzers.stop.ToString(), stop);
+        }
+
+#endregion
+
+
         protected override string ApplyJsonTemplate(string body)
         {
             return "'analyzer': {{ {0} }}".AltQuoteF(body);

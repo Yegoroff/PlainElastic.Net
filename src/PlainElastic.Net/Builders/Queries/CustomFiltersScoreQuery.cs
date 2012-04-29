@@ -25,7 +25,7 @@ namespace PlainElastic.Net.Queries
             return this;
         }
 
-        public CustomFiltersScoreQuery<T> Filters(Func<FiltersQuery<T>, FiltersQuery<T>> filters)
+        public CustomFiltersScoreQuery<T> Filters(Func<ScoredFilters<T>, ScoredFilters<T>> filters)
         {
             RegisterJsonPartExpression(filters);
             return this;
@@ -43,6 +43,8 @@ namespace PlainElastic.Net.Queries
 
         /// <summary>
         /// Sets a scripting language used for filters boost calculation scripts.
+        /// By default used mvel language.
+        /// see: http://www.elasticsearch.org/guide/reference/modules/scripting.html
         /// </summary>
         public CustomFiltersScoreQuery<T> Lang(string lang)
         {
@@ -51,13 +53,36 @@ namespace PlainElastic.Net.Queries
         }
 
         /// <summary>
+        /// Sets a scripting language used for filters boost calculation scripts.
+        /// By default used mvel language.
+        /// see: http://www.elasticsearch.org/guide/reference/modules/scripting.html
+        /// </summary>
+        public CustomFiltersScoreQuery<T> Lang(ScriptLangs lang)
+        {
+            return Lang( lang.ToString());
+        }
+
+
+        /// <summary>
         /// Sets parameters used for filters boost calculation scripts.
         /// </summary>
-        public CustomFiltersScoreQuery<T> Params(string paramsFormat, params string[] args)
+        public CustomFiltersScoreQuery<T> Params(string paramsBody)
         {
-            RegisterJsonPart("'params': {0}", paramsFormat.AltQuoteF(args));
+            RegisterJsonPart("'params': {0}", paramsBody);
             return this;
         }
+
+
+        /// <summary>
+        /// Sets the boost for this query. Documents matching this query will (in addition to the normal weightings) 
+        /// have their score multiplied by the boost provided.
+        /// </summary>
+        public CustomFiltersScoreQuery<T> Boost(double boost)
+        {
+            RegisterJsonPart("'boost': {0}", boost.AsString());
+            return this;
+        }
+
 
 
         protected override bool HasRequiredParts()

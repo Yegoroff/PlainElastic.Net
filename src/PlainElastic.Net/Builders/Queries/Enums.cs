@@ -53,6 +53,8 @@ namespace PlainElastic.Net.Queries
 
     public enum TermsFacetOrder { count, term, reverse_count, reverse_term }
 
+    public enum ScriptLangs {  mvel, js, groovy, python, native }
+
     public enum RegexFlags
     {
         /// <summary>

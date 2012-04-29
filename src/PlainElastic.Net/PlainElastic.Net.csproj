@@ -99,8 +99,8 @@
     <Compile Include="Builders\Queries\ConstantScoreQuery.cs" />
     <Compile Include="Builders\Queries\Filters\QueryFilter.cs" />
     <Compile Include="Builders\Queries\CustomFiltersScoreQuery.cs" />
-    <Compile Include="Builders\Queries\FilterQuery.cs" />
-    <Compile Include="Builders\Queries\FiltersQuery.cs" />
+    <Compile Include="Builders\Queries\ScoredFilter.cs" />
+    <Compile Include="Builders\Queries\ScoredFilters.cs" />
     <Compile Include="Builders\Queries\Filters\MissingFilter.cs" />
     <Compile Include="Builders\Queries\Filters\MatchAllFilter.cs" />
     <Compile Include="Builders\Queries\Filters\OrFilter.cs" />

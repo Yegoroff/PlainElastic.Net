@@ -1,0 +1,388 @@
+<<<<<<< HEAD
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7881C0A1-3020-45AC-944D-36DA5AE2D734}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PlainElastic.Net</RootNamespace>
+    <AssemblyName>PlainElastic.Net</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\Net40\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Net40\PlainElastic.Net.XML</DocumentationFile>
+    <NoWarn>1591</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\Net40\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\Net40\PlainElastic.Net.XML</DocumentationFile>
+    <NoWarn>1591</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.4.0.7\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Builders\Analysis\Analysis.cs" />
+    <Compile Include="Builders\Analysis\AnalysisBase.cs" />
+    <Compile Include="Builders\Analysis\AnalysisComponentBase.cs" />
+    <Compile Include="Builders\Analysis\AnalysisExtensions.cs" />
+    <Compile Include="Builders\Analysis\Analyzers\Analyzer.cs" />
+    <Compile Include="Builders\Analysis\Analyzers\AnalyzerBase.cs" />
+    <Compile Include="Builders\Analysis\Analyzers\StopAnalyzerBase.cs" />
+    <Compile Include="Builders\Analysis\Analyzers\SnowballAnalyzer.cs" />
+    <Compile Include="Builders\Analysis\Analyzers\LanguageAnalyzer.cs" />
+    <Compile Include="Builders\Analysis\Analyzers\PatternAnalyzer.cs" />
+    <Compile Include="Builders\Analysis\Analyzers\CustomAnalyzer.cs" />
+    <Compile Include="Builders\Analysis\Analyzers\KeywordAnalyzer.cs" />
+    <Compile Include="Builders\Analysis\Analyzers\StopAnalyzer.cs" />
+    <Compile Include="Builders\Analysis\Analyzers\WhitespaceAnalyzer.cs" />
+    <Compile Include="Builders\Analysis\Analyzers\SimpleAnalyzer.cs" />
+    <Compile Include="Builders\Analysis\Analyzers\StandardAnalyzer.cs" />
+    <Compile Include="Builders\Analysis\Enums.cs" />
+    <Compile Include="Builders\Bulk\BulkBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Builders\Bulk\BulkOperationOptions.cs" />
+    <Compile Include="Builders\Commands\CommandBuilder.cs" />
+    <Compile Include="Builders\Commands\CloseCommand.cs" />
+    <Compile Include="Builders\Commands\BulkCommand.cs" />
+    <Compile Include="Builders\Commands\CreateIndexCommand.cs" />
+    <Compile Include="Builders\Commands\OptimizeCommand.cs" />
+    <Compile Include="Builders\Commands\CountCommand.cs" />
+    <Compile Include="Builders\Commands\RefreshCommand.cs" />
+    <Compile Include="Builders\Commands\UpdateSettingsCommand.cs" />
+    <Compile Include="Builders\Commands\OpenCommand.cs" />
+    <Compile Include="Builders\Commands\IndexExistsCommand.cs" />
+    <Compile Include="Builders\Commands\FlushCommand.cs" />
+    <Compile Include="Builders\Commands\GetMappingCommand.cs" />
+    <Compile Include="Builders\Commands\PutMappingCommand.cs" />
+    <Compile Include="Builders\Commands\DeleteMappingCommand.cs" />
+    <Compile Include="Builders\Commands\DeleteCommand.cs" />
+    <Compile Include="Builders\Commands\Enums.cs" />
+    <Compile Include="Builders\Commands\IndexCommand.cs" />
+    <Compile Include="Builders\Commands\GetCommand.cs" />
+    <Compile Include="Builders\Commands\Commands.cs" />
+    <Compile Include="Builders\Commands\SearchCommand.cs" />
+    <Compile Include="Builders\Enums.cs" />
+    <Compile Include="Builders\IndexSettings\IndexSettingsBuilder.cs" />
+    <Compile Include="Builders\Mappings\Attachment.cs" />
+    <Compile Include="Builders\Mappings\Core\ElasticCoreTypeMapper.cs" />
+    <Compile Include="Builders\Mappings\Core\CustomPropertyMap.cs" />
+    <Compile Include="Builders\Mappings\MultiField.cs" />
+    <Compile Include="Builders\Mappings\CoreFields.cs" />
+    <Compile Include="Builders\Mappings\Core\IpMap.cs" />
+    <Compile Include="Builders\Mappings\NestedObject.cs" />
+    <Compile Include="Builders\Mappings\Core\BinaryMap.cs" />
+    <Compile Include="Builders\Mappings\Core\BooleanMap.cs" />
+    <Compile Include="Builders\Mappings\Enums.cs" />
+    <Compile Include="Builders\Mappings\Core\PropertyBase.cs" />
+    <Compile Include="Builders\Mappings\Fields\AllMap.cs" />
+    <Compile Include="Builders\Mappings\Fields\ParentFieldMap.cs" />
+    <Compile Include="Builders\Mappings\Fields\IdFieldMap.cs" />
+    <Compile Include="Builders\Mappings\MappingBase.cs" />
+    <Compile Include="Builders\Mappings\Core\DateMap.cs" />
+    <Compile Include="Builders\Mappings\Core\NumberMap.cs" />
+    <Compile Include="Builders\Mappings\Object.cs" />
+    <Compile Include="Builders\Mappings\ObjectBase.cs" />
+    <Compile Include="Builders\Mappings\Properties.cs" />
+    <Compile Include="Builders\Mappings\RootObject.cs" />
+    <Compile Include="Builders\Mappings\Core\StringMap.cs" />
+    <Compile Include="Builders\Queries\ConstantScoreQuery.cs" />
+    <Compile Include="Builders\Queries\Filters\MissingFilter.cs" />
+    <Compile Include="Builders\Queries\Filters\MatchAllFilter.cs" />
+    <Compile Include="Builders\Queries\Filters\OrFilter.cs" />
+    <Compile Include="Builders\Queries\Filters\TypeFilter.cs" />
+    <Compile Include="Builders\Queries\Filters\LimitFilter.cs" />
+    <Compile Include="Builders\Queries\Filters\NotFilter.cs" />
+    <Compile Include="Builders\Queries\MatchAllQuery.cs" />
+    <Compile Include="Builders\Queries\TextPhrasePrefixQuery.cs" />
+    <Compile Include="Builders\Queries\TextPhraseQuery.cs" />
+    <Compile Include="Builders\Queries\TextQuery.cs" />
+    <Compile Include="Builders\Queries\FuzzyQuery.cs" />
+    <Compile Include="Builders\Queries\Facets\FilterFacet.cs" />
+    <Compile Include="Builders\Queries\Facets\FacetBase.cs" />
+    <Compile Include="Builders\Queries\Facets\FacetFilter.cs" />
+    <Compile Include="Builders\Queries\Facets\Facets.cs" />
+    <Compile Include="Builders\Queries\Facets\TermsFacet.cs" />
+    <Compile Include="Builders\Queries\FilteredQuery.cs" />
+    <Compile Include="Builders\Queries\Filters\BoolFilter.cs" />
+    <Compile Include="Builders\Queries\Filters\ShouldFilter.cs" />
+    <Compile Include="Builders\Queries\Filters\MustNotFilter.cs" />
+    <Compile Include="Builders\Queries\Filters\MustFilter.cs" />
+    <Compile Include="Builders\Queries\RangeBase.cs" />
+    <Compile Include="Builders\Queries\FieldQueryBase.cs" />
+    <Compile Include="Builders\Queries\Filters\RangeFilter.cs" />
+    <Compile Include="Builders\Queries\NestedBase.cs" />
+    <Compile Include="Builders\Queries\Filters\NestedFilter.cs" />
+    <Compile Include="Builders\Queries\Filters\TermsFilter.cs" />
+    <Compile Include="Builders\Queries\NestedQuery.cs" />
+    <Compile Include="Builders\Queries\DisMaxQuery.cs" />
+    <Compile Include="Builders\Queries\DisMaxQueries.cs" />
+    <Compile Include="Builders\Queries\Enums.cs" />
+    <Compile Include="Builders\Queries\QueryBase.cs" />
+    <Compile Include="Builders\Queries\RangeQuery.cs" />
+    <Compile Include="Connection\OperationExeception.cs" />
+    <Compile Include="Connection\ElasticConnection.cs" />
+    <Compile Include="Connection\OperationResult.cs" />
+    <Compile Include="Connection\IElasticConnection.cs" />
+    <Compile Include="Builders\Mappings\MapBuilder.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Builders\Queries\Filters\AndFilter.cs" />
+    <Compile Include="Builders\Queries\BoolQuery.cs" />
+    <Compile Include="Builders\Queries\Sort.cs" />
+    <Compile Include="Builders\Queries\MustNotQuery.cs" />
+    <Compile Include="Builders\Queries\Filters\ExistsFilter.cs" />
+    <Compile Include="Builders\Queries\Filters\Filter.cs" />
+    <Compile Include="Builders\IJsonConvertible.cs" />
+    <Compile Include="Builders\Queries\MustQuery.cs" />
+    <Compile Include="Builders\Queries\Query.cs" />
+    <Compile Include="Builders\Queries\QueryBuilder.cs" />
+    <Compile Include="Builders\Queries\QueryString.cs" />
+    <Compile Include="Builders\Queries\ShouldQuery.cs" />
+    <Compile Include="Builders\Queries\TermQuery.cs" />
+    <Compile Include="Builders\Queries\Filters\TermFilter.cs" />
+    <Compile Include="Builders\Queries\TermsQuery.cs" />
+    <Compile Include="Serialization\JsonNet\FacetCreationConverter.cs" />
+    <Compile Include="Serialization\Results\BaseResult.cs" />
+    <Compile Include="Serialization\Results\CommandResult.cs" />
+    <Compile Include="Serialization\Results\BulkResult.cs" />
+    <Compile Include="Serialization\Results\CountResult.cs" />
+    <Compile Include="Serialization\Results\FacetResult.cs" />
+    <Compile Include="Serialization\Results\SearchResult.cs" />
+    <Compile Include="Serialization\Results\DeleteResult.cs" />
+    <Compile Include="Serialization\Results\IndexResult.cs" />
+    <Compile Include="Serialization\Results\GetResult.cs" />
+    <Compile Include="Serialization\JsonNet\JsonNetSerializer.cs" />
+    <Compile Include="Serialization\IJsonSerializer.cs" />
+    <Compile Include="Serialization\Results\ShardsResult.cs" />
+    <Compile Include="Serialization\SerializationExtensions.cs" />
+    <Compile Include="Utils\JsonBeautifier.cs" />
+    <Compile Include="Utils\UrlBuilder.cs" />
+    <Compile Include="Utils\ReflectExtensions.cs" />
+    <Compile Include="Utils\Reflect.cs" />
+    <Compile Include="Utils\StringExtensions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="key.snk" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+=======
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7881C0A1-3020-45AC-944D-36DA5AE2D734}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PlainElastic.Net</RootNamespace>
+    <AssemblyName>PlainElastic.Net</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\Net40\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Net40\PlainElastic.Net.XML</DocumentationFile>
+    <NoWarn>1591</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\Net40\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\Net40\PlainElastic.Net.XML</DocumentationFile>
+    <NoWarn>1591</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.4.0.7\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Builders\Bulk\BulkBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Builders\Bulk\BulkOperationOptions.cs" />
+    <Compile Include="Builders\Commands\CommandBuilder.cs" />
+    <Compile Include="Builders\Commands\CloseCommand.cs" />
+    <Compile Include="Builders\Commands\BulkCommand.cs" />
+    <Compile Include="Builders\Commands\CreateIndexCommand.cs" />
+    <Compile Include="Builders\Commands\OptimizeCommand.cs" />
+    <Compile Include="Builders\Commands\CountCommand.cs" />
+    <Compile Include="Builders\Commands\RefreshCommand.cs" />
+    <Compile Include="Builders\Commands\UpdateSettingsCommand.cs" />
+    <Compile Include="Builders\Commands\OpenCommand.cs" />
+    <Compile Include="Builders\Commands\IndexExistsCommand.cs" />
+    <Compile Include="Builders\Commands\FlushCommand.cs" />
+    <Compile Include="Builders\Commands\GetMappingCommand.cs" />
+    <Compile Include="Builders\Commands\PutMappingCommand.cs" />
+    <Compile Include="Builders\Commands\DeleteMappingCommand.cs" />
+    <Compile Include="Builders\Commands\DeleteCommand.cs" />
+    <Compile Include="Builders\Commands\Enums.cs" />
+    <Compile Include="Builders\Commands\IndexCommand.cs" />
+    <Compile Include="Builders\Commands\GetCommand.cs" />
+    <Compile Include="Builders\Commands\Commands.cs" />
+    <Compile Include="Builders\Commands\SearchCommand.cs" />
+    <Compile Include="Builders\Enums.cs" />
+    <Compile Include="Builders\Mappings\Attachment.cs" />
+    <Compile Include="Builders\Mappings\Core\ElasticCoreTypeMapper.cs" />
+    <Compile Include="Builders\Mappings\Core\CustomPropertyMap.cs" />
+    <Compile Include="Builders\Mappings\MultiField.cs" />
+    <Compile Include="Builders\Mappings\CoreFields.cs" />
+    <Compile Include="Builders\Mappings\Core\IpMap.cs" />
+    <Compile Include="Builders\Mappings\NestedObject.cs" />
+    <Compile Include="Builders\Mappings\Core\BinaryMap.cs" />
+    <Compile Include="Builders\Mappings\Core\BooleanMap.cs" />
+    <Compile Include="Builders\Mappings\Enums.cs" />
+    <Compile Include="Builders\Mappings\Core\PropertyBase.cs" />
+    <Compile Include="Builders\Mappings\Fields\AllMap.cs" />
+    <Compile Include="Builders\Mappings\Fields\ParentFieldMap.cs" />
+    <Compile Include="Builders\Mappings\Fields\IdFieldMap.cs" />
+    <Compile Include="Builders\Mappings\MappingBase.cs" />
+    <Compile Include="Builders\Mappings\Core\DateMap.cs" />
+    <Compile Include="Builders\Mappings\Core\NumberMap.cs" />
+    <Compile Include="Builders\Mappings\Object.cs" />
+    <Compile Include="Builders\Mappings\ObjectBase.cs" />
+    <Compile Include="Builders\Mappings\Properties.cs" />
+    <Compile Include="Builders\Mappings\RootObject.cs" />
+    <Compile Include="Builders\Mappings\Core\StringMap.cs" />
+    <Compile Include="Builders\Queries\ConstantScoreQuery.cs" />
+    <Compile Include="Builders\Queries\Filters\QueryFilter.cs" />
+    <Compile Include="Builders\Queries\Filters\MissingFilter.cs" />
+    <Compile Include="Builders\Queries\Filters\MatchAllFilter.cs" />
+    <Compile Include="Builders\Queries\Filters\OrFilter.cs" />
+    <Compile Include="Builders\Queries\Filters\TypeFilter.cs" />
+    <Compile Include="Builders\Queries\Filters\LimitFilter.cs" />
+    <Compile Include="Builders\Queries\Filters\NotFilter.cs" />
+    <Compile Include="Builders\Queries\MatchAllQuery.cs" />
+    <Compile Include="Builders\Queries\TextPhrasePrefixQuery.cs" />
+    <Compile Include="Builders\Queries\TextPhraseQuery.cs" />
+    <Compile Include="Builders\Queries\TextQuery.cs" />
+    <Compile Include="Builders\Queries\FuzzyQuery.cs" />
+    <Compile Include="Builders\Queries\Facets\FilterFacet.cs" />
+    <Compile Include="Builders\Queries\Facets\FacetBase.cs" />
+    <Compile Include="Builders\Queries\Facets\FacetFilter.cs" />
+    <Compile Include="Builders\Queries\Facets\Facets.cs" />
+    <Compile Include="Builders\Queries\Facets\TermsFacet.cs" />
+    <Compile Include="Builders\Queries\FilteredQuery.cs" />
+    <Compile Include="Builders\Queries\Filters\BoolFilter.cs" />
+    <Compile Include="Builders\Queries\Filters\ShouldFilter.cs" />
+    <Compile Include="Builders\Queries\Filters\MustNotFilter.cs" />
+    <Compile Include="Builders\Queries\Filters\MustFilter.cs" />
+    <Compile Include="Builders\Queries\RangeBase.cs" />
+    <Compile Include="Builders\Queries\FieldQueryBase.cs" />
+    <Compile Include="Builders\Queries\Filters\RangeFilter.cs" />
+    <Compile Include="Builders\Queries\NestedBase.cs" />
+    <Compile Include="Builders\Queries\Filters\NestedFilter.cs" />
+    <Compile Include="Builders\Queries\Filters\TermsFilter.cs" />
+    <Compile Include="Builders\Queries\NestedQuery.cs" />
+    <Compile Include="Builders\Queries\DisMaxQuery.cs" />
+    <Compile Include="Builders\Queries\DisMaxQueries.cs" />
+    <Compile Include="Builders\Queries\Enums.cs" />
+    <Compile Include="Builders\Queries\QueryBase.cs" />
+    <Compile Include="Builders\Queries\RangeQuery.cs" />
+    <Compile Include="Connection\OperationExeception.cs" />
+    <Compile Include="Connection\ElasticConnection.cs" />
+    <Compile Include="Connection\OperationResult.cs" />
+    <Compile Include="Connection\IElasticConnection.cs" />
+    <Compile Include="Builders\Mappings\MapBuilder.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Builders\Queries\Filters\AndFilter.cs" />
+    <Compile Include="Builders\Queries\BoolQuery.cs" />
+    <Compile Include="Builders\Queries\Sort.cs" />
+    <Compile Include="Builders\Queries\MustNotQuery.cs" />
+    <Compile Include="Builders\Queries\Filters\ExistsFilter.cs" />
+    <Compile Include="Builders\Queries\Filters\Filter.cs" />
+    <Compile Include="Builders\IJsonConvertible.cs" />
+    <Compile Include="Builders\Queries\MustQuery.cs" />
+    <Compile Include="Builders\Queries\Query.cs" />
+    <Compile Include="Builders\Queries\QueryBuilder.cs" />
+    <Compile Include="Builders\Queries\QueryString.cs" />
+    <Compile Include="Builders\Queries\ShouldQuery.cs" />
+    <Compile Include="Builders\Queries\TermQuery.cs" />
+    <Compile Include="Builders\Queries\Filters\TermFilter.cs" />
+    <Compile Include="Builders\Queries\TermsQuery.cs" />
+    <Compile Include="Serialization\JsonNet\FacetCreationConverter.cs" />
+    <Compile Include="Serialization\Results\BaseResult.cs" />
+    <Compile Include="Serialization\Results\CommandResult.cs" />
+    <Compile Include="Serialization\Results\BulkResult.cs" />
+    <Compile Include="Serialization\Results\CountResult.cs" />
+    <Compile Include="Serialization\Results\FacetResult.cs" />
+    <Compile Include="Serialization\Results\SearchResult.cs" />
+    <Compile Include="Serialization\Results\DeleteResult.cs" />
+    <Compile Include="Serialization\Results\IndexResult.cs" />
+    <Compile Include="Serialization\Results\GetResult.cs" />
+    <Compile Include="Serialization\JsonNet\JsonNetSerializer.cs" />
+    <Compile Include="Serialization\IJsonSerializer.cs" />
+    <Compile Include="Serialization\Results\ShardsResult.cs" />
+    <Compile Include="Serialization\SerializationExtensions.cs" />
+    <Compile Include="Utils\JsonBeautifier.cs" />
+    <Compile Include="Utils\UrlBuilder.cs" />
+    <Compile Include="Utils\ReflectExtensions.cs" />
+    <Compile Include="Utils\Reflect.cs" />
+    <Compile Include="Utils\StringExtensions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="key.snk" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+>>>>>>> cf059c28d412b3192a8e396de4d9086b0a2775a8
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

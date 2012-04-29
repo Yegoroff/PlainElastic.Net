@@ -1,7 +1,11 @@
 using Machine.Specifications;
 using PlainElastic.Net.Serialization;
 
+<<<<<<< HEAD
+namespace PlainElastic.Net.Tests.Builders.Queries
+=======
 namespace PlainElastic.Net.Tests.Serialization
+>>>>>>> cf059c28d412b3192a8e396de4d9086b0a2775a8
 {
     [Subject(typeof(JsonNetSerializer))]
     class When_filter_facets_result_deserialized

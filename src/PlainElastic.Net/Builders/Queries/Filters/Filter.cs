@@ -1,5 +1,4 @@
 using System;
-using PlainElastic.Net.Queries;
 using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Queries
@@ -17,7 +16,7 @@ namespace PlainElastic.Net.Queries
         /// Can be placed within queries that accept a filter.
         /// see http://www.elasticsearch.org/guide/reference/query-dsl/and-filter.html
         /// </summary>
-        public Filter<T> And (Func<AndFilter<T>, Filter<T>> andFilter)
+        public Filter<T> And(Func<AndFilter<T>, Filter<T>> andFilter)
         {
             RegisterJsonPartExpression(andFilter);
             return this;
@@ -143,6 +142,16 @@ namespace PlainElastic.Net.Queries
         }
 
         /// <summary>
+        /// Wraps any query to be used as a filter. Can be placed within queries that accept a filter.
+        /// see http://www.elasticsearch.org/guide/reference/query-dsl/query-filter.html
+        /// </summary>
+        public Filter<T> Query(Func<QueryFilter<T>, Query<T>> queryFilter)
+        {
+            RegisterJsonPartExpression(queryFilter);
+            return this;
+        }
+
+        /// <summary>
         /// A filter that matches on all documents.
         /// see http://www.elasticsearch.org/guide/reference/query-dsl/match-all-filter.html
         /// </summary>    
@@ -153,9 +162,6 @@ namespace PlainElastic.Net.Queries
             return this;
         }
         
-
-        // http://www.elasticsearch.org/guide/reference/api/search/named-filters.html
-        //TODO: fquery
 
         protected override bool HasRequiredParts()
         {

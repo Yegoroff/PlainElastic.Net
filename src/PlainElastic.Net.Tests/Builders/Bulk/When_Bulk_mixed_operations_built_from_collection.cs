@@ -36,7 +36,7 @@ namespace PlainElastic.Net.Tests.Builders.Commands
                                                                 return builder.Create(data: element, index: "test", type: "type1", id: element.StringProperty);
                                                             case State.Disabled:
                                                                 return builder.Delete(index: "test", type: "type1", id: element.StringProperty);
-                                                        };
+                                                        }
                                                         return "";
                                                     }
                                                 );

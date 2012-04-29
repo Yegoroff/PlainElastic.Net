@@ -40,6 +40,35 @@ namespace PlainElastic.Net.IndexSettings
         }
 
 
+        /// <summary>
+        /// An analyzer of type simple that is built using a Lower Case Tokenizer.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/simple-analyzer.html
+        /// </summary>
+        public Analyzer Simple(string name, Func<SimpleAnalyzer, SimpleAnalyzer> simple = null)
+        {
+            RegisterJsonPartExpression(SpecifyComponentName(simple, name));
+            return this;
+        }
+
+        /// <summary>
+        /// An analyzer of type simple that is built using a Lower Case Tokenizer.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/simple-analyzer.html
+        /// </summary>
+        public Analyzer Simple(AnalyzersDefaultAliases name, Func<SimpleAnalyzer, SimpleAnalyzer> simple = null)
+        {
+            return Simple(name.ToString(), simple);
+        }
+
+        /// <summary>
+        /// An analyzer of type simple that is built using a Lower Case Tokenizer.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/simple-analyzer.html
+        /// </summary>
+        public Analyzer Simple(Func<SimpleAnalyzer, SimpleAnalyzer> simple = null)
+        {
+            return Simple(DefaultAnalyzers.simple.ToString(), simple);
+        }
+
+
         protected override string ApplyJsonTemplate(string body)
         {
             return "'analyzer': {{ {0} }}".AltQuoteF(body);

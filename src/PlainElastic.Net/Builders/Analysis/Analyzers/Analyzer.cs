@@ -249,6 +249,42 @@ namespace PlainElastic.Net.IndexSettings
 #endregion
 
 
+#region Snowball
+
+        /// <summary>
+        /// An analyzer of type snowball that uses the standard tokenizer, with standard filter, lowercase filter, stop filter, and snowball filter.
+        /// The Snowball Analyzer is a stemming analyzer from Lucene that is originally based on the snowball project from snowball.tartarus.org.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/snowball-analyzer.html
+        /// </summary>
+        public Analyzer Snowball(string name, Func<SnowballAnalyzer, SnowballAnalyzer> snowball = null)
+        {
+            RegisterJsonPartExpression(SpecifyComponentName(snowball, name));
+            return this;
+        }
+
+        /// <summary>
+        /// An analyzer of type snowball that uses the standard tokenizer, with standard filter, lowercase filter, stop filter, and snowball filter.
+        /// The Snowball Analyzer is a stemming analyzer from Lucene that is originally based on the snowball project from snowball.tartarus.org.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/snowball-analyzer.html
+        /// </summary>
+        public Analyzer Snowball(AnalyzersDefaultAliases name, Func<SnowballAnalyzer, SnowballAnalyzer> snowball = null)
+        {
+            return Snowball(name.ToString(), snowball);
+        }
+
+        /// <summary>
+        /// An analyzer of type snowball that uses the standard tokenizer, with standard filter, lowercase filter, stop filter, and snowball filter.
+        /// The Snowball Analyzer is a stemming analyzer from Lucene that is originally based on the snowball project from snowball.tartarus.org.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/snowball-analyzer.html
+        /// </summary>
+        public Analyzer Snowball(Func<SnowballAnalyzer, SnowballAnalyzer> snowball)
+        {
+            return Snowball(DefaultAnalyzers.snowball.ToString(), snowball);
+        }
+
+#endregion
+
+
 #region Custom
 
         /// <summary>

@@ -167,4 +167,34 @@ namespace PlainElastic.Net.IndexSettings
         turkish,
         thai
     }
+
+    /// <summary>
+    /// Languages supported by a Snowball-generated stemmer.
+    /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/snowball-tokenfilter.html
+    /// </summary>
+    public enum SnowballLanguages
+    {
+        Armenian,
+        Basque,
+        Catalan,
+        Danish,
+        Dutch,
+        English,
+        Finnish,
+        French,
+        German,
+        German2,
+        Hungarian,
+        Italian,
+        Kp,
+        Lovins,
+        Norwegian,
+        Porter,
+        Portuguese,
+        Romanian,
+        Russian,
+        Spanish,
+        Swedish,
+        Turkish
+    }
 }

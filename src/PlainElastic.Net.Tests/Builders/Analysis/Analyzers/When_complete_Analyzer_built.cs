@@ -25,6 +25,8 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
                                                 .CustomPart("Language"))
                                             .Language("named_language", l => l
                                                 .Type(LanguageAnalyzerTypes.french))
+                                            .Snowball(s => s.CustomPart("Snowball"))
+                                            .Snowball("named_snowball")
                                             .Custom("custom", c => c.CustomPart("Custom Analyzer"))
                                             .Standard(AnalyzersDefaultAliases.@default, d => d.CustomPart("Default"))
                                             .CustomPart("{ Custom }")
@@ -58,6 +60,10 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
 
         It should_contain_named_language_part = () => result.ShouldContain("'named_language': { 'type': 'french' }".AltQuote());
 
+        It should_contain_snowball_part = () => result.ShouldContain("'snowball': { 'type': 'snowball',Snowball }".AltQuote());
+
+        It should_contain_named_snowball_part = () => result.ShouldContain("'named_snowball': { 'type': 'snowball' }".AltQuote());
+
         It should_contain_custom_analyzer_part = () => result.ShouldContain("'custom': { 'type': 'custom',Custom Analyzer }".AltQuote());
 
         It should_contain_default_part = () => result.ShouldContain("'default': { 'type': 'standard',Default }".AltQuote());
@@ -79,6 +85,8 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
                                                                     "'named_pattern': { 'type': 'pattern' }," +
                                                                     "'russian': { 'type': 'russian',Language }," +
                                                                     "'named_language': { 'type': 'french' }," +
+                                                                    "'snowball': { 'type': 'snowball',Snowball }," +
+                                                                    "'named_snowball': { 'type': 'snowball' }," +
                                                                     "'custom': { 'type': 'custom',Custom Analyzer }," +
                                                                     "'default': { 'type': 'standard',Default }," +
                                                                     "{ Custom } }").AltQuote());

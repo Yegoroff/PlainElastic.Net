@@ -37,6 +37,16 @@ namespace PlainElastic.Net.IndexSettings
 
 
         /// <summary>
+        /// Sets a path (either relative to config location, or absolute) to a stopwords file configuration.
+        /// </summary>
+        public StandardAnalyzer StopwordsPath(string stopwordsPath)
+        {
+            RegisterJsonPart("'stopwords_path': {0}", stopwordsPath.Quotate());
+            return this;
+        }
+
+
+        /// <summary>
         /// Sets the maximum token length. If a token is seen that exceeds this length then it is discarded.
         /// Defaults to 255.
         /// </summary>

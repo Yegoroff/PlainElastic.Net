@@ -15,7 +15,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                                 .Rewrite(Rewrite.top_terms_boost_n, 100)
                                                 .Query("query text")
                                                 .DefaultOperator(Operator.AND)
-                                                .Analyzer(DefaultAnalizers.snowball)
+                                                .Analyzer(DefaultAnalyzers.snowball)
                                                 .AllowLeadingWildcard(true)
                                                 .LowercaseExpandedTerms(false)
                                                 .EnablePositionIncrements(true)

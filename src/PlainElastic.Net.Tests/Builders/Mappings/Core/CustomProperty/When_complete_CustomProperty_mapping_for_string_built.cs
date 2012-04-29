@@ -9,18 +9,18 @@ namespace PlainElastic.Net.Tests.Builders.Mappings
     class When_complete_CustomProperty_mapping_for_string_built
     {
         Because of = () => result = new CustomPropertyMap<FieldsTestClass>("FieldName", typeof(string))
-                                                .Analyzer(DefaultAnalizers.snowball)
+                                                .Analyzer(DefaultAnalyzers.snowball)
                                                 .Boost(5)
                                                 .Format("date format")                                                
                                                 .IncludeInAll(true)
                                                 .Index(IndexState.not_analyzed)
                                                 .IndexName("index name")
-                                                .IndexAnalyzer(DefaultAnalizers.stop)
+                                                .IndexAnalyzer(DefaultAnalyzers.stop)
                                                 .NullValue("null value")
                                                 .OmitNorms(true)
                                                 .OmitTermFreqAndPositions(true)
                                                 .PrecisionStep(10)
-                                                .SearchAnalyzer(DefaultAnalizers.whitespace)
+                                                .SearchAnalyzer(DefaultAnalyzers.whitespace)
                                                 .Store(true)
                                                 .TermVector(TermVector.with_offsets)
                                                 .ToString();

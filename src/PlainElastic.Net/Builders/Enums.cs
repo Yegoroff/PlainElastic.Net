@@ -17,7 +17,7 @@ namespace PlainElastic.Net
     /// Analyzers that can be used in order to both break indexed (analyzed) fields when a document is indexed and process query strings.
     /// see: http://www.elasticsearch.org/guide/reference/index-modules/analysis/
     /// </summary>
-    public enum DefaultAnalizers
+    public enum DefaultAnalyzers
     {
         standard,
         simple,

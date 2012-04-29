@@ -12,7 +12,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                                 .Query("One")
                                                 .Boost(5)                                                
                                                 .Operator(Operator.AND)
-                                                .Analyzer(DefaultAnalizers.standard)
+                                                .Analyzer(DefaultAnalyzers.standard)
                                                 .Fuzziness(0.3)
                                                 .PrefixLength(7)
                                                 .MaxExpansions(10)

@@ -36,7 +36,7 @@ namespace PlainElastic.Net.IndexSettings
         /// </summary>
         public Analyzer Standard(Func<StandardAnalyzer, StandardAnalyzer> standard = null)
         {
-            return Standard(DefaultAnalizers.standard.ToString(), standard);
+            return Standard(DefaultAnalyzers.standard.ToString(), standard);
         }
 
 

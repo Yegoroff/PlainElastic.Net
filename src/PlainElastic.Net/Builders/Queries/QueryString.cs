@@ -154,7 +154,7 @@ namespace PlainElastic.Net.Queries
         /// The analyzer name used to analyze the query string. Defaults to the globally configured analyzer.
         /// see: http://www.elasticsearch.org/guide/reference/index-modules/analysis/
         /// </summary>
-        public QueryString<T> Analyzer(DefaultAnalizers analyzer)
+        public QueryString<T> Analyzer(DefaultAnalyzers analyzer)
         {
             return Analyzer(analyzer.ToString());
         }

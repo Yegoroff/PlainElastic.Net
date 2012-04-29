@@ -46,7 +46,7 @@ namespace PlainElastic.Net.IndexSettings
         /// </summary>
         public LanguageAnalyzer StemExclusion(IEnumerable<string> stemExclusion)
         {
-            RegisterJsonStringsProperty("stem_exclusion", stemExclusion);
+            this.RegisterJsonStringsProperty("stem_exclusion", stemExclusion);
             return this;
         }
 

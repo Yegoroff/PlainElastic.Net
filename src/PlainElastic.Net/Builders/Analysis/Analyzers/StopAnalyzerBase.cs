@@ -11,7 +11,7 @@ namespace PlainElastic.Net.IndexSettings
         /// </summary>
         public TPart Stopwords(IEnumerable<string> stopwords)
         {
-            RegisterJsonStringsProperty("stopwords", stopwords);
+            this.RegisterJsonStringsProperty("stopwords", stopwords);
             return (TPart)this;
         }
 

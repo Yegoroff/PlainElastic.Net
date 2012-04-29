@@ -9,7 +9,7 @@ namespace PlainElastic.Net.IndexSettings
         /// </summary>
         public TPart Alias(IEnumerable<string> aliases)
         {
-            RegisterJsonStringsProperty("alias", aliases);
+            this.RegisterJsonStringsProperty("alias", aliases);
             return (TPart)this;
         }
 

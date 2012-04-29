@@ -40,7 +40,7 @@ namespace PlainElastic.Net.IndexSettings
         /// </summary>
         public CustomAnalyzer Filter(IEnumerable<string> filters)
         {
-            RegisterJsonStringsProperty("filter", filters);
+            this.RegisterJsonStringsProperty("filter", filters);
             return this;
         }
 
@@ -74,7 +74,7 @@ namespace PlainElastic.Net.IndexSettings
         /// </summary>
         public CustomAnalyzer CharFilter(IEnumerable<string> filters)
         {
-            RegisterJsonStringsProperty("char_filter", filters);
+            this.RegisterJsonStringsProperty("char_filter", filters);
             return this;
         }
 

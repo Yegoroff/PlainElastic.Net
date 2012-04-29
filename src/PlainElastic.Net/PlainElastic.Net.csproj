@@ -52,6 +52,7 @@
     <Compile Include="Builders\Analysis\Analysis.cs" />
     <Compile Include="Builders\Analysis\AnalysisBase.cs" />
     <Compile Include="Builders\Analysis\AnalysisComponentBase.cs" />
+    <Compile Include="Builders\Analysis\AnalysisExtensions.cs" />
     <Compile Include="Builders\Analysis\Analyzers\Analyzer.cs" />
     <Compile Include="Builders\Analysis\Analyzers\AnalyzerBase.cs" />
     <Compile Include="Builders\Analysis\Analyzers\StopAnalyzerBase.cs" />

@@ -17,7 +17,7 @@ namespace PlainElastic.Net.IndexSettings
         /// </summary>
         public Analyzer Standard(string name, Func<StandardAnalyzer, StandardAnalyzer> standard = null)
         {
-            RegisterJsonPartExpression(SpecifyComponentName(standard, name));
+            RegisterJsonPartExpression(standard.Name(name));
             return this;
         }
 
@@ -52,7 +52,7 @@ namespace PlainElastic.Net.IndexSettings
         /// </summary>
         public Analyzer Simple(string name, Func<SimpleAnalyzer, SimpleAnalyzer> simple = null)
         {
-            RegisterJsonPartExpression(SpecifyComponentName(simple, name));
+            RegisterJsonPartExpression(simple.Name(name));
             return this;
         }
 
@@ -85,7 +85,7 @@ namespace PlainElastic.Net.IndexSettings
         /// </summary>
         public Analyzer Whitespace(string name, Func<WhitespaceAnalyzer, WhitespaceAnalyzer> whitespace = null)
         {
-            RegisterJsonPartExpression(SpecifyComponentName(whitespace, name));
+            RegisterJsonPartExpression(whitespace.Name(name));
             return this;
         }
 
@@ -118,7 +118,7 @@ namespace PlainElastic.Net.IndexSettings
         /// </summary>
         public Analyzer Stop(string name, Func<StopAnalyzer, StopAnalyzer> stop = null)
         {
-            RegisterJsonPartExpression(SpecifyComponentName(stop, name));
+            RegisterJsonPartExpression(stop.Name(name));
             return this;
         }
 
@@ -153,7 +153,7 @@ namespace PlainElastic.Net.IndexSettings
         /// </summary>
         public Analyzer Keyword(string name, Func<KeywordAnalyzer, KeywordAnalyzer> keyword = null)
         {
-            RegisterJsonPartExpression(SpecifyComponentName(keyword, name));
+            RegisterJsonPartExpression(keyword.Name(name));
             return this;
         }
 
@@ -190,7 +190,7 @@ namespace PlainElastic.Net.IndexSettings
         /// </summary>
         public Analyzer Pattern(string name, Func<PatternAnalyzer, PatternAnalyzer> pattern = null)
         {
-            RegisterJsonPartExpression(SpecifyComponentName(pattern, name));
+            RegisterJsonPartExpression(pattern.Name(name));
             return this;
         }
 
@@ -223,7 +223,7 @@ namespace PlainElastic.Net.IndexSettings
         /// </summary>
         public Analyzer Language(string name, Func<LanguageAnalyzer, LanguageAnalyzer> language)
         {
-            RegisterJsonPartExpression(SpecifyComponentName(language, name));
+            RegisterJsonPartExpression(language.Name(name));
             return this;
         }
 
@@ -242,7 +242,7 @@ namespace PlainElastic.Net.IndexSettings
         /// </summary>
         public Analyzer Language(Func<LanguageAnalyzer, LanguageAnalyzer> language)
         {
-            RegisterJsonPartExpression(SpecifyComponentName(language, l => l.AnalyzerType));
+            RegisterJsonPartExpression(language.Name(l => l.AnalyzerType));
             return this;
         }
 
@@ -258,7 +258,7 @@ namespace PlainElastic.Net.IndexSettings
         /// </summary>
         public Analyzer Snowball(string name, Func<SnowballAnalyzer, SnowballAnalyzer> snowball = null)
         {
-            RegisterJsonPartExpression(SpecifyComponentName(snowball, name));
+            RegisterJsonPartExpression(snowball.Name(name));
             return this;
         }
 
@@ -294,7 +294,7 @@ namespace PlainElastic.Net.IndexSettings
         /// </summary>
         public Analyzer Custom(string name, Func<CustomAnalyzer, CustomAnalyzer> custom)
         {
-            RegisterJsonPartExpression(SpecifyComponentName(custom, name));
+            RegisterJsonPartExpression(custom.Name(name));
             return this;
         }
 

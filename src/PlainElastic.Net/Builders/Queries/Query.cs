@@ -163,6 +163,17 @@ namespace PlainElastic.Net.Queries
             return this;
         }
 
+        /// <summary>
+        /// A query that allows to execute a query, and if the hit matches a provided filter (ordered),
+        /// use either a boost or a script associated with it to compute the score.
+        /// see http://www.elasticsearch.org/guide/reference/query-dsl/custom-filters-score-query.html
+        /// </summary>
+        public Query<T> CustomFiltersScore(Func<CustomFiltersScoreQuery<T>, CustomFiltersScoreQuery<T>> customFiltersScoreQuery)
+        {
+            RegisterJsonPartExpression(customFiltersScoreQuery);
+            return this;
+        }
+
 
         protected override string ApplyJsonTemplate(string body)
         {

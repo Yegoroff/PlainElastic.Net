@@ -34,6 +34,7 @@ namespace PlainElastic.Net.IndexSettings
             return Stopwords((IEnumerable<string>)stopwords);
         }
 
+
         /// <summary>
         /// Sets a path (either relative to config location, or absolute) to a stopwords file configuration.
         /// </summary>

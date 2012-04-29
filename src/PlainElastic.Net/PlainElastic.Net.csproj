@@ -54,13 +54,13 @@
     <Compile Include="Builders\Analysis\AnalysisComponentBase.cs" />
     <Compile Include="Builders\Analysis\Analyzers\Analyzer.cs" />
     <Compile Include="Builders\Analysis\Analyzers\AnalyzerBase.cs" />
+    <Compile Include="Builders\Analysis\Analyzers\CustomAnalyzer.cs" />
     <Compile Include="Builders\Analysis\Analyzers\KeywordAnalyzer.cs" />
     <Compile Include="Builders\Analysis\Analyzers\StopAnalyzer.cs" />
     <Compile Include="Builders\Analysis\Analyzers\WhitespaceAnalyzer.cs" />
     <Compile Include="Builders\Analysis\Analyzers\SimpleAnalyzer.cs" />
     <Compile Include="Builders\Analysis\Analyzers\StandardAnalyzer.cs" />
     <Compile Include="Builders\Analysis\Enums.cs" />
-    <Compile Include="Builders\Analysis\TypedAnalysisComponentBase.cs" />
     <Compile Include="Builders\Bulk\BulkBuilder.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -8,7 +8,7 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
     class When_complete_IndexSettingsBuilder_built
     {
         Because of = () => result = new IndexSettingsBuilder()
-                                            .Analysis(a => a.Custom("Analysis"))
+                                            .Analysis(a => a.CustomPart("Analysis"))
                                             .Build();
 
         It should_contain_analysis_part = () => result.ShouldContain("'analysis': { Analysis }".AltQuote());

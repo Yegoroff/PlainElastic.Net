@@ -24,9 +24,18 @@ namespace PlainElastic.Net.IndexSettings
         }
 
 
+        protected abstract string GetComponentType();
+
+
         protected override string ApplyJsonTemplate(string body)
         {
-            return "{0}: {{ {1} }}".F(name.Quotate(), body);
+            var type = GetComponentType();
+            var typeProperty = "'type': {0}".AltQuoteF(type.Quotate());
+
+            var typedBody = body.IsNullOrEmpty() ? typeProperty
+                                                 : new[] { typeProperty, body }.JoinWithComma();
+
+            return "{0}: {{ {1} }}".F(name.Quotate(), typedBody);
         }
     }
 }

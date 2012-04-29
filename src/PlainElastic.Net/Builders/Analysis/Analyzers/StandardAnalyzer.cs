@@ -35,6 +35,7 @@ namespace PlainElastic.Net.IndexSettings
             return Stopwords((IEnumerable<string>)stopwords);
         }
 
+
         /// <summary>
         /// Sets the maximum token length. If a token is seen that exceeds this length then it is discarded.
         /// Defaults to 255.

@@ -2,7 +2,7 @@
 
 namespace PlainElastic.Net.IndexSettings
 {
-    public abstract class AnalyzerBase<TPart> : TypedAnalysisComponentBase<TPart> where TPart : AnalyzerBase<TPart>
+    public abstract class AnalyzerBase<TPart> : AnalysisComponentBase<TPart> where TPart : AnalyzerBase<TPart>
     {
         /// <summary>
         /// Sets analyzer aliases to have several registered lookup names associated with analyzer.

@@ -8,18 +8,19 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
     class When_complete_Analyzer_built
     {
         Because of = () => result = new Analyzer()
-                                            .Standard(s => s.Custom("Standard"))
+                                            .Standard(s => s.CustomPart("Standard"))
                                             .Standard("named_standard")
-                                            .Simple(s => s.Custom("Simple"))
+                                            .Simple(s => s.CustomPart("Simple"))
                                             .Simple("named_simple")
-                                            .Whitespace(w => w.Custom("Whitespace"))
+                                            .Whitespace(w => w.CustomPart("Whitespace"))
                                             .Whitespace("named_whitespace")
-                                            .Stop(s => s.Custom("Stop"))
+                                            .Stop(s => s.CustomPart("Stop"))
                                             .Stop("named_stop")
-                                            .Keyword(s => s.Custom("Keyword"))
+                                            .Keyword(s => s.CustomPart("Keyword"))
                                             .Keyword("named_keyword")
-                                            .Standard(AnalyzersDefaultAliases.@default, d => d.Custom("Default"))
-                                            .Custom("{ Custom }")
+                                            .Custom("custom", c => c.CustomPart("Custom Analyzer"))
+                                            .Standard(AnalyzersDefaultAliases.@default, d => d.CustomPart("Default"))
+                                            .CustomPart("{ Custom }")
                                             .ToString();
 
         It should_contain_standard_part = () => result.ShouldContain("'standard': { 'type': 'standard',Standard }".AltQuote());
@@ -42,6 +43,8 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
 
         It should_contain_named_keyword_part = () => result.ShouldContain("'named_keyword': { 'type': 'keyword' }".AltQuote());
 
+        It should_contain_custom_analyzer_part = () => result.ShouldContain("'custom': { 'type': 'custom',Custom Analyzer }".AltQuote());
+
         It should_contain_default_part = () => result.ShouldContain("'default': { 'type': 'standard',Default }".AltQuote());
 
         It should_contain_custom_part = () => result.ShouldContain("{ Custom }".AltQuote());
@@ -57,6 +60,7 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
                                                                     "'named_stop': { 'type': 'stop' }," +
                                                                     "'keyword': { 'type': 'keyword',Keyword }," +
                                                                     "'named_keyword': { 'type': 'keyword' }," +
+                                                                    "'custom': { 'type': 'custom',Custom Analyzer }," +
                                                                     "'default': { 'type': 'standard',Default }," +
                                                                     "{ Custom } }").AltQuote());
 

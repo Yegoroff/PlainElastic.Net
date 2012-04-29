@@ -11,7 +11,7 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
                                             .Name("name")
                                             .Version("3.5")
                                             .Alias("second", "third")
-                                            .Custom("{ Custom }")
+                                            .CustomPart("{ Custom }")
                                             .ToString();
 
         It should_start_with_name = () => result.ShouldStartWith("'name': {".AltQuote());

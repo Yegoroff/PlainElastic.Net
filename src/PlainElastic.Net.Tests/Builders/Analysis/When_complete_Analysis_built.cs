@@ -8,8 +8,8 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
     class When_complete_Analysis_built
     {
         Because of = () => result = new Analysis()
-                                            .Analyzer(a => a.Custom("Analyzers"))
-                                            .Custom("{ Custom }")
+                                            .Analyzer(a => a.CustomPart("Analyzers"))
+                                            .CustomPart("{ Custom }")
                                             .ToString();
 
         It should_contain_analyzer_part = () => result.ShouldContain("'analyzer': { Analyzers }".AltQuote());

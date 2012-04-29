@@ -20,7 +20,7 @@ namespace PlainElastic.Net.IndexSettings
         /// <summary>
         /// Adds a custom part to analisys config.
         /// </summary>
-        public TPart Custom(string partFormat, params string[] args)
+        public TPart CustomPart(string partFormat, params string[] args)
         {
             if (partFormat.IsNullOrEmpty())
                 return (TPart)this;

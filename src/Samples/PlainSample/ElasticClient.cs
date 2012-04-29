@@ -1,4 +1,5 @@
 ﻿using PlainElastic.Net;
+using PlainElastic.Net.IndexSettings;
 using PlainElastic.Net.Queries;
 using PlainElastic.Net.Serialization;
 
@@ -57,8 +58,16 @@ namespace PlainSample
             }
         }
 
-        public IndexResult CreateIndex(IndexCommand indexCommand, string indexSettings = null)
+        public IndexResult CreateIndex(IndexCommand indexCommand)
         {
+            var indexSettings = new IndexSettingsBuilder()
+                .Analysis(analysis => analysis
+                    .Analyzer(analyzer => analyzer
+                        .Custom("keyword_lowercase", custom => custom
+                            .Tokenizer(DefaultTokenizers.keyword)
+                            .Filter(DefaultTokenFilters.lowercase))))
+                .Build();
+
             var result = connection.Put(indexCommand, indexSettings);
             return Serializer.ToIndexResult(result);
         }

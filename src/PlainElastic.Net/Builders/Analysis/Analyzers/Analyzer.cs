@@ -182,6 +182,32 @@ namespace PlainElastic.Net.IndexSettings
 #endregion
 
 
+#region Custom
+
+        /// <summary>
+        /// An analyzer of type custom that allows to combine a Tokenizer with zero or more Token Filters, and zero or more Char Filters.
+        /// The custom analyzer accepts a logical/registered name of the tokenizer to use, and a list of logical/registered names of token filters.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/custom-analyzer.html
+        /// </summary>
+        public Analyzer Custom(string name, Func<CustomAnalyzer, CustomAnalyzer> custom)
+        {
+            RegisterJsonPartExpression(SpecifyComponentName(custom, name));
+            return this;
+        }
+
+        /// <summary>
+        /// An analyzer of type custom that allows to combine a Tokenizer with zero or more Token Filters, and zero or more Char Filters.
+        /// The custom analyzer accepts a logical/registered name of the tokenizer to use, and a list of logical/registered names of token filters.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/custom-analyzer.html
+        /// </summary>
+        public Analyzer Custom(AnalyzersDefaultAliases name, Func<CustomAnalyzer, CustomAnalyzer> custom)
+        {
+            return Custom(name.ToString(), custom);
+        }
+
+#endregion
+
+
         protected override string ApplyJsonTemplate(string body)
         {
             return "'analyzer': {{ {0} }}".AltQuoteF(body);

@@ -13,7 +13,7 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
                                             .Alias("second", "third")
                                             .Stopwords("stop", "word")
                                             .StopwordsPath("stopwords path")
-                                            .Custom("{ Custom }")
+                                            .CustomPart("{ Custom }")
                                             .ToString();
 
         It should_start_with_name = () => result.ShouldStartWith("'name': {".AltQuote());

@@ -119,6 +119,8 @@
     <Compile Include="Builders\Mappings\Object\When_complete_Object_mapping_built.cs" />
     <Compile Include="Builders\Mappings\Object\When_Object_with_custom_property_built.cs" />
     <Compile Include="Builders\Queries\Bool\When_BoolQuery_with_useActualShouldCount_built.cs" />
+    <Compile Include="Builders\Queries\CustomFiltersScore\When_complete_CustomFiltersScoreQuery_built.cs" />
+    <Compile Include="Builders\Queries\CustomFiltersScore\When_empty_CustomFiltersScoreQuery_built.cs" />
     <Compile Include="Builders\Queries\MatchAll\When_complete_MatchAllQuery_built.cs" />
     <Compile Include="Builders\Queries\MatchAll\When_MatchAllQuery_without_value_built.cs" />
     <Compile Include="Builders\Queries\MatchAll\When_MatchAllQuery_with_collection_field_built.cs" />
@@ -153,8 +155,6 @@
     <Compile Include="Builders\Queries\_Filters\Missing\When_MissingFilter_with_ShouldMiss_null_built.cs" />
     <Compile Include="Builders\Queries\_Filters\Or\When_complete_OrFilter_built.cs" />
     <Compile Include="Builders\Queries\_Filters\Or\When_empty_OrFilter_built.cs" />
-    <Compile Include="Builders\Queries\_Filters\Query\When_complete_QueryFilter_built.cs" />
-    <Compile Include="Builders\Queries\_Filters\Query\When_QueryFilter_without_query_parts_built.cs" />
     <Compile Include="Builders\Queries\_Filters\Type\When_complete_TypeFilter_built.cs" />
     <Compile Include="Builders\Queries\_Filters\Type\When_empty_TypeFilter_built.cs" />
     <Compile Include="Builders\Queries\_Filters\Limit\When_complete_LimitFilter_built.cs" />

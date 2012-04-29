@@ -12,6 +12,8 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
                                             .Standard("named_standard")
                                             .Simple(s => s.Custom("Simple"))
                                             .Simple("named_simple")
+                                            .Whitespace(s => s.Custom("Whitespace"))
+                                            .Whitespace("named_whitespace")
                                             .Standard(AnalyzersDefaultAliases.@default, s => s.Custom("Default"))
                                             .Custom("{ Custom }")
                                             .ToString();
@@ -24,6 +26,10 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
 
         It should_contain_named_simple_part = () => result.ShouldContain("'named_simple': { 'type': 'simple' }".AltQuote());
 
+        It should_contain_whitespace_part = () => result.ShouldContain("'whitespace': { 'type': 'whitespace',Whitespace }".AltQuote());
+
+        It should_contain_named_whitespace_part = () => result.ShouldContain("'named_whitespace': { 'type': 'simple' }".AltQuote());
+
         It should_contain_default_part = () => result.ShouldContain("'default': { 'type': 'standard',Default }".AltQuote());
 
         It should_contain_custom_part = () => result.ShouldContain("{ Custom }".AltQuote());
@@ -33,6 +39,8 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
                                                                     "'named_standard': { 'type': 'standard' }," +
                                                                     "'simple': { 'type': 'simple',Simple }," +
                                                                     "'named_simple': { 'type': 'simple' }," +
+                                                                    "'whitespace': { 'type': 'whitespace',Whitespace }," +
+                                                                    "'named_whitespace': { 'type': 'whitespace' }," +
                                                                     "'default': { 'type': 'standard',Default }," +
                                                                     "{ Custom } }").AltQuote());
 

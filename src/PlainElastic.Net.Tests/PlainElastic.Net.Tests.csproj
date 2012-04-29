@@ -45,6 +45,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Builders\Analysis\Analyzers\Whitespace\When_complete_WhitespaceAnalyzer_built.cs" />
+    <Compile Include="Builders\Analysis\Analyzers\Whitespace\When_empty_WhitespaceAnalyzer_built.cs" />
     <Compile Include="Builders\Analysis\Analyzers\Simple\When_complete_SimpleAnalyzer_built.cs" />
     <Compile Include="Builders\Analysis\Analyzers\Simple\When_empty_SimpleAnalyzer_built.cs" />
     <Compile Include="Builders\Analysis\Analyzers\Standard\When_complete_StandardAnalyzer_built.cs" />

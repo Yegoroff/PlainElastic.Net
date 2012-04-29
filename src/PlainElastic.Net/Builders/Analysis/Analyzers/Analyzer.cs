@@ -8,6 +8,8 @@ namespace PlainElastic.Net.IndexSettings
     /// </summary>
     public class Analyzer : AnalysisBase<Analyzer>
     {
+#region Standard
+
         /// <summary>
         /// An analyzer of type standard that is built of using
         /// Standard Tokenizer, with Standard Token Filter, Lower Case Token Filter, and Stop Token Filter.
@@ -39,6 +41,10 @@ namespace PlainElastic.Net.IndexSettings
             return Standard(DefaultAnalyzers.standard.ToString(), standard);
         }
 
+#endregion
+
+
+#region Simple
 
         /// <summary>
         /// An analyzer of type simple that is built using a Lower Case Tokenizer.
@@ -68,6 +74,40 @@ namespace PlainElastic.Net.IndexSettings
             return Simple(DefaultAnalyzers.simple.ToString(), simple);
         }
 
+#endregion
+
+
+#region Whitespace
+
+        /// <summary>
+        /// An analyzer of type whitespace that is built using a Whitespace Tokenizer.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/whitespace-analyzer.html
+        /// </summary>
+        public Analyzer Whitespace(string name, Func<WhitespaceAnalyzer, WhitespaceAnalyzer> whitespace = null)
+        {
+            RegisterJsonPartExpression(SpecifyComponentName(whitespace, name));
+            return this;
+        }
+
+        /// <summary>
+        /// An analyzer of type whitespace that is built using a Whitespace Tokenizer.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/whitespace-analyzer.html
+        /// </summary>
+        public Analyzer Whitespace(AnalyzersDefaultAliases name, Func<WhitespaceAnalyzer, WhitespaceAnalyzer> whitespace = null)
+        {
+            return Whitespace(name.ToString(), whitespace);
+        }
+
+        /// <summary>
+        /// An analyzer of type whitespace that is built using a Whitespace Tokenizer.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/whitespace-analyzer.html
+        /// </summary>
+        public Analyzer Whitespace(Func<WhitespaceAnalyzer, WhitespaceAnalyzer> whitespace = null)
+        {
+            return Whitespace(DefaultAnalyzers.whitespace.ToString(), whitespace);
+        }
+
+#endregion
 
         protected override string ApplyJsonTemplate(string body)
         {

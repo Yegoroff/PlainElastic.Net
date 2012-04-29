@@ -19,6 +19,7 @@ namespace PlainElastic.Net.Queries
 
         /// <summary>
         /// Sets the script used to calculate boost value in case of filter match.
+        /// see: http://www.elasticsearch.org/guide/reference/modules/scripting.html
         /// </summary>
         public ScoredFilter<T> Script(string script)
         {

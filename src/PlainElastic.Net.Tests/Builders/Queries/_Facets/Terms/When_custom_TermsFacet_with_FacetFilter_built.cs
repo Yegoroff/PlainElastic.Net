@@ -5,7 +5,7 @@ using PlainElastic.Net.Utils;
 namespace PlainElastic.Net.Tests.Builders.Queries
 {
     [Subject(typeof (FacetFilter<>))]
-    internal class When_custom_TermsFacet_with_FacetFilter_built
+    class When_custom_TermsFacet_with_FacetFilter_built
     {
         Because of = () => {
 

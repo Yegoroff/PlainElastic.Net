@@ -1,9 +1,7 @@
-using System.Collections.Generic;
-using System.Linq;
 using Machine.Specifications;
 using PlainElastic.Net.Serialization;
 
-namespace PlainElastic.Net.Tests.Builders.Queries
+namespace PlainElastic.Net.Tests.Serialization
 {
     [Subject(typeof(JsonNetSerializer))]
     class When_bulk_operations_result_deserialized

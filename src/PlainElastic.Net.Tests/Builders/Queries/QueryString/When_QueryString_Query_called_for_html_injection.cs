@@ -4,8 +4,8 @@ using PlainElastic.Net.Queries;
 
 namespace PlainElastic.Net.Tests.Builders.Queries
 {
-    [Subject(typeof(QueryString<object>))]
-    internal class When_QueryString_Query_called_for_html_injection
+    [Subject(typeof(QueryString<>))]
+    class When_QueryString_Query_called_for_html_injection
     {
         Establish context = () =>
         {

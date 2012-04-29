@@ -163,9 +163,6 @@ namespace PlainElastic.Net.Queries
         }
         
 
-        // http://www.elasticsearch.org/guide/reference/api/search/named-filters.html
-        //TODO: fquery
-
         protected override bool HasRequiredParts()
         {
             return true;

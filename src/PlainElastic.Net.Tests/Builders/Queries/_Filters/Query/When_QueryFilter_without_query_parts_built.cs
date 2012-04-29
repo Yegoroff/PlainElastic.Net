@@ -8,6 +8,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
     {
         Because of = () => result = new QueryFilter<FieldsTestClass>()
                                                 .Name("FilterName")
+                                                .QueryString(q => q)
                                                 .ToString();
 
         It should_return_empty_query = () => result.ShouldEqual("");

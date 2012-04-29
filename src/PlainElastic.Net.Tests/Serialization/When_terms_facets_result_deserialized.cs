@@ -3,7 +3,7 @@ using System.Linq;
 using Machine.Specifications;
 using PlainElastic.Net.Serialization;
 
-namespace PlainElastic.Net.Tests.Builders.Queries
+namespace PlainElastic.Net.Tests.Serialization
 {
     [Subject(typeof(JsonNetSerializer))]
     class When_terms_facets_result_deserialized

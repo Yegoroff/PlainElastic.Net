@@ -16,6 +16,8 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
                                             .Whitespace("named_whitespace")
                                             .Stop(s => s.Custom("Stop"))
                                             .Stop("named_stop")
+                                            .Keyword(s => s.Custom("Keyword"))
+                                            .Keyword("named_keyword")
                                             .Standard(AnalyzersDefaultAliases.@default, d => d.Custom("Default"))
                                             .Custom("{ Custom }")
                                             .ToString();
@@ -36,6 +38,10 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
 
         It should_contain_named_stop_part = () => result.ShouldContain("'named_stop': { 'type': 'stop' }".AltQuote());
 
+        It should_contain_keyword_part = () => result.ShouldContain("'keyword': { 'type': 'keyword',Keyword }".AltQuote());
+
+        It should_contain_named_keyword_part = () => result.ShouldContain("'named_keyword': { 'type': 'keyword' }".AltQuote());
+
         It should_contain_default_part = () => result.ShouldContain("'default': { 'type': 'standard',Default }".AltQuote());
 
         It should_contain_custom_part = () => result.ShouldContain("{ Custom }".AltQuote());
@@ -49,6 +55,8 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
                                                                     "'named_whitespace': { 'type': 'whitespace' }," +
                                                                     "'stop': { 'type': 'stop',Stop }," +
                                                                     "'named_stop': { 'type': 'stop' }," +
+                                                                    "'keyword': { 'type': 'keyword',Keyword }," +
+                                                                    "'named_keyword': { 'type': 'keyword' }," +
                                                                     "'default': { 'type': 'standard',Default }," +
                                                                     "{ Custom } }").AltQuote());
 

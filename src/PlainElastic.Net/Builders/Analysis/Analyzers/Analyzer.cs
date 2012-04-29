@@ -36,7 +36,7 @@ namespace PlainElastic.Net.IndexSettings
         /// Standard Tokenizer, with Standard Token Filter, Lower Case Token Filter, and Stop Token Filter.
         /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/standard-analyzer.html
         /// </summary>
-        public Analyzer Standard(Func<StandardAnalyzer, StandardAnalyzer> standard = null)
+        public Analyzer Standard(Func<StandardAnalyzer, StandardAnalyzer> standard)
         {
             return Standard(DefaultAnalyzers.standard.ToString(), standard);
         }
@@ -69,7 +69,7 @@ namespace PlainElastic.Net.IndexSettings
         /// An analyzer of type simple that is built using a Lower Case Tokenizer.
         /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/simple-analyzer.html
         /// </summary>
-        public Analyzer Simple(Func<SimpleAnalyzer, SimpleAnalyzer> simple = null)
+        public Analyzer Simple(Func<SimpleAnalyzer, SimpleAnalyzer> simple)
         {
             return Simple(DefaultAnalyzers.simple.ToString(), simple);
         }
@@ -102,7 +102,7 @@ namespace PlainElastic.Net.IndexSettings
         /// An analyzer of type whitespace that is built using a Whitespace Tokenizer.
         /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/whitespace-analyzer.html
         /// </summary>
-        public Analyzer Whitespace(Func<WhitespaceAnalyzer, WhitespaceAnalyzer> whitespace = null)
+        public Analyzer Whitespace(Func<WhitespaceAnalyzer, WhitespaceAnalyzer> whitespace)
         {
             return Whitespace(DefaultAnalyzers.whitespace.ToString(), whitespace);
         }
@@ -135,9 +135,48 @@ namespace PlainElastic.Net.IndexSettings
         /// An analyzer of type stop that is built using a Lower Case Tokenizer, with Stop Token Filter.
         /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/stop-analyzer.html
         /// </summary>
-        public Analyzer Stop(Func<StopAnalyzer, StopAnalyzer> stop = null)
+        public Analyzer Stop(Func<StopAnalyzer, StopAnalyzer> stop)
         {
             return Stop(DefaultAnalyzers.stop.ToString(), stop);
+        }
+
+#endregion
+
+
+#region Keyword
+
+        /// <summary>
+        /// An analyzer of type keyword that “tokenizes” an entire stream as a single token.
+        /// This is useful for data like zip codes, ids and so on.
+        /// Note, when using mapping definitions, it make more sense to simply mark the field as not_analyzed.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/keyword-analyzer.html
+        /// </summary>
+        public Analyzer Keyword(string name, Func<KeywordAnalyzer, KeywordAnalyzer> keyword = null)
+        {
+            RegisterJsonPartExpression(SpecifyComponentName(keyword, name));
+            return this;
+        }
+
+        /// <summary>
+        /// An analyzer of type keyword that “tokenizes” an entire stream as a single token.
+        /// This is useful for data like zip codes, ids and so on.
+        /// Note, when using mapping definitions, it make more sense to simply mark the field as not_analyzed.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/keyword-analyzer.html
+        /// </summary>
+        public Analyzer Keyword(AnalyzersDefaultAliases name, Func<KeywordAnalyzer, KeywordAnalyzer> keyword = null)
+        {
+            return Keyword(name.ToString(), keyword);
+        }
+
+        /// <summary>
+        /// An analyzer of type keyword that “tokenizes” an entire stream as a single token.
+        /// This is useful for data like zip codes, ids and so on.
+        /// Note, when using mapping definitions, it make more sense to simply mark the field as not_analyzed.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/keyword-analyzer.html
+        /// </summary>
+        public Analyzer Keyword(Func<KeywordAnalyzer, KeywordAnalyzer> keyword)
+        {
+            return Keyword(DefaultAnalyzers.keyword.ToString(), keyword);
         }
 
 #endregion

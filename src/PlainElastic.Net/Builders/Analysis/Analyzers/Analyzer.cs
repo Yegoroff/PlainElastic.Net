@@ -182,6 +182,39 @@ namespace PlainElastic.Net.IndexSettings
 #endregion
 
 
+#region Pattern
+
+        /// <summary>
+        /// An analyzer of type pattern that can flexibly separate text into terms via a regular expression.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/pattern-analyzer.html
+        /// </summary>
+        public Analyzer Pattern(string name, Func<PatternAnalyzer, PatternAnalyzer> pattern = null)
+        {
+            RegisterJsonPartExpression(SpecifyComponentName(pattern, name));
+            return this;
+        }
+
+        /// <summary>
+        /// An analyzer of type pattern that can flexibly separate text into terms via a regular expression.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/pattern-analyzer.html
+        /// </summary>
+        public Analyzer Pattern(AnalyzersDefaultAliases name, Func<PatternAnalyzer, PatternAnalyzer> pattern = null)
+        {
+            return Pattern(name.ToString(), pattern);
+        }
+
+        /// <summary>
+        /// An analyzer of type pattern that can flexibly separate text into terms via a regular expression.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/pattern-analyzer.html
+        /// </summary>
+        public Analyzer Pattern(Func<PatternAnalyzer, PatternAnalyzer> pattern)
+        {
+            return Pattern(DefaultAnalyzers.pattern.ToString(), pattern);
+        }
+
+#endregion
+
+
 #region Custom
 
         /// <summary>

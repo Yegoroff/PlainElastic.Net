@@ -18,6 +18,8 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
                                             .Stop("named_stop")
                                             .Keyword(s => s.CustomPart("Keyword"))
                                             .Keyword("named_keyword")
+                                            .Pattern(s => s.CustomPart("Pattern"))
+                                            .Pattern("named_pattern")
                                             .Custom("custom", c => c.CustomPart("Custom Analyzer"))
                                             .Standard(AnalyzersDefaultAliases.@default, d => d.CustomPart("Default"))
                                             .CustomPart("{ Custom }")
@@ -43,6 +45,10 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
 
         It should_contain_named_keyword_part = () => result.ShouldContain("'named_keyword': { 'type': 'keyword' }".AltQuote());
 
+        It should_contain_pattern_part = () => result.ShouldContain("'pattern': { 'type': 'pattern',Pattern }".AltQuote());
+
+        It should_contain_named_pattern_part = () => result.ShouldContain("'named_pattern': { 'type': 'pattern' }".AltQuote());
+
         It should_contain_custom_analyzer_part = () => result.ShouldContain("'custom': { 'type': 'custom',Custom Analyzer }".AltQuote());
 
         It should_contain_default_part = () => result.ShouldContain("'default': { 'type': 'standard',Default }".AltQuote());
@@ -60,6 +66,8 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
                                                                     "'named_stop': { 'type': 'stop' }," +
                                                                     "'keyword': { 'type': 'keyword',Keyword }," +
                                                                     "'named_keyword': { 'type': 'keyword' }," +
+                                                                    "'pattern': { 'type': 'pattern',Pattern }," +
+                                                                    "'named_pattern': { 'type': 'pattern' }," +
                                                                     "'custom': { 'type': 'custom',Custom Analyzer }," +
                                                                     "'default': { 'type': 'standard',Default }," +
                                                                     "{ Custom } }").AltQuote());

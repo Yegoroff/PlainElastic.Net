@@ -45,6 +45,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Builders\Analysis\Analyzers\Pattern\When_complete_PatternAnalyzer_built.cs" />
+    <Compile Include="Builders\Analysis\Analyzers\Pattern\When_empty_PatternAnalyzer_built.cs" />
     <Compile Include="Builders\Analysis\Analyzers\Custom\When_complete_CustomAnalyzer_built.cs" />
     <Compile Include="Builders\Analysis\Analyzers\Custom\When_empty_CustomAnalyzer_built.cs" />
     <Compile Include="Builders\Analysis\Analyzers\Keyword\When_complete_KeywordAnalyzer_built.cs" />

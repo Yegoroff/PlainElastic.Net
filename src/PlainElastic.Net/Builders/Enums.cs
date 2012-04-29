@@ -28,25 +28,4 @@ namespace PlainElastic.Net
         language,
         snowball
     }
-
-    /// <summary>
-    /// Used to define which analyzers will be used by default when none can be derived.
-    /// </summary>
-    public enum AnalyzersDefaultAliases
-    {
-        /// <summary>
-        /// Allows one to configure an analyzer that will be used both for indexing and for searching APIs.
-        /// </summary>
-        @default,
-
-        /// <summary>
-        /// Can be used to configure a default analyzer that will be used just when indexing.
-        /// </summary>
-        default_index,
-
-        /// <summary>
-        /// Can be used to configure a default analyzer that will be used just when searching.
-        /// </summary>
-        default_search
-    }
 }

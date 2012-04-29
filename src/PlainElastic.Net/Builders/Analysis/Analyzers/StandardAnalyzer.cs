@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using PlainElastic.Net.Utils;
+﻿using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.IndexSettings
 {
@@ -8,41 +7,11 @@ namespace PlainElastic.Net.IndexSettings
     /// Standard Tokenizer, with Standard Token Filter, Lower Case Token Filter, and Stop Token Filter.
     /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/standard-analyzer.html
     /// </summary>
-    public class StandardAnalyzer : AnalyzerBase<StandardAnalyzer>
+    public class StandardAnalyzer : StopAnalyzerBase<StandardAnalyzer>
     {
         protected override string GetComponentType()
         {
             return DefaultAnalyzers.standard.ToString();
-        }
-
-
-        /// <summary>
-        /// Sets a list of stopword to initialize the stop filter with.
-        /// Defaults to the english stop words.
-        /// </summary>
-        public StandardAnalyzer Stopwords(IEnumerable<string> stopwords)
-        {
-            RegisterJsonStringsProperty("stopwords", stopwords);
-            return this;
-        }
-
-        /// <summary>
-        /// Sets a list of stopword to initialize the stop filter with.
-        /// Defaults to the english stop words.
-        /// </summary>
-        public StandardAnalyzer Stopwords(params string[] stopwords)
-        {
-            return Stopwords((IEnumerable<string>)stopwords);
-        }
-
-
-        /// <summary>
-        /// Sets a path (either relative to config location, or absolute) to a stopwords file configuration.
-        /// </summary>
-        public StandardAnalyzer StopwordsPath(string stopwordsPath)
-        {
-            RegisterJsonPart("'stopwords_path': {0}", stopwordsPath.Quotate());
-            return this;
         }
 
 

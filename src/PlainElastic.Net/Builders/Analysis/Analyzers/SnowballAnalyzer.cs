@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using PlainElastic.Net.Utils;
+﻿using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.IndexSettings
 {
@@ -8,7 +7,7 @@ namespace PlainElastic.Net.IndexSettings
     /// The Snowball Analyzer is a stemming analyzer from Lucene that is originally based on the snowball project from snowball.tartarus.org.
     /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/snowball-analyzer.html
     /// </summary>
-    public class SnowballAnalyzer : AnalyzerBase<SnowballAnalyzer>
+    public class SnowballAnalyzer : StopAnalyzerBase<SnowballAnalyzer>
     {
         protected override string GetComponentType()
         {
@@ -33,36 +32,6 @@ namespace PlainElastic.Net.IndexSettings
         public SnowballAnalyzer Language(SnowballLanguages language = SnowballLanguages.English)
         {
             return Language(language.ToString());
-        }
-
-
-        /// <summary>
-        /// Sets a list of stopword to initialize the stop filter with.
-        /// Defaults to the language stop words.
-        /// </summary>
-        public SnowballAnalyzer Stopwords(IEnumerable<string> stopwords)
-        {
-            RegisterJsonStringsProperty("stopwords", stopwords);
-            return this;
-        }
-
-        /// <summary>
-        /// Sets a list of stopword to initialize the stop filter with.
-        /// Defaults to the language stop words.
-        /// </summary>
-        public SnowballAnalyzer Stopwords(params string[] stopwords)
-        {
-            return Stopwords((IEnumerable<string>)stopwords);
-        }
-
-
-        /// <summary>
-        /// Sets a path (either relative to config location, or absolute) to a stopwords file configuration.
-        /// </summary>
-        public SnowballAnalyzer StopwordsPath(string stopwordsPath)
-        {
-            RegisterJsonPart("'stopwords_path': {0}", stopwordsPath.Quotate());
-            return this;
         }
     }
 }

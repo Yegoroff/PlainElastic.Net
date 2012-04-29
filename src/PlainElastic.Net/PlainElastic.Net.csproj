@@ -54,6 +54,7 @@
     <Compile Include="Builders\Analysis\AnalysisComponentBase.cs" />
     <Compile Include="Builders\Analysis\Analyzers\Analyzer.cs" />
     <Compile Include="Builders\Analysis\Analyzers\AnalyzerBase.cs" />
+    <Compile Include="Builders\Analysis\Analyzers\StopAnalyzerBase.cs" />
     <Compile Include="Builders\Analysis\Analyzers\SnowballAnalyzer.cs" />
     <Compile Include="Builders\Analysis\Analyzers\LanguageAnalyzer.cs" />
     <Compile Include="Builders\Analysis\Analyzers\PatternAnalyzer.cs" />

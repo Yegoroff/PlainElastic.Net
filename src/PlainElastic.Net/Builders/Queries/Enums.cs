@@ -3,6 +3,8 @@ namespace PlainElastic.Net.Queries
 
     public enum ScoreMode { avg, total, max, none }
 
+    public enum CustomFiltersScoreMode { first, min, max, total, avg, multiply }
+
     public enum Rewrite
     {
         /// <summary>

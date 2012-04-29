@@ -2,7 +2,7 @@ using Machine.Specifications;
 using PlainElastic.Net.Serialization;
 using PlainElastic.Net.Utils;
 
-namespace PlainElastic.Net.Tests.Buildres.Queries
+namespace PlainElastic.Net.Tests.Builders.Queries
 {
     [Subject(typeof(JsonNetSerializer))]
     class When_count_command_result_deserialized

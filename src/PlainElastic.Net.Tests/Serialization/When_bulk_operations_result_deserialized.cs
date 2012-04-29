@@ -3,7 +3,7 @@ using System.Linq;
 using Machine.Specifications;
 using PlainElastic.Net.Serialization;
 
-namespace PlainElastic.Net.Tests.Buildres.Queries
+namespace PlainElastic.Net.Tests.Builders.Queries
 {
     [Subject(typeof(JsonNetSerializer))]
     class When_bulk_operations_result_deserialized

@@ -49,6 +49,13 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Builders\Analysis\Analysis.cs" />
+    <Compile Include="Builders\Analysis\AnalysisBase.cs" />
+    <Compile Include="Builders\Analysis\AnalysisComponentBase.cs" />
+    <Compile Include="Builders\Analysis\Analyzers\Analyzer.cs" />
+    <Compile Include="Builders\Analysis\Analyzers\AnalyzerBase.cs" />
+    <Compile Include="Builders\Analysis\Analyzers\StandardAnalyzer.cs" />
+    <Compile Include="Builders\Analysis\TypedAnalysisComponentBase.cs" />
     <Compile Include="Builders\Bulk\BulkBuilder.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -74,6 +81,7 @@
     <Compile Include="Builders\Commands\Commands.cs" />
     <Compile Include="Builders\Commands\SearchCommand.cs" />
     <Compile Include="Builders\Enums.cs" />
+    <Compile Include="Builders\IndexSettings\IndexSettingsBuilder.cs" />
     <Compile Include="Builders\Mappings\Attachment.cs" />
     <Compile Include="Builders\Mappings\Core\ElasticCoreTypeMapper.cs" />
     <Compile Include="Builders\Mappings\Core\CustomPropertyMap.cs" />

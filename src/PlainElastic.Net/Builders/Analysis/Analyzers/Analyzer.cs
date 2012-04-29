@@ -215,6 +215,40 @@ namespace PlainElastic.Net.IndexSettings
 #endregion
 
 
+#region Language
+
+        /// <summary>
+        /// A set of analyzers aimed at analyzing specific language text.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/lang-analyzer.html
+        /// </summary>
+        public Analyzer Language(string name, Func<LanguageAnalyzer, LanguageAnalyzer> language)
+        {
+            RegisterJsonPartExpression(SpecifyComponentName(language, name));
+            return this;
+        }
+
+        /// <summary>
+        /// A set of analyzers aimed at analyzing specific language text.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/lang-analyzer.html
+        /// </summary>
+        public Analyzer Language(AnalyzersDefaultAliases name, Func<LanguageAnalyzer, LanguageAnalyzer> language)
+        {
+            return Language(name.ToString(), language);
+        }
+
+        /// <summary>
+        /// A set of analyzers aimed at analyzing specific language text.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/lang-analyzer.html
+        /// </summary>
+        public Analyzer Language(Func<LanguageAnalyzer, LanguageAnalyzer> language)
+        {
+            RegisterJsonPartExpression(SpecifyComponentName(language, l => l.AnalyzerType));
+            return this;
+        }
+
+#endregion
+
+
 #region Custom
 
         /// <summary>

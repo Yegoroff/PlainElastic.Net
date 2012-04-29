@@ -25,7 +25,6 @@ namespace PlainElastic.Net
         stop,
         keyword,
         pattern,
-        language,
         snowball
     }
 }

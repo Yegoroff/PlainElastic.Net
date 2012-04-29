@@ -62,12 +62,21 @@ namespace PlainElastic.Net.IndexSettings
             RegisterJsonPart("{0}: [ {1} ]", name.Quotate(), valuesJson);
         }
 
+        protected static Func<TComponent, TComponent> SpecifyComponentName<TComponent>(Func<TComponent, TComponent> component, Func<TComponent, string> name) where TComponent : AnalysisComponentBase<TComponent>
+        {
+            return obj =>
+                       {
+                           var componentPart = component(obj);
+                           return componentPart.Name(name(componentPart));
+                       };
+        }
+
         protected static Func<TComponent, TComponent> SpecifyComponentName<TComponent>(Func<TComponent, TComponent> component, string name) where TComponent : AnalysisComponentBase<TComponent>
         {
             if (component == null)
                 return obj => obj.Name(name);
 
-            return obj => component(obj.Name(name));
+            return SpecifyComponentName(component, _ => name);
         }
 
         protected abstract string ApplyJsonTemplate(string body);

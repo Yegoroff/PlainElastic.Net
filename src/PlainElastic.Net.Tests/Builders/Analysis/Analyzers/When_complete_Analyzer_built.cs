@@ -16,10 +16,15 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
                                             .Whitespace("named_whitespace")
                                             .Stop(s => s.CustomPart("Stop"))
                                             .Stop("named_stop")
-                                            .Keyword(s => s.CustomPart("Keyword"))
+                                            .Keyword(k => k.CustomPart("Keyword"))
                                             .Keyword("named_keyword")
-                                            .Pattern(s => s.CustomPart("Pattern"))
+                                            .Pattern(p => p.CustomPart("Pattern"))
                                             .Pattern("named_pattern")
+                                            .Language(l => l
+                                                .Type(LanguageAnalyzerTypes.russian)
+                                                .CustomPart("Language"))
+                                            .Language("named_language", l => l
+                                                .Type(LanguageAnalyzerTypes.french))
                                             .Custom("custom", c => c.CustomPart("Custom Analyzer"))
                                             .Standard(AnalyzersDefaultAliases.@default, d => d.CustomPart("Default"))
                                             .CustomPart("{ Custom }")
@@ -49,6 +54,10 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
 
         It should_contain_named_pattern_part = () => result.ShouldContain("'named_pattern': { 'type': 'pattern' }".AltQuote());
 
+        It should_contain_language_part = () => result.ShouldContain("'russian': { 'type': 'russian',Language }".AltQuote());
+
+        It should_contain_named_language_part = () => result.ShouldContain("'named_language': { 'type': 'french' }".AltQuote());
+
         It should_contain_custom_analyzer_part = () => result.ShouldContain("'custom': { 'type': 'custom',Custom Analyzer }".AltQuote());
 
         It should_contain_default_part = () => result.ShouldContain("'default': { 'type': 'standard',Default }".AltQuote());
@@ -68,6 +77,8 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
                                                                     "'named_keyword': { 'type': 'keyword' }," +
                                                                     "'pattern': { 'type': 'pattern',Pattern }," +
                                                                     "'named_pattern': { 'type': 'pattern' }," +
+                                                                    "'russian': { 'type': 'russian',Language }," +
+                                                                    "'named_language': { 'type': 'french' }," +
                                                                     "'custom': { 'type': 'custom',Custom Analyzer }," +
                                                                     "'default': { 'type': 'standard',Default }," +
                                                                     "{ Custom } }").AltQuote());

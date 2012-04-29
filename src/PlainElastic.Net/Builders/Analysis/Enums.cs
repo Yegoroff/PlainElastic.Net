@@ -129,4 +129,42 @@ namespace PlainElastic.Net.IndexSettings
         /// </summary>
         UNIX_LINES = 0x80
     }
+
+    /// <summary>
+    /// Supported language analyzer types.
+    /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/lang-analyzer.html
+    /// </summary>
+    public enum LanguageAnalyzerTypes
+    {
+        arabic,
+        armenian,
+        basque,
+        brazilian,
+        bulgarian,
+        catalan,
+        chinese,
+        cjk,
+        czech,
+        danish,
+        dutch,
+        english,
+        finnish,
+        french,
+        galician,
+        german,
+        greek,
+        hindi,
+        hungarian,
+        indonesian,
+        italian,
+        norwegian,
+        persian,
+        portuguese,
+        romanian,
+        russian,
+        spanish,
+        swedish,
+        turkish,
+        thai
+    }
 }

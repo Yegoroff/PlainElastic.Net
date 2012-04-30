@@ -33,7 +33,7 @@ namespace PlainElastic.Net.Mappings
         /// The type mapping level analyzer used to analyze the text contents when analyzed during indexing.
         /// see: http://www.elasticsearch.org/guide/reference/index-modules/analysis/ 
         /// </summary>       
-        public RootObject<T> IndexAnalyzer(DefaultAnalizers analyzer)
+        public RootObject<T> IndexAnalyzer(DefaultAnalyzers analyzer)
         {
             return IndexAnalyzer(analyzer.ToString());
         }
@@ -52,7 +52,7 @@ namespace PlainElastic.Net.Mappings
         /// The type mapping level analyzer used to analyze the field when part of a query string.
         /// see: http://www.elasticsearch.org/guide/reference/index-modules/analysis/
         /// </summary>
-        public RootObject<T> SearchAnalyzer(DefaultAnalizers analyzer)
+        public RootObject<T> SearchAnalyzer(DefaultAnalyzers analyzer)
         {
             return SearchAnalyzer(analyzer.ToString());
         }

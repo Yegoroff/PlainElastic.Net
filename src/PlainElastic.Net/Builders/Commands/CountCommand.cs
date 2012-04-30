@@ -43,7 +43,7 @@ namespace PlainElastic.Net
         /// <summary>
         /// The analyzer name to be used when analyzing the query string.
         /// </summary>
-        public CountCommand Analyzer(DefaultAnalizers analyzer)
+        public CountCommand Analyzer(DefaultAnalyzers analyzer)
         {
             Parameters.Add("analyzer", analyzer.ToString());
             return this;

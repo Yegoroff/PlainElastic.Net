@@ -49,7 +49,7 @@ namespace PlainElastic.Net.Mappings
         /// The analyzer used to analyze the text contents when analyzed during indexing and when searching using a query string. Defaults to the globally configured analyzer.
         /// see: http://www.elasticsearch.org/guide/reference/index-modules/analysis/
         /// </summary>
-        public StringMap<T> Analyzer(DefaultAnalizers analyzer)
+        public StringMap<T> Analyzer(DefaultAnalyzers analyzer)
         {
             return Analyzer(analyzer.ToString());
         }        
@@ -68,7 +68,7 @@ namespace PlainElastic.Net.Mappings
         /// The analyzer used to analyze the text contents when analyzed during indexing.
         /// see: http://www.elasticsearch.org/guide/reference/index-modules/analysis/ 
         /// </summary>       
-        public StringMap<T> IndexAnalyzer(DefaultAnalizers analyzer)
+        public StringMap<T> IndexAnalyzer(DefaultAnalyzers analyzer)
         {
             return IndexAnalyzer(analyzer.ToString());
         }
@@ -87,7 +87,7 @@ namespace PlainElastic.Net.Mappings
         /// The analyzer used to analyze the field when part of a query string.
         /// see: http://www.elasticsearch.org/guide/reference/index-modules/analysis/
         /// </summary>
-        public StringMap<T> SearchAnalyzer(DefaultAnalizers analyzer)
+        public StringMap<T> SearchAnalyzer(DefaultAnalyzers analyzer)
         {
             return SearchAnalyzer(analyzer.ToString());
         }

@@ -11,7 +11,7 @@ namespace PlainElastic.Net.Tests.Builders.Mappings
         Establish context = () => {
 
             properties = new[] {
-                    new CustomPropertyMap<FieldsTestClass>("First", typeof(string)).When(true, p=>p.Analyzer(DefaultAnalizers.simple).Store(true)),
+                    new CustomPropertyMap<FieldsTestClass>("First", typeof(string)).When(true, p=>p.Analyzer(DefaultAnalyzers.simple).Store(true)),
                     new CustomPropertyMap<FieldsTestClass>("Second", typeof(int)).When(true, p=>p.Boost(10).Store(true))
                 };
 

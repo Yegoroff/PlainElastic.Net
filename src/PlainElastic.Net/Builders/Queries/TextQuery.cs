@@ -74,7 +74,7 @@ namespace PlainElastic.Net.Queries
         /// The analyzer name used to analyze the text query. Defaults to the field explicit mapping definition, or the default search analyzer.
         /// see: http://www.elasticsearch.org/guide/reference/index-modules/analysis/
         /// </summary>
-        public TextQuery<T> Analyzer(DefaultAnalizers analyzer)
+        public TextQuery<T> Analyzer(DefaultAnalyzers analyzer)
         {
             return Analyzer(analyzer.ToString());
         }

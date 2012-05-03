@@ -45,6 +45,28 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Builders\Analysis\Analyzers\Custom\When_complete_CustomAnalyzer_built.cs" />
+    <Compile Include="Builders\Analysis\Analyzers\Custom\When_empty_CustomAnalyzer_built.cs" />
+    <Compile Include="Builders\Analysis\Analyzers\Keyword\When_complete_KeywordAnalyzer_built.cs" />
+    <Compile Include="Builders\Analysis\Analyzers\Keyword\When_empty_KeywordAnalyzer_built.cs" />
+    <Compile Include="Builders\Analysis\Analyzers\Language\When_complete_LanguageAnalyzer_built.cs" />
+    <Compile Include="Builders\Analysis\Analyzers\Language\When_empty_LanguageAnalyzer_built.cs" />
+    <Compile Include="Builders\Analysis\Analyzers\Pattern\When_complete_PatternAnalyzer_built.cs" />
+    <Compile Include="Builders\Analysis\Analyzers\Pattern\When_empty_PatternAnalyzer_built.cs" />
+    <Compile Include="Builders\Analysis\Analyzers\Simple\When_complete_SimpleAnalyzer_built.cs" />
+    <Compile Include="Builders\Analysis\Analyzers\Simple\When_empty_SimpleAnalyzer_built.cs" />
+    <Compile Include="Builders\Analysis\Analyzers\Snowball\When_complete_SnowballAnalyzer_built.cs" />
+    <Compile Include="Builders\Analysis\Analyzers\Snowball\When_empty_SnowballAnalyzer_built.cs" />
+    <Compile Include="Builders\Analysis\Analyzers\Standard\When_complete_StandardAnalyzer_built.cs" />
+    <Compile Include="Builders\Analysis\Analyzers\Standard\When_empty_StandardAnalyzer_built.cs" />
+    <Compile Include="Builders\Analysis\Analyzers\Stop\When_complete_StopAnalyzer_built.cs" />
+    <Compile Include="Builders\Analysis\Analyzers\Stop\When_empty_StopAnalyzer_built.cs" />
+    <Compile Include="Builders\Analysis\Analyzers\When_complete_Analyzer_built.cs" />
+    <Compile Include="Builders\Analysis\Analyzers\When_empty_Analyzer_built.cs" />
+    <Compile Include="Builders\Analysis\Analyzers\Whitespace\When_complete_WhitespaceAnalyzer_built.cs" />
+    <Compile Include="Builders\Analysis\Analyzers\Whitespace\When_empty_WhitespaceAnalyzer_built.cs" />
+    <Compile Include="Builders\Analysis\When_complete_Analysis_built.cs" />
+    <Compile Include="Builders\Analysis\When_empty_Analysis_built.cs" />
     <Compile Include="Builders\Bulk\When_Bulk_mixed_operations_built_from_collection.cs" />
     <Compile Include="Builders\Bulk\When_Bulk_indexes_pipelined_from_collection.cs" />
     <Compile Include="Builders\Bulk\When_Delete_Bulk_operation_built.cs" />
@@ -82,6 +104,8 @@
     <Compile Include="Builders\Commands\IndexCommand\When_complete_IndexCommand_built.cs" />
     <Compile Include="Builders\Commands\GetCommand\When_GetCommand_with_reflected_fields_built.cs" />
     <Compile Include="Builders\Commands\GetCommand\When_complete_GetCommand_built.cs" />
+    <Compile Include="Builders\IndexSettings\When_complete_IndexSettingsBuilder_built.cs" />
+    <Compile Include="Builders\IndexSettings\When_empty_IndexSettingsBuilder_built.cs" />
     <Compile Include="Builders\Mappings\Attachment\When_simplest_Attachment_mapping_built.cs" />
     <Compile Include="Builders\Mappings\Attachment\When_complete_Attachment_mapping_built.cs" />
     <Compile Include="Builders\Mappings\Core\Boolean\When_complete_Boolean_mapping_built.cs" />
@@ -155,6 +179,8 @@
     <Compile Include="Builders\Queries\_Filters\Missing\When_MissingFilter_with_ShouldMiss_null_built.cs" />
     <Compile Include="Builders\Queries\_Filters\Or\When_complete_OrFilter_built.cs" />
     <Compile Include="Builders\Queries\_Filters\Or\When_empty_OrFilter_built.cs" />
+    <Compile Include="Builders\Queries\_Filters\Query\When_complete_QueryFilter_built.cs" />
+    <Compile Include="Builders\Queries\_Filters\Query\When_QueryFilter_without_query_parts_built.cs" />
     <Compile Include="Builders\Queries\_Filters\Type\When_complete_TypeFilter_built.cs" />
     <Compile Include="Builders\Queries\_Filters\Type\When_empty_TypeFilter_built.cs" />
     <Compile Include="Builders\Queries\_Filters\Limit\When_complete_LimitFilter_built.cs" />

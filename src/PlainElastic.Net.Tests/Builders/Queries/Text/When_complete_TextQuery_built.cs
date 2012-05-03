@@ -13,7 +13,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                                 .Boost(5)
                                                 .Type(TextQueryType.phrase)
                                                 .Operator(Operator.AND)
-                                                .Analyzer(DefaultAnalizers.standard)
+                                                .Analyzer(DefaultAnalyzers.standard)
                                                 .Fuzziness(0.3)
                                                 .PrefixLength(7)
                                                 .MaxExpansions(10)

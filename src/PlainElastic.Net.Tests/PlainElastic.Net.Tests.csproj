@@ -143,6 +143,8 @@
     <Compile Include="Builders\Mappings\Object\When_complete_Object_mapping_built.cs" />
     <Compile Include="Builders\Mappings\Object\When_Object_with_custom_property_built.cs" />
     <Compile Include="Builders\Queries\Bool\When_BoolQuery_with_useActualShouldCount_built.cs" />
+    <Compile Include="Builders\Queries\CustomFiltersScore\When_complete_CustomFiltersScoreQuery_built.cs" />
+    <Compile Include="Builders\Queries\CustomFiltersScore\When_empty_CustomFiltersScoreQuery_built.cs" />
     <Compile Include="Builders\Queries\MatchAll\When_complete_MatchAllQuery_built.cs" />
     <Compile Include="Builders\Queries\MatchAll\When_MatchAllQuery_without_value_built.cs" />
     <Compile Include="Builders\Queries\MatchAll\When_MatchAllQuery_with_collection_field_built.cs" />
@@ -215,8 +217,11 @@
     <Compile Include="Builders\Queries\ConstantScore\When_custom_ConstantScoreQuery_built.cs" />
     <Compile Include="Builders\Queries\ConstantScore\When_empty_ConstantScoreQuery_built.cs" />
     <Compile Include="Builders\Queries\ConstantScore\When_complete_ConstantScoreQuery_built.cs" />
+    <Compile Include="Builders\Queries\Filtered\When_complete_FilteredQuery_built.cs" />
+    <Compile Include="Builders\Queries\Query\When_Query_with_empty_subqueries_built.cs" />
     <Compile Include="Builders\Queries\_Filters\Range\When_complete_RangeFilter_built.cs" />
     <Compile Include="Builders\Queries\_Filters\Range\When_RangeFilter_without_range_parts_built.cs" />
+    <Compile Include="Builders\Queries\QueryString\When_QueryString_Query_called_for_html_injection.cs" />
     <Compile Include="Builders\Queries\Range\When_RangeQuery_without_range_parts_built.cs" />
     <Compile Include="Builders\Queries\Range\When_RangeQuery_with_only_custom_part_built.cs" />
     <Compile Include="Builders\Queries\Range\When_complete_RangeQuery_built.cs" />
@@ -229,9 +234,6 @@
     <Compile Include="Builders\Queries\Term\When_complete_TermQuery_built.cs" />
     <Compile Include="Builders\Queries\Terms\When_TermsQuery_without_values_built.cs" />
     <Compile Include="Builders\Queries\_Filters\Terms\When_complete_TermsFilter_built.cs" />
-    <Compile Include="Builders\Queries\Filtered\When_complete_FilteredQuery_built.cs" />
-    <Compile Include="Builders\Queries\Query\When_Query_with_empty_subqueries_built.cs" />
-    <Compile Include="Builders\Queries\QueryString\When_QueryString_Query_called_for_html_injection.cs" />
     <Compile Include="Connection\When_CreateRequest_with_Credentials_called.cs" />
     <Compile Include="Connection\TestableConnection.cs" />
     <Compile Include="Connection\When_CreateRequest_with_Proxy_called.cs" />

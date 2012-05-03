@@ -55,16 +55,16 @@
     <Compile Include="Builders\Analysis\AnalysisExtensions.cs" />
     <Compile Include="Builders\Analysis\Analyzers\Analyzer.cs" />
     <Compile Include="Builders\Analysis\Analyzers\AnalyzerBase.cs" />
-    <Compile Include="Builders\Analysis\Analyzers\StopAnalyzerBase.cs" />
-    <Compile Include="Builders\Analysis\Analyzers\SnowballAnalyzer.cs" />
-    <Compile Include="Builders\Analysis\Analyzers\LanguageAnalyzer.cs" />
-    <Compile Include="Builders\Analysis\Analyzers\PatternAnalyzer.cs" />
     <Compile Include="Builders\Analysis\Analyzers\CustomAnalyzer.cs" />
     <Compile Include="Builders\Analysis\Analyzers\KeywordAnalyzer.cs" />
-    <Compile Include="Builders\Analysis\Analyzers\StopAnalyzer.cs" />
-    <Compile Include="Builders\Analysis\Analyzers\WhitespaceAnalyzer.cs" />
+    <Compile Include="Builders\Analysis\Analyzers\LanguageAnalyzer.cs" />
+    <Compile Include="Builders\Analysis\Analyzers\PatternAnalyzer.cs" />
     <Compile Include="Builders\Analysis\Analyzers\SimpleAnalyzer.cs" />
+    <Compile Include="Builders\Analysis\Analyzers\SnowballAnalyzer.cs" />
     <Compile Include="Builders\Analysis\Analyzers\StandardAnalyzer.cs" />
+    <Compile Include="Builders\Analysis\Analyzers\StopAnalyzer.cs" />
+    <Compile Include="Builders\Analysis\Analyzers\StopAnalyzerBase.cs" />
+    <Compile Include="Builders\Analysis\Analyzers\WhitespaceAnalyzer.cs" />
     <Compile Include="Builders\Analysis\Enums.cs" />
     <Compile Include="Builders\Bulk\BulkBuilder.cs">
       <SubType>Code</SubType>
@@ -116,6 +116,9 @@
     <Compile Include="Builders\Mappings\Core\StringMap.cs" />
     <Compile Include="Builders\Queries\ConstantScoreQuery.cs" />
     <Compile Include="Builders\Queries\Filters\QueryFilter.cs" />
+    <Compile Include="Builders\Queries\CustomFiltersScoreQuery.cs" />
+    <Compile Include="Builders\Queries\ScoredFilter.cs" />
+    <Compile Include="Builders\Queries\ScoredFilters.cs" />
     <Compile Include="Builders\Queries\Filters\MissingFilter.cs" />
     <Compile Include="Builders\Queries\Filters\MatchAllFilter.cs" />
     <Compile Include="Builders\Queries\Filters\OrFilter.cs" />

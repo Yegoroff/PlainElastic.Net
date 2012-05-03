@@ -3,6 +3,8 @@ namespace PlainElastic.Net.Queries
 
     public enum ScoreMode { avg, total, max, none }
 
+    public enum CustomFiltersScoreMode { first, min, max, total, avg, multiply }
+
     public enum Rewrite
     {
         /// <summary>
@@ -50,6 +52,8 @@ namespace PlainElastic.Net.Queries
     public enum TermsFilterExecution { plain, @bool, @and }
 
     public enum TermsFacetOrder { count, term, reverse_count, reverse_term }
+
+    public enum ScriptLangs {  mvel, js, groovy, python, native }
 
     public enum RegexFlags
     {

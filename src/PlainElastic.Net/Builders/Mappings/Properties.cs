@@ -25,7 +25,7 @@ namespace PlainElastic.Net.Mappings
         /// </summary>
         public Properties<T> String(string fieldName, Func<StringMap<T>, StringMap<T>> stringProperty = null)
         {
-            RegisterMapAsJson(SpecifyPropertyName(stringProperty, fieldName));
+            RegisterMapAsJson(stringProperty.Bind(map => map.Field(fieldName)));
             return this;
         }
 
@@ -38,7 +38,7 @@ namespace PlainElastic.Net.Mappings
         public Properties<T> Number<TField>(Expression<Func<T, TField>> field, Func<NumberMap<T>, NumberMap<T>> numberProperty = null)
         {
             var fieldName = field.GetPropertyPath();
-            RegisterMapAsJson(SpecifyPropertyName(numberProperty, fieldName, typeof(TField)));
+            RegisterMapAsJson(numberProperty.Bind(map => map.Field(fieldName, typeof(TField))));
             return this;
         }
 
@@ -48,7 +48,7 @@ namespace PlainElastic.Net.Mappings
         /// </summary>
         public Properties<T> Number(string fieldName, Func<NumberMap<T>, NumberMap<T>> numberProperty = null)
         {
-            RegisterMapAsJson(SpecifyPropertyName(numberProperty, fieldName));
+            RegisterMapAsJson(numberProperty.Bind(map => map.Field(fieldName, null)));
             return this;
         }
 
@@ -71,7 +71,7 @@ namespace PlainElastic.Net.Mappings
         /// </summary>
         public Properties<T> Date(string fieldName, Func<DateMap<T>, DateMap<T>> dateProperty = null)
         {
-            RegisterMapAsJson(SpecifyPropertyName(dateProperty, fieldName));
+            RegisterMapAsJson(dateProperty.Bind(map => map.Field(fieldName, null)));
             return this;
         }
 
@@ -94,7 +94,7 @@ namespace PlainElastic.Net.Mappings
         /// </summary>
         public Properties<T> Boolean(string fieldName, Func<BooleanMap<T>, BooleanMap<T>> booleanProperty = null)
         {
-            RegisterMapAsJson(SpecifyPropertyName(booleanProperty, fieldName));
+            RegisterMapAsJson(booleanProperty.Bind(map => map.Field(fieldName, null)));
             return this;
         }
 
@@ -117,7 +117,7 @@ namespace PlainElastic.Net.Mappings
         /// </summary>
         public Properties<T> Binary(string fieldName, Func<BinaryMap<T>, BinaryMap<T>> binaryProperty = null)
         {
-            RegisterMapAsJson(SpecifyPropertyName(binaryProperty, fieldName));
+            RegisterMapAsJson(binaryProperty.Bind(map => map.Field(fieldName, null)));
             return this;
         }
 
@@ -151,13 +151,7 @@ namespace PlainElastic.Net.Mappings
         /// </summary>
         public Properties<T> Object<TField>(string fieldName, Func<Object<TField>, Object<TField>> objectProperty = null)
         {
-            Func<Object<TField>, Object<TField>> namedObjectProperty;
-            if(objectProperty == null)
-                namedObjectProperty = obj => obj.Field(fieldName);
-            else 
-                namedObjectProperty = obj => objectProperty(obj.Field(fieldName));
-
-            RegisterMapAsJson(namedObjectProperty);
+            RegisterMapAsJson(objectProperty.Bind(property => property.Field(fieldName)));
             return this;
         }
 
@@ -191,13 +185,7 @@ namespace PlainElastic.Net.Mappings
         /// </summary>
         public Properties<T> NestedObject<TField>(string fieldName, Func<NestedObject<TField>, NestedObject<TField>> nestedObjectProperty = null)
         {
-            Func<NestedObject<TField>, NestedObject<TField>> namedObjectProperty;
-            if (nestedObjectProperty == null)
-                namedObjectProperty = obj => obj.Field(fieldName);
-            else
-                namedObjectProperty = obj => nestedObjectProperty(obj.Field(fieldName));
-
-            RegisterMapAsJson(namedObjectProperty);
+            RegisterMapAsJson(nestedObjectProperty.Bind(property => property.Field(fieldName)));
             return this;
         }
 
@@ -218,7 +206,7 @@ namespace PlainElastic.Net.Mappings
         public Properties<T> CustomProperty<TField>(Expression<Func<T, TField>> field, Func<CustomPropertyMap<T>, CustomPropertyMap<T>> customProperty = null)
         {
             var fieldName = field.GetPropertyPath();
-            RegisterMapAsJson(SpecifyPropertyName(customProperty, fieldName, typeof(TField)));
+            RegisterMapAsJson(customProperty.Bind(map => map.Field(fieldName, typeof(TField))));
             return this;
         }
 
@@ -227,7 +215,7 @@ namespace PlainElastic.Net.Mappings
         /// </summary>
         public Properties<T> CustomProperty(string fieldName, Func<CustomPropertyMap<T>, CustomPropertyMap<T>> customProperty = null)
         {
-            RegisterMapAsJson(SpecifyPropertyName(customProperty, fieldName));
+            RegisterMapAsJson(customProperty.Bind(map => map.Field(fieldName, null)));
             return this;
         }
 
@@ -294,16 +282,6 @@ namespace PlainElastic.Net.Mappings
             return this;
         }
 
-
-
-        private static Func<TPropMapping, TPropMapping> SpecifyPropertyName<TPropMapping>(Func<TPropMapping, TPropMapping> property, string fieldName, Type fieldType = null) where TPropMapping : PropertyBase<T, TPropMapping>
-        {
-            if (property == null)
-                return obj => obj.Field(fieldName, fieldType);
-
-            return obj => property(obj.Field(fieldName, fieldType));
-        }
-        
 
         protected override string ApplyMappingTemplate(string mappingBody)
         {

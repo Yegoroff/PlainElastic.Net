@@ -49,23 +49,6 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Builders\Analysis\Analysis.cs" />
-    <Compile Include="Builders\Analysis\AnalysisBase.cs" />
-    <Compile Include="Builders\Analysis\AnalysisComponentBase.cs" />
-    <Compile Include="Builders\Analysis\AnalysisExtensions.cs" />
-    <Compile Include="Builders\Analysis\Analyzers\Analyzer.cs" />
-    <Compile Include="Builders\Analysis\Analyzers\AnalyzerBase.cs" />
-    <Compile Include="Builders\Analysis\Analyzers\StopAnalyzerBase.cs" />
-    <Compile Include="Builders\Analysis\Analyzers\SnowballAnalyzer.cs" />
-    <Compile Include="Builders\Analysis\Analyzers\LanguageAnalyzer.cs" />
-    <Compile Include="Builders\Analysis\Analyzers\PatternAnalyzer.cs" />
-    <Compile Include="Builders\Analysis\Analyzers\CustomAnalyzer.cs" />
-    <Compile Include="Builders\Analysis\Analyzers\KeywordAnalyzer.cs" />
-    <Compile Include="Builders\Analysis\Analyzers\StopAnalyzer.cs" />
-    <Compile Include="Builders\Analysis\Analyzers\WhitespaceAnalyzer.cs" />
-    <Compile Include="Builders\Analysis\Analyzers\SimpleAnalyzer.cs" />
-    <Compile Include="Builders\Analysis\Analyzers\StandardAnalyzer.cs" />
-    <Compile Include="Builders\Analysis\Enums.cs" />
     <Compile Include="Builders\Bulk\BulkBuilder.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -91,6 +74,22 @@
     <Compile Include="Builders\Commands\Commands.cs" />
     <Compile Include="Builders\Commands\SearchCommand.cs" />
     <Compile Include="Builders\Enums.cs" />
+    <Compile Include="Builders\IndexSettings\Analysis\Analysis.cs" />
+    <Compile Include="Builders\IndexSettings\Analysis\AnalysisBase.cs" />
+    <Compile Include="Builders\IndexSettings\Analysis\NamedComponentBase.cs" />
+    <Compile Include="Builders\IndexSettings\Analysis\Analyzers\AnalyzerSettings.cs" />
+    <Compile Include="Builders\IndexSettings\Analysis\Analyzers\AnalyzerBase.cs" />
+    <Compile Include="Builders\IndexSettings\Analysis\Analyzers\CustomAnalyzer.cs" />
+    <Compile Include="Builders\IndexSettings\Analysis\Analyzers\KeywordAnalyzer.cs" />
+    <Compile Include="Builders\IndexSettings\Analysis\Analyzers\LanguageAnalyzer.cs" />
+    <Compile Include="Builders\IndexSettings\Analysis\Analyzers\PatternAnalyzer.cs" />
+    <Compile Include="Builders\IndexSettings\Analysis\Analyzers\SimpleAnalyzer.cs" />
+    <Compile Include="Builders\IndexSettings\Analysis\Analyzers\SnowballAnalyzer.cs" />
+    <Compile Include="Builders\IndexSettings\Analysis\Analyzers\StandardAnalyzer.cs" />
+    <Compile Include="Builders\IndexSettings\Analysis\Analyzers\StopAnalyzer.cs" />
+    <Compile Include="Builders\IndexSettings\Analysis\Analyzers\StopwordsAnalyzerBase.cs" />
+    <Compile Include="Builders\IndexSettings\Analysis\Analyzers\WhitespaceAnalyzer.cs" />
+    <Compile Include="Builders\IndexSettings\Analysis\Enums.cs" />
     <Compile Include="Builders\IndexSettings\IndexSettingsBuilder.cs" />
     <Compile Include="Builders\Mappings\Attachment.cs" />
     <Compile Include="Builders\Mappings\Core\ElasticCoreTypeMapper.cs" />
@@ -187,6 +186,8 @@
     <Compile Include="Serialization\IJsonSerializer.cs" />
     <Compile Include="Serialization\Results\ShardsResult.cs" />
     <Compile Include="Serialization\SerializationExtensions.cs" />
+    <Compile Include="Utils\JsonHelper.cs" />
+    <Compile Include="Utils\FuncExtesions.cs" />
     <Compile Include="Utils\JsonBeautifier.cs" />
     <Compile Include="Utils\UrlBuilder.cs" />
     <Compile Include="Utils\ReflectExtensions.cs" />

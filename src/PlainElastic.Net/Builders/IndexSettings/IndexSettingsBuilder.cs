@@ -4,6 +4,11 @@ using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.IndexSettings
 {
+
+    /// <summary>
+    /// Allows to build index level settings.
+    /// see: http://www.elasticsearch.org/guide/reference/api/admin-indices-update-settings.html
+    /// </summary>
     public class IndexSettingsBuilder
     {
         private string analysisJson;

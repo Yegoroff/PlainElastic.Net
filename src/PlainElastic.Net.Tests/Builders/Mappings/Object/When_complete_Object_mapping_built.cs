@@ -45,8 +45,6 @@ namespace PlainElastic.Net.Tests.Builders.Mappings
 
         It should_contain_path_part = () => result.ShouldContain("'path': 'TestObject.Path'".AltQuote());
 
-        It should_contain_properties_part = () => result.ShouldContain("'properties': { ".AltQuote());
-
         It should_contain_properties_mapping_part = () => result.ShouldContain("'properties': { ".AltQuote());
 
         It should_contain_binary_property_mapping_part = () => result.ShouldContain("'ObjectProperty': { 'type': 'binary' }".AltQuote());

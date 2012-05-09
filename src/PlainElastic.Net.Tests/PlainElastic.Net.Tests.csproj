@@ -61,8 +61,8 @@
     <Compile Include="Builders\Analysis\Analyzers\Standard\When_empty_StandardAnalyzer_built.cs" />
     <Compile Include="Builders\Analysis\Analyzers\Stop\When_complete_StopAnalyzer_built.cs" />
     <Compile Include="Builders\Analysis\Analyzers\Stop\When_empty_StopAnalyzer_built.cs" />
-    <Compile Include="Builders\Analysis\Analyzers\When_complete_Analyzer_built.cs" />
-    <Compile Include="Builders\Analysis\Analyzers\When_empty_Analyzer_built.cs" />
+    <Compile Include="Builders\Analysis\Analyzers\When_complete_AnalyzerSettings_built.cs" />
+    <Compile Include="Builders\Analysis\Analyzers\When_empty_AnalyzerSettings_built.cs" />
     <Compile Include="Builders\Analysis\Analyzers\Whitespace\When_complete_WhitespaceAnalyzer_built.cs" />
     <Compile Include="Builders\Analysis\Analyzers\Whitespace\When_empty_WhitespaceAnalyzer_built.cs" />
     <Compile Include="Builders\Analysis\When_complete_Analysis_built.cs" />
@@ -137,6 +137,8 @@
     <Compile Include="Builders\Mappings\Core\Number\When_Number_mapping_for_bool_type_built.cs" />
     <Compile Include="Builders\Mappings\Core\Ip\When_complete_Ip_mapping_built.cs" />
     <Compile Include="Builders\Mappings\MultiField\When_complete_MultiField_mapping_built.cs" />
+    <Compile Include="Builders\Mappings\Object\When_Object_mapping_with_NestedProperty_built.cs" />
+    <Compile Include="Builders\Mappings\Object\When_Object_mapping_with_ObjectProperty_built.cs" />
     <Compile Include="Builders\Mappings\Object\When_Object_with_custom_properties_built.cs" />
     <Compile Include="Builders\Mappings\Object\When_simplest_Object_mapping_built.cs" />
     <Compile Include="Builders\Mappings\Object\When_Object_with_enum_property_mapping_built.cs" />

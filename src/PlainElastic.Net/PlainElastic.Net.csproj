@@ -75,7 +75,7 @@
     <Compile Include="Builders\Commands\SearchCommand.cs" />
     <Compile Include="Builders\Enums.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\Analysis.cs" />
-    <Compile Include="Builders\IndexSettings\Analysis\AnalysisBase.cs" />
+    <Compile Include="Builders\IndexSettings\SettingsBase.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\NamedComponentBase.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\Analyzers\AnalyzerSettings.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\Analyzers\AnalyzerBase.cs" />

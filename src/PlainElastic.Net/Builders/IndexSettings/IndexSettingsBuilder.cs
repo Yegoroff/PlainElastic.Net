@@ -9,10 +9,8 @@ namespace PlainElastic.Net.IndexSettings
     /// Allows to build index level settings.
     /// see: http://www.elasticsearch.org/guide/reference/api/admin-indices-update-settings.html
     /// </summary>
-    public class IndexSettingsBuilder
+    public class IndexSettingsBuilder : SettingsBase<IndexSettingsBuilder>
     {
-        private string analysisJson;
-
 
         /// <summary>
         /// The index analysis module acts as a configurable registry of Analyzers
@@ -22,20 +20,24 @@ namespace PlainElastic.Net.IndexSettings
         /// </summary>
         public IndexSettingsBuilder Analysis(Func<Analysis, Analysis> analysis)
         {
-            var analysisPart = analysis(new Analysis());
-
-            analysisJson = ((IJsonConvertible)analysisPart).ToJson();
-
+            RegisterJsonPartExpression(analysis);
             return this;
         }
 
 
-        public string Build()
+        protected override string ApplyJsonTemplate(string body)
         {
-            if (analysisJson.IsNullOrEmpty())
+            if (body.IsNullOrEmpty())
                 return "";
 
-            return "{{ 'index': {{ {0} }} }}".AltQuoteF(analysisJson);
+            return "{{ 'index': {{ {0} }} }}".AltQuoteF(body);
+        }
+
+
+
+        public string Build()
+        {
+            return ((IJsonConvertible) this).ToJson();
         }
 
         public string BuildBeautified()

@@ -9,7 +9,8 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
         Because of = () => result = new IndexSettingsBuilder()
                                             .Build();
 
-        It should_return_empty_string = () => result.ShouldBeEmpty();
+        It should_return_empty_string = () => 
+            result.ShouldBeEmpty();
 
         private static string result;
     }

@@ -9,7 +9,7 @@ namespace PlainElastic.Net.IndexSettings
     /// It maps to the Lucene Analyzer.
     /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/
     /// </summary>
-    public class Analysis : AnalysisBase<Analysis>
+    public class Analysis : SettingsBase<Analysis>
     {
         /// <summary>
         /// Allows to configure standard/custom analyzers to be used in mapping API.

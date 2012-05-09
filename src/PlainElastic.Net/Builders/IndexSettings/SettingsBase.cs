@@ -5,7 +5,7 @@ using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.IndexSettings
 {
-    public abstract class AnalysisBase<TPart> : IJsonConvertible where TPart : AnalysisBase<TPart>
+    public abstract class SettingsBase<TPart> : IJsonConvertible where TPart : SettingsBase<TPart>
     {
         private readonly List<string> jsonParts = new List<string>();
 

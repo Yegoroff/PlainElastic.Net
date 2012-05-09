@@ -6,7 +6,7 @@ namespace PlainElastic.Net.IndexSettings
     /// <summary>
     /// Allows to configure standard/custom analyzers to be used in mapping API.
     /// </summary>
-    public class AnalyzerSettings : AnalysisBase<AnalyzerSettings>
+    public class AnalyzerSettings : SettingsBase<AnalyzerSettings>
     {
 
         #region Standard

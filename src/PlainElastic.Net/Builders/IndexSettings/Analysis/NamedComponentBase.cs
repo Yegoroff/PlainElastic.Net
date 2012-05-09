@@ -6,7 +6,7 @@ namespace PlainElastic.Net.IndexSettings
     /// <summary>
     /// Base class for Analyzers, Tokenizers and Filters.
     /// </summary>
-    public abstract class NamedComponentBase<TPart> : AnalysisBase<TPart> where TPart : NamedComponentBase<TPart>
+    public abstract class NamedComponentBase<TPart> : SettingsBase<TPart> where TPart : NamedComponentBase<TPart>
     {
         public string ComponentName { get; set; }
 

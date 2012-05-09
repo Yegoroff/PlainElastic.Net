@@ -71,7 +71,6 @@ namespace PlainElastic.Net.Utils
             return list == null ? "" : String.Join("", list);
         }
 
-
         public static string JoinWithSeparator(this IEnumerable<string> list, string separator)
         {
             return list == null ? "" : String.Join(separator, list);
@@ -81,6 +80,7 @@ namespace PlainElastic.Net.Utils
         {
             return list == null ? "" : String.Join(",", list);
         }
+
 
         public static IEnumerable<string> JoinInBatches(this IEnumerable<string> list, int batchSize)
         {
@@ -103,11 +103,6 @@ namespace PlainElastic.Net.Utils
             }
 
             yield return batch.ToString();
-        }
-
-        public static string BeautifyJson(this string json)
-        {
-            return JsonBeautifier.Beautify(json);
         }
 
 
@@ -152,6 +147,11 @@ namespace PlainElastic.Net.Utils
             return value.HasValue ? value.Value.AsString() : null;
         }
 
+
+        public static string BeautifyJson(this string json)
+        {
+            return JsonBeautifier.Beautify(json);
+        }
 
         public static string ToEscapedJson(this string json)
         {

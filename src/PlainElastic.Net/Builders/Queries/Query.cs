@@ -54,6 +54,18 @@ namespace PlainElastic.Net.Queries
         }
 
         /// <summary>
+        /// A query that can be used to effectively demote results that match a given query. 
+        /// Unlike the “NOT” clause in bool query, this still selects documents 
+        /// that contain undesirable terms, but reduces their overall score.
+        /// see: http://www.elasticsearch.org/guide/reference/query-dsl/boosting-query.html
+        /// </summary>
+        public Query<T> Boosting(Func<BoostingQuery<T>, BoostingQuery<T>> boostingQuery)
+        {
+            RegisterJsonPartExpression(boostingQuery);
+            return this;
+        }
+
+        /// <summary>
         /// A query that generates the union of documents produced by its subqueries, 
         /// and that scores each document with the maximum score for that document as produced by any subquery, 
         /// plus a tie breaking increment for any additional matching subqueries.

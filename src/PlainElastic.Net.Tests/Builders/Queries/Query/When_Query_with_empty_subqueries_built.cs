@@ -11,6 +11,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
             result = new Query<FieldsTestClass>()
                         .Text(q => q)
                         .Bool(q => q)
+                        .Boosting(b => b)
                         .ConstantScore(q => q)
                         .DisMax(q => q)
                         .Filtered(q => q)

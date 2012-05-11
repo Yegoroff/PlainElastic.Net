@@ -114,6 +114,11 @@
     <Compile Include="Builders\Mappings\RootObject.cs" />
     <Compile Include="Builders\Mappings\Core\StringMap.cs" />
     <Compile Include="Builders\Queries\ConstantScoreQuery.cs" />
+    <Compile Include="Builders\Queries\BoostingQuery.cs" />
+    <Compile Include="Builders\Queries\Filters\IdsFilter.cs" />
+    <Compile Include="Builders\Queries\IdsQuery.cs" />
+    <Compile Include="Builders\Queries\NegativeQuery.cs" />
+    <Compile Include="Builders\Queries\PositiveQuery.cs" />
     <Compile Include="Builders\Queries\Filters\QueryFilter.cs" />
     <Compile Include="Builders\Queries\CustomFiltersScoreQuery.cs" />
     <Compile Include="Builders\Queries\ScoredFilter.cs" />

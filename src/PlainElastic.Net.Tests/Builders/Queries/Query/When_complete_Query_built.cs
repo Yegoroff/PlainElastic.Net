@@ -13,6 +13,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                                 .TextPhrasePrefix(t => t.Custom("text phrase prefix query"))
                                                 .Bool(b => b.Custom("bool query"))
                                                 .Boosting(b => b.Custom("boosting query"))
+                                                .Ids(ids => ids.Custom("ids query"))
                                                 .DisMax(d => d.Custom("dismax query"))
                                                 .Nested(n => n.Custom("nested query"))
                                                 .QueryString(q => q.Custom("query string"))
@@ -34,6 +35,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                                                     "{ 'text_phrase_prefix': { text phrase prefix query } }," +
                                                                     "{ 'bool': { bool query } }," +
                                                                     "{ 'boosting': { boosting query } }," +
+                                                                    "{ 'ids': { ids query } }," +
                                                                     "{ 'dis_max': { dismax query } }," +
                                                                     "{ 'nested': { nested query } }," +
                                                                     "{ 'query_string': { query string } }," +

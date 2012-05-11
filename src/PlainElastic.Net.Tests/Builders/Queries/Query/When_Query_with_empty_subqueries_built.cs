@@ -12,6 +12,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                         .Text(q => q)
                         .Bool(q => q)
                         .Boosting(b => b)
+                        .Ids(i => i)
                         .ConstantScore(q => q)
                         .DisMax(q => q)
                         .Filtered(q => q)

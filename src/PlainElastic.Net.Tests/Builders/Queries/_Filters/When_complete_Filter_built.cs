@@ -13,6 +13,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                             .Not( n => n.Custom("Not") )
                                             .Exists(e => e.Custom("Exists"))
                                             .Missing(m => m.Custom("Missing"))
+                                            .Ids(ids => ids.Custom("Ids"))
                                             .Nested(n => n.Custom("Nested"))
                                             .Range(r => r.Custom("Range"))
                                             .Term(t => t.Custom("Term"))
@@ -33,6 +34,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                                                         "{ 'not': { Not } }," +
                                                                         "{ 'exists': { Exists } }," +
                                                                         "{ 'missing': { Missing } }," +
+                                                                        "{ 'ids': { Ids } }," +
                                                                         "{ 'nested': { Nested } }," +
                                                                         "{ 'range': { Range } }," +
                                                                         "{ 'term': { Term } }," +

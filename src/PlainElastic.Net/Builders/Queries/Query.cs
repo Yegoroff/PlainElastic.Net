@@ -66,6 +66,17 @@ namespace PlainElastic.Net.Queries
         }
 
         /// <summary>
+        /// A query that filters documents that only have the provided ids. 
+        /// Note, this query does not require the _id field to be indexed since it works using the _uid field.
+        /// see: http://www.elasticsearch.org/guide/reference/query-dsl/ids-query.html
+        /// </summary>
+        public Query<T> Ids(Func<IdsQuery<T>, IdsQuery<T>> idsQuery)
+        {
+            RegisterJsonPartExpression(idsQuery);
+            return this;
+        }
+
+        /// <summary>
         /// A query that generates the union of documents produced by its subqueries, 
         /// and that scores each document with the maximum score for that document as produced by any subquery, 
         /// plus a tie breaking increment for any additional matching subqueries.

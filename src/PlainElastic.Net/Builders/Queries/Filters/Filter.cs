@@ -86,6 +86,17 @@ namespace PlainElastic.Net.Queries
         }
 
         /// <summary>
+        /// A filter that filters documents that only have the provided ids. 
+        /// Note, this filter does not require the _id field to be indexed since it works using the _uid field.
+        /// see: http://www.elasticsearch.org/guide/reference/query-dsl/ids-query.html
+        /// </summary>
+        public Filter<T> Ids(Func<IdsFilter<T>, IdsFilter<T>> idsFilter)
+        {
+            RegisterJsonPartExpression(idsFilter);
+            return this;
+        }
+
+        /// <summary>
         /// A filter that allows to filter nested objects / docs.
         /// The filter is executed against the nested objects / docs as if they were indexed 
         /// as separate docs (they are, internally) and resulting in the root parent doc (or parent nested mapping)

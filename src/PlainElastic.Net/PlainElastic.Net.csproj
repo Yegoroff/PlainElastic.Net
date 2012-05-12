@@ -117,12 +117,20 @@
     <Compile Include="Builders\Queries\BoostingQuery.cs" />
     <Compile Include="Builders\Queries\Filters\IdsFilter.cs" />
     <Compile Include="Builders\Queries\IdsQuery.cs" />
-    <Compile Include="Builders\Queries\NegativeQuery.cs" />
-    <Compile Include="Builders\Queries\PositiveQuery.cs" />
+    <Compile Include="Builders\Queries\NegativeQuery.cs">
+      <DependentUpon>BoostingQuery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Builders\Queries\PositiveQuery.cs">
+      <DependentUpon>BoostingQuery.cs</DependentUpon>
+    </Compile>
     <Compile Include="Builders\Queries\Filters\QueryFilter.cs" />
     <Compile Include="Builders\Queries\CustomFiltersScoreQuery.cs" />
-    <Compile Include="Builders\Queries\ScoredFilter.cs" />
-    <Compile Include="Builders\Queries\ScoredFilters.cs" />
+    <Compile Include="Builders\Queries\ScoredFilter.cs">
+      <DependentUpon>CustomFiltersScoreQuery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Builders\Queries\ScoredFilters.cs">
+      <DependentUpon>CustomFiltersScoreQuery.cs</DependentUpon>
+    </Compile>
     <Compile Include="Builders\Queries\Filters\MissingFilter.cs" />
     <Compile Include="Builders\Queries\Filters\MatchAllFilter.cs" />
     <Compile Include="Builders\Queries\Filters\OrFilter.cs" />
@@ -141,17 +149,29 @@
     <Compile Include="Builders\Queries\Facets\TermsFacet.cs" />
     <Compile Include="Builders\Queries\FilteredQuery.cs" />
     <Compile Include="Builders\Queries\Filters\BoolFilter.cs" />
-    <Compile Include="Builders\Queries\Filters\ShouldFilter.cs" />
-    <Compile Include="Builders\Queries\Filters\MustNotFilter.cs" />
-    <Compile Include="Builders\Queries\Filters\MustFilter.cs" />
-    <Compile Include="Builders\Queries\RangeBase.cs" />
+    <Compile Include="Builders\Queries\Filters\ShouldFilter.cs">
+      <DependentUpon>BoolFilter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Builders\Queries\Filters\MustNotFilter.cs">
+      <DependentUpon>BoolFilter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Builders\Queries\Filters\MustFilter.cs">
+      <DependentUpon>BoolFilter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Builders\Queries\RangeBase.cs">
+      <DependentUpon>RangeQuery.cs</DependentUpon>
+    </Compile>
     <Compile Include="Builders\Queries\FieldQueryBase.cs" />
     <Compile Include="Builders\Queries\Filters\RangeFilter.cs" />
-    <Compile Include="Builders\Queries\NestedBase.cs" />
+    <Compile Include="Builders\Queries\NestedBase.cs">
+      <DependentUpon>NestedQuery.cs</DependentUpon>
+    </Compile>
     <Compile Include="Builders\Queries\Filters\NestedFilter.cs" />
     <Compile Include="Builders\Queries\Filters\TermsFilter.cs" />
     <Compile Include="Builders\Queries\NestedQuery.cs" />
-    <Compile Include="Builders\Queries\DisMaxQuery.cs" />
+    <Compile Include="Builders\Queries\DisMaxQuery.cs">
+      <DependentUpon>DisMaxQueries.cs</DependentUpon>
+    </Compile>
     <Compile Include="Builders\Queries\DisMaxQueries.cs" />
     <Compile Include="Builders\Queries\Enums.cs" />
     <Compile Include="Builders\Queries\QueryBase.cs" />
@@ -165,15 +185,21 @@
     <Compile Include="Builders\Queries\Filters\AndFilter.cs" />
     <Compile Include="Builders\Queries\BoolQuery.cs" />
     <Compile Include="Builders\Queries\Sort.cs" />
-    <Compile Include="Builders\Queries\MustNotQuery.cs" />
+    <Compile Include="Builders\Queries\MustNotQuery.cs">
+      <DependentUpon>BoolQuery.cs</DependentUpon>
+    </Compile>
     <Compile Include="Builders\Queries\Filters\ExistsFilter.cs" />
     <Compile Include="Builders\Queries\Filters\Filter.cs" />
     <Compile Include="Builders\IJsonConvertible.cs" />
-    <Compile Include="Builders\Queries\MustQuery.cs" />
+    <Compile Include="Builders\Queries\MustQuery.cs">
+      <DependentUpon>BoolQuery.cs</DependentUpon>
+    </Compile>
     <Compile Include="Builders\Queries\Query.cs" />
     <Compile Include="Builders\Queries\QueryBuilder.cs" />
     <Compile Include="Builders\Queries\QueryString.cs" />
-    <Compile Include="Builders\Queries\ShouldQuery.cs" />
+    <Compile Include="Builders\Queries\ShouldQuery.cs">
+      <DependentUpon>BoolQuery.cs</DependentUpon>
+    </Compile>
     <Compile Include="Builders\Queries\TermQuery.cs" />
     <Compile Include="Builders\Queries\Filters\TermFilter.cs" />
     <Compile Include="Builders\Queries\TermsQuery.cs" />

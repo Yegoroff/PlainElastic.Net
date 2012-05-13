@@ -112,6 +112,17 @@ namespace PlainElastic.Net.Queries
         }
 
         /// <summary>
+        /// A query that allows  query allows to wrap another query and multiply its score by the provided boost_factor.
+        /// This can sometimes be desired since boost value set on specific queries gets normalized, while this query boost factor does not.
+        /// see: http://www.elasticsearch.org/guide/reference/query-dsl/custom-boost-factor-query.html
+        /// </summary>
+        public Query<T> CustomBoostFactor(Func<CustomBoostFactorQuery<T>, CustomBoostFactorQuery<T>> customBoostFactor)
+        {
+            RegisterJsonPartExpression(customBoostFactor);
+            return this;
+        }
+
+        /// <summary>
         /// A query that wraps a filter or another query and simply returns a constant score equal 
         /// to the query boost for every document in the filter. Maps to Lucene ConstantScoreQuery.
         /// see http://www.elasticsearch.org/guide/reference/query-dsl/constant-score-query.html

@@ -176,6 +176,7 @@
     <Compile Include="Builders\Queries\Enums.cs" />
     <Compile Include="Builders\Queries\QueryBase.cs" />
     <Compile Include="Builders\Queries\RangeQuery.cs" />
+    <Compile Include="Builders\Queries\WildcardQuery.cs" />
     <Compile Include="Connection\OperationExeception.cs" />
     <Compile Include="Connection\ElasticConnection.cs" />
     <Compile Include="Connection\OperationResult.cs" />
@@ -229,7 +230,6 @@
     <None Include="packages.config" />
     <None Include="key.snk" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

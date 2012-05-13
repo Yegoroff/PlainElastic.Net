@@ -15,4 +15,4 @@
 *.txt text eol=crlf
 *.xml text eol=crlf
 
-*.sln -text eol=crlf merge=union
+*.sln text eol=crlf merge=union

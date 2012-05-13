@@ -187,6 +187,23 @@ namespace PlainElastic.Net.Queries
         }
 
         /// <summary>
+        /// Matches documents that have fields matching a wildcard expression (not analyzed).
+        /// Supported wildcards are *, which matches any character sequence (including the empty one), 
+        /// and ?, which matches any single character.
+        /// Note that this query can be slow, as it needs to iterate over many terms. 
+        /// In order to prevent extremely slow wildcard queries, 
+        /// a wildcard term should not start with one of the wildcards * or ?. 
+        /// The wildcard query maps to Lucene WildcardQuery.
+        /// see http://www.elasticsearch.org/guide/reference/query-dsl/wildcard-query.html
+        /// </summary>
+        public Query<T> Wildcard(Func<WildcardQuery<T>, WildcardQuery<T>> wildcardQuery)
+        {
+            RegisterJsonPartExpression(wildcardQuery);
+            return this;
+        }
+
+
+        /// <summary>
         /// A query that allows to execute a query, and if the hit matches a provided filter (ordered),
         /// use either a boost or a script associated with it to compute the score.
         /// see http://www.elasticsearch.org/guide/reference/query-dsl/custom-filters-score-query.html

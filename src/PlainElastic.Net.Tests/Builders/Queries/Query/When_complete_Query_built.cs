@@ -24,6 +24,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                                 .Filtered(f => f.Custom("filtered"))
                                                 .MatchAll()
                                                 .Fuzzy(f => f.Custom("fuzzy query"))
+                                                .Wildcard(w => w.Custom("wildcard query"))
                                                 .CustomFiltersScore(cfs => cfs.Custom("custom filters score query"))
                                                 .ToString();
 
@@ -46,6 +47,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                                                     "{ 'filtered': { filtered } }," +
                                                                     "{ 'match_all': {  } }," +
                                                                     "{ 'fuzzy': { fuzzy query } }," +
+                                                                    "{ 'wildcard': { wildcard query } }," +
                                                                     "{ 'custom_filters_score': { custom filters score query } }").AltQuote());
 
         private static string result;

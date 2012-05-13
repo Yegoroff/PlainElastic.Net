@@ -11,6 +11,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                                 .Type("childType")
                                                 .Query(q => q)
                                                 .Scope("query_scope")
+                                                .Name("filter_name")
                                                 .Custom("")
                                                 .ToString();
 

@@ -34,7 +34,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
 
         It should_contain_default_field_part = () => result.ShouldContain("'default_field': 'StringProperty'".AltQuote());
 
-        It should_contain_fields_part = () => result.ShouldContain("'fields': ['StringProperty','BoolProperty','CollectionProperty.EnumProperty','CollectionProperty.StringProperty']".AltQuote());
+        It should_contain_fields_part = () => result.ShouldContain("'fields': [ 'StringProperty','BoolProperty','CollectionProperty.EnumProperty','CollectionProperty.StringProperty' ]".AltQuote());
 
         It should_contain_boost_part = () => result.ShouldContain("'boost': 5".AltQuote());
 
@@ -75,7 +75,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
 
         It should_return_correct_query = () => result.ShouldEqual(("{ " +
                                                                       "'query_string': { " +
-                                                                          "'fields': ['StringProperty','BoolProperty','CollectionProperty.EnumProperty','CollectionProperty.StringProperty']," +
+                                                                          "'fields': [ 'StringProperty','BoolProperty','CollectionProperty.EnumProperty','CollectionProperty.StringProperty' ]," +
                                                                           "'default_field': 'StringProperty'," +
                                                                           "'boost': 5," +
                                                                           "'rewrite': 'top_terms_boost_100'," +

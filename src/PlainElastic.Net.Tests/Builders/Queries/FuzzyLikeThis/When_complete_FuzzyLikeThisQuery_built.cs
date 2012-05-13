@@ -22,7 +22,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
 
         It should_starts_with_fuzzy_like_this_declaration = () => result.ShouldStartWith("{ 'fuzzy_like_this': {".AltQuote());
 
-        It should_contain_fields_part = () => result.ShouldContain("'fields': ['StringProperty','BoolProperty','CollectionProperty.EnumProperty','CollectionProperty.StringProperty']".AltQuote());
+        It should_contain_fields_part = () => result.ShouldContain("'fields': [ 'StringProperty','BoolProperty','CollectionProperty.EnumProperty','CollectionProperty.StringProperty' ]".AltQuote());
 
         It should_contain_like_text_part = () => result.ShouldContain("'like_text': 'like text'".AltQuote());
 
@@ -43,7 +43,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
 
         It should_return_correct_query = () => result.ShouldEqual(("{ " +
                                                                       "'fuzzy_like_this': { " +
-                                                                          "'fields': ['StringProperty','BoolProperty','CollectionProperty.EnumProperty','CollectionProperty.StringProperty']," +
+                                                                          "'fields': [ 'StringProperty','BoolProperty','CollectionProperty.EnumProperty','CollectionProperty.StringProperty' ]," +
                                                                           "'like_text': 'like text'," +
                                                                           "'ignore_tf': true," +
                                                                           "'max_query_terms': 10," +

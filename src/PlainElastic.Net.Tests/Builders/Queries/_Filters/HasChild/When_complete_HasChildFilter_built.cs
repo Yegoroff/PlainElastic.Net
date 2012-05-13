@@ -10,7 +10,8 @@ namespace PlainElastic.Net.Tests.Builders.Queries
         Because of = () => result = new HasChildFilter<FieldsTestClass>()
                                                 .Type("childType")
                                                 .Query(q => q.Custom("{ query }"))
-                                                .Scope("query_scope")                                                
+                                                .Scope("query_scope")
+                                                .Name("filter_name")
                                                 .Custom("{ custom part }")
                                                 .ToString();
 
@@ -27,6 +28,10 @@ namespace PlainElastic.Net.Tests.Builders.Queries
         It should_contain_scope_part = () =>
             result.ShouldContain("'_scope': 'query_scope'".AltQuote());
 
+        It should_contain_name_part = () =>
+            result.ShouldContain("'_name': 'filter_name'".AltQuote());
+
+
         It should_contain_custom_part = () =>
             result.ShouldContain("{ custom part }".AltQuote());
 
@@ -37,6 +42,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                         "'type': 'childType'," +    
                                         "'query': { query }," +
                                         "'_scope': 'query_scope'," +
+                                        "'_name': 'filter_name'," +
                                         "{ custom part } " +
                                    "} " +
                                "}").AltQuote());

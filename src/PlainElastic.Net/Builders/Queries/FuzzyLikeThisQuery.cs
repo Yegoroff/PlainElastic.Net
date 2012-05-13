@@ -24,7 +24,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public FuzzyLikeThisQuery<T> Fields(params string[] fields)
         {
-            queryFields.AddRange(fields.Quotate());
+            queryFields.AddRange(fields);
             return this;
         }
 
@@ -35,7 +35,7 @@ namespace PlainElastic.Net.Queries
         public FuzzyLikeThisQuery<T> Fields(params Expression<Func<T, object>>[] fields)
         {
             foreach (var field in fields)
-                queryFields.Add(field.GetQuotatedPropertyPath());
+                queryFields.Add(field.GetPropertyPath());
 
             return this;
         }
@@ -51,7 +51,7 @@ namespace PlainElastic.Net.Queries
             foreach (var field in fields)
             {
                 var fieldName = collectionProperty + "." + field.GetPropertyPath();
-                queryFields.Add(fieldName.Quotate());
+                queryFields.Add(fieldName);
             }
             return this;
         }
@@ -143,21 +143,13 @@ namespace PlainElastic.Net.Queries
 
         protected override string ApplyJsonTemplate(string body)
         {
-            string fields = GenerateFieldsQueryPart();
-            if (!fields.IsNullOrEmpty())
-                body = new[] {fields, body}.JoinWithComma();
+            if (queryFields.Count > 0)
+            {
+                string fields = JsonHelper.BuildJsonStringsProperty("fields", queryFields);
+                body = new[] { fields, body }.JoinWithComma();
+            }
 
             return "{{ 'fuzzy_like_this': {{ {0} }} }}".AltQuoteF(body);
-        }
-
-
-        private string GenerateFieldsQueryPart()
-        {
-            var fields = queryFields.JoinWithComma();
-            if (fields.IsNullOrEmpty())
-                return "";
-
-            return "'fields': [{0}]".AltQuoteF(fields);
         }
 
     }

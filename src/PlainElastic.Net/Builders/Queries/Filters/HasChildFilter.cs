@@ -43,6 +43,17 @@ namespace PlainElastic.Net.Queries
             return this;
         }
 
+        /// <summary>
+        /// Allows to name filter, so the search response will include for each hit the matched_filters 
+        /// it matched on (note, this feature make sense for or / bool filters).
+        /// http://www.elasticsearch.org/guide/reference/api/search/named-filters.html 
+        /// </summary>
+        public HasChildFilter<T> Name(string filterName)
+        {
+            RegisterJsonPart("'_name': {0}", filterName.Quotate());
+            return this;
+        }
+
         protected override bool HasRequiredParts()
         {
             return hasValues;

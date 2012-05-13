@@ -124,6 +124,28 @@ namespace PlainElastic.Net.Queries
         }
 
         /// <summary>
+        /// More like this query find documents that are “like” provided text by running it against one or more fields.
+        /// see http://www.elasticsearch.org/guide/reference/query-dsl/mlt-query.html
+        /// </summary>
+        public Query<T> MoreLikeThis(Func<MoreLikeThisQuery<T>, MoreLikeThisQuery<T>> moreLikeThisQuery)
+        {
+            RegisterJsonPartExpression(moreLikeThisQuery);
+            return this;
+        }
+
+        /// <summary>
+        /// The more_like_this_field query is the same as the more_like_this query, 
+        /// except it runs against a single field. It provides nicer query DSL over the generic more_like_this query,
+        /// and support typed fields query (automatically wraps typed fields with type filter to match only on the specific type).
+        /// see http://www.elasticsearch.org/guide/reference/query-dsl/mlt-field-query.html
+        /// </summary>
+        public Query<T> MoreLikeThisField(Func<MoreLikeThisFieldQuery<T>, MoreLikeThisFieldQuery<T>> moreLikeThisFieldQuery)
+        {
+            RegisterJsonPartExpression(moreLikeThisFieldQuery);
+            return this;
+        }
+
+        /// <summary>
         /// The has_child query accepts a query and the child type to run against,
         /// and results in parent documents that have child docs matching the query.
         /// see: http://www.elasticsearch.org/guide/reference/query-dsl/has-child-query.html

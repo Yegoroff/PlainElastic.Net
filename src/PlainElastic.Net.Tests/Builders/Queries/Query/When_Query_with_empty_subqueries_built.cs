@@ -20,6 +20,8 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                         .FuzzyLikeThis(f => f)
                         .FuzzyLikeThisField(f => f)
                         .Fuzzy(q => q)
+                        .MoreLikeThis(m => m)
+                        .MoreLikeThisField(m => m)
                         .HasChild(h => h)
                         .Nested(q => q)
                         .QueryString(q => q)

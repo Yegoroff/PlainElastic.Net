@@ -20,6 +20,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                                 .Range(r => r.Custom("range query"))
                                                 .Term(t=> t.Custom("term query"))
                                                 .Terms(ts => ts.Custom("terms query"))
+                                                .CustomScore(c => c.Custom("custom score"))
                                                 .ConstantScore(c => c.Custom("constant score"))
                                                 .Filtered(f => f.Custom("filtered"))
                                                 .MatchAll()
@@ -43,6 +44,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                                                     "{ 'range': { range query } }," +
                                                                     "{ 'term': { term query } }," +
                                                                     "{ 'terms': { terms query } }," +
+                                                                    "{ 'custom_score': { custom score } }," +
                                                                     "{ 'constant_score': { constant score } }," +
                                                                     "{ 'filtered': { filtered } }," +
                                                                     "{ 'match_all': {  } }," +

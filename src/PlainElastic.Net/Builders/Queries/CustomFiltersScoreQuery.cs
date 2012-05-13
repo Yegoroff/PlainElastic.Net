@@ -84,7 +84,6 @@ namespace PlainElastic.Net.Queries
         }
 
 
-
         protected override bool HasRequiredParts()
         {
             return hasQuery;

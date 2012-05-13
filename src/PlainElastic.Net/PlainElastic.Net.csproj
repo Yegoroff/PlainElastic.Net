@@ -115,6 +115,7 @@
     <Compile Include="Builders\Mappings\Core\StringMap.cs" />
     <Compile Include="Builders\Queries\ConstantScoreQuery.cs" />
     <Compile Include="Builders\Queries\BoostingQuery.cs" />
+    <Compile Include="Builders\Queries\CustomScoreQuery.cs" />
     <Compile Include="Builders\Queries\WildcardQuery.cs" />
     <Compile Include="Builders\Queries\Filters\IdsFilter.cs" />
     <Compile Include="Builders\Queries\IdsQuery.cs" />

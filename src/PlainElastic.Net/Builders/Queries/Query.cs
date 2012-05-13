@@ -101,6 +101,17 @@ namespace PlainElastic.Net.Queries
         }
 
         /// <summary>
+        /// A query that allows to wrap another query and customize the scoring of it 
+        /// optionally with a computation derived from other field values in the doc (numeric ones) using script expression. 
+        /// see: http://www.elasticsearch.org/guide/reference/query-dsl/custom-score-query.html
+        /// </summary>
+        public Query<T> CustomScore(Func<CustomScoreQuery<T>, CustomScoreQuery<T>> customScoreQuery)
+        {
+            RegisterJsonPartExpression(customScoreQuery);
+            return this;
+        }
+
+        /// <summary>
         /// A query that wraps a filter or another query and simply returns a constant score equal 
         /// to the query boost for every document in the filter. Maps to Lucene ConstantScoreQuery.
         /// see http://www.elasticsearch.org/guide/reference/query-dsl/constant-score-query.html

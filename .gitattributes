@@ -3,16 +3,16 @@
 *.png  binary
 *.gif  binary
 
-*.bat text eol=crlf
-*.cmd text eol=crlf
-*.config text eol=crlf
-*.cs text eol=crlf diff=csharp
-*.csproj text eol=crlf merge=union
-*.md text eol=crlf
-*.nuspec text eol=crlf
-*.ps1 text eol=crlf
-*.resx text eol=crlf merge=union
-*.txt text eol=crlf
-*.xml text eol=crlf
+*.bat text
+*.cmd text
+*.config text
+*.cs text diff=csharp
+*.csproj text merge=union
+*.md text
+*.nuspec text
+*.ps1 text
+*.resx text merge=union
+*.txt text
+*.xml text
 
 *.sln text eol=crlf merge=union

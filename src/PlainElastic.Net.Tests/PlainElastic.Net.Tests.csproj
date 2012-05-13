@@ -147,6 +147,9 @@
     <Compile Include="Builders\Queries\Bool\When_BoolQuery_with_useActualShouldCount_built.cs" />
     <Compile Include="Builders\Queries\Boosting\When_complete_BoostingQuery_built.cs" />
     <Compile Include="Builders\Queries\Boosting\When_empty_BoostingQuery_built.cs" />
+    <Compile Include="Builders\Queries\Ids\When_complete_IdsQuery_built.cs" />
+    <Compile Include="Builders\Queries\Ids\When_complete_IdsQuery_with_multiple_types_built.cs" />
+    <Compile Include="Builders\Queries\Ids\When_empty_IdsQuery_built.cs" />
     <Compile Include="Builders\Queries\MatchAll\When_complete_MatchAllQuery_built.cs" />
     <Compile Include="Builders\Queries\MatchAll\When_MatchAllQuery_without_value_built.cs" />
     <Compile Include="Builders\Queries\MatchAll\When_MatchAllQuery_with_collection_field_built.cs" />
@@ -164,6 +167,12 @@
     <Compile Include="Builders\Queries\Terms\When_complete_TermQuery_built.cs" />
     <Compile Include="Builders\Queries\Term\When_TermQuery_with_empty_custom_part_built.cs" />
     <Compile Include="Builders\Queries\Term\When_TermQuery_with_collection_field_built.cs" />
+    <Compile Include="Builders\Queries\Wildcard\When_complete_WildcardQuery_built.cs" />
+    <Compile Include="Builders\Queries\Wildcard\When_WildcardQuery_without_value_built.cs" />
+    <Compile Include="Builders\Queries\Wildcard\When_WildcardQuery_with_collection_field_built.cs" />
+    <Compile Include="Builders\Queries\Wildcard\When_WildcardQuery_with_custom_part_built.cs" />
+    <Compile Include="Builders\Queries\Wildcard\When_WildcardQuery_with_empty_custom_part_built.cs" />
+    <Compile Include="Builders\Queries\Wildcard\When_WildcardQuery_with_only_custom_part_built.cs" />
     <Compile Include="Builders\Queries\_Facets\When_complete_Facets_built.cs" />
     <Compile Include="Builders\Queries\_Facets\FacetFiler\When_empty_FacetFilter_built.cs" />
     <Compile Include="Builders\Queries\_Facets\FilterFacet\When_empty_FilterFacet_built.cs" />

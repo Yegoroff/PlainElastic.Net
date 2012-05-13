@@ -147,6 +147,8 @@
     <Compile Include="Builders\Queries\Bool\When_BoolQuery_with_useActualShouldCount_built.cs" />
     <Compile Include="Builders\Queries\Boosting\When_complete_BoostingQuery_built.cs" />
     <Compile Include="Builders\Queries\Boosting\When_empty_BoostingQuery_built.cs" />
+    <Compile Include="Builders\Queries\FuzzyLikeThisField\When_complete_FuzzyLikeThisFieldQuery_built.cs" />
+    <Compile Include="Builders\Queries\FuzzyLikeThisField\When_empty_FuzzyLikeThisFieldQuery_built.cs" />
     <Compile Include="Builders\Queries\FuzzyLikeThis\When_complete_FuzzyLikeThisQuery_built.cs" />
     <Compile Include="Builders\Queries\FuzzyLikeThis\When_empty_FuzzyLikeThisQuery_built.cs" />
     <Compile Include="Builders\Queries\Field\When_complete_FieldQuery_built.cs" />

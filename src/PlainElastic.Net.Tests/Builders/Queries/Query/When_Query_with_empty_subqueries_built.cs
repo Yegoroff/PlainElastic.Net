@@ -18,6 +18,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                         .DisMax(q => q)
                         .Filtered(q => q)
                         .FuzzyLikeThis(f => f)
+                        .FuzzyLikeThisField(f => f)
                         .Fuzzy(q => q)
                         .Nested(q => q)
                         .QueryString(q => q)

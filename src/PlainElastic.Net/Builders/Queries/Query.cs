@@ -110,6 +110,19 @@ namespace PlainElastic.Net.Queries
             return this;
         }
 
+        /// <summary>
+        /// The fuzzy_like_this_field query is the same as the fuzzy_like_this query, 
+        /// except that it runs against a single field. 
+        /// It provides nicer query DSL over the generic fuzzy_like_this query, 
+        /// and support typed fields query (automatically wraps typed fields with type filter to match only on the specific type).
+        /// see http://www.elasticsearch.org/guide/reference/query-dsl/flt-field-query.html
+        /// </summary>
+        public Query<T> FuzzyLikeThisField(Func<FuzzyLikeThisFieldQuery<T>, FuzzyLikeThisFieldQuery<T>> fuzzyLikeThisFieldQuery)
+        {
+            RegisterJsonPartExpression(fuzzyLikeThisFieldQuery);
+            return this;
+        }
+
 
         /// <summary>
         /// A query that allows to query nested objects / docs.

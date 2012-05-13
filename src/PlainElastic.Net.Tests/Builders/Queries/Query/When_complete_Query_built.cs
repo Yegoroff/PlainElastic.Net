@@ -27,6 +27,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                                 .Filtered(f => f.Custom("filtered"))
                                                 .MatchAll()
                                                 .FuzzyLikeThis(f => f.Custom("flt query"))
+                                                .FuzzyLikeThisField(f => f.Custom("flt_field query"))
                                                 .Fuzzy(f => f.Custom("fuzzy query"))
                                                 .Wildcard(w => w.Custom("wildcard query"))
                                                 .CustomFiltersScore(cfs => cfs.Custom("custom filters score query"))
@@ -54,6 +55,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                                                     "{ 'filtered': { filtered } }," +
                                                                     "{ 'match_all': {  } }," +
                                                                     "{ 'fuzzy_like_this': { flt query } }," +
+                                                                    "{ 'fuzzy_like_this_field': { flt_field query } }," +
                                                                     "{ 'fuzzy': { fuzzy query } }," +
                                                                     "{ 'wildcard': { wildcard query } }," +
                                                                     "{ 'custom_filters_score': { custom filters score query } }").AltQuote());

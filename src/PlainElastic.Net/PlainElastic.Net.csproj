@@ -115,6 +115,7 @@
     <Compile Include="Builders\Mappings\Core\StringMap.cs" />
     <Compile Include="Builders\Queries\ConstantScoreQuery.cs" />
     <Compile Include="Builders\Queries\BoostingQuery.cs" />
+    <Compile Include="Builders\Queries\FuzzyLikeThisFieldQuery.cs" />
     <Compile Include="Builders\Queries\FuzzyLikeThisQuery.cs" />
     <Compile Include="Builders\Queries\FieldQuery.cs" />
     <Compile Include="Builders\Queries\CustomBoostFactorQuery.cs" />

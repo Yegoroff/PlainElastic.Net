@@ -188,6 +188,8 @@
     <Compile Include="Builders\Queries\_Filters\And\When_empty_AndFilter_built.cs" />
     <Compile Include="Builders\Queries\_Filters\Bool\When_complete_BoolFilter_built.cs" />
     <Compile Include="Builders\Queries\_Filters\Bool\When_empty_BoolFilter_built.cs" />
+    <Compile Include="Builders\Queries\_Filters\HasChild\When_complete_HasChildFilter_built.cs" />
+    <Compile Include="Builders\Queries\_Filters\HasChild\When_empty_HasChildFilter_built.cs" />
     <Compile Include="Builders\Queries\_Filters\MatchAll\When_complete_MatchAllFilter_built.cs" />
     <Compile Include="Builders\Queries\_Filters\Missing\When_complete_MissingFilter_built.cs" />
     <Compile Include="Builders\Queries\_Filters\Missing\When_MissingFilter_without_field_specified_built.cs" />

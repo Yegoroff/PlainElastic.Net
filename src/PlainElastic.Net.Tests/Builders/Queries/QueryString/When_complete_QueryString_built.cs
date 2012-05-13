@@ -40,6 +40,8 @@ namespace PlainElastic.Net.Tests.Builders.Queries
 
         It should_contain_rewrite_part = () => result.ShouldContain("'rewrite': 'top_terms_boost_100'".AltQuote());
 
+        It should_contain_query_part = () => result.ShouldContain("'query': 'query text'".AltQuote());
+
         It should_contain_default_operator_part = () => result.ShouldContain("'default_operator': 'AND'".AltQuote());
         
         It should_contain_analyzer_part = () => result.ShouldContain("'analyzer': 'snowball'".AltQuote());
@@ -71,7 +73,30 @@ namespace PlainElastic.Net.Tests.Builders.Queries
         It should_contain_missing_part = () => result.ShouldContain("'_missing_': 'MissingField'".AltQuote());
 
 
-        It should_return_correct_query = () => result.ShouldEqual("{ 'query_string': { 'fields': ['StringProperty','BoolProperty','CollectionProperty.EnumProperty','CollectionProperty.StringProperty'],'default_field': 'StringProperty','boost': 5,'rewrite': 'top_terms_boost_100','query': 'query text','default_operator': 'AND','analyzer': 'snowball','allow_leading_wildcard': true,'lowercase_expanded_terms': false,'enable_position_increments': true,'fuzzy_prefix_length': 10,'fuzzy_min_sim': 0.7,'phrase_slop': 5,'analyze_wildcard': false,'auto_generate_phrase_queries': true,'minimum_should_match': '50%','use_dis_max': true,'tie_breaker': 0.8,'_exists_': 'StringField','_missing_': 'MissingField' } }".AltQuote());
+        It should_return_correct_query = () => result.ShouldEqual(("{ " +
+                                                                      "'query_string': { " +
+                                                                          "'fields': ['StringProperty','BoolProperty','CollectionProperty.EnumProperty','CollectionProperty.StringProperty']," +
+                                                                          "'default_field': 'StringProperty'," +
+                                                                          "'boost': 5," +
+                                                                          "'rewrite': 'top_terms_boost_100'," +
+                                                                          "'query': 'query text'," +
+                                                                          "'default_operator': 'AND'," +
+                                                                          "'analyzer': 'snowball'," +
+                                                                          "'allow_leading_wildcard': true," +
+                                                                          "'lowercase_expanded_terms': false," +
+                                                                          "'enable_position_increments': true," +
+                                                                          "'fuzzy_prefix_length': 10," +
+                                                                          "'fuzzy_min_sim': 0.7," +
+                                                                          "'phrase_slop': 5," +
+                                                                          "'analyze_wildcard': false," +
+                                                                          "'auto_generate_phrase_queries': true," +
+                                                                          "'minimum_should_match': '50%'," +
+                                                                          "'use_dis_max': true," +
+                                                                          "'tie_breaker': 0.8," +
+                                                                          "'_exists_': 'StringField'," +
+                                                                          "'_missing_': 'MissingField' " +
+                                                                      "} " +
+                                                                  "}").AltQuote());
 
         private static string result;
     }

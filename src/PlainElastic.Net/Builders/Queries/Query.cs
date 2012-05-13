@@ -89,6 +89,29 @@ namespace PlainElastic.Net.Queries
         }
 
         /// <summary>
+        /// A query that executes a query string against a specific field.
+        /// It is a simplified version of query_string query 
+        /// (by setting the default_field to the field this query executed against). 
+        /// see http://www.elasticsearch.org/guide/reference/query-dsl/field-query.html
+        /// </summary>
+        public Query<T> Field(Func<FieldQuery<T>, FieldQuery<T>> fieldQuery)
+        {
+            RegisterJsonPartExpression(fieldQuery);
+            return this;
+        }
+
+        /// <summary>
+        /// Fuzzy like this query find documents that are “like” provided text by running it against one or more fields.
+        /// see http://www.elasticsearch.org/guide/reference/query-dsl/flt-query.html
+        /// </summary>
+        public Query<T> FuzzyLikeThis(Func<FuzzyLikeThisQuery<T>, FuzzyLikeThisQuery<T>> fuzzyLikeThisQuery)
+        {
+            RegisterJsonPartExpression(fuzzyLikeThisQuery);
+            return this;
+        }
+
+
+        /// <summary>
         /// A query that allows to query nested objects / docs.
         /// The query is executed against the nested objects / docs as if they were indexed 
         /// as separate docs (they are, internally) and resulting in the root parent doc (or parent nested mapping)

@@ -225,6 +225,14 @@ namespace PlainElastic.Net.Queries
             return this;
         }
 
+        /// <summary>
+        ///  Set to true if phrase queries will be automatically generated
+        ///  when the analyzer returns more than one term from whitespace
+        ///  delimited text.
+        ///  NOTE: this behavior may not be suitable for all languages.
+        ///  Set to false if phrase queries should only be generated when
+        ///  surrounded by double quotes.
+        /// </summary>
         public QueryString<T> AutoGeneratePhraseQueries(bool autoGeneratePhraseQueries = false)
         {
             RegisterJsonPart("'auto_generate_phrase_queries': {0}", autoGeneratePhraseQueries.AsString());

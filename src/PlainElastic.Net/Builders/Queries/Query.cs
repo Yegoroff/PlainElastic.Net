@@ -123,6 +123,16 @@ namespace PlainElastic.Net.Queries
             return this;
         }
 
+        /// <summary>
+        /// The has_child query accepts a query and the child type to run against,
+        /// and results in parent documents that have child docs matching the query.
+        /// see: http://www.elasticsearch.org/guide/reference/query-dsl/has-child-query.html
+        /// </summary>
+        public Query<T> HasChild(Func<HasChildQuery<T>, HasChildQuery<T>> hasChildQuery)
+        {
+            RegisterJsonPartExpression(hasChildQuery);
+            return this;
+        }
 
         /// <summary>
         /// A query that allows to query nested objects / docs.

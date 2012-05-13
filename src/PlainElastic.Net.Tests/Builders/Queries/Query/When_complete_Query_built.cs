@@ -29,6 +29,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                                 .FuzzyLikeThis(f => f.Custom("flt query"))
                                                 .FuzzyLikeThisField(f => f.Custom("flt_field query"))
                                                 .Fuzzy(f => f.Custom("fuzzy query"))
+                                                .HasChild( h => h.Custom("has child query"))
                                                 .Wildcard(w => w.Custom("wildcard query"))
                                                 .CustomFiltersScore(cfs => cfs.Custom("custom filters score query"))
                                                 .ToString();
@@ -57,6 +58,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                                                     "{ 'fuzzy_like_this': { flt query } }," +
                                                                     "{ 'fuzzy_like_this_field': { flt_field query } }," +
                                                                     "{ 'fuzzy': { fuzzy query } }," +
+                                                                    "{ 'has_child': { has child query } }," +
                                                                     "{ 'wildcard': { wildcard query } }," +
                                                                     "{ 'custom_filters_score': { custom filters score query } }").AltQuote());
 

@@ -187,6 +187,16 @@ namespace PlainElastic.Net.Queries
         }
 
         /// <summary>
+        /// Matches documents that have fields matching a wildcard expression (not analyzed).
+        /// see http://www.elasticsearch.org/guide/reference/query-dsl/wildcard-query.html
+        /// </summary>
+        public Query<T> Wildcard(Func<WildcardQuery<T>, WildcardQuery<T>> wildcatQuery)
+        {
+            RegisterJsonPartExpression(wildcatQuery);
+            return this;
+        }
+
+        /// <summary>
         /// A query that allows to execute a query, and if the hit matches a provided filter (ordered),
         /// use either a boost or a script associated with it to compute the score.
         /// see http://www.elasticsearch.org/guide/reference/query-dsl/custom-filters-score-query.html

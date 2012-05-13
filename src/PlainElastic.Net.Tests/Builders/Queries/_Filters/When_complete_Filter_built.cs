@@ -15,6 +15,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                             .Missing(m => m.Custom("Missing"))
                                             .Ids(ids => ids.Custom("Ids"))
                                             .Nested(n => n.Custom("Nested"))
+                                            .HasChild(h => h.Custom("HasChild"))
                                             .Range(r => r.Custom("Range"))
                                             .Term(t => t.Custom("Term"))
                                             .Terms(t => t.Custom("Terms"))
@@ -36,6 +37,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                                                         "{ 'missing': { Missing } }," +
                                                                         "{ 'ids': { Ids } }," +
                                                                         "{ 'nested': { Nested } }," +
+                                                                        "{ 'has_child': { HasChild } }," +
                                                                         "{ 'range': { Range } }," +
                                                                         "{ 'term': { Term } }," +
                                                                         "{ 'terms': { Terms } }," +

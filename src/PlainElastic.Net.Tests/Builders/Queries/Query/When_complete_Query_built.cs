@@ -18,6 +18,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                                 .Field(f => f.Custom("field query"))
                                                 .Nested(n => n.Custom("nested query"))
                                                 .QueryString(q => q.Custom("query string"))
+                                                .Prefix(p => p.Custom("prefix query"))
                                                 .Range(r => r.Custom("range query"))
                                                 .Term(t=> t.Custom("term query"))
                                                 .Terms(ts => ts.Custom("terms query"))
@@ -49,6 +50,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                                                     "{ 'field': { field query } }," +
                                                                     "{ 'nested': { nested query } }," +
                                                                     "{ 'query_string': { query string } }," +
+                                                                    "{ 'prefix': { prefix query } }," +
                                                                     "{ 'range': { range query } }," +
                                                                     "{ 'term': { term query } }," +
                                                                     "{ 'terms': { terms query } }," +

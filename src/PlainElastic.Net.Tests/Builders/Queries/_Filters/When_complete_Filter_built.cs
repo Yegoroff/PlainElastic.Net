@@ -23,6 +23,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                             .Limit(l => l.Custom("Limit"))
                                             .Type(t => t.Custom("Type"))
                                             .Query(q => q.Custom("Query"))
+                                            .Prefix(p => p.Custom("Prefix"))
                                             .MatchAll()
                                             .ToString();
 
@@ -45,6 +46,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                                                         "{ 'limit': { Limit } }," +
                                                                         "{ 'type': { Type } }," +
                                                                         "{ 'fquery': { 'query': Query } }," +
+                                                                        "{ 'prefix': { Prefix } }," +
                                                                         "{ 'match_all': {} }").AltQuote());
 
         private static string result;

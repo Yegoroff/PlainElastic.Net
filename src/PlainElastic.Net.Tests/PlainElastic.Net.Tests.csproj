@@ -147,6 +147,8 @@
     <Compile Include="Builders\Queries\Bool\When_BoolQuery_with_useActualShouldCount_built.cs" />
     <Compile Include="Builders\Queries\Boosting\When_complete_BoostingQuery_built.cs" />
     <Compile Include="Builders\Queries\Boosting\When_empty_BoostingQuery_built.cs" />
+    <Compile Include="Builders\Queries\Prefix\When_complete_PrefixQuery_built.cs" />
+    <Compile Include="Builders\Queries\Prefix\When_empty_PrefixQuery_built.cs" />
     <Compile Include="Builders\Queries\MoreLikeThisField\When_complete_MoreLikeThisFieldQuery_built.cs" />
     <Compile Include="Builders\Queries\MoreLikeThisField\When_empty_MoreLikeThisFieldQuery_built.cs" />
     <Compile Include="Builders\Queries\MoreLikeThis\When_complete_MoreLikeThisQuery_built.cs" />
@@ -201,6 +203,8 @@
     <Compile Include="Builders\Queries\_Filters\Missing\When_MissingFilter_with_ShouldMiss_null_built.cs" />
     <Compile Include="Builders\Queries\_Filters\Or\When_complete_OrFilter_built.cs" />
     <Compile Include="Builders\Queries\_Filters\Or\When_empty_OrFilter_built.cs" />
+    <Compile Include="Builders\Queries\_Filters\Prefix\When_complete_PrefixFilter_built.cs" />
+    <Compile Include="Builders\Queries\_Filters\Prefix\When_empty_PrefixFilter_built.cs" />
     <Compile Include="Builders\Queries\_Filters\Query\When_complete_QueryFilter_built.cs" />
     <Compile Include="Builders\Queries\_Filters\Query\When_QueryFilter_without_query_parts_built.cs" />
     <Compile Include="Builders\Queries\_Filters\Type\When_complete_TypeFilter_built.cs" />

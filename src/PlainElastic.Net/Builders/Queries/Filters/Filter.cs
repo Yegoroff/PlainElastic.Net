@@ -174,6 +174,18 @@ namespace PlainElastic.Net.Queries
         }
 
         /// <summary>
+        /// Filters documents that have fields containing terms with a specified prefix (not analyzed). 
+        /// Similar to phrase query, except that it acts as a filter. 
+        /// Can be placed within queries that accept a filter.
+        /// see http://www.elasticsearch.org/guide/reference/query-dsl/prefix-filter.html
+        /// </summary>
+        public Filter<T> Prefix(Func<PrefixFilter<T>, PrefixFilter<T>> prefixFilter)
+        {
+            RegisterJsonPartExpression(prefixFilter);
+            return this;
+        }
+
+        /// <summary>
         /// A filter that matches on all documents.
         /// see http://www.elasticsearch.org/guide/reference/query-dsl/match-all-filter.html
         /// </summary>    

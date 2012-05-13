@@ -25,6 +25,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                         .HasChild(h => h)
                         .Nested(q => q)
                         .QueryString(q => q)
+                        .Prefix(p => p)
                         .Range(q => q)
                         .Term(q => q)
                         .Terms(q => q)

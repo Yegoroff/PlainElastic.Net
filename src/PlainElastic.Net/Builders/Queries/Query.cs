@@ -234,7 +234,6 @@ namespace PlainElastic.Net.Queries
             return this;
         }
 
-
         /// <summary>
         /// A query that uses a query parser in order to parse its content
         /// see http://www.elasticsearch.org/guide/reference/query-dsl/query-string-query.html
@@ -242,6 +241,17 @@ namespace PlainElastic.Net.Queries
         public Query<T> QueryString(Func<QueryString<T>, QueryString<T>> queryString)
         {
             RegisterJsonPartExpression(queryString);
+            return this;
+        }
+
+        /// <summary>
+        /// Matches documents that have fields containing terms with a specified prefix (not analyzed).
+        /// The prefix query maps to Lucene PrefixQuery
+        /// see http://www.elasticsearch.org/guide/reference/query-dsl/prefix-query.html
+        /// </summary>
+        public Query<T> Prefix(Func<PrefixQuery<T>, PrefixQuery<T>> prefixQuery)
+        {
+            RegisterJsonPartExpression(prefixQuery);
             return this;
         }
 

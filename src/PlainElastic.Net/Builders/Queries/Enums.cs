@@ -5,6 +5,22 @@ namespace PlainElastic.Net.Queries
 
     public enum CustomFiltersScoreMode { first, min, max, total, avg, multiply }
 
+    public enum TopChildrenScoreMode { max, sum, avg }
+
+    public enum IndicesNoMatchMode
+    {
+        /// <summary>
+        /// Match all documents
+        /// </summary>
+        all,
+
+        /// <summary>
+        /// match no documents
+        /// </summary>
+        none
+    }
+
+
     public enum Rewrite
     {
         /// <summary>

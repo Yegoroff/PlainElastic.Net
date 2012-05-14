@@ -157,6 +157,19 @@ namespace PlainElastic.Net.Queries
         }
 
         /// <summary>
+        /// The top_children query runs the child query with an estimated hits size,
+        /// and out of the hit docs, aggregates it into parent docs. 
+        /// If there aren’t enough parent docs matching the requested from/size search request,
+        /// then it is run again with a wider (more hits) search.
+        /// see: http://www.elasticsearch.org/guide/reference/query-dsl/top-children-query.html
+        /// </summary>
+        public Query<T> TopChildren(Func<TopChildrenQuery<T>, TopChildrenQuery<T>> topChildrenQuery)
+        {
+            RegisterJsonPartExpression(topChildrenQuery);
+            return this;
+        }
+
+        /// <summary>
         /// A query that allows to query nested objects / docs.
         /// The query is executed against the nested objects / docs as if they were indexed 
         /// as separate docs (they are, internally) and resulting in the root parent doc (or parent nested mapping)
@@ -299,6 +312,18 @@ namespace PlainElastic.Net.Queries
         public Query<T> Wildcard(Func<WildcardQuery<T>, WildcardQuery<T>> wildcardQuery)
         {
             RegisterJsonPartExpression(wildcardQuery);
+            return this;
+        }
+
+        /// <summary>
+        /// A query can be used when executed across multiple indices, 
+        /// allowing to have a query that executes only when executed on an index that matches a specific list of indices,
+        /// and another query that executes when it is executed on an index that does not match the listed indices.
+        /// see: http://www.elasticsearch.org/guide/reference/query-dsl/indices-query.html
+        /// </summary>
+        public Query<T> Indices(Func<IndicesQuery<T>, IndicesQuery<T>> indicesQuery)
+        {
+            RegisterJsonPartExpression(indicesQuery);
             return this;
         }
 

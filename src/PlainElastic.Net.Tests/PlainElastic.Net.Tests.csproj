@@ -147,6 +147,11 @@
     <Compile Include="Builders\Queries\Bool\When_BoolQuery_with_useActualShouldCount_built.cs" />
     <Compile Include="Builders\Queries\Boosting\When_complete_BoostingQuery_built.cs" />
     <Compile Include="Builders\Queries\Boosting\When_empty_BoostingQuery_built.cs" />
+    <Compile Include="Builders\Queries\Indices\When_IndicesQuery_with_all_no_match_query_built.cs" />
+    <Compile Include="Builders\Queries\Indices\When_complete_IndicesQuery_built.cs" />
+    <Compile Include="Builders\Queries\Indices\When_empty_IndicesQuery_built.cs" />
+    <Compile Include="Builders\Queries\TopChildren\When_complete_TopChildrenQuery_built.cs" />
+    <Compile Include="Builders\Queries\TopChildren\When_empty_TopChildrenQuery_built.cs" />
     <Compile Include="Builders\Queries\Prefix\When_complete_PrefixQuery_built.cs" />
     <Compile Include="Builders\Queries\Prefix\When_empty_PrefixQuery_built.cs" />
     <Compile Include="Builders\Queries\MoreLikeThisField\When_complete_MoreLikeThisFieldQuery_built.cs" />

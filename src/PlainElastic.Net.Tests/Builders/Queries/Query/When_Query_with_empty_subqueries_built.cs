@@ -30,6 +30,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                         .Term(q => q)
                         .Terms(q => q)
                         .CustomFiltersScore(q => q)
+                        .Indices(i => i)
                         .Custom("")
                         .ToString();
 

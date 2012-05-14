@@ -14,6 +14,7 @@ namespace PlainElastic.Net.Queries
     {
         private bool hasRequiredParts;
 
+
         /// <summary>
         /// The positive part of boosting query.
         /// </summary>
@@ -23,7 +24,6 @@ namespace PlainElastic.Net.Queries
             hasRequiredParts = hasRequiredParts || !result.GetIsEmpty();
             return this;
         }
-
 
         /// <summary>
         /// The negative part of boosting query.

@@ -34,7 +34,7 @@ namespace PlainElastic.Net.Queries
         }
 
         /// <summary>
-        /// The positive part of boosting query.
+        /// The query to execute on matched indices.
         /// </summary>
         public IndicesQuery<T> Query(Func<Query<T>, Query<T>> query)
         {
@@ -44,7 +44,7 @@ namespace PlainElastic.Net.Queries
         }
 
         /// <summary>
-        /// The no match query, can either be "all" or "none".
+        /// Sets the query to use when it executes on an index that does not match the indices provided.
         /// </summary>
         public IndicesQuery<T> NoMatchQuery(Func<NoMatchQuery<T>, Query<T>> noMatchQuery)
         {

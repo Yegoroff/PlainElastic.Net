@@ -195,6 +195,15 @@ namespace PlainElastic.Net.Queries
             RegisterJsonPartExpression(matchFilter);
             return this;
         }
+
+        /// <summary>
+        /// A filter that will execute the wrapped filter only for the specified indices, and "match_all" when it does not match those indices (by default).
+        /// </summary>
+        public Filter<T> Indices(Func<IndicesFilter<T>, IndicesFilter<T>> indicesFilter)
+        {
+            RegisterJsonPartExpression(indicesFilter);
+            return this;
+        }
         
 
         protected override bool HasRequiredParts()

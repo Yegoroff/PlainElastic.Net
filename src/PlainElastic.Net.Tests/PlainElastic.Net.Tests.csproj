@@ -201,6 +201,9 @@
     <Compile Include="Builders\Queries\_Filters\Bool\When_empty_BoolFilter_built.cs" />
     <Compile Include="Builders\Queries\_Filters\HasChild\When_complete_HasChildFilter_built.cs" />
     <Compile Include="Builders\Queries\_Filters\HasChild\When_empty_HasChildFilter_built.cs" />
+    <Compile Include="Builders\Queries\_Filters\Indices\When_complete_IndicesFilter_built.cs" />
+    <Compile Include="Builders\Queries\_Filters\Indices\When_empty_IndicesFilter_built.cs" />
+    <Compile Include="Builders\Queries\_Filters\Indices\When_IndicesFilter_with_all_no_match_query_built.cs" />
     <Compile Include="Builders\Queries\_Filters\MatchAll\When_complete_MatchAllFilter_built.cs" />
     <Compile Include="Builders\Queries\_Filters\Missing\When_complete_MissingFilter_built.cs" />
     <Compile Include="Builders\Queries\_Filters\Missing\When_MissingFilter_without_field_specified_built.cs" />

@@ -24,6 +24,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                             .Type(t => t.Custom("Type"))
                                             .Query(q => q.Custom("Query"))
                                             .Prefix(p => p.Custom("Prefix"))
+                                            .Indices(i => i.Custom("Indices"))
                                             .MatchAll()
                                             .ToString();
 
@@ -47,6 +48,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                                                         "{ 'type': { Type } }," +
                                                                         "{ 'fquery': { 'query': Query } }," +
                                                                         "{ 'prefix': { Prefix } }," +
+                                                                        "{ 'indices': { Indices } }," +
                                                                         "{ 'match_all': {} }").AltQuote());
 
         private static string result;

@@ -25,6 +25,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                             .Query(q => q.Custom("Query"))
                                             .Prefix(p => p.Custom("Prefix"))
                                             .Indices(i => i.Custom("Indices"))
+                                            .Script(s => s.Custom("Script"))
                                             .MatchAll()
                                             .ToString();
 
@@ -49,6 +50,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                                                         "{ 'fquery': { 'query': Query } }," +
                                                                         "{ 'prefix': { Prefix } }," +
                                                                         "{ 'indices': { Indices } }," +
+                                                                        "{ 'script': { Script } }," +
                                                                         "{ 'match_all': {} }").AltQuote());
 
         private static string result;

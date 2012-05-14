@@ -204,7 +204,17 @@ namespace PlainElastic.Net.Queries
             RegisterJsonPartExpression(indicesFilter);
             return this;
         }
-        
+
+        /// <summary>
+        /// A filter allowing to define scripts as filters
+        /// see http://www.elasticsearch.org/guide/reference/query-dsl/script-filter.html
+        /// </summary>
+        public Filter<T> Script(Func<ScriptFilter<T>, ScriptFilter<T>> scriptFilter)
+        {
+            RegisterJsonPartExpression(scriptFilter);
+            return this;
+        }
+
 
         protected override bool HasRequiredParts()
         {

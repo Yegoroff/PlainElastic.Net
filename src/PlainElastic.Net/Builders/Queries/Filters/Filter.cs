@@ -131,6 +131,17 @@ namespace PlainElastic.Net.Queries
         }
 
         /// <summary>
+        /// Filters documents with fields that have values within a certain numeric range.
+        /// Similar to range filter, except that it works only with numeric values, and the filter execution works differently.
+        /// see http://www.elasticsearch.org/guide/reference/query-dsl/numeric-range-filter.html
+        /// </summary>
+        public Filter<T> NumericRange(Func<NumericRangeFilter<T>, RangeFilter<T>> numericRangeFilter)
+        {
+            RegisterJsonPartExpression(numericRangeFilter);
+            return this;
+        }
+
+        /// <summary>
         /// A filter that matches documents matching boolean combinations of other queries.
         /// Similar in concept to Boolean query, except that the clauses are other filters. 
         /// Can be placed within queries that accept a filter.

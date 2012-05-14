@@ -46,15 +46,27 @@ namespace PlainElastic.Net.Queries
         }
 
 
+
+
+
         protected override string ApplyJsonTemplate(string body)
         {
-            string criterion = RegisteredField.IsNullOrEmpty() ? body 
-                                                               : "{0}: {{ {1} }}".F(RegisteredField, body);
-            modes.Insert(0, criterion);
-
-            string filterBody = modes.JoinWithComma();
+            var filterBody = GetFilterBody(body);
 
             return "{{ 'range': {{ {0} }} }}".AltQuoteF(filterBody);
         }
+
+
+        protected string GetFilterBody(string body)
+        {
+            string criterion = RegisteredField.IsNullOrEmpty()
+                                   ? body
+                                   : "{0}: {{ {1} }}".F(RegisteredField, body);
+            modes.Insert(0, criterion);
+
+            string filterBody = modes.JoinWithComma();
+            return filterBody;
+        }
+
     }
 }

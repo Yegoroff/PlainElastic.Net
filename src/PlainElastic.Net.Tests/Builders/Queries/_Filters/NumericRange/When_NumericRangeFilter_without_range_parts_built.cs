@@ -3,10 +3,10 @@ using PlainElastic.Net.Queries;
 
 namespace PlainElastic.Net.Tests.Builders.Queries
 {
-    [Subject(typeof(RangeFilter<>))]
-    class When_RangeFilter_without_range_parts_built
+    [Subject(typeof(NumericRangeFilter<>))]
+    class When_NumericRangeFilter_without_range_parts_built
     {
-        Because of = () => result = new RangeFilter<FieldsTestClass>()                                                
+        Because of = () => result = new NumericRangeFilter<FieldsTestClass>()                                                
                                                 .Field(f=> f.StringProperty)
                                                 .ToString();
 

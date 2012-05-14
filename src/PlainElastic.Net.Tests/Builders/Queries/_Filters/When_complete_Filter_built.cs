@@ -17,6 +17,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                             .Nested(n => n.Custom("Nested"))
                                             .HasChild(h => h.Custom("HasChild"))
                                             .Range(r => r.Custom("Range"))
+                                            .NumericRange(n => n.Custom("NumericRange"))
                                             .Term(t => t.Custom("Term"))
                                             .Terms(t => t.Custom("Terms"))
                                             .Bool(b => b.Custom("Bool"))
@@ -42,6 +43,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                                                         "{ 'nested': { Nested } }," +
                                                                         "{ 'has_child': { HasChild } }," +
                                                                         "{ 'range': { Range } }," +
+                                                                        "{ 'numeric_range': { NumericRange } }," +
                                                                         "{ 'term': { Term } }," +
                                                                         "{ 'terms': { Terms } }," +
                                                                         "{ 'bool': { Bool } }," +

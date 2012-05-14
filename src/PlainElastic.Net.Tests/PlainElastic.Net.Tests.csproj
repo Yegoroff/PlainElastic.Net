@@ -199,6 +199,8 @@
     <Compile Include="Builders\Queries\_Filters\And\When_empty_AndFilter_built.cs" />
     <Compile Include="Builders\Queries\_Filters\Bool\When_complete_BoolFilter_built.cs" />
     <Compile Include="Builders\Queries\_Filters\Bool\When_empty_BoolFilter_built.cs" />
+    <Compile Include="Builders\Queries\_Filters\NumericRange\When_complete_NumericRangeFilter_built.cs" />
+    <Compile Include="Builders\Queries\_Filters\NumericRange\When_NumericRangeFilter_without_range_parts_built.cs" />
     <Compile Include="Builders\Queries\_Filters\Script\When_complete_ScriptFilter_built.cs" />
     <Compile Include="Builders\Queries\_Filters\HasChild\When_complete_HasChildFilter_built.cs" />
     <Compile Include="Builders\Queries\_Filters\HasChild\When_empty_HasChildFilter_built.cs" />

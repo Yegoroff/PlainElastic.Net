@@ -4,10 +4,10 @@ using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Tests.Builders.Queries
 {
-    [Subject(typeof(RangeFilter<>))]
-    class When_complete_RangeFilter_built
+    [Subject(typeof(NumericRangeFilter<>))]
+    class When_complete_NumericRangeFilter_built
     {
-        Because of = () => result = new RangeFilter<FieldsTestClass>()
+        Because of = () => result = new NumericRangeFilter<FieldsTestClass>()
                                                 .Field(f => f.StringProperty)
                                                 .From("1")
                                                 .To("100")
@@ -20,12 +20,12 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                                 .ToString();
 
         It should_contain_cache_part = () => result.ShouldContain("'_cache': false".AltQuote());
-        
+
         It should_contain_cache_key_part = () => result.ShouldContain("'_cache_key': 'CacheKey'".AltQuote());
 
         It should_contain_name_part = () => result.ShouldContain("'_name': 'FilterName'".AltQuote());
 
-        It should_return_correct_query = () => result.ShouldEqual(("{ 'range': { " +
+        It should_return_correct_query = () => result.ShouldEqual(("{ 'numeric_range': { " +
                                                                         "'StringProperty': { " +
                                                                               "'from': '1'," +
                                                                               "'to': '100'," +
@@ -38,7 +38,6 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                                                         "'_name': 'FilterName' " +
                                                                     "} " +
                                                                   "}").AltQuote());
-
         private static string result;
     }
 }

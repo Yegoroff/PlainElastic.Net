@@ -81,6 +81,30 @@ namespace PlainElastic.Net.IndexSettings
 		#endregion
 
 
+		#region Standard
+
+		/// <summary>
+		/// A tokenizer of type standard providing grammar based tokenizer that is a good tokenizer for most European language documents.
+		/// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/standard-tokenizer.html
+		/// </summary>
+		public TokenizerSettings Standard(string name, Func<StandardTokenizer, StandardTokenizer> standard = null)
+		{
+			RegisterJsonPartExpression(standard.Bind(tokenizer => tokenizer.Name(name)));
+			return this;
+		}
+
+		/// <summary>
+		/// A tokenizer of type standard providing grammar based tokenizer that is a good tokenizer for most European language documents.
+		/// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/standard-tokenizer.html
+		/// </summary>
+		public TokenizerSettings Standard(Func<StandardTokenizer, StandardTokenizer> standard)
+		{
+			return Standard(DefaultTokenizers.standard.ToString(), standard);
+		}
+
+		#endregion
+
+
 		#region Pattern
 
 		/// <summary>

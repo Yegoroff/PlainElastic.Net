@@ -14,6 +14,8 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
 											.Keyword("named_keyword")
 											.NGram(n => n.CustomPart("NGram"))
 											.NGram("named_nGram")
+											.Standard(s => s.CustomPart("Standard"))
+											.Standard("named_standard")
 											.Pattern(p => p.CustomPart("Pattern"))
 											.Pattern("named_pattern")
                                             .CustomPart("{ Custom }")
@@ -31,6 +33,10 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
 
 		It should_contain_named_nGram_part = () => result.ShouldContain("'named_nGram': { 'type': 'nGram' }".AltQuote());
 
+		It should_contain_standard_part = () => result.ShouldContain("'standard': { 'type': 'standard',Standard }".AltQuote());
+
+		It should_contain_named_standard_part = () => result.ShouldContain("'named_standard': { 'type': 'standard' }".AltQuote());
+
 		It should_contain_pattern_part = () => result.ShouldContain("'pattern': { 'type': 'pattern',Pattern }".AltQuote());
 
 		It should_contain_named_pattern_part = () => result.ShouldContain("'named_pattern': { 'type': 'pattern' }".AltQuote());
@@ -44,6 +50,8 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
 																	"'named_keyword': { 'type': 'keyword' }," +
 																	"'nGram': { 'type': 'nGram',NGram }," +
 																	"'named_nGram': { 'type': 'nGram' }," +
+																	"'standard': { 'type': 'standard',Standard }," +
+																	"'named_standard': { 'type': 'standard' }," +
 																	"'pattern': { 'type': 'pattern',Pattern }," +
 																	"'named_pattern': { 'type': 'pattern' }," +
                                                                     "{ Custom } }").AltQuote());

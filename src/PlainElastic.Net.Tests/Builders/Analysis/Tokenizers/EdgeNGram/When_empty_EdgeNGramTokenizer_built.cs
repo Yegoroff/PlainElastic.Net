@@ -4,10 +4,10 @@ using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Tests.Builders.IndexSettings
 {
-	[Subject(typeof(EdgeNGramTokenizer))]
-	class When_empty_EdgeNGramTokenizer_built
+    [Subject(typeof(EdgeNGramTokenizer))]
+    class When_empty_EdgeNGramTokenizer_built
     {
-		Because of = () => result = new EdgeNGramTokenizer()
+        Because of = () => result = new EdgeNGramTokenizer()
                                             .Name("name")
                                             .ToString();
 

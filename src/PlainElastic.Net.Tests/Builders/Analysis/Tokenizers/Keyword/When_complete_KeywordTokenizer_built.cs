@@ -4,10 +4,10 @@ using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Tests.Builders.IndexSettings
 {
-	[Subject(typeof(KeywordTokenizer))]
-	class When_complete_KeywordTokenizer_built
+    [Subject(typeof(KeywordTokenizer))]
+    class When_complete_KeywordTokenizer_built
     {
-		Because of = () => result = new KeywordTokenizer()
+        Because of = () => result = new KeywordTokenizer()
                                             .Name("name")
                                             .Version("3.6")
                                             .BufferSize(100500)
@@ -20,14 +20,14 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
 
         It should_contain_version_part = () => result.ShouldContain("'version': '3.6'".AltQuote());
 
-		It should_contain_buffer_size_part = () => result.ShouldContain("'buffer_size': 100500".AltQuote());
+        It should_contain_buffer_size_part = () => result.ShouldContain("'buffer_size': 100500".AltQuote());
 
         It should_contain_custom_part = () => result.ShouldContain("{ Custom }".AltQuote());
         
         It should_return_correct_result = () => result.ShouldEqual(("'name': { " +
-																	"'type': 'keyword'," +
+                                                                    "'type': 'keyword'," +
                                                                     "'version': '3.6'," +
-																	"'buffer_size': 100500," +
+                                                                    "'buffer_size': 100500," +
                                                                     "{ Custom } }").AltQuote());
 
         private static string result;

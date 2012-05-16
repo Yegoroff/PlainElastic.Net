@@ -3,10 +3,10 @@
 namespace PlainElastic.Net.IndexSettings
 {
     /// <summary>
-	/// A tokenizer of type pattern that can flexibly separate text into terms via a regular expression. 
-	/// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/pattern-tokenizer.html
+    /// A tokenizer of type pattern that can flexibly separate text into terms via a regular expression. 
+    /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/pattern-tokenizer.html
     /// </summary>
-	public class PatternTokenizer : NamedComponentBase<PatternTokenizer>
+    public class PatternTokenizer : NamedComponentBase<PatternTokenizer>
     {
         protected override string GetComponentType()
         {
@@ -19,7 +19,7 @@ namespace PlainElastic.Net.IndexSettings
         /// Defaults to \W+.
         /// The regular expression should match the token separators, not the tokens themselves.
         /// </summary>
-		public PatternTokenizer Pattern(string pattern = @"\W+")
+        public PatternTokenizer Pattern(string pattern = @"\W+")
         {
             RegisterJsonPart("'pattern': {0}", pattern.Quotate());
             return this;
@@ -28,7 +28,7 @@ namespace PlainElastic.Net.IndexSettings
         /// <summary>
         /// Sets the regular expression flags.
         /// </summary>
-		public PatternTokenizer Flags(PatternFlags flags)
+        public PatternTokenizer Flags(PatternFlags flags)
         {
             RegisterJsonPart("'flags': {0}", flags.ToString()
                                                   .Replace(" ", string.Empty)
@@ -37,14 +37,14 @@ namespace PlainElastic.Net.IndexSettings
             return this;
         }
 
-		/// <summary>
-		/// Sets which group to extract into tokens.
-		/// Defaults to -1 (split).
-		/// </summary>
-		public PatternTokenizer Group(int group = -1)
-		{
-			RegisterJsonPart("'group': {0}", group.AsString());
-			return this;
-		}
+        /// <summary>
+        /// Sets which group to extract into tokens.
+        /// Defaults to -1 (split).
+        /// </summary>
+        public PatternTokenizer Group(int group = -1)
+        {
+            RegisterJsonPart("'group': {0}", group.AsString());
+            return this;
+        }
     }
 }

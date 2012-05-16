@@ -5,14 +5,14 @@ using PlainElastic.Net.Utils;
 namespace PlainElastic.Net.Tests.Builders.IndexSettings
 {
     [Subject(typeof(PatternTokenizer))]
-	class When_complete_PatternTokenizer_built
+    class When_complete_PatternTokenizer_built
     {
-		Because of = () => result = new PatternTokenizer()
+        Because of = () => result = new PatternTokenizer()
                                             .Name("name")
                                             .Version("3.6")
                                             .Pattern("pattern")
                                             .Flags(PatternFlags.CANON_EQ | PatternFlags.CASE_INSENSITIVE)
-											.Group(2)
+                                            .Group(2)
                                             .CustomPart("{ Custom }")
                                             .ToString();
 
@@ -26,7 +26,7 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
 
         It should_contain_flags_part = () => result.ShouldContain("'flags': 'CANON_EQ|CASE_INSENSITIVE'".AltQuote());
 
-		It should_contain_group_part = () => result.ShouldContain("'group': 2".AltQuote());
+        It should_contain_group_part = () => result.ShouldContain("'group': 2".AltQuote());
 
         It should_contain_custom_part = () => result.ShouldContain("{ Custom }".AltQuote());
         
@@ -35,7 +35,7 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
                                                                     "'version': '3.6'," +
                                                                     "'pattern': 'pattern'," +
                                                                     "'flags': 'CANON_EQ|CASE_INSENSITIVE'," +
-																	"'group': 2," +
+                                                                    "'group': 2," +
                                                                     "{ Custom } }").AltQuote());
 
         private static string result;

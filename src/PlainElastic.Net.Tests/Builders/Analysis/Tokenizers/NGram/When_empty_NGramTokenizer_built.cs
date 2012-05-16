@@ -4,10 +4,10 @@ using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Tests.Builders.IndexSettings
 {
-	[Subject(typeof(NGramTokenizer))]
-	class When_empty_NGramTokenizer_built
+    [Subject(typeof(NGramTokenizer))]
+    class When_empty_NGramTokenizer_built
     {
-		Because of = () => result = new NGramTokenizer()
+        Because of = () => result = new NGramTokenizer()
                                             .Name("name")
                                             .ToString();
 

@@ -4,10 +4,10 @@ using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Tests.Builders.IndexSettings
 {
-	[Subject(typeof(PathHierarchyTokenizer))]
-	class When_empty_PathHierarchyTokenizer_built
+    [Subject(typeof(PathHierarchyTokenizer))]
+    class When_empty_PathHierarchyTokenizer_built
     {
-		Because of = () => result = new PathHierarchyTokenizer()
+        Because of = () => result = new PathHierarchyTokenizer()
                                             .Name("name")
                                             .ToString();
 

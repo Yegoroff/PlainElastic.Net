@@ -5,9 +5,9 @@ using PlainElastic.Net.Utils;
 namespace PlainElastic.Net.Tests.Builders.IndexSettings
 {
     [Subject(typeof(PatternTokenizer))]
-	class When_empty_PatternTokenizer_built
+    class When_empty_PatternTokenizer_built
     {
-		Because of = () => result = new PatternTokenizer()
+        Because of = () => result = new PatternTokenizer()
                                             .Name("name")
                                             .ToString();
 

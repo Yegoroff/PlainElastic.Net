@@ -198,9 +198,9 @@ namespace PlainElastic.Net.IndexSettings
         Turkish
     }
 
-	public enum EdgeNGramSide
-	{
-		front,
-		back
-	}
+    public enum EdgeNGramSide
+    {
+        front,
+        back
+    }
 }

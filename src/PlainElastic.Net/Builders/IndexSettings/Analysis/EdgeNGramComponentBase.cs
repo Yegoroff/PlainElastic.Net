@@ -5,15 +5,15 @@ namespace PlainElastic.Net.IndexSettings
     /// <summary>
     /// Base class for edgeNGram Tokenizers and Filters.
     /// </summary>
-	public abstract class EdgeNGramComponentBase<TPart> : NGramComponentBase<TPart> where TPart : EdgeNGramComponentBase<TPart>
+    public abstract class EdgeNGramComponentBase<TPart> : NGramComponentBase<TPart> where TPart : EdgeNGramComponentBase<TPart>
     {
-		/// <summary>
-		/// Sets the text side from which N-grams are built.
-		/// </summary>
-		public TPart Side(EdgeNGramSide side)
-		{
-			RegisterJsonPart("'side': {0}", side.ToString().Quotate());
-			return (TPart)this;
-		}
+        /// <summary>
+        /// Sets the text side from which N-grams are built.
+        /// </summary>
+        public TPart Side(EdgeNGramSide side)
+        {
+            RegisterJsonPart("'side': {0}", side.ToString().Quotate());
+            return (TPart)this;
+        }
     }
 }

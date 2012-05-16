@@ -4,10 +4,10 @@ using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Tests.Builders.IndexSettings
 {
-	[Subject(typeof(UaxUrlEmailTokenizer))]
-	class When_empty_UaxUrlEmailTokenizer_built
+    [Subject(typeof(UaxUrlEmailTokenizer))]
+    class When_empty_UaxUrlEmailTokenizer_built
     {
-		Because of = () => result = new UaxUrlEmailTokenizer()
+        Because of = () => result = new UaxUrlEmailTokenizer()
                                             .Name("name")
                                             .ToString();
 

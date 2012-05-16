@@ -4,10 +4,10 @@ using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Tests.Builders.IndexSettings
 {
-	[Subject(typeof(StandardTokenizer))]
-	class When_empty_StandardTokenizer_built
+    [Subject(typeof(StandardTokenizer))]
+    class When_empty_StandardTokenizer_built
     {
-		Because of = () => result = new StandardTokenizer()
+        Because of = () => result = new StandardTokenizer()
                                             .Name("name")
                                             .ToString();
 

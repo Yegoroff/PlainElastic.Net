@@ -20,14 +20,14 @@ namespace PlainElastic.Net.IndexSettings
             return this;
         }
 
-		/// <summary>
-		/// Allows to configure tokenizers to be used in custom analyzers.
-		/// </summary>
-		public Analysis Tokenizer(Func<TokenizerSettings, TokenizerSettings> tokenizer)
-		{
-			RegisterJsonPartExpression(tokenizer);
-			return this;
-		}
+        /// <summary>
+        /// Allows to configure tokenizers to be used in custom analyzers.
+        /// </summary>
+        public Analysis Tokenizer(Func<TokenizerSettings, TokenizerSettings> tokenizer)
+        {
+            RegisterJsonPartExpression(tokenizer);
+            return this;
+        }
 
 
         protected override string ApplyJsonTemplate(string body)

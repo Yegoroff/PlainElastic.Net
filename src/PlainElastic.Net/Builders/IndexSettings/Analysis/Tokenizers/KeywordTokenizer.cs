@@ -15,7 +15,7 @@ namespace PlainElastic.Net.IndexSettings
 
 
 		/// <summary>
-		/// Sets the the term buffer size.
+		/// Sets the term buffer size.
 		/// Defaults to 256.
 		/// </summary>
 		public KeywordTokenizer BufferSize(int bufferSize = 256)

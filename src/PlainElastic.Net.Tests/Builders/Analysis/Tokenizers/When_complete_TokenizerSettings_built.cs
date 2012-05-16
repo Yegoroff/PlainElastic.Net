@@ -20,6 +20,8 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
 											.Pattern("named_pattern")
 											.UaxUrlEmail(u => u.CustomPart("UaxUrlEmail"))
 											.UaxUrlEmail("named_uax_url_email")
+											.PathHierarchy(p => p.CustomPart("PathHierarchy"))
+											.PathHierarchy("named_path_hierarchy")
                                             .CustomPart("{ Custom }")
                                             .ToString();
 
@@ -47,6 +49,10 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
 
 		It should_contain_named_uax_url_email_part = () => result.ShouldContain("'named_uax_url_email': { 'type': 'uax_url_email' }".AltQuote());
 
+		It should_contain_path_hierarchy_part = () => result.ShouldContain("'path_hierarchy': { 'type': 'path_hierarchy',PathHierarchy }".AltQuote());
+
+		It should_contain_named_path_hierarchy_part = () => result.ShouldContain("'named_path_hierarchy': { 'type': 'path_hierarchy' }".AltQuote());
+
         It should_contain_custom_part = () => result.ShouldContain("{ Custom }".AltQuote());
         
         It should_return_correct_result = () => result.ShouldEqual(("'tokenizer': { " +
@@ -62,6 +68,8 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
 																	"'named_pattern': { 'type': 'pattern' }," +
 																	"'uax_url_email': { 'type': 'uax_url_email',UaxUrlEmail }," +
 																	"'named_uax_url_email': { 'type': 'uax_url_email' }," +
+																	"'path_hierarchy': { 'type': 'path_hierarchy',PathHierarchy }," +
+																	"'named_path_hierarchy': { 'type': 'path_hierarchy' }," +
                                                                     "{ Custom } }").AltQuote());
 
         private static string result;

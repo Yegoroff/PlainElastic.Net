@@ -65,6 +65,8 @@
     <Compile Include="Builders\Analysis\Analyzers\When_empty_AnalyzerSettings_built.cs" />
     <Compile Include="Builders\Analysis\Analyzers\Whitespace\When_complete_WhitespaceAnalyzer_built.cs" />
     <Compile Include="Builders\Analysis\Analyzers\Whitespace\When_empty_WhitespaceAnalyzer_built.cs" />
+    <Compile Include="Builders\Analysis\Tokenizers\PathHierarchy\When_complete_PathHierarchyTokenizer_built.cs" />
+    <Compile Include="Builders\Analysis\Tokenizers\PathHierarchy\When_empty_PathHierarchyTokenizer_built.cs" />
     <Compile Include="Builders\Analysis\Tokenizers\UaxUrlEmail\When_complete_UaxUrlEmailTokenizer_built.cs" />
     <Compile Include="Builders\Analysis\Tokenizers\UaxUrlEmail\When_empty_UaxUrlEmailTokenizer_built.cs" />
     <Compile Include="Builders\Analysis\Tokenizers\Standard\When_complete_StandardTokenizer_built.cs" />

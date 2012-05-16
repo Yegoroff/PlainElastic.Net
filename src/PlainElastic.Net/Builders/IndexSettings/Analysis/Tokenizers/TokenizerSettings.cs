@@ -153,6 +153,32 @@ namespace PlainElastic.Net.IndexSettings
 		#endregion
 
 
+		#region PathHierarchy
+
+		/// <summary>
+		/// The path_hierarchy tokenizer takes something like "/something/something/else"
+		/// and produces tokens "/something", "/something/something", "/something/something/else".
+		/// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/pathhierarchy-tokenizer.html
+		/// </summary>
+		public TokenizerSettings PathHierarchy(string name, Func<PathHierarchyTokenizer, PathHierarchyTokenizer> pathHierarchy = null)
+		{
+			RegisterJsonPartExpression(pathHierarchy.Bind(tokenizer => tokenizer.Name(name)));
+			return this;
+		}
+
+		/// <summary>
+		/// The path_hierarchy tokenizer takes something like "/something/something/else"
+		/// and produces tokens "/something", "/something/something", "/something/something/else".
+		/// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/pathhierarchy-tokenizer.html
+		/// </summary>
+		public TokenizerSettings PathHierarchy(Func<PathHierarchyTokenizer, PathHierarchyTokenizer> pathHierarchy)
+		{
+			return PathHierarchy(DefaultTokenizers.path_hierarchy.ToString(), pathHierarchy);
+		}
+
+		#endregion
+
+
         protected override string ApplyJsonTemplate(string body)
         {
             return "'tokenizer': {{ {0} }}".AltQuoteF(body);

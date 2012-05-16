@@ -286,6 +286,7 @@ namespace PlainElastic.Net.IndexSettings
 
         #endregion
 
+
         #region Custom
 
         /// <summary>

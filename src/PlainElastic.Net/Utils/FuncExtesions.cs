@@ -10,7 +10,7 @@ namespace PlainElastic.Net.Utils
         /// Internally it passes current expression result to <paramref name="func"/> function, 
         /// thus it could be used to apply additional logic to current expression.
         /// </summary>
-		public static Func<T, TResult> Bind<T, TResult>(this Func<T, TResult> source, Func<TResult, TResult> func) where T : TResult
+        public static Func<T, TResult> Bind<T, TResult>(this Func<T, TResult> source, Func<TResult, TResult> func) where T : TResult
         {
             if (source == null)
                 return o => func(o);

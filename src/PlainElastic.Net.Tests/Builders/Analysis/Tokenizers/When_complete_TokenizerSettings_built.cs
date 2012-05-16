@@ -18,6 +18,8 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
 											.Standard("named_standard")
 											.Pattern(p => p.CustomPart("Pattern"))
 											.Pattern("named_pattern")
+											.UaxUrlEmail(u => u.CustomPart("UaxUrlEmail"))
+											.UaxUrlEmail("named_uax_url_email")
                                             .CustomPart("{ Custom }")
                                             .ToString();
 
@@ -41,6 +43,10 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
 
 		It should_contain_named_pattern_part = () => result.ShouldContain("'named_pattern': { 'type': 'pattern' }".AltQuote());
 
+		It should_contain_uax_url_email_part = () => result.ShouldContain("'uax_url_email': { 'type': 'uax_url_email',UaxUrlEmail }".AltQuote());
+
+		It should_contain_named_uax_url_email_part = () => result.ShouldContain("'named_uax_url_email': { 'type': 'uax_url_email' }".AltQuote());
+
         It should_contain_custom_part = () => result.ShouldContain("{ Custom }".AltQuote());
         
         It should_return_correct_result = () => result.ShouldEqual(("'tokenizer': { " +
@@ -54,6 +60,8 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
 																	"'named_standard': { 'type': 'standard' }," +
 																	"'pattern': { 'type': 'pattern',Pattern }," +
 																	"'named_pattern': { 'type': 'pattern' }," +
+																	"'uax_url_email': { 'type': 'uax_url_email',UaxUrlEmail }," +
+																	"'named_uax_url_email': { 'type': 'uax_url_email' }," +
                                                                     "{ Custom } }").AltQuote());
 
         private static string result;

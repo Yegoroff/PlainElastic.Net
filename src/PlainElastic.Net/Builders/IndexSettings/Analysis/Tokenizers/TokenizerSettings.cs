@@ -129,6 +129,30 @@ namespace PlainElastic.Net.IndexSettings
 		#endregion
 
 
+		#region UaxUrlEmail
+
+		/// <summary>
+		/// A tokenizer of type uax_url_email which works exactly like the standard tokenizer, but tokenizes emails and urls as single tokens.
+		/// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/uaxurlemail-tokenizer.html
+		/// </summary>
+		public TokenizerSettings UaxUrlEmail(string name, Func<UaxUrlEmailTokenizer, StandardTokenizer> uaxUrlEmail = null)
+		{
+			RegisterJsonPartExpression(uaxUrlEmail.Bind(tokenizer => tokenizer.Name(name)));
+			return this;
+		}
+
+		/// <summary>
+		/// A tokenizer of type uax_url_email which works exactly like the standard tokenizer, but tokenizes emails and urls as single tokens.
+		/// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/uaxurlemail-tokenizer.html
+		/// </summary>
+		public TokenizerSettings UaxUrlEmail(Func<UaxUrlEmailTokenizer, StandardTokenizer> uaxUrlEmail)
+		{
+			return UaxUrlEmail(DefaultTokenizers.uax_url_email.ToString(), uaxUrlEmail);
+		}
+
+		#endregion
+
+
         protected override string ApplyJsonTemplate(string body)
         {
             return "'tokenizer': {{ {0} }}".AltQuoteF(body);

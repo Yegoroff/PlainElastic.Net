@@ -77,6 +77,7 @@
     <Compile Include="Builders\IndexSettings\Analysis\Analysis.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\EdgeNGramComponentBase.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\NGramComponentBase.cs" />
+    <Compile Include="Builders\IndexSettings\Analysis\Tokenizers\UaxUrlEmailTokenizer.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\Tokenizers\StandardTokenizer.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\Tokenizers\NGramTokenizer.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\Tokenizers\KeywordTokenizer.cs" />

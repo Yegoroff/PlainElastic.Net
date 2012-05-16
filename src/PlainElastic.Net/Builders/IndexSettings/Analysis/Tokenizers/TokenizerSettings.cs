@@ -81,6 +81,30 @@ namespace PlainElastic.Net.IndexSettings
 		#endregion
 
 
+		#region Pattern
+
+		/// <summary>
+		/// A tokenizer of type pattern that can flexibly separate text into terms via a regular expression. 
+		/// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/pattern-tokenizer.html
+		/// </summary>
+		public TokenizerSettings Pattern(string name, Func<PatternTokenizer, PatternTokenizer> pattern = null)
+		{
+			RegisterJsonPartExpression(pattern.Bind(tokenizer => tokenizer.Name(name)));
+			return this;
+		}
+
+		/// <summary>
+		/// A tokenizer of type pattern that can flexibly separate text into terms via a regular expression. 
+		/// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/pattern-tokenizer.html
+		/// </summary>
+		public TokenizerSettings Pattern(Func<PatternTokenizer, PatternTokenizer> pattern)
+		{
+			return Pattern(DefaultTokenizers.pattern.ToString(), pattern);
+		}
+
+		#endregion
+
+
         protected override string ApplyJsonTemplate(string body)
         {
             return "'tokenizer': {{ {0} }}".AltQuoteF(body);

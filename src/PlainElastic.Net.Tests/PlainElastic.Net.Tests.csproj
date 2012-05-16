@@ -71,6 +71,8 @@
     <Compile Include="Builders\Analysis\Tokenizers\Keyword\When_empty_KeywordTokenizer_built.cs" />
     <Compile Include="Builders\Analysis\Tokenizers\EdgeNGram\When_complete_EdgeNGramTokenizer_built.cs" />
     <Compile Include="Builders\Analysis\Tokenizers\EdgeNGram\When_empty_EdgeNGramTokenizer_built.cs" />
+    <Compile Include="Builders\Analysis\Tokenizers\Pattern\When_complete_PatternTokenizer_built.cs" />
+    <Compile Include="Builders\Analysis\Tokenizers\Pattern\When_empty_PatternTokenizer_built.cs" />
     <Compile Include="Builders\Analysis\Tokenizers\When_complete_TokenizerSettings_built.cs" />
     <Compile Include="Builders\Analysis\Tokenizers\When_empty_TokenizerSettings_built.cs" />
     <Compile Include="Builders\Analysis\When_complete_Analysis_built.cs" />

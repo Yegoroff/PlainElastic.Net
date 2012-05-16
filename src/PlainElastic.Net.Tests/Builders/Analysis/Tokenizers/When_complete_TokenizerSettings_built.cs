@@ -10,10 +10,12 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
 		Because of = () => result = new TokenizerSettings()
                                             .EdgeNGram(e => e.CustomPart("EdgeNGram"))
 											.EdgeNGram("named_edgeNGram")
-											.Keyword(e => e.CustomPart("Keyword"))
+											.Keyword(k => k.CustomPart("Keyword"))
 											.Keyword("named_keyword")
-											.NGram(e => e.CustomPart("NGram"))
+											.NGram(n => n.CustomPart("NGram"))
 											.NGram("named_nGram")
+											.Pattern(p => p.CustomPart("Pattern"))
+											.Pattern("named_pattern")
                                             .CustomPart("{ Custom }")
                                             .ToString();
 
@@ -29,6 +31,10 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
 
 		It should_contain_named_nGram_part = () => result.ShouldContain("'named_nGram': { 'type': 'nGram' }".AltQuote());
 
+		It should_contain_pattern_part = () => result.ShouldContain("'pattern': { 'type': 'pattern',Pattern }".AltQuote());
+
+		It should_contain_named_pattern_part = () => result.ShouldContain("'named_pattern': { 'type': 'pattern' }".AltQuote());
+
         It should_contain_custom_part = () => result.ShouldContain("{ Custom }".AltQuote());
         
         It should_return_correct_result = () => result.ShouldEqual(("'tokenizer': { " +
@@ -38,6 +44,8 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
 																	"'named_keyword': { 'type': 'keyword' }," +
 																	"'nGram': { 'type': 'nGram',NGram }," +
 																	"'named_nGram': { 'type': 'nGram' }," +
+																	"'pattern': { 'type': 'pattern',Pattern }," +
+																	"'named_pattern': { 'type': 'pattern' }," +
                                                                     "{ Custom } }").AltQuote());
 
         private static string result;

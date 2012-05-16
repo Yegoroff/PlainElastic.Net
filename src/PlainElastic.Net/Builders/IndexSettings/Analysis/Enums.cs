@@ -1,5 +1,3 @@
-using System;
-
 namespace PlainElastic.Net.IndexSettings
 {
     /// <summary>
@@ -80,54 +78,6 @@ namespace PlainElastic.Net.IndexSettings
     {
         mapping,
         html_strip
-    }
-
-    /// <summary>
-    /// Pattern analyzer regular expression flags.
-    /// see http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html#field_summary
-    /// </summary>
-    [Flags]
-    public enum PatternFlags
-    {
-        /// <summary>
-        /// Enables canonical equivalence.
-        /// </summary>
-        CANON_EQ = 1,
-
-        /// <summary>
-        /// Enables case-insensitive matching.
-        /// </summary>
-        CASE_INSENSITIVE = 2,
-
-        /// <summary>
-        /// Permits whitespace and comments in pattern.
-        /// </summary>
-        COMMENTS = 4,
-
-        /// <summary>
-        /// Enables dotall mode.
-        /// </summary>
-        DOTALL = 8,
-
-        /// <summary>
-        /// Enables literal parsing of the pattern.
-        /// </summary>
-        LITERAL = 0x10,
-
-        /// <summary>
-        /// Enables multiline mode.
-        /// </summary>
-        MULTILINE = 0x20,
-
-        /// <summary>
-        /// Enables Unicode-aware case folding.
-        /// </summary>
-        UNICODE_CASE = 0x40,
-
-        /// <summary>
-        /// Enables Unix lines mode.
-        /// </summary>
-        UNIX_LINES = 0x80
     }
 
     /// <summary>

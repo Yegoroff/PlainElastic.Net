@@ -147,6 +147,12 @@ namespace PlainElastic.Net.Utils
             return value.HasValue ? value.Value.AsString() : null;
         }
 
+        public static string AsString(this Enum value)
+        {
+            return value.ToString("F").Replace(", ", "|");;
+        }
+
+
 
         public static string BeautifyJson(this string json)
         {

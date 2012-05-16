@@ -197,4 +197,10 @@ namespace PlainElastic.Net.IndexSettings
         Swedish,
         Turkish
     }
+
+	public enum EdgeNGramSide
+	{
+		front,
+		back
+	}
 }

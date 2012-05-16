@@ -75,6 +75,12 @@
     <Compile Include="Builders\Commands\SearchCommand.cs" />
     <Compile Include="Builders\Enums.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\Analysis.cs" />
+    <Compile Include="Builders\IndexSettings\Analysis\EdgeNGramComponentBase.cs" />
+    <Compile Include="Builders\IndexSettings\Analysis\NGramComponentBase.cs" />
+    <Compile Include="Builders\IndexSettings\Analysis\Tokenizers\NGramTokenizer.cs" />
+    <Compile Include="Builders\IndexSettings\Analysis\Tokenizers\KeywordTokenizer.cs" />
+    <Compile Include="Builders\IndexSettings\Analysis\Tokenizers\EdgeNGramTokenizer.cs" />
+    <Compile Include="Builders\IndexSettings\Analysis\Tokenizers\TokenizerSettings.cs" />
     <Compile Include="Builders\IndexSettings\SettingsBase.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\NamedComponentBase.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\Analyzers\AnalyzerSettings.cs" />

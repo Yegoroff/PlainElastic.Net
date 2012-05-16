@@ -29,7 +29,7 @@ namespace PlainElastic.Net.IndexSettings
         /// </summary>
         public AnalyzerSettings Standard(AnalyzersDefaultAliases name, Func<StandardAnalyzer, StandardAnalyzer> standard = null)
         {
-            return Standard(name.ToString(), standard);
+            return Standard(name.AsString(), standard);
         }
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace PlainElastic.Net.IndexSettings
         /// </summary>
         public AnalyzerSettings Standard(Func<StandardAnalyzer, StandardAnalyzer> standard)
         {
-            return Standard(DefaultAnalyzers.standard.ToString(), standard);
+            return Standard(DefaultAnalyzers.standard.AsString(), standard);
         }
 
         #endregion
@@ -63,7 +63,7 @@ namespace PlainElastic.Net.IndexSettings
         /// </summary>
         public AnalyzerSettings Simple(AnalyzersDefaultAliases name, Func<SimpleAnalyzer, SimpleAnalyzer> simple = null)
         {
-            return Simple(name.ToString(), simple);
+            return Simple(name.AsString(), simple);
         }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace PlainElastic.Net.IndexSettings
         /// </summary>
         public AnalyzerSettings Simple(Func<SimpleAnalyzer, SimpleAnalyzer> simple)
         {
-            return Simple(DefaultAnalyzers.simple.ToString(), simple);
+            return Simple(DefaultAnalyzers.simple.AsString(), simple);
         }
 
         #endregion
@@ -96,7 +96,7 @@ namespace PlainElastic.Net.IndexSettings
         /// </summary>
         public AnalyzerSettings Whitespace(AnalyzersDefaultAliases name, Func<WhitespaceAnalyzer, WhitespaceAnalyzer> whitespace = null)
         {
-            return Whitespace(name.ToString(), whitespace);
+            return Whitespace(name.AsString(), whitespace);
         }
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace PlainElastic.Net.IndexSettings
         /// </summary>
         public AnalyzerSettings Whitespace(Func<WhitespaceAnalyzer, WhitespaceAnalyzer> whitespace)
         {
-            return Whitespace(DefaultAnalyzers.whitespace.ToString(), whitespace);
+            return Whitespace(DefaultAnalyzers.whitespace.AsString(), whitespace);
         }
 
         #endregion
@@ -129,7 +129,7 @@ namespace PlainElastic.Net.IndexSettings
         /// </summary>
         public AnalyzerSettings Stop(AnalyzersDefaultAliases name, Func<StopAnalyzer, StopAnalyzer> stop = null)
         {
-            return Stop(name.ToString(), stop);
+            return Stop(name.AsString(), stop);
         }
 
         /// <summary>
@@ -138,7 +138,7 @@ namespace PlainElastic.Net.IndexSettings
         /// </summary>
         public AnalyzerSettings Stop(Func<StopAnalyzer, StopAnalyzer> stop)
         {
-            return Stop(DefaultAnalyzers.stop.ToString(), stop);
+            return Stop(DefaultAnalyzers.stop.AsString(), stop);
         }
 
         #endregion
@@ -166,7 +166,7 @@ namespace PlainElastic.Net.IndexSettings
         /// </summary>
         public AnalyzerSettings Keyword(AnalyzersDefaultAliases name, Func<KeywordAnalyzer, KeywordAnalyzer> keyword = null)
         {
-            return Keyword(name.ToString(), keyword);
+            return Keyword(name.AsString(), keyword);
         }
 
         /// <summary>
@@ -177,7 +177,7 @@ namespace PlainElastic.Net.IndexSettings
         /// </summary>
         public AnalyzerSettings Keyword(Func<KeywordAnalyzer, KeywordAnalyzer> keyword)
         {
-            return Keyword(DefaultAnalyzers.keyword.ToString(), keyword);
+            return Keyword(DefaultAnalyzers.keyword.AsString(), keyword);
         }
 
         #endregion
@@ -201,7 +201,7 @@ namespace PlainElastic.Net.IndexSettings
         /// </summary>
         public AnalyzerSettings Pattern(AnalyzersDefaultAliases name, Func<PatternAnalyzer, PatternAnalyzer> pattern = null)
         {
-            return Pattern(name.ToString(), pattern);
+            return Pattern(name.AsString(), pattern);
         }
 
         /// <summary>
@@ -210,7 +210,7 @@ namespace PlainElastic.Net.IndexSettings
         /// </summary>
         public AnalyzerSettings Pattern(Func<PatternAnalyzer, PatternAnalyzer> pattern)
         {
-            return Pattern(DefaultAnalyzers.pattern.ToString(), pattern);
+            return Pattern(DefaultAnalyzers.pattern.AsString(), pattern);
         }
 
         #endregion
@@ -234,7 +234,7 @@ namespace PlainElastic.Net.IndexSettings
         /// </summary>
         public AnalyzerSettings Language(AnalyzersDefaultAliases name, Func<LanguageAnalyzer, LanguageAnalyzer> language)
         {
-            return Language(name.ToString(), language);
+            return Language(name.AsString(), language);
         }
 
         /// <summary>
@@ -271,7 +271,7 @@ namespace PlainElastic.Net.IndexSettings
         /// </summary>
         public AnalyzerSettings Snowball(AnalyzersDefaultAliases name, Func<SnowballAnalyzer, SnowballAnalyzer> snowball = null)
         {
-            return Snowball(name.ToString(), snowball);
+            return Snowball(name.AsString(), snowball);
         }
 
         /// <summary>
@@ -281,7 +281,7 @@ namespace PlainElastic.Net.IndexSettings
         /// </summary>
         public AnalyzerSettings Snowball(Func<SnowballAnalyzer, SnowballAnalyzer> snowball)
         {
-            return Snowball(DefaultAnalyzers.snowball.ToString(), snowball);
+            return Snowball(DefaultAnalyzers.snowball.AsString(), snowball);
         }
 
         #endregion
@@ -307,7 +307,7 @@ namespace PlainElastic.Net.IndexSettings
         /// </summary>
         public AnalyzerSettings Custom(AnalyzersDefaultAliases name, Func<CustomAnalyzer, CustomAnalyzer> custom)
         {
-            return Custom(name.ToString(), custom);
+            return Custom(name.AsString(), custom);
         }
 
         #endregion

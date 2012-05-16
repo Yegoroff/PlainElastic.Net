@@ -1,4 +1,6 @@
-﻿namespace PlainElastic.Net.IndexSettings
+﻿using PlainElastic.Net.Utils;
+
+namespace PlainElastic.Net.IndexSettings
 {
     /// <summary>
     /// An analyzer of type whitespace that is built using a Whitespace Tokenizer.
@@ -8,7 +10,7 @@
     {
         protected override string GetComponentType()
         {
-            return DefaultAnalyzers.whitespace.ToString();
+            return DefaultAnalyzers.whitespace.AsString();
         }
     }
 }

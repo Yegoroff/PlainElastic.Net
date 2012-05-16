@@ -27,7 +27,7 @@ namespace PlainElastic.Net.IndexSettings
         /// </summary>
         public TokenizerSettings EdgeNGram(Func<EdgeNGramTokenizer, EdgeNGramTokenizer> edgeNGram)
         {
-            return EdgeNGram(DefaultTokenizers.edgeNGram.ToString(), edgeNGram);
+            return EdgeNGram(DefaultTokenizers.edgeNGram.AsString(), edgeNGram);
         }
 
         #endregion
@@ -51,7 +51,7 @@ namespace PlainElastic.Net.IndexSettings
         /// </summary>
         public TokenizerSettings Keyword(Func<KeywordTokenizer, KeywordTokenizer> keyword)
         {
-            return Keyword(DefaultTokenizers.keyword.ToString(), keyword);
+            return Keyword(DefaultTokenizers.keyword.AsString(), keyword);
         }
 
         #endregion
@@ -61,7 +61,7 @@ namespace PlainElastic.Net.IndexSettings
 
         /// <summary>
         /// A tokenizer of type nGram that builds N-characters substrings from text.
-        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/edgengram-tokenizer.html
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/ngram-tokenizer.html
         /// </summary>
         public TokenizerSettings NGram(string name, Func<NGramTokenizer, NGramTokenizer> nGram = null)
         {
@@ -71,11 +71,11 @@ namespace PlainElastic.Net.IndexSettings
 
         /// <summary>
         /// A tokenizer of type nGram that builds N-characters substrings from text.
-        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/edgengram-tokenizer.html
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/ngram-tokenizer.html
         /// </summary>
         public TokenizerSettings NGram(Func<NGramTokenizer, NGramTokenizer> nGram)
         {
-            return NGram(DefaultTokenizers.nGram.ToString(), nGram);
+            return NGram(DefaultTokenizers.nGram.AsString(), nGram);
         }
 
         #endregion
@@ -99,7 +99,7 @@ namespace PlainElastic.Net.IndexSettings
         /// </summary>
         public TokenizerSettings Standard(Func<StandardTokenizer, StandardTokenizer> standard)
         {
-            return Standard(DefaultTokenizers.standard.ToString(), standard);
+            return Standard(DefaultTokenizers.standard.AsString(), standard);
         }
 
         #endregion
@@ -123,7 +123,7 @@ namespace PlainElastic.Net.IndexSettings
         /// </summary>
         public TokenizerSettings Pattern(Func<PatternTokenizer, PatternTokenizer> pattern)
         {
-            return Pattern(DefaultTokenizers.pattern.ToString(), pattern);
+            return Pattern(DefaultTokenizers.pattern.AsString(), pattern);
         }
 
         #endregion
@@ -147,7 +147,7 @@ namespace PlainElastic.Net.IndexSettings
         /// </summary>
         public TokenizerSettings UaxUrlEmail(Func<UaxUrlEmailTokenizer, StandardTokenizer> uaxUrlEmail)
         {
-            return UaxUrlEmail(DefaultTokenizers.uax_url_email.ToString(), uaxUrlEmail);
+            return UaxUrlEmail(DefaultTokenizers.uax_url_email.AsString(), uaxUrlEmail);
         }
 
         #endregion
@@ -173,7 +173,7 @@ namespace PlainElastic.Net.IndexSettings
         /// </summary>
         public TokenizerSettings PathHierarchy(Func<PathHierarchyTokenizer, PathHierarchyTokenizer> pathHierarchy)
         {
-            return PathHierarchy(DefaultTokenizers.path_hierarchy.ToString(), pathHierarchy);
+            return PathHierarchy(DefaultTokenizers.path_hierarchy.AsString(), pathHierarchy);
         }
 
         #endregion

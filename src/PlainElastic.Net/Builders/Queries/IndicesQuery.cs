@@ -57,7 +57,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public IndicesQuery<T> NoMatchQuery(IndicesNoMatchMode noMatchQuery)
         {
-            RegisterJsonPart("'no_match_query': {0}", noMatchQuery.ToString().Quotate());           
+            RegisterJsonPart("'no_match_query': {0}", noMatchQuery.AsString().Quotate());           
             return this;
         }
 

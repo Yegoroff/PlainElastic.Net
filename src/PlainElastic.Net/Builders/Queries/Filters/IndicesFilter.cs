@@ -54,7 +54,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public IndicesFilter<T> NoMatchFilter(IndicesNoMatchMode noMatchFilter)
         {
-            RegisterJsonPart("'no_match_filter': {0}", noMatchFilter.ToString().Quotate());           
+            RegisterJsonPart("'no_match_filter': {0}", noMatchFilter.AsString().Quotate());           
             return this;
         }
 

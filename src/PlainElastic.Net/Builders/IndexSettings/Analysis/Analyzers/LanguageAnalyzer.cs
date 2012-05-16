@@ -40,7 +40,7 @@ namespace PlainElastic.Net.IndexSettings
         /// </summary>
         public LanguageAnalyzer Type(LanguageAnalyzerTypes type)
         {
-            return Type(type.ToString());
+            return Type(type.AsString());
         }
 
 

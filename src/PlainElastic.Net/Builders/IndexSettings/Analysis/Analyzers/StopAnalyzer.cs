@@ -1,4 +1,6 @@
-﻿namespace PlainElastic.Net.IndexSettings
+﻿using PlainElastic.Net.Utils;
+
+namespace PlainElastic.Net.IndexSettings
 {
     /// <summary>
     /// An analyzer of type stop that is built using a Lower Case Tokenizer, with Stop Token Filter.
@@ -8,7 +10,7 @@
     {
         protected override string GetComponentType()
         {
-            return DefaultAnalyzers.stop.ToString();
+            return DefaultAnalyzers.stop.AsString();
         }
     }
 }

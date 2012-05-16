@@ -42,7 +42,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public TextQuery<T> Type(TextQueryType type = TextQueryType.boolean)
         {
-            RegisterJsonPart("'type': {0}", type.ToString().Quotate());
+            RegisterJsonPart("'type': {0}", type.AsString().Quotate());
 
             return this;
         }
@@ -53,7 +53,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public TextQuery<T> Operator(Operator @operator)
         {
-            RegisterJsonPart("'operator': {0}", @operator.ToString().Quotate());
+            RegisterJsonPart("'operator': {0}", @operator.AsString().Quotate());
 
             return this;
         }
@@ -76,7 +76,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public TextQuery<T> Analyzer(DefaultAnalyzers analyzer)
         {
-            return Analyzer(analyzer.ToString());
+            return Analyzer(analyzer.AsString());
         }
 
 

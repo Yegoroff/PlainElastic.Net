@@ -16,7 +16,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public NestedQuery<T> ScoreMode(ScoreMode scoreMode = Net.Queries.ScoreMode.avg)
         {
-            RegisterJsonPart("'score_mode': {0}", scoreMode.ToString().Quotate());
+            RegisterJsonPart("'score_mode': {0}", scoreMode.AsString().Quotate());
 
             return this;
         }

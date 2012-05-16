@@ -26,7 +26,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public ScriptFilter<T> Lang(ScriptLangs lang)
         {
-            return Lang(lang.ToString());
+            return Lang(lang.AsString());
         }
 
         /// <summary>

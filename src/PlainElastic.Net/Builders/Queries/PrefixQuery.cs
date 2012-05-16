@@ -69,7 +69,7 @@ namespace PlainElastic.Net.Queries
                 case Queries.Rewrite.top_terms_n:
                     return "top_terms_" + n;
             }
-            return rewrite.ToString();
+            return rewrite.AsString();
         }
 
     }

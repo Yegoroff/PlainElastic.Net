@@ -11,7 +11,7 @@ namespace PlainElastic.Net.IndexSettings
     {
         protected override string GetComponentType()
         {
-            return DefaultTokenizers.path_hierarchy.ToString();
+            return DefaultTokenizers.path_hierarchy.AsString();
         }
 
 

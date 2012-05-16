@@ -37,7 +37,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public CustomFiltersScoreQuery<T> ScoreMode(CustomFiltersScoreMode scoreMode = CustomFiltersScoreMode.first)
         {
-            RegisterJsonPart("'score_mode': {0}", scoreMode.ToString().Quotate());
+            RegisterJsonPart("'score_mode': {0}", scoreMode.AsString().Quotate());
             return this;
         }
 
@@ -59,7 +59,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public CustomFiltersScoreQuery<T> Lang(ScriptLangs lang)
         {
-            return Lang( lang.ToString());
+            return Lang( lang.AsString());
         }
 
 

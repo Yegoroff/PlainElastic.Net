@@ -11,7 +11,7 @@ namespace PlainElastic.Net.IndexSettings
     {
         protected override string GetComponentType()
         {
-            return DefaultAnalyzers.snowball.ToString();
+            return DefaultAnalyzers.snowball.AsString();
         }
 
 
@@ -31,7 +31,7 @@ namespace PlainElastic.Net.IndexSettings
         /// </summary>
         public SnowballAnalyzer Language(SnowballLanguages language = SnowballLanguages.English)
         {
-            return Language(language.ToString());
+            return Language(language.AsString());
         }
     }
 }

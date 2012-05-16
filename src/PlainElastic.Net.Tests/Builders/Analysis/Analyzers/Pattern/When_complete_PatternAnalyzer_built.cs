@@ -13,7 +13,7 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
                                             .Alias("second", "third")
                                             .Lowercase(false)
                                             .Pattern("pattern")
-                                            .Flags(PatternFlags.CANON_EQ | PatternFlags.CASE_INSENSITIVE)
+                                            .Flags(RegexFlags.CANON_EQ | RegexFlags.CASE_INSENSITIVE)
                                             .CustomPart("{ Custom }")
                                             .ToString();
 

@@ -10,7 +10,7 @@ namespace PlainElastic.Net.IndexSettings
     {
         protected override string GetComponentType()
         {
-            return DefaultTokenizers.standard.ToString();
+            return DefaultTokenizers.standard.AsString();
         }
 
 

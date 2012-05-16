@@ -1,4 +1,6 @@
-﻿namespace PlainElastic.Net.IndexSettings
+﻿using PlainElastic.Net.Utils;
+
+namespace PlainElastic.Net.IndexSettings
 {
     /// <summary>
     /// An analyzer of type keyword that “tokenizes” an entire stream as a single token.
@@ -10,7 +12,7 @@
     {
         protected override string GetComponentType()
         {
-            return DefaultAnalyzers.keyword.ToString();
+            return DefaultAnalyzers.keyword.AsString();
         }
     }
 }

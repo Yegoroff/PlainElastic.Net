@@ -1,4 +1,6 @@
-﻿namespace PlainElastic.Net.IndexSettings
+﻿using PlainElastic.Net.Utils;
+
+namespace PlainElastic.Net.IndexSettings
 {
     /// <summary>
     /// An analyzer of type simple that is built using a Lower Case Tokenizer.
@@ -8,7 +10,7 @@
     {
         protected override string GetComponentType()
         {
-            return DefaultAnalyzers.simple.ToString();
+            return DefaultAnalyzers.simple.AsString();
         }
     }
 }

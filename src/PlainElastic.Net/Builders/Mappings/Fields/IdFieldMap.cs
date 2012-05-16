@@ -23,7 +23,7 @@ namespace PlainElastic.Net.Mappings
         /// </summary>
         public IdField<T> Index(IndexState index)
         {
-            RegisterCustomJsonMap("'index': {0} ", index.ToString().Quotate());
+            RegisterCustomJsonMap("'index': {0} ", index.AsString().Quotate());
             return this;
         }
 

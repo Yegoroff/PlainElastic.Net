@@ -49,7 +49,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public TopChildrenQuery<T> Score(TopChildrenScoreMode score = TopChildrenScoreMode.max)
         {
-            RegisterJsonPart("'score': {0}", score.ToString().Quotate());
+            RegisterJsonPart("'score': {0}", score.AsString().Quotate());
             return this;
         }
 

@@ -12,7 +12,7 @@ namespace PlainElastic.Net.IndexSettings
         /// </summary>
         public TPart Side(EdgeNGramSide side)
         {
-            RegisterJsonPart("'side': {0}", side.ToString().Quotate());
+            RegisterJsonPart("'side': {0}", side.AsString().Quotate());
             return (TPart)this;
         }
     }

@@ -37,7 +37,7 @@ namespace PlainElastic.Net.Queries
         {
             var fieldParams = new List<string>();
             if (order != SortDirection.@default)
-                fieldParams.Add("'order': {0}".AltQuoteF(order.ToString().Quotate()));
+                fieldParams.Add("'order': {0}".AltQuoteF(order.AsString().Quotate()));
 
             if (!missing.IsNullOrEmpty())
                 fieldParams.Add("'missing': {0}".AltQuoteF(missing.Quotate()));
@@ -53,7 +53,7 @@ namespace PlainElastic.Net.Queries
 
         public Sort<T> Script(string script, string type, SortDirection order, string [] @params)
         {
-            var expression = "'_script' : {0}, 'type': {1}, 'order': {2}, 'params': {3} ".AltQuoteF(script, type.Quotate(), order.ToString().Quotate(), @params.JoinWithComma());
+            var expression = "'_script' : {0}, 'type': {1}, 'order': {2}, 'params': {3} ".AltQuoteF(script, type.Quotate(), order.AsString().Quotate(), @params.JoinWithComma());
             RegisterJsonPart(expression);
 
             return this;

@@ -84,7 +84,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public TermsFacet<T> Order(TermsFacetOrder order = TermsFacetOrder.count)
         {
-            RegisterJsonPart("'order': {0}", order.ToString().Quotate());
+            RegisterJsonPart("'order': {0}", order.AsString().Quotate());
             return this;
         }
 
@@ -135,7 +135,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public TermsFacet<T> RegexFlags(RegexFlags regexFlags)
         {
-            RegisterJsonPart("'regex_flags': {0}", regexFlags.ToString().Quotate());
+            RegisterJsonPart("'regex_flags': {0}", regexFlags.AsString().Quotate());
             return this;
         }
 

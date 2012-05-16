@@ -45,7 +45,7 @@ namespace PlainElastic.Net
         /// </summary>
         public CountCommand Analyzer(DefaultAnalyzers analyzer)
         {
-            Parameters.Add("analyzer", analyzer.ToString());
+            Parameters.Add("analyzer", analyzer.AsString());
             return this;
         }
 
@@ -63,7 +63,7 @@ namespace PlainElastic.Net
         /// </summary>
         public CountCommand DefaultOperator(Operator defaultOperator)
         {
-            Parameters.Add("default_operator", defaultOperator.ToString());
+            Parameters.Add("default_operator", defaultOperator.AsString());
             return this;
         }
 
@@ -92,7 +92,7 @@ namespace PlainElastic.Net
         /// </summary>
         public CountCommand SearchType(SearchType searchType)
         {
-            Parameters.Add("search_type", searchType.ToString());
+            Parameters.Add("search_type", searchType.AsString());
             return this;
         }
 

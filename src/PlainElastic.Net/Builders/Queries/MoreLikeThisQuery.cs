@@ -191,7 +191,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public MoreLikeThisQuery<T> Analyzer(DefaultAnalyzers analyzer)
         {
-            return Analyzer(analyzer.ToString());
+            return Analyzer(analyzer.AsString());
         }
 
 

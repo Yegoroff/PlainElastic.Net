@@ -11,7 +11,7 @@ namespace PlainElastic.Net.IndexSettings
     {
         protected override string GetComponentType()
         {
-            return DefaultAnalyzers.standard.ToString();
+            return DefaultAnalyzers.standard.AsString();
         }
 
 

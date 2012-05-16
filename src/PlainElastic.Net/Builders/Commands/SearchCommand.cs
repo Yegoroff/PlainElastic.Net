@@ -45,7 +45,7 @@ namespace PlainElastic.Net
         /// </summary>
         public SearchCommand Analyzer(DefaultAnalyzers analyzer)
         {
-            Parameters.Add("analyzer", analyzer.ToString());
+            Parameters.Add("analyzer", analyzer.AsString());
             return this;
         }
 
@@ -74,7 +74,7 @@ namespace PlainElastic.Net
         /// </summary>
         public SearchCommand DefaultOperator(Operator defaultOperator = Operator.OR)
         {
-            Parameters.Add("default_operator", defaultOperator.ToString());
+            Parameters.Add("default_operator", defaultOperator.AsString());
             return this;
         }
 
@@ -162,7 +162,7 @@ namespace PlainElastic.Net
         /// </summary>
         public SearchCommand SearchType(SearchType searchType)
         {
-            Parameters.Add("search_type", searchType.ToString());
+            Parameters.Add("search_type", searchType.AsString());
             return this;
         }
 
@@ -183,7 +183,7 @@ namespace PlainElastic.Net
         {
             string value = fieldname;
             if (direction != SortDirection.@default)
-                value += ":" + direction.ToString();
+                value += ":" + direction.AsString();
 
             Parameters.Add("sort", value);
             return this;

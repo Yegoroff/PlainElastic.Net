@@ -52,7 +52,7 @@ namespace PlainElastic.Net.Mappings
         /// </summary>
         public TMapping Index(IndexState index)
         {
-            RegisterCustomJsonMap("'index': {0}", index.ToString().Quotate());
+            RegisterCustomJsonMap("'index': {0}", index.AsString().Quotate());
             return (TMapping) this;            
         }
 

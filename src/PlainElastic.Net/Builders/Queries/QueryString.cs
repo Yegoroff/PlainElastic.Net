@@ -135,7 +135,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public QueryString<T> DefaultOperator(Operator defaultOperator)
         {            
-            RegisterJsonPart("'default_operator': {0}", defaultOperator.ToString().Quotate());
+            RegisterJsonPart("'default_operator': {0}", defaultOperator.AsString().Quotate());
             return this;
         }
 
@@ -156,7 +156,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public QueryString<T> Analyzer(DefaultAnalyzers analyzer)
         {
-            return Analyzer(analyzer.ToString());
+            return Analyzer(analyzer.AsString());
         }
 
         /// <summary>
@@ -314,7 +314,7 @@ namespace PlainElastic.Net.Queries
                 case Queries.Rewrite.top_terms_n:
                     return "top_terms_" + n;
             }
-            return rewrite.ToString();
+            return rewrite.AsString();
         }
 
 

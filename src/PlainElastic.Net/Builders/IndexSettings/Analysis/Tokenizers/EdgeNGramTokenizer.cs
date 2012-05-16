@@ -1,4 +1,6 @@
-﻿namespace PlainElastic.Net.IndexSettings
+﻿using PlainElastic.Net.Utils;
+
+namespace PlainElastic.Net.IndexSettings
 {
     /// <summary>
     /// A tokenizer of type edgeNGram that builds N-characters substrings from text. Substrings are built from one side of a text.
@@ -8,7 +10,7 @@
     {
         protected override string GetComponentType()
         {
-            return DefaultTokenizers.edgeNGram.ToString();
+            return DefaultTokenizers.edgeNGram.AsString();
         }
     }
 }

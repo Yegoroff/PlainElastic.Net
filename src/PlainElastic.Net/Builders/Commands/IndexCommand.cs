@@ -35,13 +35,13 @@ namespace PlainElastic.Net
 
         public IndexCommand Consistency(WriteConsistency consistency)
         {
-            Parameters.Add("consistency", consistency.ToString());
+            Parameters.Add("consistency", consistency.AsString());
             return this;
         }
 
         public IndexCommand OperationType(IndexOperation operation)
         {
-            Parameters.Add("op_type", operation.ToString());
+            Parameters.Add("op_type", operation.AsString());
             return this;            
         }
 
@@ -69,7 +69,7 @@ namespace PlainElastic.Net
         
         public IndexCommand Replication(DocumentReplication replication)
         {
-            Parameters.Add("replication", replication.ToString());
+            Parameters.Add("replication", replication.AsString());
             return this;
         }
 
@@ -105,7 +105,7 @@ namespace PlainElastic.Net
         /// </summary>
         public IndexCommand VersionType(VersionType versionType)
         {
-            Parameters.Add("version_type", versionType.ToString());
+            Parameters.Add("version_type", versionType.AsString());
             return this;
         }
 

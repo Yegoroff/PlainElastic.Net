@@ -1,4 +1,6 @@
-﻿namespace PlainElastic.Net.IndexSettings
+﻿using PlainElastic.Net.Utils;
+
+namespace PlainElastic.Net.IndexSettings
 {
     /// <summary>
     /// A tokenizer of type uax_url_email which works exactly like the standard tokenizer, but tokenizes emails and urls as single tokens.
@@ -8,7 +10,7 @@
     {
         protected override string GetComponentType()
         {
-            return DefaultTokenizers.uax_url_email.ToString();
+            return DefaultTokenizers.uax_url_email.AsString();
         }
     }
 }

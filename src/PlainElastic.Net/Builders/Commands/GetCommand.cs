@@ -43,7 +43,7 @@ namespace PlainElastic.Net
 
         public GetCommand Preference(GetPrefernce prefernce, string customPreference = null)
         {
-            string value = prefernce.ToString();
+            string value = prefernce.AsString();
             if (prefernce == GetPrefernce.custom)
                 value = customPreference;
 

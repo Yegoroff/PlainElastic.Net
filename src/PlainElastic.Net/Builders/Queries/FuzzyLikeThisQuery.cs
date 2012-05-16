@@ -131,7 +131,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public FuzzyLikeThisQuery<T> Analyzer(DefaultAnalyzers analyzer)
         {
-            return Analyzer(analyzer.ToString());
+            return Analyzer(analyzer.AsString());
         }
 
 

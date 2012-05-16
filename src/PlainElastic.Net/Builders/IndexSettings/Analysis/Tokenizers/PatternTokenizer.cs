@@ -10,7 +10,7 @@ namespace PlainElastic.Net.IndexSettings
     {
         protected override string GetComponentType()
         {
-            return DefaultTokenizers.pattern.ToString();
+            return DefaultTokenizers.pattern.AsString();
         }
 
 
@@ -28,12 +28,9 @@ namespace PlainElastic.Net.IndexSettings
         /// <summary>
         /// Sets the regular expression flags.
         /// </summary>
-        public PatternTokenizer Flags(PatternFlags flags)
+        public PatternTokenizer Flags(RegexFlags flags)
         {
-            RegisterJsonPart("'flags': {0}", flags.ToString()
-                                                  .Replace(" ", string.Empty)
-                                                  .Replace(",", "|")
-                                                  .Quotate());
+            RegisterJsonPart("'flags': {0}", flags.AsString().Quotate());
             return this;
         }
 

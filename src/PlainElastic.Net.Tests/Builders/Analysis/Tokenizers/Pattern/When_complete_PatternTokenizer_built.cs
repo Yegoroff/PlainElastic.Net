@@ -11,7 +11,7 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
                                             .Name("name")
                                             .Version("3.6")
                                             .Pattern("pattern")
-                                            .Flags(PatternFlags.CANON_EQ | PatternFlags.CASE_INSENSITIVE)
+                                            .Flags(RegexFlags.CANON_EQ | RegexFlags.CASE_INSENSITIVE)
                                             .Group(2)
                                             .CustomPart("{ Custom }")
                                             .ToString();

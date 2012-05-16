@@ -89,7 +89,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public FuzzyLikeThisFieldQuery<T> Analyzer(DefaultAnalyzers analyzer)
         {
-            return Analyzer(analyzer.ToString());
+            return Analyzer(analyzer.AsString());
         }
 
 

@@ -49,7 +49,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public CustomScoreQuery<T> Lang(ScriptLangs lang)
         {
-            return Lang(lang.ToString());
+            return Lang(lang.AsString());
         }
 
 

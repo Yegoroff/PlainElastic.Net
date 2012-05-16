@@ -32,7 +32,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public TermsFilter<T> Execution(TermsFilterExecution execution)
         {
-            RegisterJsonPart("'execution': {0}", execution.ToString().Quotate());
+            RegisterJsonPart("'execution': {0}", execution.AsString().Quotate());
             return this;
         }
 

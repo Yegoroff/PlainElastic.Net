@@ -31,7 +31,7 @@ namespace PlainElastic.Net.IndexSettings
         /// </summary>
         public CustomAnalyzer Tokenizer(DefaultTokenizers tokenizer)
         {
-            return Tokenizer(tokenizer.ToString());
+            return Tokenizer(tokenizer.AsString());
         }
 
         
@@ -58,7 +58,7 @@ namespace PlainElastic.Net.IndexSettings
         /// </summary>
         public CustomAnalyzer Filter(IEnumerable<DefaultTokenFilters> filters)
         {
-            return Filter(filters.Select(f => f.ToString()));
+            return Filter(filters.Select(f => f.AsString()));
         }
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace PlainElastic.Net.IndexSettings
         /// </summary>
         public CustomAnalyzer CharFilter(IEnumerable<DefaultCharFilters> filters)
         {
-            return CharFilter(filters.Select(f => f.ToString()));
+            return CharFilter(filters.Select(f => f.AsString()));
         }
 
         /// <summary>

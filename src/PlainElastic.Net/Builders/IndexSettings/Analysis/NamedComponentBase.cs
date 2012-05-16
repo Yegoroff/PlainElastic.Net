@@ -1,5 +1,4 @@
-﻿using System;
-using PlainElastic.Net.Utils;
+﻿using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.IndexSettings
 {

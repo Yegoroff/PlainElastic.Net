@@ -27,7 +27,7 @@ namespace PlainElastic.Net.Mappings
 
         public AllField<T> TermVector(TermVector termVector)
         {
-            RegisterCustomJsonMap("'term_vector': {0}", termVector.ToString().Quotate());
+            RegisterCustomJsonMap("'term_vector': {0}", termVector.AsString().Quotate());
             return this;
         }
 
@@ -48,7 +48,7 @@ namespace PlainElastic.Net.Mappings
         /// </summary>
         public AllField<T> Analyzer(DefaultAnalyzers analyzer)
         {
-            return Analyzer(analyzer.ToString());
+            return Analyzer(analyzer.AsString());
         }        
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace PlainElastic.Net.Mappings
         /// </summary>       
         public AllField<T> IndexAnalyzer(DefaultAnalyzers analyzer)
         {
-            return IndexAnalyzer(analyzer.ToString());
+            return IndexAnalyzer(analyzer.AsString());
         }
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace PlainElastic.Net.Mappings
         /// </summary>
         public AllField<T> SearchAnalyzer(DefaultAnalyzers analyzer)
         {
-            return SearchAnalyzer(analyzer.ToString());
+            return SearchAnalyzer(analyzer.AsString());
         }
 
 

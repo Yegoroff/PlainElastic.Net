@@ -35,7 +35,7 @@ namespace PlainElastic.Net.Mappings
         /// </summary>       
         public RootObject<T> IndexAnalyzer(DefaultAnalyzers analyzer)
         {
-            return IndexAnalyzer(analyzer.ToString());
+            return IndexAnalyzer(analyzer.AsString());
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace PlainElastic.Net.Mappings
         /// </summary>
         public RootObject<T> SearchAnalyzer(DefaultAnalyzers analyzer)
         {
-            return SearchAnalyzer(analyzer.ToString());
+            return SearchAnalyzer(analyzer.AsString());
         }
 
         /// <summary>

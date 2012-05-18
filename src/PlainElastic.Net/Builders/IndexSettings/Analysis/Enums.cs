@@ -153,4 +153,10 @@ namespace PlainElastic.Net.IndexSettings
         front,
         back
     }
+
+    public enum LowercaseTokenFilterLanguages
+    {
+        greek,
+        turkish
+    }
 }

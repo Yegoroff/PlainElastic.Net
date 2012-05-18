@@ -3,9 +3,9 @@
     "properties": [
         {
             "name": "language",
-            "type": "LowercaseTokenFilterLanguage",
+            "type": "LowercaseTokenFilterLanguages",
             "testValue": "greek",
-            "description": "Sets non-Latin lowercase filter language (greek or turkish)."
+            "description": "Sets non-Latin lowercase filter language."
         }
     ]
 }

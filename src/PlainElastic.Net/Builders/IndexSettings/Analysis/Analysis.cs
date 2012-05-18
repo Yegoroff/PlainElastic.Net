@@ -29,6 +29,15 @@ namespace PlainElastic.Net.IndexSettings
             return this;
         }
 
+        /// <summary>
+        /// Allows to configure token filters to be used in custom analyzers.
+        /// </summary>
+        public Analysis TokenFilter(Func<TokenFilterSettings, TokenFilterSettings> tokenFilter)
+        {
+            RegisterJsonPartExpression(tokenFilter);
+            return this;
+        }
+
 
         protected override string ApplyJsonTemplate(string body)
         {

@@ -1,0 +1,105 @@
+﻿<#@ assembly name="System.Core" #>
+<#@ assembly name="$(ProjectDir)\bin\PlainElastic.T4Generators.dll" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="PlainElastic.T4Generators.Models" #>
+<#@ import namespace="PlainElastic.T4Generators.Utils" #>
+<#@ include file="AnalysisComponentEmptyTestTemplate.tt" #>
+<#+
+public class AnalysisComponentCompleteTestTemplate : AnalysisComponentEmptyTestTemplate
+{
+    public AnalysisComponentCompleteTestTemplate(string testClassName, ComponentMetadataView metadata) : base(testClassName, metadata)
+    {
+    }
+
+    public override string TransformText()
+    {
+        var valuesCounter = 2;
+        var testDatas = Metadata.Properties.Select(p => new PropertyTestData(p, ref valuesCounter)).ToList();
+#>
+using Machine.Specifications;
+using PlainElastic.Net.IndexSettings;
+using PlainElastic.Net.Utils;
+
+namespace PlainElastic.Net.Tests.Builders.IndexSettings
+{
+    [Subject(typeof(<#= Metadata.ClassName #>))]
+    class <#= TestClassName #>
+    {
+        Because of = () => result = new <#= Metadata.ClassName #>()
+                                            .Name("name")
+                                            .Version("3.6")
+<#+
+        foreach (var testData in testDatas)
+        {
+#>                                            <#= testData.BuilderCode #>
+<#+
+        }
+#>                                            .CustomPart("{ Custom }")
+                                            .ToString();
+
+        It should_start_with_name = () => result.ShouldStartWith("'name': {".AltQuote());
+
+        It should_contain_type_part = () => result.ShouldContain("'type': '<#= Metadata.ElasticType #>'".AltQuote());
+
+        It should_contain_version_part = () => result.ShouldContain("'version': '3.6'".AltQuote());
+
+<#+
+        foreach (var testData in testDatas)
+        {
+#>        It should_contain_<#= testData.Property.ElasticName #>_part = () => result.ShouldContain("<#= testData.AssertString #>".AltQuote());
+
+<#+
+        }
+#>        It should_contain_custom_part = () => result.ShouldContain("{ Custom }".AltQuote());
+        
+        It should_return_correct_result = () => result.ShouldEqual(("'name': { " +
+                                                                    "'type': '<#= Metadata.ElasticType #>'," +
+                                                                    "'version': '3.6'," +
+<#+
+        foreach (var testData in testDatas)
+        {
+#>                                                                    "<#= testData.AssertString #>," +
+<#+
+        }
+#>                                                                    "{ Custom } }").AltQuote());
+
+        private static string result;
+    }
+}<#+
+        return this.GenerationEnvironment.ToString();
+    }
+}
+
+public class PropertyTestData
+{
+    public PropertyTestData(ComponentMetadataPropertyView property, ref int valuesCounter)
+    {
+        Property = property;
+
+        var netTypeCategory = property.NetType.GetNetTypeCategory();
+        var testValue = netTypeCategory == NetTypeCategory.Enum ? property.EnumTestValue : (valuesCounter++).ToString();
+
+        var testValueForBuilder = string.Empty;
+        switch (netTypeCategory)
+        {
+            case NetTypeCategory.Primitive:
+                testValueForBuilder = testValue;
+                break;
+            case NetTypeCategory.Enum:
+                testValueForBuilder = property.NetType + "." + testValue;
+                break;
+            case NetTypeCategory.String:
+                testValueForBuilder = '"' + testValue + '"';
+                break;
+        }
+        BuilderCode = string.Format(".{0}({1})", property.NetName, testValueForBuilder);
+
+        var testValueForJson = netTypeCategory == NetTypeCategory.Primitive ? testValue : "'" + testValue + "'";
+        AssertString = string.Format("'{0}': {1}", property.ElasticName, testValueForJson);
+    }
+
+    public ComponentMetadataPropertyView Property { get; set; }
+    public string BuilderCode { get; set; }
+    public string AssertString { get; set; }
+}
+#>

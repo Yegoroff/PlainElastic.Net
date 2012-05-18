@@ -1,0 +1,75 @@
+﻿<#@ assembly name="System.Core" #>
+<#@ assembly name="$(ProjectDir)\bin\PlainElastic.T4Generators.dll" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="PlainElastic.T4Generators.Models" #>
+<#@ import namespace="PlainElastic.T4Generators.Utils" #>
+<#+
+public class AnalysisComponentTemplate : Template
+{
+    public AnalysisComponentTemplate(ComponentMetadataView metadata)
+    {
+        Metadata = metadata;
+    }
+
+    public ComponentMetadataView Metadata { get; private set; }
+
+    public override string TransformText()
+    {
+#>
+using PlainElastic.Net.Utils;
+
+namespace PlainElastic.Net.IndexSettings
+{
+    /// <summary>
+    /// <#= Metadata.Description.ToCodeSummary(indentSpaces: 4) #>
+    /// </summary>
+    public class <#= Metadata.ClassName #> : NamedComponentBase<<#= Metadata.ClassName #>>
+    {
+        protected override string GetComponentType()
+        {
+            return <#= Metadata.ComponentType #>.AsString();
+        }
+<#+
+        if (Metadata.Properties.Any())
+        {
+            WriteLine(string.Empty);
+            foreach (var property in Metadata.Properties)
+            {
+                var parameterName = property.NetName.Uncapitalize();
+
+                var defaultValueStatement = !string.IsNullOrEmpty(property.DefaultCode)
+                                                ? " = " + property.DefaultCode
+                                                : string.Empty;
+
+                string parameterTransformStatement = string.Empty;
+                switch (property.NetType.GetNetTypeCategory())
+                {
+                    case NetTypeCategory.Primitive:
+                        parameterTransformStatement = ".AsString()";
+                        break;
+                    case NetTypeCategory.Enum:
+                        parameterTransformStatement = ".AsString().Quotate()";
+                        break;
+                    case NetTypeCategory.String:
+                        parameterTransformStatement = ".Quotate()";
+                        break;
+                }
+#>
+
+        /// <summary>
+        /// <#= property.Description.ToCodeSummary(indentSpaces: 8) #>
+        /// </summary>
+        public <#= Metadata.ClassName #> <#= property.NetName #>(<#= property.NetType #> <#= parameterName #><#= defaultValueStatement #>)
+        {
+            RegisterJsonPart("'<#= property.ElasticName #>': {0}", <#= parameterName #><#= parameterTransformStatement #>);
+            return this;
+        }
+<#+
+            }
+        }
+#>    }
+}<#+
+        return this.GenerationEnvironment.ToString();
+    }
+}
+#>

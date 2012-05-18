@@ -1,0 +1,15 @@
+﻿{
+    "description": "A token filter of type length that removes words that are too long or too short for the stream.\nsee http://www.elasticsearch.org/guide/reference/index-modules/analysis/length-tokenfilter.html",
+    "properties": {
+        "min": {
+            "type": "int",
+            "defaultValue": 0,
+            "description": "Sets the minimum length.\nDefaults to 0."
+        },
+        "max": {
+            "type": "int",
+            "defaultCode": "int.MaxValue",
+            "description": "Sets the maximum length.\nDefaults to int.MaxValue."
+        }
+    }
+}

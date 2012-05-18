@@ -1,0 +1,48 @@
+﻿<#@ assembly name="System.Core" #>
+<#@ assembly name="$(ProjectDir)\bin\PlainElastic.T4Generators.dll" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="Microsoft.VisualStudio.TextTemplating" #>
+<#@ import namespace="PlainElastic.T4Generators.Models" #>
+<#@ import namespace="PlainElastic.T4Generators.Utils" #>
+<#@ include file="AnalysisComponentCompleteTestTemplate.tt" #>
+<#+
+public class AnalysisComponentsGenerator : Generator
+{
+    public AnalysisComponentsGenerator(ITextTemplatingEngineHost host, AnalysisViewSettings settings)
+    {
+        Host = host;
+        Settings = settings;
+    }
+
+    public ITextTemplatingEngineHost Host { get; private set; }
+    public AnalysisViewSettings Settings { get; private set; }
+
+    protected override void RunCore()
+    {
+        var metadataFolder = Path.Combine(Path.GetDirectoryName(Host.TemplateFile), "Metadata");
+        var metadataViews = MetadataHelper.LoadComponentsMetadata(metadataFolder)
+                                .Select(m => new ComponentMetadataView(m, Settings)).ToList();
+
+        foreach (var metadataView in metadataViews)
+        {
+            var template = new AnalysisComponentTemplate(metadataView);
+            RenderCodeTemplate(metadataView.ClassName, template);
+
+            var emptyTestClassName = string.Format("When_empty_{0}_built", metadataView.ClassName);
+            var emptyTestTemplate = new AnalysisComponentEmptyTestTemplate(emptyTestClassName, metadataView);
+            RenderCodeTemplate(emptyTestClassName, emptyTestTemplate);
+
+            var completeTestClassName = string.Format("When_complete_{0}_built", metadataView.ClassName);
+            var completeTestTemplate = new AnalysisComponentCompleteTestTemplate(completeTestClassName, metadataView);
+            RenderCodeTemplate(completeTestClassName, completeTestTemplate);
+        }
+    }
+
+    private static void RenderCodeTemplate(string fileName, Template template)
+    {
+        template.Output.BuildAction = "None";
+        template.RenderToFile(fileName + ".cs");
+    }
+}
+#>

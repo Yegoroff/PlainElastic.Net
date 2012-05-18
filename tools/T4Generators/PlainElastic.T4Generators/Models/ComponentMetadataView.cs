@@ -9,6 +9,7 @@ namespace PlainElastic.T4Generators.Models
         public ComponentMetadataView(ComponentMetadata metadata, AnalysisViewSettings settings)
         {
             ElasticType = metadata.ElasticType;
+            BaseClassTemplate = metadata.BaseClass;
             CamelCaseType = ElasticType.ToCamelCase();
             ClassName = CamelCaseType + settings.ClassNameSuffix;
             ComponentType = settings.ComponentTypeEnum + "." + ElasticType;
@@ -19,6 +20,7 @@ namespace PlainElastic.T4Generators.Models
         }
 
         public string ElasticType { get; private set; }
+        public string BaseClassTemplate { get; private set; }
         public string CamelCaseType { get; private set; }
         public string ClassName { get; private set; }
         public string ComponentType { get; private set; }
@@ -30,6 +32,7 @@ namespace PlainElastic.T4Generators.Models
     {
         public ComponentMetadataPropertyView(ComponentMetadataProperty property)
         {
+            IsTestOnly = property.IsTestOnly;
             ElasticName = property.Name;
             ClrName = ElasticName.ToCamelCase();
             ClrType = property.Type;
@@ -48,6 +51,7 @@ namespace PlainElastic.T4Generators.Models
             }
         }
 
+        public bool IsTestOnly { get; set; }
         public string ElasticName { get; private set; }
         public string ClrName { get; private set; }
         public string ClrType { get; private set; }

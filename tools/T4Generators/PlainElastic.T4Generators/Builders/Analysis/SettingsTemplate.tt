@@ -5,9 +5,9 @@
 <#@ import namespace="PlainElastic.T4Generators.Utils" #>
 
 <#+
-public class AnalysisSettingsTemplate : Template
+public class SettingsTemplate : Template
 {
-    public AnalysisSettingsTemplate(IEnumerable<ComponentMetadataView> metadataViews, AnalysisViewSettings settings)
+    public SettingsTemplate(IEnumerable<ComponentMetadataView> metadataViews, AnalysisViewSettings settings)
     {
         MetadataViews = metadataViews;
         Settings = settings;

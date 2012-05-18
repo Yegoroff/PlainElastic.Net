@@ -6,9 +6,9 @@
 <#@ import namespace="PlainElastic.T4Generators.Models" #>
 
 <#@ include file="T4Toolbox.tt" #>
-<#@ include file="..\AnalysisComponentsGenerator.tt" #>
+<#@ include file="..\ComponentsGenerator.tt" #>
 
 <#
     var settings = new AnalysisViewSettings("token_filter");
-    new AnalysisComponentsGenerator(Host, settings).Run();
+    new ComponentsGenerator(Host, settings).Run();
 #>

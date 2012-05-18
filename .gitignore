@@ -8,5 +8,5 @@ NuGet/lib/
 *.ncrunchsolution
 *.ncrunchproject
 *.crunchsolution.cache
-tools/T4Generators/PlainElastic.T4Generators/Builders/**/*.cs
-tools/T4Generators/PlainElastic.T4Generators/Builders/**/*.ignore
+tools/T4Generators/PlainElastic.T4Generators/Builders/*/*/*.cs
+tools/T4Generators/PlainElastic.T4Generators/Builders/*/*/*.ignore

@@ -1,20 +1,25 @@
-﻿<#@ assembly name="System.Core" #>
-<#@ assembly name="$(ProjectDir)\bin\PlainElastic.T4Generators.dll" #>
-<#@ import namespace="System.Linq" #>
+﻿<#@ assembly name="$(ProjectDir)\bin\PlainElastic.T4Generators.dll" #>
+
 <#@ import namespace="PlainElastic.T4Generators.Models" #>
 <#@ import namespace="PlainElastic.T4Generators.Utils" #>
-<#@ include file="AnalysisComponentEmptyTestTemplate.tt" #>
+
 <#+
-public class AnalysisComponentCompleteTestTemplate : AnalysisComponentEmptyTestTemplate
+public class AnalysisComponentCompleteTestTemplate : Template
 {
-    public AnalysisComponentCompleteTestTemplate(string testClassName, ComponentMetadataView metadata) : base(testClassName, metadata)
+    public AnalysisComponentCompleteTestTemplate(string testClassName, ComponentMetadataView metadata)
     {
+        TestClassName = testClassName;
+        Metadata = metadata;
     }
+
+    public string TestClassName { get; set; }
+    public ComponentMetadataView Metadata { get; private set; }
 
     public override string TransformText()
     {
         var valuesCounter = 2;
-        var testDatas = Metadata.Properties.Select(p => new PropertyTestData(p, ref valuesCounter)).ToList();
+        var testDataList = Metadata.Properties.Select(p => new PropertyTestData(p, ref valuesCounter)).ToList();
+
 #>
 using Machine.Specifications;
 using PlainElastic.Net.IndexSettings;
@@ -29,11 +34,13 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
                                             .Name("name")
                                             .Version("3.6")
 <#+
-        foreach (var testData in testDatas)
+        foreach (var testData in testDataList)
         {
+
 #>                                            <#= testData.BuilderCode #>
 <#+
         }
+
 #>                                            .CustomPart("{ Custom }")
                                             .ToString();
 
@@ -44,23 +51,27 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
         It should_contain_version_part = () => result.ShouldContain("'version': '3.6'".AltQuote());
 
 <#+
-        foreach (var testData in testDatas)
+        foreach (var testData in testDataList)
         {
+
 #>        It should_contain_<#= testData.Property.ElasticName #>_part = () => result.ShouldContain("<#= testData.AssertString #>".AltQuote());
 
 <#+
         }
+
 #>        It should_contain_custom_part = () => result.ShouldContain("{ Custom }".AltQuote());
         
         It should_return_correct_result = () => result.ShouldEqual(("'name': { " +
                                                                     "'type': '<#= Metadata.ElasticType #>'," +
                                                                     "'version': '3.6'," +
 <#+
-        foreach (var testData in testDatas)
+        foreach (var testData in testDataList)
         {
+
 #>                                                                    "<#= testData.AssertString #>," +
 <#+
         }
+
 #>                                                                    "{ Custom } }").AltQuote());
 
         private static string result;
@@ -76,30 +87,31 @@ public class PropertyTestData
     {
         Property = property;
 
-        var netTypeCategory = property.NetType.GetNetTypeCategory();
-        var testValue = netTypeCategory == NetTypeCategory.Enum ? property.EnumTestValue : (valuesCounter++).ToString();
+        var ClrTypeCategory = property.ClrType.ClrTypeCategory();
+        var testValue = property.TestValue ?? (valuesCounter++).ToString();
 
         var testValueForBuilder = string.Empty;
-        switch (netTypeCategory)
+        switch (ClrTypeCategory)
         {
-            case NetTypeCategory.Primitive:
+            case ClrTypeCategory.Primitive:
                 testValueForBuilder = testValue;
                 break;
-            case NetTypeCategory.Enum:
-                testValueForBuilder = property.NetType + "." + testValue;
+            case ClrTypeCategory.Enum:
+                testValueForBuilder = property.ClrType + "." + testValue;
                 break;
-            case NetTypeCategory.String:
+            case ClrTypeCategory.String:
                 testValueForBuilder = '"' + testValue + '"';
                 break;
         }
-        BuilderCode = string.Format(".{0}({1})", property.NetName, testValueForBuilder);
+        BuilderCode = string.Format(".{0}({1})", property.ClrName, testValueForBuilder);
 
-        var testValueForJson = netTypeCategory == NetTypeCategory.Primitive ? testValue : "'" + testValue + "'";
+        var testValueForJson = ClrTypeCategory == ClrTypeCategory.Primitive ? testValue : "'" + testValue + "'";
         AssertString = string.Format("'{0}': {1}", property.ElasticName, testValueForJson);
     }
 
-    public ComponentMetadataPropertyView Property { get; set; }
-    public string BuilderCode { get; set; }
-    public string AssertString { get; set; }
+    public ComponentMetadataPropertyView Property { get; private set; }
+    public string BuilderCode { get; private set; }
+    public string AssertString { get; private set; }
 }
+
 #>

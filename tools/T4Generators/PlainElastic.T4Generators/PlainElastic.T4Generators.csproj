@@ -45,6 +45,9 @@
   <ItemGroup>
     <None Include="Builders\AnalysisComponentEmptyTestTemplate.tt" />
     <None Include="Builders\AnalysisComponentCompleteTestTemplate.tt" />
+    <None Include="Builders\AnalysisSettingsTemplate.tt" />
+    <None Include="Builders\AnalysisSettingsEmptyTestTemplate.tt" />
+    <None Include="Builders\AnalysisSettingsCompleteTestTemplate.tt" />
     <None Include="Builders\TokenFilters\Metadata\asciifolding.json" />
     <None Include="Builders\TokenFilters\AsciifoldingTokenFilter.cs">
       <DependentUpon>Generator.tt</DependentUpon>
@@ -91,6 +94,15 @@
       <DependentUpon>Generator.tt</DependentUpon>
     </None>
     <None Include="Builders\TokenFilters\When_complete_NGramTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\TokenFilters\TokenFilterSettings.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\TokenFilters\When_empty_TokenFilterSettings_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\TokenFilters\When_complete_TokenFilterSettings_built.cs">
       <DependentUpon>Generator.tt</DependentUpon>
     </None>
     <Compile Include="Models\ComponentMetadataView.cs" />

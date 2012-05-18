@@ -9,13 +9,17 @@ namespace PlainElastic.T4Generators.Models
         public ComponentMetadataView(ComponentMetadata metadata, AnalysisViewSettings settings)
         {
             ElasticType = metadata.ElasticType;
-            ClassName = ElasticType.ToCamelCase() + settings.ClassNameSuffix;
+            CamelCaseType = ElasticType.ToCamelCase();
+            ClassName = CamelCaseType + settings.ClassNameSuffix;
             ComponentType = settings.ComponentTypeEnum + "." + ElasticType;
             Description = metadata.Description;
-            Properties = metadata.Properties.Select(p => new ComponentMetadataPropertyView(p)).ToList();
+
+            Properties = (metadata.Properties ?? Enumerable.Empty<ComponentMetadataProperty>())
+                            .Select(p => new ComponentMetadataPropertyView(p)).ToList();
         }
 
         public string ElasticType { get; private set; }
+        public string CamelCaseType { get; private set; }
         public string ClassName { get; private set; }
         public string ComponentType { get; private set; }
         public string Description { get; private set; }
@@ -27,10 +31,10 @@ namespace PlainElastic.T4Generators.Models
         public ComponentMetadataPropertyView(ComponentMetadataProperty property)
         {
             ElasticName = property.Name;
-            NetName = property.Name.ToCamelCase();
-            NetType = property.Type;
+            ClrName = ElasticName.ToCamelCase();
+            ClrType = property.Type;
             Description = property.Description;
-            EnumTestValue = property.EnumTestValue;
+            TestValue = property.TestValue;
 
             if (!string.IsNullOrEmpty(property.DefaultCode))
             {
@@ -38,17 +42,17 @@ namespace PlainElastic.T4Generators.Models
             }
             else if (!string.IsNullOrEmpty(property.DefaultValue))
             {
-                DefaultCode = NetType.GetNetTypeCategory() == NetTypeCategory.String
+                DefaultCode = ClrType.ClrTypeCategory() == ClrTypeCategory.String
                                 ? '"' + property.DefaultValue + '"'
                                 : property.DefaultValue;
             }
         }
 
         public string ElasticName { get; private set; }
-        public string NetName { get; private set; }
-        public string NetType { get; private set; }
+        public string ClrName { get; private set; }
+        public string ClrType { get; private set; }
         public string DefaultCode { get; private set; }
+        public string TestValue { get; set; }
         public string Description { get; private set; }
-        public string EnumTestValue { get; set; }
     }
 }

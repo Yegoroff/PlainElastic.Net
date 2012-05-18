@@ -27,23 +27,23 @@ namespace PlainElastic.T4Generators.Utils
             return lines[0] + string.Join(string.Empty, indentedNextLines);
         }
 
-        public static NetTypeCategory GetNetTypeCategory(this string netType)
+        public static ClrTypeCategory ClrTypeCategory(this string netType)
         {
             switch (netType)
             {
                 case "int":
                 case "double":
                 case "bool":
-                    return NetTypeCategory.Primitive;
+                    return Utils.ClrTypeCategory.Primitive;
                 case "string":
-                    return NetTypeCategory.String;
+                    return Utils.ClrTypeCategory.String;
                 default:
-                    return NetTypeCategory.Enum;
+                    return Utils.ClrTypeCategory.Enum;
             }
         }
     }
 
-    public enum NetTypeCategory
+    public enum ClrTypeCategory
     {
         None,
         Primitive,

@@ -1,21 +1,23 @@
-﻿<#@ assembly name="System.Core" #>
-<#@ assembly name="$(ProjectDir)\bin\PlainElastic.T4Generators.dll" #>
-<#@ import namespace="System.Linq" #>
+﻿<#@ assembly name="$(ProjectDir)\bin\PlainElastic.T4Generators.dll" #>
+
 <#@ import namespace="PlainElastic.T4Generators.Models" #>
 <#@ import namespace="PlainElastic.T4Generators.Utils" #>
-<#@ include file="AnalysisComponentTemplate.tt" #>
+
 <#+
-public class AnalysisComponentEmptyTestTemplate : AnalysisComponentTemplate
+public class AnalysisComponentEmptyTestTemplate : Template
 {
-    public AnalysisComponentEmptyTestTemplate(string testClassName, ComponentMetadataView metadata) : base(metadata)
+    public AnalysisComponentEmptyTestTemplate(string testClassName, ComponentMetadataView metadata)
     {
         TestClassName = testClassName;
+        Metadata = metadata;
     }
 
     public string TestClassName { get; set; }
+    public ComponentMetadataView Metadata { get; private set; }
 
     public override string TransformText()
     {
+
 #>
 using Machine.Specifications;
 using PlainElastic.Net.IndexSettings;

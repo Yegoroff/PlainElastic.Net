@@ -1,15 +1,17 @@
 ﻿{
     "description": "A token filter of type nGram that builds N-characters substrings from text.\nsee http://www.elasticsearch.org/guide/reference/index-modules/analysis/ngram-tokenfilter.html",
-    "properties": {
-        "min_gram": {
+    "properties": [
+        {
+            "name": "min_gram",
             "type": "int",
             "defaultValue": 1,
             "description": "Sets the minimal number of characters in N-grams built.\nDefaults to 1."
         },
-        "max_gram": {
+        {
+            "name": "max_gram",
             "type": "int",
             "defaultValue": 2,
             "description": "Sets the maximal number of characters in N-grams built.\nDefaults to 2."
         }
-    }
+    ]
 }

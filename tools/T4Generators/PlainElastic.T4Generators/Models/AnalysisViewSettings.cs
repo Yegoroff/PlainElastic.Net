@@ -12,10 +12,12 @@ namespace PlainElastic.T4Generators.Models
         {
             ElasticSectionName = elasticSectionName;
             ClassNameSuffix = elasticSectionName.ToCamelCase();
+            SettingsClassName = ClassNameSuffix + "Settings";
             ComponentTypeEnum = "Default" + ClassNameSuffix + "s";
         }
 
         public string ElasticSectionName { get; set; }
+        public string SettingsClassName { get; set; }
         public string ClassNameSuffix { get; set; }
         public string ComponentTypeEnum { get; set; }
     }

@@ -1,9 +1,13 @@
 <#@ template language="C#" hostspecific="True" debug="True" #>
 <#@ output extension="ignore" #>
+
 <#@ assembly name="$(ProjectDir)\bin\PlainElastic.T4Generators.dll" #>
+
 <#@ import namespace="PlainElastic.T4Generators.Models" #>
+
 <#@ include file="T4Toolbox.tt" #>
 <#@ include file="..\AnalysisComponentsGenerator.tt" #>
+
 <#
     var settings = new AnalysisViewSettings("token_filter");
     new AnalysisComponentsGenerator(Host, settings).Run();

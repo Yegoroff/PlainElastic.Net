@@ -1,8 +1,10 @@
 ﻿<#@ assembly name="System.Core" #>
 <#@ assembly name="$(ProjectDir)\bin\PlainElastic.T4Generators.dll" #>
+
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="PlainElastic.T4Generators.Models" #>
 <#@ import namespace="PlainElastic.T4Generators.Utils" #>
+
 <#+
 public class AnalysisComponentTemplate : Template
 {
@@ -15,6 +17,7 @@ public class AnalysisComponentTemplate : Template
 
     public override string TransformText()
     {
+
 #>
 using PlainElastic.Net.Utils;
 
@@ -35,31 +38,32 @@ namespace PlainElastic.Net.IndexSettings
             WriteLine(string.Empty);
             foreach (var property in Metadata.Properties)
             {
-                var parameterName = property.NetName.Uncapitalize();
+                var parameterName = property.ClrName.Uncapitalize();
 
                 var defaultValueStatement = !string.IsNullOrEmpty(property.DefaultCode)
                                                 ? " = " + property.DefaultCode
                                                 : string.Empty;
 
                 string parameterTransformStatement = string.Empty;
-                switch (property.NetType.GetNetTypeCategory())
+                switch (property.ClrType.ClrTypeCategory())
                 {
-                    case NetTypeCategory.Primitive:
+                    case ClrTypeCategory.Primitive:
                         parameterTransformStatement = ".AsString()";
                         break;
-                    case NetTypeCategory.Enum:
+                    case ClrTypeCategory.Enum:
                         parameterTransformStatement = ".AsString().Quotate()";
                         break;
-                    case NetTypeCategory.String:
+                    case ClrTypeCategory.String:
                         parameterTransformStatement = ".Quotate()";
                         break;
                 }
+
 #>
 
         /// <summary>
         /// <#= property.Description.ToCodeSummary(indentSpaces: 8) #>
         /// </summary>
-        public <#= Metadata.ClassName #> <#= property.NetName #>(<#= property.NetType #> <#= parameterName #><#= defaultValueStatement #>)
+        public <#= Metadata.ClassName #> <#= property.ClrName #>(<#= property.ClrType #> <#= parameterName #><#= defaultValueStatement #>)
         {
             RegisterJsonPart("'<#= property.ElasticName #>': {0}", <#= parameterName #><#= parameterTransformStatement #>);
             return this;
@@ -67,9 +71,11 @@ namespace PlainElastic.Net.IndexSettings
 <#+
             }
         }
+
 #>    }
 }<#+
         return this.GenerationEnvironment.ToString();
     }
 }
+
 #>

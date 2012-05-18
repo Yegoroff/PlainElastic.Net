@@ -1,11 +1,19 @@
 ﻿<#@ assembly name="System.Core" #>
 <#@ assembly name="$(ProjectDir)\bin\PlainElastic.T4Generators.dll" #>
+
 <#@ import namespace="System.IO" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="Microsoft.VisualStudio.TextTemplating" #>
 <#@ import namespace="PlainElastic.T4Generators.Models" #>
 <#@ import namespace="PlainElastic.T4Generators.Utils" #>
+
+<#@ include file="AnalysisComponentTemplate.tt" #>
+<#@ include file="AnalysisComponentEmptyTestTemplate.tt" #>
 <#@ include file="AnalysisComponentCompleteTestTemplate.tt" #>
+<#@ include file="AnalysisSettingsTemplate.tt" #>
+<#@ include file="AnalysisSettingsEmptyTestTemplate.tt" #>
+<#@ include file="AnalysisSettingsCompleteTestTemplate.tt" #>
+
 <#+
 public class AnalysisComponentsGenerator : Generator
 {
@@ -29,14 +37,35 @@ public class AnalysisComponentsGenerator : Generator
             var template = new AnalysisComponentTemplate(metadataView);
             RenderCodeTemplate(metadataView.ClassName, template);
 
-            var emptyTestClassName = string.Format("When_empty_{0}_built", metadataView.ClassName);
+            var emptyTestClassName = GetEmptyTestClassName(metadataView.ClassName);
             var emptyTestTemplate = new AnalysisComponentEmptyTestTemplate(emptyTestClassName, metadataView);
             RenderCodeTemplate(emptyTestClassName, emptyTestTemplate);
 
-            var completeTestClassName = string.Format("When_complete_{0}_built", metadataView.ClassName);
+            var completeTestClassName = GetCompleteTestClassName(metadataView.ClassName);
             var completeTestTemplate = new AnalysisComponentCompleteTestTemplate(completeTestClassName, metadataView);
             RenderCodeTemplate(completeTestClassName, completeTestTemplate);
         }
+
+        var settingsTemplate = new AnalysisSettingsTemplate(metadataViews, Settings);
+        RenderCodeTemplate(Settings.SettingsClassName, settingsTemplate);
+
+        var settingsEmptyTestClassName = GetEmptyTestClassName(Settings.SettingsClassName);
+        var settingsEmptyTestTemplate = new AnalysisSettingsEmptyTestTemplate(settingsEmptyTestClassName, Settings);
+        RenderCodeTemplate(settingsEmptyTestClassName, settingsEmptyTestTemplate);
+
+        var settingsCompleteTestClassName = GetCompleteTestClassName(Settings.SettingsClassName);
+        var settingsCompleteTestTemplate = new AnalysisSettingsCompleteTestTemplate(settingsCompleteTestClassName, metadataViews, Settings);
+        RenderCodeTemplate(settingsCompleteTestClassName, settingsCompleteTestTemplate);
+    }
+
+    private static string GetEmptyTestClassName(string testedClassName)
+    {
+        return string.Format("When_empty_{0}_built", testedClassName);
+    }
+
+    private static string GetCompleteTestClassName(string testedClassName)
+    {
+        return string.Format("When_complete_{0}_built", testedClassName);
     }
 
     private static void RenderCodeTemplate(string fileName, Template template)
@@ -45,4 +74,5 @@ public class AnalysisComponentsGenerator : Generator
         template.RenderToFile(fileName + ".cs");
     }
 }
+
 #>

@@ -77,6 +77,9 @@
     <Compile Include="Builders\IndexSettings\Analysis\Analysis.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\EdgeNGramComponentBase.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\NGramComponentBase.cs" />
+    <Compile Include="Builders\IndexSettings\Analysis\Tokenizers\WhitespaceTokenizer.cs" />
+    <Compile Include="Builders\IndexSettings\Analysis\Tokenizers\LowercaseTokenizer.cs" />
+    <Compile Include="Builders\IndexSettings\Analysis\Tokenizers\LetterTokenizer.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\Tokenizers\PathHierarchyTokenizer.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\Tokenizers\UaxUrlEmailTokenizer.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\Tokenizers\StandardTokenizer.cs" />

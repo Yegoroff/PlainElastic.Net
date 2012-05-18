@@ -12,10 +12,16 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
                                             .EdgeNGram("named_edgeNGram")
                                             .Keyword(k => k.CustomPart("Keyword"))
                                             .Keyword("named_keyword")
+                                            .Letter(l => l.CustomPart("Letter"))
+                                            .Letter("named_letter")
+                                            .Lowercase(l => l.CustomPart("Lowercase"))
+                                            .Lowercase("named_lowercase")
                                             .NGram(n => n.CustomPart("NGram"))
                                             .NGram("named_nGram")
                                             .Standard(s => s.CustomPart("Standard"))
                                             .Standard("named_standard")
+                                            .Whitespace(w => w.CustomPart("Whitespace"))
+                                            .Whitespace("named_whitespace")
                                             .Pattern(p => p.CustomPart("Pattern"))
                                             .Pattern("named_pattern")
                                             .UaxUrlEmail(u => u.CustomPart("UaxUrlEmail"))
@@ -33,6 +39,14 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
 
         It should_contain_named_keyword_part = () => result.ShouldContain("'named_keyword': { 'type': 'keyword' }".AltQuote());
 
+        It should_contain_letter_part = () => result.ShouldContain("'letter': { 'type': 'letter',Letter }".AltQuote());
+
+        It should_contain_named_letter_part = () => result.ShouldContain("'named_letter': { 'type': 'letter' }".AltQuote());
+
+        It should_contain_lowercase_part = () => result.ShouldContain("'lowercase': { 'type': 'lowercase',Lowercase }".AltQuote());
+
+        It should_contain_named_lowercase_part = () => result.ShouldContain("'named_lowercase': { 'type': 'lowercase' }".AltQuote());
+
         It should_contain_nGram_part = () => result.ShouldContain("'nGram': { 'type': 'nGram',NGram }".AltQuote());
 
         It should_contain_named_nGram_part = () => result.ShouldContain("'named_nGram': { 'type': 'nGram' }".AltQuote());
@@ -40,6 +54,10 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
         It should_contain_standard_part = () => result.ShouldContain("'standard': { 'type': 'standard',Standard }".AltQuote());
 
         It should_contain_named_standard_part = () => result.ShouldContain("'named_standard': { 'type': 'standard' }".AltQuote());
+
+        It should_contain_whitespace_part = () => result.ShouldContain("'whitespace': { 'type': 'whitespace',Whitespace }".AltQuote());
+
+        It should_contain_named_whitespace_part = () => result.ShouldContain("'named_whitespace': { 'type': 'whitespace' }".AltQuote());
 
         It should_contain_pattern_part = () => result.ShouldContain("'pattern': { 'type': 'pattern',Pattern }".AltQuote());
 
@@ -60,10 +78,16 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
                                                                     "'named_edgeNGram': { 'type': 'edgeNGram' }," +
                                                                     "'keyword': { 'type': 'keyword',Keyword }," +
                                                                     "'named_keyword': { 'type': 'keyword' }," +
+                                                                    "'letter': { 'type': 'letter',Letter }," +
+                                                                    "'named_letter': { 'type': 'letter' }," +
+                                                                    "'lowercase': { 'type': 'lowercase',Lowercase }," +
+                                                                    "'named_lowercase': { 'type': 'lowercase' }," +
                                                                     "'nGram': { 'type': 'nGram',NGram }," +
                                                                     "'named_nGram': { 'type': 'nGram' }," +
                                                                     "'standard': { 'type': 'standard',Standard }," +
                                                                     "'named_standard': { 'type': 'standard' }," +
+                                                                    "'whitespace': { 'type': 'whitespace',Whitespace }," +
+                                                                    "'named_whitespace': { 'type': 'whitespace' }," +
                                                                     "'pattern': { 'type': 'pattern',Pattern }," +
                                                                     "'named_pattern': { 'type': 'pattern' }," +
                                                                     "'uax_url_email': { 'type': 'uax_url_email',UaxUrlEmail }," +

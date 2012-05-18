@@ -4,13 +4,13 @@
         {
             "name": "min",
             "type": "int",
-            "defaultValue": 0,
+            "defaultValue": "0",
             "description": "Sets the minimum length.\nDefaults to 0."
         },
         {
             "name": "max",
             "type": "int",
-            "defaultCode": "int.MaxValue",
+            "defaultValue": "int.MaxValue",
             "description": "Sets the maximum length.\nDefaults to int.MaxValue."
         }
     ]

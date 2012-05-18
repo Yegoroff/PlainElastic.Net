@@ -4,13 +4,13 @@
         {
             "name": "min_gram",
             "type": "int",
-            "defaultValue": 1,
+            "defaultValue": "1",
             "description": "Sets the minimal number of characters in N-grams built.\nDefaults to 1."
         },
         {
             "name": "max_gram",
             "type": "int",
-            "defaultValue": 2,
+            "defaultValue": "2",
             "description": "Sets the maximal number of characters in N-grams built.\nDefaults to 2."
         }
     ]

@@ -9,7 +9,7 @@ public class AnalysisSettingsTemplate : Template
 {
     public AnalysisSettingsTemplate(IEnumerable<ComponentMetadataView> metadataViews, AnalysisViewSettings settings)
     {
-        MetadataViews= metadataViews;
+        MetadataViews = metadataViews;
         Settings = settings;
     }
 

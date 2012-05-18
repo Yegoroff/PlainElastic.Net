@@ -4,7 +4,7 @@
         {
             "name": "max_shingle_size",
             "type": "int",
-            "defaultValue": 2,
+            "defaultValue": "2",
             "description": "Sets the maximal shingle size.\nDefaults to 2."
         },
         {

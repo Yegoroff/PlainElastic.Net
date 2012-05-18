@@ -87,11 +87,11 @@ public class PropertyTestData
     {
         Property = property;
 
-        var ClrTypeCategory = property.ClrType.ClrTypeCategory();
-        var testValue = property.TestValue ?? (valuesCounter++).ToString();
+        var clrTypeCategory = property.ClrType.ClrTypeCategory();
+        var testValue = property.TestValue ?? (property.ClrType == "bool" ? "true" : (valuesCounter++).ToString());
 
         var testValueForBuilder = string.Empty;
-        switch (ClrTypeCategory)
+        switch (clrTypeCategory)
         {
             case ClrTypeCategory.Primitive:
                 testValueForBuilder = testValue;
@@ -105,7 +105,7 @@ public class PropertyTestData
         }
         BuilderCode = string.Format(".{0}({1})", property.ClrName, testValueForBuilder);
 
-        var testValueForJson = ClrTypeCategory == ClrTypeCategory.Primitive ? testValue : "'" + testValue + "'";
+        var testValueForJson = clrTypeCategory == ClrTypeCategory.Primitive ? testValue : "'" + testValue + "'";
         AssertString = string.Format("'{0}': {1}", property.ElasticName, testValueForJson);
     }
 

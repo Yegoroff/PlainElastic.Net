@@ -1,0 +1,23 @@
+﻿{
+    "description": "A token filter of type edgeNGram that builds N-characters substrings from text. Substrings are built from one side of a text.\nsee http://www.elasticsearch.org/guide/reference/index-modules/analysis/edgengram-tokenfilter.html",
+    "properties": [
+        {
+            "name": "min_gram",
+            "type": "int",
+            "defaultValue": 1,
+            "description": "Sets the minimal number of characters in N-grams built.\nDefaults to 1."
+        },
+        {
+            "name": "max_gram",
+            "type": "int",
+            "defaultValue": 2,
+            "description": "Sets the maximal number of characters in N-grams built.\nDefaults to 2."
+        },
+        {
+            "name": "side",
+            "type": "EdgeNGramSide",
+            "testValue": "front",
+            "description": "Sets the text side from which N-grams are built."
+        }
+    ]
+}

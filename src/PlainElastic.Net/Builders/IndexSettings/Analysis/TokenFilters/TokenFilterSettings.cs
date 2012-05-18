@@ -35,6 +35,30 @@ namespace PlainElastic.Net.IndexSettings
         #endregion
 
 
+        #region EdgeNGram
+
+        /// <summary>
+        /// A token filter of type edgeNGram that builds N-characters substrings from text. Substrings are built from one side of a text.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/edgengram-tokenfilter.html
+        /// </summary>
+        public TokenFilterSettings EdgeNGram(string name, Func<EdgeNGramTokenFilter, EdgeNGramTokenFilter> edgeNGram = null)
+        {
+            RegisterJsonPartExpression(edgeNGram.Bind(tokenizer => tokenizer.Name(name)));
+            return this;
+        }
+
+        /// <summary>
+        /// A token filter of type edgeNGram that builds N-characters substrings from text. Substrings are built from one side of a text.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/edgengram-tokenfilter.html
+        /// </summary>
+        public TokenFilterSettings EdgeNGram(Func<EdgeNGramTokenFilter, EdgeNGramTokenFilter> edgeNGram)
+        {
+            return EdgeNGram(DefaultTokenFilters.edgeNGram.AsString(), edgeNGram);
+        }
+
+        #endregion
+
+
         #region Length
 
         /// <summary>
@@ -102,6 +126,60 @@ namespace PlainElastic.Net.IndexSettings
         public TokenFilterSettings NGram(Func<NGramTokenFilter, NGramTokenFilter> nGram)
         {
             return NGram(DefaultTokenFilters.nGram.AsString(), nGram);
+        }
+
+        #endregion
+
+
+        #region PorterStem
+
+        /// <summary>
+        /// A token filter of type porterStem that transforms the token stream as per the Porter stemming algorithm.
+        /// Note, the input to the stemming filter must already be in lower case, so you will need to use Lower Case Token Filter
+        /// or Lower Case Tokenizer farther down the Tokenizer chain in order for this to work properly!
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/porterstem-tokenfilter.html
+        /// </summary>
+        public TokenFilterSettings PorterStem(string name, Func<PorterStemTokenFilter, PorterStemTokenFilter> porterStem = null)
+        {
+            RegisterJsonPartExpression(porterStem.Bind(tokenizer => tokenizer.Name(name)));
+            return this;
+        }
+
+        /// <summary>
+        /// A token filter of type porterStem that transforms the token stream as per the Porter stemming algorithm.
+        /// Note, the input to the stemming filter must already be in lower case, so you will need to use Lower Case Token Filter
+        /// or Lower Case Tokenizer farther down the Tokenizer chain in order for this to work properly!
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/porterstem-tokenfilter.html
+        /// </summary>
+        public TokenFilterSettings PorterStem(Func<PorterStemTokenFilter, PorterStemTokenFilter> porterStem)
+        {
+            return PorterStem(DefaultTokenFilters.porterStem.AsString(), porterStem);
+        }
+
+        #endregion
+
+
+        #region Shingle
+
+        /// <summary>
+        /// A token filter of type shingle that constructs shingles (token n-grams) from a token stream.
+        /// In other words, it creates combinations of tokens as a single token.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/shingle-tokenfilter.html
+        /// </summary>
+        public TokenFilterSettings Shingle(string name, Func<ShingleTokenFilter, ShingleTokenFilter> shingle = null)
+        {
+            RegisterJsonPartExpression(shingle.Bind(tokenizer => tokenizer.Name(name)));
+            return this;
+        }
+
+        /// <summary>
+        /// A token filter of type shingle that constructs shingles (token n-grams) from a token stream.
+        /// In other words, it creates combinations of tokens as a single token.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/shingle-tokenfilter.html
+        /// </summary>
+        public TokenFilterSettings Shingle(Func<ShingleTokenFilter, ShingleTokenFilter> shingle)
+        {
+            return Shingle(DefaultTokenFilters.shingle.AsString(), shingle);
         }
 
         #endregion

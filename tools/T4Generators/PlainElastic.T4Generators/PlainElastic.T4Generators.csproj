@@ -52,6 +52,9 @@
     <None Include="Builders\TokenFilters\AsciifoldingTokenFilter.cs">
       <DependentUpon>Generator.tt</DependentUpon>
     </None>
+    <None Include="Builders\TokenFilters\Metadata\shingle.json" />
+    <None Include="Builders\TokenFilters\Metadata\porterStem.json" />
+    <None Include="Builders\TokenFilters\Metadata\edgeNGram.json" />
     <None Include="Builders\TokenFilters\Metadata\nGram.json" />
     <None Include="Builders\TokenFilters\Metadata\lowercase.json" />
     <None Include="Builders\TokenFilters\When_empty_AsciifoldingTokenFilter_built.cs">
@@ -103,6 +106,33 @@
       <DependentUpon>Generator.tt</DependentUpon>
     </None>
     <None Include="Builders\TokenFilters\When_complete_TokenFilterSettings_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\TokenFilters\EdgeNGramTokenFilter.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\TokenFilters\When_empty_EdgeNGramTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\TokenFilters\When_complete_EdgeNGramTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\TokenFilters\PorterStemTokenFilter.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\TokenFilters\When_empty_PorterStemTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\TokenFilters\When_complete_PorterStemTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\TokenFilters\ShingleTokenFilter.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\TokenFilters\When_empty_ShingleTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\TokenFilters\When_complete_ShingleTokenFilter_built.cs">
       <DependentUpon>Generator.tt</DependentUpon>
     </None>
     <Compile Include="Models\ComponentMetadataView.cs" />

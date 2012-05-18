@@ -78,9 +78,12 @@
     <Compile Include="Builders\IndexSettings\Analysis\EdgeNGramComponentBase.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\NGramComponentBase.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\TokenFilters\AsciifoldingTokenFilter.cs" />
+    <Compile Include="Builders\IndexSettings\Analysis\TokenFilters\EdgeNGramTokenFilter.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\TokenFilters\LengthTokenFilter.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\TokenFilters\LowercaseTokenFilter.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\TokenFilters\NGramTokenFilter.cs" />
+    <Compile Include="Builders\IndexSettings\Analysis\TokenFilters\PorterStemTokenFilter.cs" />
+    <Compile Include="Builders\IndexSettings\Analysis\TokenFilters\ShingleTokenFilter.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\TokenFilters\StandardTokenFilter.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\TokenFilters\TokenFilterSettings.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\Tokenizers\PathHierarchyTokenizer.cs" />

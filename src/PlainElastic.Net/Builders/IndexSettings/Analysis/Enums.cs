@@ -100,6 +100,12 @@ namespace PlainElastic.Net.IndexSettings
         haasephonetik
     }
 
+    public enum SynonymTokenFilterFormats
+    {
+        Solr,
+        WordNet
+    }
+
     /// <summary>
     /// Supported language analyzer types.
     /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/lang-analyzer.html

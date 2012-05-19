@@ -34,6 +34,8 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
                                             .Stemmer("named_stemmer")
                                             .Stop(x => x.CustomPart("Stop"))
                                             .Stop("named_stop")
+                                            .Synonym(x => x.CustomPart("Synonym"))
+                                            .Synonym("named_synonym")
                                             .WordDelimiter(x => x.CustomPart("WordDelimiter"))
                                             .WordDelimiter("named_word_delimiter")
                                             .CustomPart("{ Custom }")
@@ -91,6 +93,10 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
 
         It should_contain_named_stop_part = () => result.ShouldContain("'named_stop': { 'type': 'stop' }".AltQuote());
 
+        It should_contain_synonym_part = () => result.ShouldContain("'synonym': { 'type': 'synonym',Synonym }".AltQuote());
+
+        It should_contain_named_synonym_part = () => result.ShouldContain("'named_synonym': { 'type': 'synonym' }".AltQuote());
+
         It should_contain_word_delimiter_part = () => result.ShouldContain("'word_delimiter': { 'type': 'word_delimiter',WordDelimiter }".AltQuote());
 
         It should_contain_named_word_delimiter_part = () => result.ShouldContain("'named_word_delimiter': { 'type': 'word_delimiter' }".AltQuote());
@@ -124,6 +130,8 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
                                                                     "'named_stemmer': { 'type': 'stemmer' }," +
                                                                     "'stop': { 'type': 'stop',Stop }," +
                                                                     "'named_stop': { 'type': 'stop' }," +
+                                                                    "'synonym': { 'type': 'synonym',Synonym }," +
+                                                                    "'named_synonym': { 'type': 'synonym' }," +
                                                                     "'word_delimiter': { 'type': 'word_delimiter',WordDelimiter }," +
                                                                     "'named_word_delimiter': { 'type': 'word_delimiter' }," +
                                                                     "{ Custom } }").AltQuote());

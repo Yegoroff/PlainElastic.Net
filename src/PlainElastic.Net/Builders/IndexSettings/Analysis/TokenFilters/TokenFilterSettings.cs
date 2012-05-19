@@ -331,6 +331,30 @@ namespace PlainElastic.Net.IndexSettings
         #endregion
 
 
+        #region Synonym
+
+        /// <summary>
+        /// The synonym token filter allows to easily handle synonyms during the analysis process.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/synonym-tokenfilter.html
+        /// </summary>
+        public TokenFilterSettings Synonym(string name, Func<SynonymTokenFilter, SynonymTokenFilter> synonym = null)
+        {
+            RegisterJsonPartExpression(synonym.Bind(tokenizer => tokenizer.Name(name)));
+            return this;
+        }
+
+        /// <summary>
+        /// The synonym token filter allows to easily handle synonyms during the analysis process.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/synonym-tokenfilter.html
+        /// </summary>
+        public TokenFilterSettings Synonym(Func<SynonymTokenFilter, SynonymTokenFilter> synonym)
+        {
+            return Synonym(DefaultTokenFilters.synonym.AsString(), synonym);
+        }
+
+        #endregion
+
+
         #region WordDelimiter
 
         /// <summary>

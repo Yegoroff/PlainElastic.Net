@@ -91,6 +91,8 @@
     <Compile Include="Builders\Analysis\TokenFilters\Stemmer\When_empty_StemmerTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\Stop\When_complete_StopTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\Stop\When_empty_StopTokenFilter_built.cs" />
+    <Compile Include="Builders\Analysis\TokenFilters\Synonym\When_complete_SynonymTokenFilter_built.cs" />
+    <Compile Include="Builders\Analysis\TokenFilters\Synonym\When_empty_SynonymTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\When_complete_TokenFilterSettings_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\When_empty_TokenFilterSettings_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\WordDelimiter\When_complete_WordDelimiterTokenFilter_built.cs" />

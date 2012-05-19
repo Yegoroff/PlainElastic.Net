@@ -49,6 +49,7 @@
     <None Include="Builders\Analysis\TokenFilters\AsciifoldingTokenFilter.cs">
       <DependentUpon>Generator.tt</DependentUpon>
     </None>
+    <None Include="Builders\Analysis\TokenFilters\Metadata\synonym.json" />
     <None Include="Builders\Analysis\TokenFilters\Metadata\phonetic.json" />
     <None Include="Builders\Analysis\TokenFilters\Metadata\snowball.json" />
     <None Include="Builders\Analysis\TokenFilters\Metadata\kstem.json" />
@@ -190,6 +191,15 @@
       <DependentUpon>Generator.tt</DependentUpon>
     </None>
     <None Include="Builders\Analysis\TokenFilters\When_complete_PhoneticTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\SynonymTokenFilter.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_empty_SynonymTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_complete_SynonymTokenFilter_built.cs">
       <DependentUpon>Generator.tt</DependentUpon>
     </None>
     <Compile Include="Models\ComponentMetadataView.cs" />

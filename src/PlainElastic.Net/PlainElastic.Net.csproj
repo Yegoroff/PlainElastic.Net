@@ -90,6 +90,7 @@
     <Compile Include="Builders\IndexSettings\Analysis\TokenFilters\StandardTokenFilter.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\TokenFilters\StemmerTokenFilter.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\TokenFilters\StopTokenFilter.cs" />
+    <Compile Include="Builders\IndexSettings\Analysis\TokenFilters\SynonymTokenFilter.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\TokenFilters\TokenFilterSettings.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\TokenFilters\WordDelimiterTokenFilter.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\Tokenizers\PathHierarchyTokenizer.cs" />

@@ -124,7 +124,7 @@ namespace PlainElastic.Net.IndexSettings
         }
 
         /// <summary>
-        /// Sets a path to a provected words file configuration.
+        /// Sets a path (either relative to config location, or absolute) to a protected words file configuration.
         /// </summary>
         public WordDelimiterTokenFilter ProtectedWordsPath(string protectedWordsPath)
         {
@@ -151,7 +151,7 @@ namespace PlainElastic.Net.IndexSettings
         }
 
         /// <summary>
-        /// Sets a path to a custom type mapping file configuration.
+        /// Sets a path (either relative to config location, or absolute) to a custom type mapping file configuration.
         /// </summary>
         public WordDelimiterTokenFilter TypeTablePath(string typeTablePath)
         {

@@ -65,7 +65,7 @@
         {
             "name": "protected_words_path",
             "type": "string",
-            "description": "Sets a path to a provected words file configuration."
+            "description": "Sets a path (either relative to config location, or absolute) to a protected words file configuration."
         },
 
         {
@@ -77,7 +77,7 @@
         {
             "name": "type_table_path",
             "type": "string",
-            "description": "Sets a path to a custom type mapping file configuration."
+            "description": "Sets a path (either relative to config location, or absolute) to a custom type mapping file configuration."
         }
     ]
 }

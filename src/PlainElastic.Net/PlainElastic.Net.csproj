@@ -86,6 +86,7 @@
     <Compile Include="Builders\IndexSettings\Analysis\TokenFilters\LengthTokenFilter.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\TokenFilters\LowercaseTokenFilter.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\TokenFilters\NGramTokenFilter.cs" />
+    <Compile Include="Builders\IndexSettings\Analysis\TokenFilters\PatternReplaceTokenFilter.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\TokenFilters\PhoneticTokenFilter.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\TokenFilters\PorterStemTokenFilter.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\TokenFilters\ReverseTokenFilter.cs" />
@@ -96,7 +97,9 @@
     <Compile Include="Builders\IndexSettings\Analysis\TokenFilters\StopTokenFilter.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\TokenFilters\SynonymTokenFilter.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\TokenFilters\TokenFilterSettings.cs" />
+    <Compile Include="Builders\IndexSettings\Analysis\TokenFilters\TrimTokenFilter.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\TokenFilters\TruncateTokenFilter.cs" />
+    <Compile Include="Builders\IndexSettings\Analysis\TokenFilters\UniqueTokenFilter.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\TokenFilters\WordDelimiterTokenFilter.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\Tokenizers\PathHierarchyTokenizer.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\Tokenizers\UaxUrlEmailTokenizer.cs" />

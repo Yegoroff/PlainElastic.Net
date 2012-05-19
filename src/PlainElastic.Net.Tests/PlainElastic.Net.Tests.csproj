@@ -83,6 +83,8 @@
     <Compile Include="Builders\Analysis\TokenFilters\Lowercase\When_empty_LowercaseTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\NGram\When_complete_NGramTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\NGram\When_empty_NGramTokenFilter_built.cs" />
+    <Compile Include="Builders\Analysis\TokenFilters\PatternReplace\When_complete_PatternReplaceTokenFilter_built.cs" />
+    <Compile Include="Builders\Analysis\TokenFilters\PatternReplace\When_empty_PatternReplaceTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\Phonetic\When_complete_PhoneticTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\Phonetic\When_empty_PhoneticTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\PorterStem\When_complete_PorterStemTokenFilter_built.cs" />
@@ -101,8 +103,12 @@
     <Compile Include="Builders\Analysis\TokenFilters\Stop\When_empty_StopTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\Synonym\When_complete_SynonymTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\Synonym\When_empty_SynonymTokenFilter_built.cs" />
+    <Compile Include="Builders\Analysis\TokenFilters\Trim\When_complete_TrimTokenFilter_built.cs" />
+    <Compile Include="Builders\Analysis\TokenFilters\Trim\When_empty_TrimTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\Truncate\When_complete_TruncateTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\Truncate\When_empty_TruncateTokenFilter_built.cs" />
+    <Compile Include="Builders\Analysis\TokenFilters\Unique\When_complete_UniqueTokenFilter_built.cs" />
+    <Compile Include="Builders\Analysis\TokenFilters\Unique\When_empty_UniqueTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\When_complete_TokenFilterSettings_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\When_empty_TokenFilterSettings_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\WordDelimiter\When_complete_WordDelimiterTokenFilter_built.cs" />

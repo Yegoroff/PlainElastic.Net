@@ -229,6 +229,30 @@ namespace PlainElastic.Net.IndexSettings
         #endregion
 
 
+        #region PatternReplace
+
+        /// <summary>
+        /// The pattern_replace token filter allows to easily handle string replacements based on a regular expression.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/pattern_replace-tokenfilter.html
+        /// </summary>
+        public TokenFilterSettings PatternReplace(string name, Func<PatternReplaceTokenFilter, PatternReplaceTokenFilter> patternReplace = null)
+        {
+            RegisterJsonPartExpression(patternReplace.Bind(tokenizer => tokenizer.Name(name)));
+            return this;
+        }
+
+        /// <summary>
+        /// The pattern_replace token filter allows to easily handle string replacements based on a regular expression.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/pattern_replace-tokenfilter.html
+        /// </summary>
+        public TokenFilterSettings PatternReplace(Func<PatternReplaceTokenFilter, PatternReplaceTokenFilter> patternReplace)
+        {
+            return PatternReplace(DefaultTokenFilters.pattern_replace.AsString(), patternReplace);
+        }
+
+        #endregion
+
+
         #region Phonetic
 
         /// <summary>
@@ -451,6 +475,30 @@ namespace PlainElastic.Net.IndexSettings
         #endregion
 
 
+        #region Trim
+
+        /// <summary>
+        /// The trim token filter trims surrounding whitespaces around a token.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/trim-tokenfilter.html
+        /// </summary>
+        public TokenFilterSettings Trim(string name, Func<TrimTokenFilter, TrimTokenFilter> trim = null)
+        {
+            RegisterJsonPartExpression(trim.Bind(tokenizer => tokenizer.Name(name)));
+            return this;
+        }
+
+        /// <summary>
+        /// The trim token filter trims surrounding whitespaces around a token.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/trim-tokenfilter.html
+        /// </summary>
+        public TokenFilterSettings Trim(Func<TrimTokenFilter, TrimTokenFilter> trim)
+        {
+            return Trim(DefaultTokenFilters.trim.AsString(), trim);
+        }
+
+        #endregion
+
+
         #region Truncate
 
         /// <summary>
@@ -470,6 +518,30 @@ namespace PlainElastic.Net.IndexSettings
         public TokenFilterSettings Truncate(Func<TruncateTokenFilter, TruncateTokenFilter> truncate)
         {
             return Truncate(DefaultTokenFilters.truncate.AsString(), truncate);
+        }
+
+        #endregion
+
+
+        #region Unique
+
+        /// <summary>
+        /// The unique token filter can be used to only index unique tokens during analysis.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/unique-tokenfilter.html
+        /// </summary>
+        public TokenFilterSettings Unique(string name, Func<UniqueTokenFilter, UniqueTokenFilter> unique = null)
+        {
+            RegisterJsonPartExpression(unique.Bind(tokenizer => tokenizer.Name(name)));
+            return this;
+        }
+
+        /// <summary>
+        /// The unique token filter can be used to only index unique tokens during analysis.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/unique-tokenfilter.html
+        /// </summary>
+        public TokenFilterSettings Unique(Func<UniqueTokenFilter, UniqueTokenFilter> unique)
+        {
+            return Unique(DefaultTokenFilters.unique.AsString(), unique);
         }
 
         #endregion

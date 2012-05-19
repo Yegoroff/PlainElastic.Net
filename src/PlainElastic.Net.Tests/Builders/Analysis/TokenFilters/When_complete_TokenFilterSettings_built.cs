@@ -26,6 +26,8 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
                                             .Lowercase("named_lowercase")
                                             .NGram(x => x.CustomPart("NGram"))
                                             .NGram("named_nGram")
+                                            .PatternReplace(x => x.CustomPart("PatternReplace"))
+                                            .PatternReplace("named_pattern_replace")
                                             .Phonetic(x => x.CustomPart("Phonetic"))
                                             .Phonetic("named_phonetic")
                                             .PorterStem(x => x.CustomPart("PorterStem"))
@@ -44,8 +46,12 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
                                             .Stop("named_stop")
                                             .Synonym(x => x.CustomPart("Synonym"))
                                             .Synonym("named_synonym")
+                                            .Trim(x => x.CustomPart("Trim"))
+                                            .Trim("named_trim")
                                             .Truncate(x => x.CustomPart("Truncate"))
                                             .Truncate("named_truncate")
+                                            .Unique(x => x.CustomPart("Unique"))
+                                            .Unique("named_unique")
                                             .WordDelimiter(x => x.CustomPart("WordDelimiter"))
                                             .WordDelimiter("named_word_delimiter")
                                             .CustomPart("{ Custom }")
@@ -87,6 +93,10 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
 
         It should_contain_named_nGram_part = () => result.ShouldContain("'named_nGram': { 'type': 'nGram' }".AltQuote());
 
+        It should_contain_pattern_replace_part = () => result.ShouldContain("'pattern_replace': { 'type': 'pattern_replace',PatternReplace }".AltQuote());
+
+        It should_contain_named_pattern_replace_part = () => result.ShouldContain("'named_pattern_replace': { 'type': 'pattern_replace' }".AltQuote());
+
         It should_contain_phonetic_part = () => result.ShouldContain("'phonetic': { 'type': 'phonetic',Phonetic }".AltQuote());
 
         It should_contain_named_phonetic_part = () => result.ShouldContain("'named_phonetic': { 'type': 'phonetic' }".AltQuote());
@@ -123,9 +133,17 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
 
         It should_contain_named_synonym_part = () => result.ShouldContain("'named_synonym': { 'type': 'synonym' }".AltQuote());
 
+        It should_contain_trim_part = () => result.ShouldContain("'trim': { 'type': 'trim',Trim }".AltQuote());
+
+        It should_contain_named_trim_part = () => result.ShouldContain("'named_trim': { 'type': 'trim' }".AltQuote());
+
         It should_contain_truncate_part = () => result.ShouldContain("'truncate': { 'type': 'truncate',Truncate }".AltQuote());
 
         It should_contain_named_truncate_part = () => result.ShouldContain("'named_truncate': { 'type': 'truncate' }".AltQuote());
+
+        It should_contain_unique_part = () => result.ShouldContain("'unique': { 'type': 'unique',Unique }".AltQuote());
+
+        It should_contain_named_unique_part = () => result.ShouldContain("'named_unique': { 'type': 'unique' }".AltQuote());
 
         It should_contain_word_delimiter_part = () => result.ShouldContain("'word_delimiter': { 'type': 'word_delimiter',WordDelimiter }".AltQuote());
 
@@ -152,6 +170,8 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
                                                                     "'named_lowercase': { 'type': 'lowercase' }," +
                                                                     "'nGram': { 'type': 'nGram',NGram }," +
                                                                     "'named_nGram': { 'type': 'nGram' }," +
+                                                                    "'pattern_replace': { 'type': 'pattern_replace',PatternReplace }," +
+                                                                    "'named_pattern_replace': { 'type': 'pattern_replace' }," +
                                                                     "'phonetic': { 'type': 'phonetic',Phonetic }," +
                                                                     "'named_phonetic': { 'type': 'phonetic' }," +
                                                                     "'porterStem': { 'type': 'porterStem',PorterStem }," +
@@ -170,8 +190,12 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
                                                                     "'named_stop': { 'type': 'stop' }," +
                                                                     "'synonym': { 'type': 'synonym',Synonym }," +
                                                                     "'named_synonym': { 'type': 'synonym' }," +
+                                                                    "'trim': { 'type': 'trim',Trim }," +
+                                                                    "'named_trim': { 'type': 'trim' }," +
                                                                     "'truncate': { 'type': 'truncate',Truncate }," +
                                                                     "'named_truncate': { 'type': 'truncate' }," +
+                                                                    "'unique': { 'type': 'unique',Unique }," +
+                                                                    "'named_unique': { 'type': 'unique' }," +
                                                                     "'word_delimiter': { 'type': 'word_delimiter',WordDelimiter }," +
                                                                     "'named_word_delimiter': { 'type': 'word_delimiter' }," +
                                                                     "{ Custom } }").AltQuote());

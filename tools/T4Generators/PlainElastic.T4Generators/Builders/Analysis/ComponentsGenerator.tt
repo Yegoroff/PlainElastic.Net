@@ -29,7 +29,7 @@ public class ComponentsGenerator : Generator
     protected override void RunCore()
     {
         var metadataFolder = Path.Combine(Path.GetDirectoryName(Host.TemplateFile), "Metadata");
-        var metadataViews = MetadataHelper.LoadComponentsMetadata(metadataFolder)
+        var metadataViews = MetadataHelper.ReadComponentsMetadata(metadataFolder)
                                 .Select(m => new ComponentMetadataView(m, Settings)).ToList();
 
         foreach (var metadataView in metadataViews)

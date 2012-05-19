@@ -20,6 +20,8 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
                                             .Lowercase("named_lowercase")
                                             .NGram(x => x.CustomPart("NGram"))
                                             .NGram("named_nGram")
+                                            .Phonetic(x => x.CustomPart("Phonetic"))
+                                            .Phonetic("named_phonetic")
                                             .PorterStem(x => x.CustomPart("PorterStem"))
                                             .PorterStem("named_porterStem")
                                             .Shingle(x => x.CustomPart("Shingle"))
@@ -60,6 +62,10 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
         It should_contain_nGram_part = () => result.ShouldContain("'nGram': { 'type': 'nGram',NGram }".AltQuote());
 
         It should_contain_named_nGram_part = () => result.ShouldContain("'named_nGram': { 'type': 'nGram' }".AltQuote());
+
+        It should_contain_phonetic_part = () => result.ShouldContain("'phonetic': { 'type': 'phonetic',Phonetic }".AltQuote());
+
+        It should_contain_named_phonetic_part = () => result.ShouldContain("'named_phonetic': { 'type': 'phonetic' }".AltQuote());
 
         It should_contain_porterStem_part = () => result.ShouldContain("'porterStem': { 'type': 'porterStem',PorterStem }".AltQuote());
 
@@ -104,6 +110,8 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
                                                                     "'named_lowercase': { 'type': 'lowercase' }," +
                                                                     "'nGram': { 'type': 'nGram',NGram }," +
                                                                     "'named_nGram': { 'type': 'nGram' }," +
+                                                                    "'phonetic': { 'type': 'phonetic',Phonetic }," +
+                                                                    "'named_phonetic': { 'type': 'phonetic' }," +
                                                                     "'porterStem': { 'type': 'porterStem',PorterStem }," +
                                                                     "'named_porterStem': { 'type': 'porterStem' }," +
                                                                     "'shingle': { 'type': 'shingle',Shingle }," +

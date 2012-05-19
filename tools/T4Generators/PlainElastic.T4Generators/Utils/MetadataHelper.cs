@@ -7,7 +7,7 @@ namespace PlainElastic.T4Generators.Utils
 {
     public static class MetadataHelper
     {
-        public static IEnumerable<ComponentMetadata> LoadComponentsMetadata(string folderPath)
+        public static IEnumerable<ComponentMetadata> ReadComponentsMetadata(string folderPath)
         {
             var metadataFiles = Directory.EnumerateFiles(folderPath);
             foreach (var metadataFilePath in metadataFiles)

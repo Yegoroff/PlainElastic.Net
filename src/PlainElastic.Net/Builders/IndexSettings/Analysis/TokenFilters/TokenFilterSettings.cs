@@ -157,6 +157,30 @@ namespace PlainElastic.Net.IndexSettings
         #endregion
 
 
+        #region Phonetic
+
+        /// <summary>
+        /// A phonetic analysis token filter plugin.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/phonetic-tokenfilter.html
+        /// </summary>
+        public TokenFilterSettings Phonetic(string name, Func<PhoneticTokenFilter, PhoneticTokenFilter> phonetic = null)
+        {
+            RegisterJsonPartExpression(phonetic.Bind(tokenizer => tokenizer.Name(name)));
+            return this;
+        }
+
+        /// <summary>
+        /// A phonetic analysis token filter plugin.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/phonetic-tokenfilter.html
+        /// </summary>
+        public TokenFilterSettings Phonetic(Func<PhoneticTokenFilter, PhoneticTokenFilter> phonetic)
+        {
+            return Phonetic(DefaultTokenFilters.phonetic.AsString(), phonetic);
+        }
+
+        #endregion
+
+
         #region PorterStem
 
         /// <summary>

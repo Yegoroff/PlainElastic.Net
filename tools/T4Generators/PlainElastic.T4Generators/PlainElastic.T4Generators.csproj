@@ -36,11 +36,6 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Builders\Analysis\ComponentEmptyTestTemplate.tt" />
@@ -54,6 +49,7 @@
     <None Include="Builders\Analysis\TokenFilters\AsciifoldingTokenFilter.cs">
       <DependentUpon>Generator.tt</DependentUpon>
     </None>
+    <None Include="Builders\Analysis\TokenFilters\Metadata\phonetic.json" />
     <None Include="Builders\Analysis\TokenFilters\Metadata\snowball.json" />
     <None Include="Builders\Analysis\TokenFilters\Metadata\kstem.json" />
     <None Include="Builders\Analysis\TokenFilters\Metadata\stemmer.json" />
@@ -185,6 +181,15 @@
       <DependentUpon>Generator.tt</DependentUpon>
     </None>
     <None Include="Builders\Analysis\TokenFilters\When_complete_SnowballTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\PhoneticTokenFilter.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_empty_PhoneticTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_complete_PhoneticTokenFilter_built.cs">
       <DependentUpon>Generator.tt</DependentUpon>
     </None>
     <Compile Include="Models\ComponentMetadataView.cs" />

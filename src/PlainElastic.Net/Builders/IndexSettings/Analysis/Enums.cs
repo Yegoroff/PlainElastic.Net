@@ -86,6 +86,20 @@ namespace PlainElastic.Net.IndexSettings
         back
     }
 
+    public enum PhoneticTokenFilterEncoders
+    {
+        metaphone,
+        doublemetaphone,
+        soundex,
+        refinedsoundex,
+        caverphone1,
+        caverphone2,
+        cologne,
+        nysiis,
+        koelnerphonetik,
+        haasephonetik
+    }
+
     /// <summary>
     /// Supported language analyzer types.
     /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/lang-analyzer.html

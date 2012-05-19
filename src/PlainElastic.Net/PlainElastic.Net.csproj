@@ -83,6 +83,7 @@
     <Compile Include="Builders\IndexSettings\Analysis\TokenFilters\LengthTokenFilter.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\TokenFilters\LowercaseTokenFilter.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\TokenFilters\NGramTokenFilter.cs" />
+    <Compile Include="Builders\IndexSettings\Analysis\TokenFilters\PhoneticTokenFilter.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\TokenFilters\PorterStemTokenFilter.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\TokenFilters\ShingleTokenFilter.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\TokenFilters\SnowballTokenFilter.cs" />

@@ -77,6 +77,8 @@
     <Compile Include="Builders\Analysis\TokenFilters\Lowercase\When_empty_LowercaseTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\NGram\When_complete_NGramTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\NGram\When_empty_NGramTokenFilter_built.cs" />
+    <Compile Include="Builders\Analysis\TokenFilters\Phonetic\When_complete_PhoneticTokenFilter_built.cs" />
+    <Compile Include="Builders\Analysis\TokenFilters\Phonetic\When_empty_PhoneticTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\PorterStem\When_complete_PorterStemTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\PorterStem\When_empty_PorterStemTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\Shingle\When_complete_ShingleTokenFilter_built.cs" />

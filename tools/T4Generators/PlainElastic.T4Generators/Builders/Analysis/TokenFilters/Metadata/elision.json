@@ -1,0 +1,11 @@
+﻿{
+    "description": "A token filter which removes elisions. For example, \"l'avion\" (the plane) will be tokenized as \"avion\" (plane).",
+    "referenceUrl": "http://www.elasticsearch.org/guide/reference/index-modules/analysis/elision-tokenfilter.html",
+    "properties": [
+        {
+            "name": "articles",
+            "type": "IEnumerable<string>",
+            "description": "Sets a list of stop words articles."
+        }
+    ]
+}

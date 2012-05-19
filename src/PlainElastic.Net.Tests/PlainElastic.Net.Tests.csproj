@@ -71,6 +71,8 @@
     <Compile Include="Builders\Analysis\TokenFilters\DictionaryDecompounder\When_empty_DictionaryDecompounderTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\EdgeNGram\When_complete_EdgeNGramTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\EdgeNGram\When_empty_EdgeNGramTokenFilter_built.cs" />
+    <Compile Include="Builders\Analysis\TokenFilters\Elision\When_complete_ElisionTokenFilter_built.cs" />
+    <Compile Include="Builders\Analysis\TokenFilters\Elision\When_empty_ElisionTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\HyphenationDecompounder\When_complete_HyphenationDecompounderTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\HyphenationDecompounder\When_empty_HyphenationDecompounderTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\Kstem\When_complete_KstemTokenFilter_built.cs" />
@@ -85,6 +87,8 @@
     <Compile Include="Builders\Analysis\TokenFilters\Phonetic\When_empty_PhoneticTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\PorterStem\When_complete_PorterStemTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\PorterStem\When_empty_PorterStemTokenFilter_built.cs" />
+    <Compile Include="Builders\Analysis\TokenFilters\Reverse\When_complete_ReverseTokenFilter_built.cs" />
+    <Compile Include="Builders\Analysis\TokenFilters\Reverse\When_empty_ReverseTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\Shingle\When_complete_ShingleTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\Shingle\When_empty_ShingleTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\Snowball\When_complete_SnowballTokenFilter_built.cs" />
@@ -97,6 +101,8 @@
     <Compile Include="Builders\Analysis\TokenFilters\Stop\When_empty_StopTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\Synonym\When_complete_SynonymTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\Synonym\When_empty_SynonymTokenFilter_built.cs" />
+    <Compile Include="Builders\Analysis\TokenFilters\Truncate\When_complete_TruncateTokenFilter_built.cs" />
+    <Compile Include="Builders\Analysis\TokenFilters\Truncate\When_empty_TruncateTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\When_complete_TokenFilterSettings_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\When_empty_TokenFilterSettings_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\WordDelimiter\When_complete_WordDelimiterTokenFilter_built.cs" />

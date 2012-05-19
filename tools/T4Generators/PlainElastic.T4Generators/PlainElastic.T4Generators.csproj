@@ -49,6 +49,9 @@
     <None Include="Builders\Analysis\TokenFilters\AsciifoldingTokenFilter.cs">
       <DependentUpon>Generator.tt</DependentUpon>
     </None>
+    <None Include="Builders\Analysis\TokenFilters\Metadata\truncate.json" />
+    <None Include="Builders\Analysis\TokenFilters\Metadata\elision.json" />
+    <None Include="Builders\Analysis\TokenFilters\Metadata\reverse.json" />
     <None Include="Builders\Analysis\TokenFilters\Metadata\hyphenation_decompounder.json" />
     <None Include="Builders\Analysis\TokenFilters\Metadata\dictionary_decompounder.json" />
     <None Include="Builders\Analysis\TokenFilters\Metadata\synonym.json" />
@@ -220,6 +223,33 @@
       <DependentUpon>Generator.tt</DependentUpon>
     </None>
     <None Include="Builders\Analysis\TokenFilters\When_complete_HyphenationDecompounderTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\ElisionTokenFilter.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_empty_ElisionTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_complete_ElisionTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\ReverseTokenFilter.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_empty_ReverseTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_complete_ReverseTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\TruncateTokenFilter.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_empty_TruncateTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_complete_TruncateTokenFilter_built.cs">
       <DependentUpon>Generator.tt</DependentUpon>
     </None>
     <Compile Include="Models\ComponentMetadataView.cs" />

@@ -1,0 +1,12 @@
+﻿{
+    "description": "The truncate token filter can be used to truncate tokens into a specific length.",
+    "referenceUrl": "http://www.elasticsearch.org/guide/reference/index-modules/analysis/truncate-tokenfilter.html",
+    "properties": [
+        {
+            "name": "length",
+            "type": "int",
+            "defaultValue": "10",
+            "description": "Sets the number of characters to truncate to."
+        }
+    ]
+}

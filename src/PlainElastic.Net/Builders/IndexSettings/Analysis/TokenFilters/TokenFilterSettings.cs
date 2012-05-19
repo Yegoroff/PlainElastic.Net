@@ -83,6 +83,30 @@ namespace PlainElastic.Net.IndexSettings
         #endregion
 
 
+        #region Elision
+
+        /// <summary>
+        /// A token filter which removes elisions. For example, "l'avion" (the plane) will be tokenized as "avion" (plane).
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/elision-tokenfilter.html
+        /// </summary>
+        public TokenFilterSettings Elision(string name, Func<ElisionTokenFilter, ElisionTokenFilter> elision = null)
+        {
+            RegisterJsonPartExpression(elision.Bind(tokenizer => tokenizer.Name(name)));
+            return this;
+        }
+
+        /// <summary>
+        /// A token filter which removes elisions. For example, "l'avion" (the plane) will be tokenized as "avion" (plane).
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/elision-tokenfilter.html
+        /// </summary>
+        public TokenFilterSettings Elision(Func<ElisionTokenFilter, ElisionTokenFilter> elision)
+        {
+            return Elision(DefaultTokenFilters.elision.AsString(), elision);
+        }
+
+        #endregion
+
+
         #region HyphenationDecompounder
 
         /// <summary>
@@ -257,6 +281,30 @@ namespace PlainElastic.Net.IndexSettings
         #endregion
 
 
+        #region Reverse
+
+        /// <summary>
+        /// A token filter of type reverse that simply reverses the tokens.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/reverse-tokenfilter.html
+        /// </summary>
+        public TokenFilterSettings Reverse(string name, Func<ReverseTokenFilter, ReverseTokenFilter> reverse = null)
+        {
+            RegisterJsonPartExpression(reverse.Bind(tokenizer => tokenizer.Name(name)));
+            return this;
+        }
+
+        /// <summary>
+        /// A token filter of type reverse that simply reverses the tokens.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/reverse-tokenfilter.html
+        /// </summary>
+        public TokenFilterSettings Reverse(Func<ReverseTokenFilter, ReverseTokenFilter> reverse)
+        {
+            return Reverse(DefaultTokenFilters.reverse.AsString(), reverse);
+        }
+
+        #endregion
+
+
         #region Shingle
 
         /// <summary>
@@ -398,6 +446,30 @@ namespace PlainElastic.Net.IndexSettings
         public TokenFilterSettings Synonym(Func<SynonymTokenFilter, SynonymTokenFilter> synonym)
         {
             return Synonym(DefaultTokenFilters.synonym.AsString(), synonym);
+        }
+
+        #endregion
+
+
+        #region Truncate
+
+        /// <summary>
+        /// The truncate token filter can be used to truncate tokens into a specific length.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/truncate-tokenfilter.html
+        /// </summary>
+        public TokenFilterSettings Truncate(string name, Func<TruncateTokenFilter, TruncateTokenFilter> truncate = null)
+        {
+            RegisterJsonPartExpression(truncate.Bind(tokenizer => tokenizer.Name(name)));
+            return this;
+        }
+
+        /// <summary>
+        /// The truncate token filter can be used to truncate tokens into a specific length.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/truncate-tokenfilter.html
+        /// </summary>
+        public TokenFilterSettings Truncate(Func<TruncateTokenFilter, TruncateTokenFilter> truncate)
+        {
+            return Truncate(DefaultTokenFilters.truncate.AsString(), truncate);
         }
 
         #endregion

@@ -1,0 +1,4 @@
+﻿{
+    "description": "A token filter of type reverse that simply reverses the tokens.",
+    "referenceUrl": "http://www.elasticsearch.org/guide/reference/index-modules/analysis/reverse-tokenfilter.html"
+}

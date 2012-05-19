@@ -14,6 +14,8 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
                                             .DictionaryDecompounder("named_dictionary_decompounder")
                                             .EdgeNGram(x => x.CustomPart("EdgeNGram"))
                                             .EdgeNGram("named_edgeNGram")
+                                            .Elision(x => x.CustomPart("Elision"))
+                                            .Elision("named_elision")
                                             .HyphenationDecompounder(x => x.CustomPart("HyphenationDecompounder"))
                                             .HyphenationDecompounder("named_hyphenation_decompounder")
                                             .Kstem(x => x.CustomPart("Kstem"))
@@ -28,6 +30,8 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
                                             .Phonetic("named_phonetic")
                                             .PorterStem(x => x.CustomPart("PorterStem"))
                                             .PorterStem("named_porterStem")
+                                            .Reverse(x => x.CustomPart("Reverse"))
+                                            .Reverse("named_reverse")
                                             .Shingle(x => x.CustomPart("Shingle"))
                                             .Shingle("named_shingle")
                                             .Snowball(x => x.CustomPart("Snowball"))
@@ -40,6 +44,8 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
                                             .Stop("named_stop")
                                             .Synonym(x => x.CustomPart("Synonym"))
                                             .Synonym("named_synonym")
+                                            .Truncate(x => x.CustomPart("Truncate"))
+                                            .Truncate("named_truncate")
                                             .WordDelimiter(x => x.CustomPart("WordDelimiter"))
                                             .WordDelimiter("named_word_delimiter")
                                             .CustomPart("{ Custom }")
@@ -56,6 +62,10 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
         It should_contain_edgeNGram_part = () => result.ShouldContain("'edgeNGram': { 'type': 'edgeNGram',EdgeNGram }".AltQuote());
 
         It should_contain_named_edgeNGram_part = () => result.ShouldContain("'named_edgeNGram': { 'type': 'edgeNGram' }".AltQuote());
+
+        It should_contain_elision_part = () => result.ShouldContain("'elision': { 'type': 'elision',Elision }".AltQuote());
+
+        It should_contain_named_elision_part = () => result.ShouldContain("'named_elision': { 'type': 'elision' }".AltQuote());
 
         It should_contain_hyphenation_decompounder_part = () => result.ShouldContain("'hyphenation_decompounder': { 'type': 'hyphenation_decompounder',HyphenationDecompounder }".AltQuote());
 
@@ -85,6 +95,10 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
 
         It should_contain_named_porterStem_part = () => result.ShouldContain("'named_porterStem': { 'type': 'porterStem' }".AltQuote());
 
+        It should_contain_reverse_part = () => result.ShouldContain("'reverse': { 'type': 'reverse',Reverse }".AltQuote());
+
+        It should_contain_named_reverse_part = () => result.ShouldContain("'named_reverse': { 'type': 'reverse' }".AltQuote());
+
         It should_contain_shingle_part = () => result.ShouldContain("'shingle': { 'type': 'shingle',Shingle }".AltQuote());
 
         It should_contain_named_shingle_part = () => result.ShouldContain("'named_shingle': { 'type': 'shingle' }".AltQuote());
@@ -109,6 +123,10 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
 
         It should_contain_named_synonym_part = () => result.ShouldContain("'named_synonym': { 'type': 'synonym' }".AltQuote());
 
+        It should_contain_truncate_part = () => result.ShouldContain("'truncate': { 'type': 'truncate',Truncate }".AltQuote());
+
+        It should_contain_named_truncate_part = () => result.ShouldContain("'named_truncate': { 'type': 'truncate' }".AltQuote());
+
         It should_contain_word_delimiter_part = () => result.ShouldContain("'word_delimiter': { 'type': 'word_delimiter',WordDelimiter }".AltQuote());
 
         It should_contain_named_word_delimiter_part = () => result.ShouldContain("'named_word_delimiter': { 'type': 'word_delimiter' }".AltQuote());
@@ -122,6 +140,8 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
                                                                     "'named_dictionary_decompounder': { 'type': 'dictionary_decompounder' }," +
                                                                     "'edgeNGram': { 'type': 'edgeNGram',EdgeNGram }," +
                                                                     "'named_edgeNGram': { 'type': 'edgeNGram' }," +
+                                                                    "'elision': { 'type': 'elision',Elision }," +
+                                                                    "'named_elision': { 'type': 'elision' }," +
                                                                     "'hyphenation_decompounder': { 'type': 'hyphenation_decompounder',HyphenationDecompounder }," +
                                                                     "'named_hyphenation_decompounder': { 'type': 'hyphenation_decompounder' }," +
                                                                     "'kstem': { 'type': 'kstem',Kstem }," +
@@ -136,6 +156,8 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
                                                                     "'named_phonetic': { 'type': 'phonetic' }," +
                                                                     "'porterStem': { 'type': 'porterStem',PorterStem }," +
                                                                     "'named_porterStem': { 'type': 'porterStem' }," +
+                                                                    "'reverse': { 'type': 'reverse',Reverse }," +
+                                                                    "'named_reverse': { 'type': 'reverse' }," +
                                                                     "'shingle': { 'type': 'shingle',Shingle }," +
                                                                     "'named_shingle': { 'type': 'shingle' }," +
                                                                     "'snowball': { 'type': 'snowball',Snowball }," +
@@ -148,6 +170,8 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
                                                                     "'named_stop': { 'type': 'stop' }," +
                                                                     "'synonym': { 'type': 'synonym',Synonym }," +
                                                                     "'named_synonym': { 'type': 'synonym' }," +
+                                                                    "'truncate': { 'type': 'truncate',Truncate }," +
+                                                                    "'named_truncate': { 'type': 'truncate' }," +
                                                                     "'word_delimiter': { 'type': 'word_delimiter',WordDelimiter }," +
                                                                     "'named_word_delimiter': { 'type': 'word_delimiter' }," +
                                                                     "{ Custom } }").AltQuote());

@@ -75,6 +75,9 @@
     <Compile Include="Builders\Commands\SearchCommand.cs" />
     <Compile Include="Builders\Enums.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\Analysis.cs" />
+    <Compile Include="Builders\IndexSettings\Analysis\CharFilters\CharFilterSettings.cs" />
+    <Compile Include="Builders\IndexSettings\Analysis\CharFilters\HtmlStripCharFilter.cs" />
+    <Compile Include="Builders\IndexSettings\Analysis\CharFilters\MappingCharFilter.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\EdgeNGramComponentBase.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\NGramComponentBase.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\TokenFilters\AsciifoldingTokenFilter.cs" />

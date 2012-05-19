@@ -65,6 +65,12 @@
     <Compile Include="Builders\Analysis\Analyzers\When_empty_AnalyzerSettings_built.cs" />
     <Compile Include="Builders\Analysis\Analyzers\Whitespace\When_complete_WhitespaceAnalyzer_built.cs" />
     <Compile Include="Builders\Analysis\Analyzers\Whitespace\When_empty_WhitespaceAnalyzer_built.cs" />
+    <Compile Include="Builders\Analysis\CharFilters\HtmlStrip\When_complete_HtmlStripCharFilter_built.cs" />
+    <Compile Include="Builders\Analysis\CharFilters\HtmlStrip\When_empty_HtmlStripCharFilter_built.cs" />
+    <Compile Include="Builders\Analysis\CharFilters\Mapping\When_complete_MappingCharFilter_built.cs" />
+    <Compile Include="Builders\Analysis\CharFilters\Mapping\When_empty_MappingCharFilter_built.cs" />
+    <Compile Include="Builders\Analysis\CharFilters\When_complete_CharFilterSettings_built.cs" />
+    <Compile Include="Builders\Analysis\CharFilters\When_empty_CharFilterSettings_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\Asciifolding\When_complete_AsciifoldingTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\Asciifolding\When_empty_AsciifoldingTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\DictionaryDecompounder\When_complete_DictionaryDecompounderTokenFilter_built.cs" />

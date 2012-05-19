@@ -38,6 +38,17 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Builders\Analysis\CharFilters\Generator.ignore">
+      <DependentUpon>Generator.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </None>
+    <None Include="Builders\Analysis\CharFilters\Generator.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Generator.ignore</LastGenOutput>
+    </None>
+    <None Include="Builders\Analysis\CharFilters\Metadata\html_strip.json" />
+    <None Include="Builders\Analysis\CharFilters\Metadata\mapping.json" />
     <None Include="Builders\Analysis\ComponentEmptyTestTemplate.tt" />
     <None Include="Builders\Analysis\ComponentCompleteTestTemplate.tt" />
     <None Include="Builders\Analysis\StringListPropertyTemplate.tt" />
@@ -280,6 +291,33 @@
       <DependentUpon>Generator.tt</DependentUpon>
     </None>
     <None Include="Builders\Analysis\TokenFilters\When_complete_UniqueTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\CharFilters\HtmlStripCharFilter.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\CharFilters\When_empty_HtmlStripCharFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\CharFilters\When_complete_HtmlStripCharFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\CharFilters\MappingCharFilter.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\CharFilters\When_empty_MappingCharFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\CharFilters\When_complete_MappingCharFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\CharFilters\CharFilterSettings.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\CharFilters\When_empty_CharFilterSettings_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\CharFilters\When_complete_CharFilterSettings_built.cs">
       <DependentUpon>Generator.tt</DependentUpon>
     </None>
     <Compile Include="Models\ComponentMetadataView.cs" />

@@ -54,6 +54,9 @@
     <None Include="Builders\Analysis\TokenFilters\AsciifoldingTokenFilter.cs">
       <DependentUpon>Generator.tt</DependentUpon>
     </None>
+    <None Include="Builders\Analysis\TokenFilters\Metadata\snowball.json" />
+    <None Include="Builders\Analysis\TokenFilters\Metadata\kstem.json" />
+    <None Include="Builders\Analysis\TokenFilters\Metadata\stemmer.json" />
     <None Include="Builders\Analysis\TokenFilters\Metadata\word_delimiter.json" />
     <None Include="Builders\Analysis\TokenFilters\Metadata\stop.json" />
     <None Include="Builders\Analysis\TokenFilters\Metadata\shingle.json" />
@@ -155,6 +158,33 @@
       <DependentUpon>Generator.tt</DependentUpon>
     </None>
     <None Include="Builders\Analysis\TokenFilters\When_complete_WordDelimiterTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\StemmerTokenFilter.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_empty_StemmerTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_complete_StemmerTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\KstemTokenFilter.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_empty_KstemTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_complete_KstemTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\SnowballTokenFilter.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_empty_SnowballTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_complete_SnowballTokenFilter_built.cs">
       <DependentUpon>Generator.tt</DependentUpon>
     </None>
     <Compile Include="Models\ComponentMetadataView.cs" />

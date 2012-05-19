@@ -5,6 +5,7 @@
         {
             "name": "language",
             "type": "LowercaseTokenFilterLanguages",
+            "addStringOverload": true,
             "testValue": "greek",
             "description": "Sets non-Latin lowercase filter language."
         }

@@ -12,6 +12,8 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
                                             .Asciifolding("named_asciifolding")
                                             .EdgeNGram(x => x.CustomPart("EdgeNGram"))
                                             .EdgeNGram("named_edgeNGram")
+                                            .Kstem(x => x.CustomPart("Kstem"))
+                                            .Kstem("named_kstem")
                                             .Length(x => x.CustomPart("Length"))
                                             .Length("named_length")
                                             .Lowercase(x => x.CustomPart("Lowercase"))
@@ -22,8 +24,12 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
                                             .PorterStem("named_porterStem")
                                             .Shingle(x => x.CustomPart("Shingle"))
                                             .Shingle("named_shingle")
+                                            .Snowball(x => x.CustomPart("Snowball"))
+                                            .Snowball("named_snowball")
                                             .Standard(x => x.CustomPart("Standard"))
                                             .Standard("named_standard")
+                                            .Stemmer(x => x.CustomPart("Stemmer"))
+                                            .Stemmer("named_stemmer")
                                             .Stop(x => x.CustomPart("Stop"))
                                             .Stop("named_stop")
                                             .WordDelimiter(x => x.CustomPart("WordDelimiter"))
@@ -38,6 +44,10 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
         It should_contain_edgeNGram_part = () => result.ShouldContain("'edgeNGram': { 'type': 'edgeNGram',EdgeNGram }".AltQuote());
 
         It should_contain_named_edgeNGram_part = () => result.ShouldContain("'named_edgeNGram': { 'type': 'edgeNGram' }".AltQuote());
+
+        It should_contain_kstem_part = () => result.ShouldContain("'kstem': { 'type': 'kstem',Kstem }".AltQuote());
+
+        It should_contain_named_kstem_part = () => result.ShouldContain("'named_kstem': { 'type': 'kstem' }".AltQuote());
 
         It should_contain_length_part = () => result.ShouldContain("'length': { 'type': 'length',Length }".AltQuote());
 
@@ -59,9 +69,17 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
 
         It should_contain_named_shingle_part = () => result.ShouldContain("'named_shingle': { 'type': 'shingle' }".AltQuote());
 
+        It should_contain_snowball_part = () => result.ShouldContain("'snowball': { 'type': 'snowball',Snowball }".AltQuote());
+
+        It should_contain_named_snowball_part = () => result.ShouldContain("'named_snowball': { 'type': 'snowball' }".AltQuote());
+
         It should_contain_standard_part = () => result.ShouldContain("'standard': { 'type': 'standard',Standard }".AltQuote());
 
         It should_contain_named_standard_part = () => result.ShouldContain("'named_standard': { 'type': 'standard' }".AltQuote());
+
+        It should_contain_stemmer_part = () => result.ShouldContain("'stemmer': { 'type': 'stemmer',Stemmer }".AltQuote());
+
+        It should_contain_named_stemmer_part = () => result.ShouldContain("'named_stemmer': { 'type': 'stemmer' }".AltQuote());
 
         It should_contain_stop_part = () => result.ShouldContain("'stop': { 'type': 'stop',Stop }".AltQuote());
 
@@ -78,6 +96,8 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
                                                                     "'named_asciifolding': { 'type': 'asciifolding' }," +
                                                                     "'edgeNGram': { 'type': 'edgeNGram',EdgeNGram }," +
                                                                     "'named_edgeNGram': { 'type': 'edgeNGram' }," +
+                                                                    "'kstem': { 'type': 'kstem',Kstem }," +
+                                                                    "'named_kstem': { 'type': 'kstem' }," +
                                                                     "'length': { 'type': 'length',Length }," +
                                                                     "'named_length': { 'type': 'length' }," +
                                                                     "'lowercase': { 'type': 'lowercase',Lowercase }," +
@@ -88,8 +108,12 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
                                                                     "'named_porterStem': { 'type': 'porterStem' }," +
                                                                     "'shingle': { 'type': 'shingle',Shingle }," +
                                                                     "'named_shingle': { 'type': 'shingle' }," +
+                                                                    "'snowball': { 'type': 'snowball',Snowball }," +
+                                                                    "'named_snowball': { 'type': 'snowball' }," +
                                                                     "'standard': { 'type': 'standard',Standard }," +
                                                                     "'named_standard': { 'type': 'standard' }," +
+                                                                    "'stemmer': { 'type': 'stemmer',Stemmer }," +
+                                                                    "'named_stemmer': { 'type': 'stemmer' }," +
                                                                     "'stop': { 'type': 'stop',Stop }," +
                                                                     "'named_stop': { 'type': 'stop' }," +
                                                                     "'word_delimiter': { 'type': 'word_delimiter',WordDelimiter }," +

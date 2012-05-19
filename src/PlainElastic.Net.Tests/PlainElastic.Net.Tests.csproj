@@ -69,6 +69,8 @@
     <Compile Include="Builders\Analysis\TokenFilters\Asciifolding\When_empty_AsciifoldingTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\EdgeNGram\When_complete_EdgeNGramTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\EdgeNGram\When_empty_EdgeNGramTokenFilter_built.cs" />
+    <Compile Include="Builders\Analysis\TokenFilters\Kstem\When_complete_KstemTokenFilter_built.cs" />
+    <Compile Include="Builders\Analysis\TokenFilters\Kstem\When_empty_KstemTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\Length\When_complete_LengthTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\Length\When_empty_LengthTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\Lowercase\When_complete_LowercaseTokenFilter_built.cs" />
@@ -79,8 +81,12 @@
     <Compile Include="Builders\Analysis\TokenFilters\PorterStem\When_empty_PorterStemTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\Shingle\When_complete_ShingleTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\Shingle\When_empty_ShingleTokenFilter_built.cs" />
+    <Compile Include="Builders\Analysis\TokenFilters\Snowball\When_complete_SnowballTokenFilter_built.cs" />
+    <Compile Include="Builders\Analysis\TokenFilters\Snowball\When_empty_SnowballTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\Standard\When_complete_StandardTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\Standard\When_empty_StandardTokenFilter_built.cs" />
+    <Compile Include="Builders\Analysis\TokenFilters\Stemmer\When_complete_StemmerTokenFilter_built.cs" />
+    <Compile Include="Builders\Analysis\TokenFilters\Stemmer\When_empty_StemmerTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\Stop\When_complete_StopTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\Stop\When_empty_StopTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\When_complete_TokenFilterSettings_built.cs" />

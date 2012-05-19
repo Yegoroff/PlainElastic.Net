@@ -1,0 +1,4 @@
+﻿{
+    "description": "The kstem token filter is a high performance filter for english.\nAll terms must already be lowercased (use lowercase filter) for this filter to work correctly.",
+    "referenceUrl": "http://www.elasticsearch.org/guide/reference/index-modules/analysis/kstem-tokenfilter.html"
+}

@@ -17,6 +17,20 @@ public class PropertyTemplate : Template
 
     public override string TransformText()
     {
+        if (Property.AddStringOverload)
+        {
+            var stringProperty = new ComponentMetadataProperty
+                                    {
+                                        Name = Property.ElasticName,
+                                        Type = "string",
+                                        DefaultValue = Property.DefaultCode,
+                                        Description = Property.Description
+                                    };
+            var stringPropertyTemplate = new PropertyTemplate(ClassName, new ComponentMetadataPropertyView(stringProperty));
+            Write(stringPropertyTemplate.TransformText());
+        }
+
+        var clrTypeCategory = Property.ClrType.ClrTypeCategory();
         var parameterName = Property.ClrName.Uncapitalize();
 
         var description = Property.Description;
@@ -26,11 +40,13 @@ public class PropertyTemplate : Template
         }
 
         var defaultValueStatement = !string.IsNullOrEmpty(Property.DefaultCode)
-                                        ? " = " + Property.DefaultCode
+                                        ? " = "
+                                          + (clrTypeCategory == ClrTypeCategory.Enum ? Property.ClrType + "." : string.Empty)
+                                          + Property.DefaultCode
                                         : string.Empty;
 
         string parameterTransformStatement = string.Empty;
-        switch (Property.ClrType.ClrTypeCategory())
+        switch (clrTypeCategory)
         {
             case ClrTypeCategory.Primitive:
                 parameterTransformStatement = ".AsString()";

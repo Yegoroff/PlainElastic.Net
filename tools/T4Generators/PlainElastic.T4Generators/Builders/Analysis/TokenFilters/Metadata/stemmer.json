@@ -1,0 +1,13 @@
+﻿{
+    "description": "A token filter that stems words (similar to snowball, but with more options).",
+    "referenceUrl": "http://www.elasticsearch.org/guide/reference/index-modules/analysis/stemmer-tokenfilter.html",
+    "properties": [
+        {
+            "name": "language",
+            "type": "StemmerTokenFilterLanguages",
+            "addStringOverload": true,
+            "testValue": "light_russian",
+            "description": "Sets the stemmer language."
+        }
+    ]
+}

@@ -17,6 +17,15 @@ namespace PlainElastic.Net.IndexSettings
         /// <summary>
         /// Sets non-Latin lowercase filter language.
         /// </summary>
+        public LowercaseTokenFilter Language(string language)
+        {
+            RegisterJsonPart("'language': {0}", language.Quotate());
+            return this;
+        }
+
+        /// <summary>
+        /// Sets non-Latin lowercase filter language.
+        /// </summary>
         public LowercaseTokenFilter Language(LowercaseTokenFilterLanguages language)
         {
             RegisterJsonPart("'language': {0}", language.AsString().Quotate());

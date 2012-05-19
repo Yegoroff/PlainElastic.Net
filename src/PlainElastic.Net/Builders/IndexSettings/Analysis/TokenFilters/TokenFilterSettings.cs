@@ -59,6 +59,32 @@ namespace PlainElastic.Net.IndexSettings
         #endregion
 
 
+        #region Kstem
+
+        /// <summary>
+        /// The kstem token filter is a high performance filter for english.
+        /// All terms must already be lowercased (use lowercase filter) for this filter to work correctly.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/kstem-tokenfilter.html
+        /// </summary>
+        public TokenFilterSettings Kstem(string name, Func<KstemTokenFilter, KstemTokenFilter> kstem = null)
+        {
+            RegisterJsonPartExpression(kstem.Bind(tokenizer => tokenizer.Name(name)));
+            return this;
+        }
+
+        /// <summary>
+        /// The kstem token filter is a high performance filter for english.
+        /// All terms must already be lowercased (use lowercase filter) for this filter to work correctly.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/kstem-tokenfilter.html
+        /// </summary>
+        public TokenFilterSettings Kstem(Func<KstemTokenFilter, KstemTokenFilter> kstem)
+        {
+            return Kstem(DefaultTokenFilters.kstem.AsString(), kstem);
+        }
+
+        #endregion
+
+
         #region Length
 
         /// <summary>
@@ -185,6 +211,30 @@ namespace PlainElastic.Net.IndexSettings
         #endregion
 
 
+        #region Snowball
+
+        /// <summary>
+        /// A token filter that stems words using a Snowball-generated stemmer.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/snowball-tokenfilter.html
+        /// </summary>
+        public TokenFilterSettings Snowball(string name, Func<SnowballTokenFilter, SnowballTokenFilter> snowball = null)
+        {
+            RegisterJsonPartExpression(snowball.Bind(tokenizer => tokenizer.Name(name)));
+            return this;
+        }
+
+        /// <summary>
+        /// A token filter that stems words using a Snowball-generated stemmer.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/snowball-tokenfilter.html
+        /// </summary>
+        public TokenFilterSettings Snowball(Func<SnowballTokenFilter, SnowballTokenFilter> snowball)
+        {
+            return Snowball(DefaultTokenFilters.snowball.AsString(), snowball);
+        }
+
+        #endregion
+
+
         #region Standard
 
         /// <summary>
@@ -204,6 +254,30 @@ namespace PlainElastic.Net.IndexSettings
         public TokenFilterSettings Standard(Func<StandardTokenFilter, StandardTokenFilter> standard)
         {
             return Standard(DefaultTokenFilters.standard.AsString(), standard);
+        }
+
+        #endregion
+
+
+        #region Stemmer
+
+        /// <summary>
+        /// A token filter that stems words (similar to snowball, but with more options).
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/stemmer-tokenfilter.html
+        /// </summary>
+        public TokenFilterSettings Stemmer(string name, Func<StemmerTokenFilter, StemmerTokenFilter> stemmer = null)
+        {
+            RegisterJsonPartExpression(stemmer.Bind(tokenizer => tokenizer.Name(name)));
+            return this;
+        }
+
+        /// <summary>
+        /// A token filter that stems words (similar to snowball, but with more options).
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/stemmer-tokenfilter.html
+        /// </summary>
+        public TokenFilterSettings Stemmer(Func<StemmerTokenFilter, StemmerTokenFilter> stemmer)
+        {
+            return Stemmer(DefaultTokenFilters.stemmer.AsString(), stemmer);
         }
 
         #endregion

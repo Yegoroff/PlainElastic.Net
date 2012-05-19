@@ -18,6 +18,7 @@ namespace PlainElastic.T4Generators.Models
         public string Type { get; set; }
         public string DefaultValue { get; set; }
         public string DefaultCode { get; set; }
+        public bool AddStringOverload { get; set; }
         public string TestValue { get; set; }
         public string Description { get; set; }
     }

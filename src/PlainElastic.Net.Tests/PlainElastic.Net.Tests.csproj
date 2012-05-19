@@ -67,8 +67,12 @@
     <Compile Include="Builders\Analysis\Analyzers\Whitespace\When_empty_WhitespaceAnalyzer_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\Asciifolding\When_complete_AsciifoldingTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\Asciifolding\When_empty_AsciifoldingTokenFilter_built.cs" />
+    <Compile Include="Builders\Analysis\TokenFilters\DictionaryDecompounder\When_complete_DictionaryDecompounderTokenFilter_built.cs" />
+    <Compile Include="Builders\Analysis\TokenFilters\DictionaryDecompounder\When_empty_DictionaryDecompounderTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\EdgeNGram\When_complete_EdgeNGramTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\EdgeNGram\When_empty_EdgeNGramTokenFilter_built.cs" />
+    <Compile Include="Builders\Analysis\TokenFilters\HyphenationDecompounder\When_complete_HyphenationDecompounderTokenFilter_built.cs" />
+    <Compile Include="Builders\Analysis\TokenFilters\HyphenationDecompounder\When_empty_HyphenationDecompounderTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\Kstem\When_complete_KstemTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\Kstem\When_empty_KstemTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\Length\When_complete_LengthTokenFilter_built.cs" />

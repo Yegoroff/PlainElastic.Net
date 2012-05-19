@@ -49,6 +49,8 @@
     <None Include="Builders\Analysis\TokenFilters\AsciifoldingTokenFilter.cs">
       <DependentUpon>Generator.tt</DependentUpon>
     </None>
+    <None Include="Builders\Analysis\TokenFilters\Metadata\hyphenation_decompounder.json" />
+    <None Include="Builders\Analysis\TokenFilters\Metadata\dictionary_decompounder.json" />
     <None Include="Builders\Analysis\TokenFilters\Metadata\synonym.json" />
     <None Include="Builders\Analysis\TokenFilters\Metadata\phonetic.json" />
     <None Include="Builders\Analysis\TokenFilters\Metadata\snowball.json" />
@@ -200,6 +202,24 @@
       <DependentUpon>Generator.tt</DependentUpon>
     </None>
     <None Include="Builders\Analysis\TokenFilters\When_complete_SynonymTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\DictionaryDecompounderTokenFilter.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_empty_DictionaryDecompounderTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_complete_DictionaryDecompounderTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\HyphenationDecompounderTokenFilter.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_empty_HyphenationDecompounderTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_complete_HyphenationDecompounderTokenFilter_built.cs">
       <DependentUpon>Generator.tt</DependentUpon>
     </None>
     <Compile Include="Models\ComponentMetadataView.cs" />

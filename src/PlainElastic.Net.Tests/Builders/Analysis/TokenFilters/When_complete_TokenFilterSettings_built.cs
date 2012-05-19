@@ -10,8 +10,12 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
         Because of = () => result = new TokenFilterSettings()
                                             .Asciifolding(x => x.CustomPart("Asciifolding"))
                                             .Asciifolding("named_asciifolding")
+                                            .DictionaryDecompounder(x => x.CustomPart("DictionaryDecompounder"))
+                                            .DictionaryDecompounder("named_dictionary_decompounder")
                                             .EdgeNGram(x => x.CustomPart("EdgeNGram"))
                                             .EdgeNGram("named_edgeNGram")
+                                            .HyphenationDecompounder(x => x.CustomPart("HyphenationDecompounder"))
+                                            .HyphenationDecompounder("named_hyphenation_decompounder")
                                             .Kstem(x => x.CustomPart("Kstem"))
                                             .Kstem("named_kstem")
                                             .Length(x => x.CustomPart("Length"))
@@ -45,9 +49,17 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
 
         It should_contain_named_asciifolding_part = () => result.ShouldContain("'named_asciifolding': { 'type': 'asciifolding' }".AltQuote());
 
+        It should_contain_dictionary_decompounder_part = () => result.ShouldContain("'dictionary_decompounder': { 'type': 'dictionary_decompounder',DictionaryDecompounder }".AltQuote());
+
+        It should_contain_named_dictionary_decompounder_part = () => result.ShouldContain("'named_dictionary_decompounder': { 'type': 'dictionary_decompounder' }".AltQuote());
+
         It should_contain_edgeNGram_part = () => result.ShouldContain("'edgeNGram': { 'type': 'edgeNGram',EdgeNGram }".AltQuote());
 
         It should_contain_named_edgeNGram_part = () => result.ShouldContain("'named_edgeNGram': { 'type': 'edgeNGram' }".AltQuote());
+
+        It should_contain_hyphenation_decompounder_part = () => result.ShouldContain("'hyphenation_decompounder': { 'type': 'hyphenation_decompounder',HyphenationDecompounder }".AltQuote());
+
+        It should_contain_named_hyphenation_decompounder_part = () => result.ShouldContain("'named_hyphenation_decompounder': { 'type': 'hyphenation_decompounder' }".AltQuote());
 
         It should_contain_kstem_part = () => result.ShouldContain("'kstem': { 'type': 'kstem',Kstem }".AltQuote());
 
@@ -106,8 +118,12 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
         It should_return_correct_result = () => result.ShouldEqual(("'token_filter': { " +
                                                                     "'asciifolding': { 'type': 'asciifolding',Asciifolding }," +
                                                                     "'named_asciifolding': { 'type': 'asciifolding' }," +
+                                                                    "'dictionary_decompounder': { 'type': 'dictionary_decompounder',DictionaryDecompounder }," +
+                                                                    "'named_dictionary_decompounder': { 'type': 'dictionary_decompounder' }," +
                                                                     "'edgeNGram': { 'type': 'edgeNGram',EdgeNGram }," +
                                                                     "'named_edgeNGram': { 'type': 'edgeNGram' }," +
+                                                                    "'hyphenation_decompounder': { 'type': 'hyphenation_decompounder',HyphenationDecompounder }," +
+                                                                    "'named_hyphenation_decompounder': { 'type': 'hyphenation_decompounder' }," +
                                                                     "'kstem': { 'type': 'kstem',Kstem }," +
                                                                     "'named_kstem': { 'type': 'kstem' }," +
                                                                     "'length': { 'type': 'length',Length }," +

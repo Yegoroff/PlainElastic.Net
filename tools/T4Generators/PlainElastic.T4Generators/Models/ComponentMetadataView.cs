@@ -12,6 +12,7 @@ namespace PlainElastic.T4Generators.Models
 
             ElasticType = metadata.ElasticType;
             BaseClassTemplate = metadata.BaseClass;
+            JsonPartFuncReturnClass = metadata.JsonPartFuncReturnClass;
             CamelCaseType = ElasticType.ToCamelCase();
             ClassName = CamelCaseType + settings.ClassNameSuffix;
             ComponentType = settings.ComponentTypeEnum + "." + ElasticType;
@@ -24,6 +25,7 @@ namespace PlainElastic.T4Generators.Models
         public ComponentMetadata OriginalMetadata { get; private set; }
         public string ElasticType { get; private set; }
         public string BaseClassTemplate { get; private set; }
+        public string JsonPartFuncReturnClass { get; set; }
         public string CamelCaseType { get; private set; }
         public string ClassName { get; private set; }
         public string ComponentType { get; private set; }

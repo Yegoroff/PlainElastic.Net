@@ -35,6 +35,30 @@ namespace PlainElastic.Net.IndexSettings
         #endregion
 
 
+        #region DictionaryDecompounder
+
+        /// <summary>
+        /// A token filter of type dictionary_decompounder that allows to decompose compound words.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/compound-word-tokenfilter.html
+        /// </summary>
+        public TokenFilterSettings DictionaryDecompounder(string name, Func<DictionaryDecompounderTokenFilter, DictionaryDecompounderTokenFilter> dictionaryDecompounder = null)
+        {
+            RegisterJsonPartExpression(dictionaryDecompounder.Bind(tokenizer => tokenizer.Name(name)));
+            return this;
+        }
+
+        /// <summary>
+        /// A token filter of type dictionary_decompounder that allows to decompose compound words.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/compound-word-tokenfilter.html
+        /// </summary>
+        public TokenFilterSettings DictionaryDecompounder(Func<DictionaryDecompounderTokenFilter, DictionaryDecompounderTokenFilter> dictionaryDecompounder)
+        {
+            return DictionaryDecompounder(DefaultTokenFilters.dictionary_decompounder.AsString(), dictionaryDecompounder);
+        }
+
+        #endregion
+
+
         #region EdgeNGram
 
         /// <summary>
@@ -54,6 +78,30 @@ namespace PlainElastic.Net.IndexSettings
         public TokenFilterSettings EdgeNGram(Func<EdgeNGramTokenFilter, EdgeNGramTokenFilter> edgeNGram)
         {
             return EdgeNGram(DefaultTokenFilters.edgeNGram.AsString(), edgeNGram);
+        }
+
+        #endregion
+
+
+        #region HyphenationDecompounder
+
+        /// <summary>
+        /// A token filter of type hyphenation_decompounder that allows to decompose compound words.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/compound-word-tokenfilter.html
+        /// </summary>
+        public TokenFilterSettings HyphenationDecompounder(string name, Func<HyphenationDecompounderTokenFilter, DictionaryDecompounderTokenFilter> hyphenationDecompounder = null)
+        {
+            RegisterJsonPartExpression(hyphenationDecompounder.Bind(tokenizer => tokenizer.Name(name)));
+            return this;
+        }
+
+        /// <summary>
+        /// A token filter of type hyphenation_decompounder that allows to decompose compound words.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/compound-word-tokenfilter.html
+        /// </summary>
+        public TokenFilterSettings HyphenationDecompounder(Func<HyphenationDecompounderTokenFilter, DictionaryDecompounderTokenFilter> hyphenationDecompounder)
+        {
+            return HyphenationDecompounder(DefaultTokenFilters.hyphenation_decompounder.AsString(), hyphenationDecompounder);
         }
 
         #endregion

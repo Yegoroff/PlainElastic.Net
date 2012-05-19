@@ -37,6 +37,7 @@ namespace PlainElastic.Net.IndexSettings
         {
             var camelCaseType = metadata.CamelCaseType;
             var className = metadata.ClassName;
+            var returnClassName = metadata.JsonPartFuncReturnClass ?? metadata.ClassName;
             var parameterName = camelCaseType.Uncapitalize();
 
 #>        #region <#= metadata.CamelCaseType #>
@@ -44,7 +45,7 @@ namespace PlainElastic.Net.IndexSettings
         /// <summary>
         /// <#= metadata.Description.ToCodeSummary(indentSpaces: 8) #>
         /// </summary>
-        public <#= Settings.SettingsClassName #> <#= camelCaseType #>(string name, Func<<#= className #>, <#= className #>> <#= parameterName #> = null)
+        public <#= Settings.SettingsClassName #> <#= camelCaseType #>(string name, Func<<#= className #>, <#= returnClassName #>> <#= parameterName #> = null)
         {
             RegisterJsonPartExpression(<#= parameterName #>.Bind(tokenizer => tokenizer.Name(name)));
             return this;
@@ -53,7 +54,7 @@ namespace PlainElastic.Net.IndexSettings
         /// <summary>
         /// <#= metadata.Description.ToCodeSummary(indentSpaces: 8) #>
         /// </summary>
-        public <#= Settings.SettingsClassName #> <#= camelCaseType #>(Func<<#= className #>, <#= className #>> <#= parameterName #>)
+        public <#= Settings.SettingsClassName #> <#= camelCaseType #>(Func<<#= className #>, <#= returnClassName #>> <#= parameterName #>)
         {
             return <#= camelCaseType #>(<#= metadata.ComponentType #>.AsString(), <#= parameterName #>);
         }

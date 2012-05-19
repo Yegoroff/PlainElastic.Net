@@ -78,7 +78,9 @@
     <Compile Include="Builders\IndexSettings\Analysis\EdgeNGramComponentBase.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\NGramComponentBase.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\TokenFilters\AsciifoldingTokenFilter.cs" />
+    <Compile Include="Builders\IndexSettings\Analysis\TokenFilters\DictionaryDecompounderTokenFilter.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\TokenFilters\EdgeNGramTokenFilter.cs" />
+    <Compile Include="Builders\IndexSettings\Analysis\TokenFilters\HyphenationDecompounderTokenFilter.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\TokenFilters\KstemTokenFilter.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\TokenFilters\LengthTokenFilter.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\TokenFilters\LowercaseTokenFilter.cs" />

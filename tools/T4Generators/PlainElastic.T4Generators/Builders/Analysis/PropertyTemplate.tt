@@ -19,6 +19,12 @@ public class PropertyTemplate : Template
     {
         var parameterName = Property.ClrName.Uncapitalize();
 
+        var description = Property.Description;
+        if (!string.IsNullOrEmpty(Property.DefaultCode))
+        {
+            description += string.Format("\nDefaults to {0}.", Property.DefaultCode);
+        }
+
         var defaultValueStatement = !string.IsNullOrEmpty(Property.DefaultCode)
                                         ? " = " + Property.DefaultCode
                                         : string.Empty;
@@ -40,7 +46,7 @@ public class PropertyTemplate : Template
 #>
 
         /// <summary>
-        /// <#= Property.Description.ToCodeSummary(indentSpaces: 8) #>
+        /// <#= description.ToCodeSummary(indentSpaces: 8) #>
         /// </summary>
         public <#= ClassName #> <#= Property.ClrName #>(<#= Property.ClrType #> <#= parameterName #><#= defaultValueStatement #>)
         {

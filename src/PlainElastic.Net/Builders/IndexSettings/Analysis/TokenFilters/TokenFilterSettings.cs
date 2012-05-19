@@ -209,6 +209,30 @@ namespace PlainElastic.Net.IndexSettings
         #endregion
 
 
+        #region Stop
+
+        /// <summary>
+        /// A token filter of type stop that removes stop words from token streams.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/stop-tokenfilter.html
+        /// </summary>
+        public TokenFilterSettings Stop(string name, Func<StopTokenFilter, StopTokenFilter> stop = null)
+        {
+            RegisterJsonPartExpression(stop.Bind(tokenizer => tokenizer.Name(name)));
+            return this;
+        }
+
+        /// <summary>
+        /// A token filter of type stop that removes stop words from token streams.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/stop-tokenfilter.html
+        /// </summary>
+        public TokenFilterSettings Stop(Func<StopTokenFilter, StopTokenFilter> stop)
+        {
+            return Stop(DefaultTokenFilters.stop.AsString(), stop);
+        }
+
+        #endregion
+
+
         protected override string ApplyJsonTemplate(string body)
         {
             return "'token_filter': {{ {0} }}".AltQuoteF(body);

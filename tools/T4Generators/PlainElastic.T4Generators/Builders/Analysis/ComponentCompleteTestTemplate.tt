@@ -87,31 +87,56 @@ public class PropertyTestData
     {
         Property = property;
 
-        var clrTypeCategory = property.ClrType.ClrTypeCategory();
-        var testValue = property.TestValue ?? (property.ClrType == "bool" ? "true" : (valuesCounter++).ToString());
-
-        var testValueForBuilder = string.Empty;
-        switch (clrTypeCategory)
-        {
-            case ClrTypeCategory.Primitive:
-                testValueForBuilder = testValue;
-                break;
-            case ClrTypeCategory.Enum:
-                testValueForBuilder = property.ClrType + "." + testValue;
-                break;
-            case ClrTypeCategory.String:
-                testValueForBuilder = '"' + testValue + '"';
-                break;
-        }
-        BuilderCode = string.Format(".{0}({1})", property.ClrName, testValueForBuilder);
-
-        var testValueForJson = clrTypeCategory == ClrTypeCategory.Primitive ? testValue : "'" + testValue + "'";
-        AssertString = string.Format("'{0}': {1}", property.ElasticName, testValueForJson);
+        var testValue = GetTestValue(ref valuesCounter);
+        BuilderCode = string.Format(".{0}({1})", property.ClrName, GetTestValueForBuilder(testValue));
+        AssertString = string.Format("'{0}': {1}", property.ElasticName, GetTestValueForJson(testValue));
     }
 
     public ComponentMetadataPropertyView Property { get; private set; }
     public string BuilderCode { get; private set; }
     public string AssertString { get; private set; }
+
+    private string GetTestValue(ref int valuesCounter)
+    {
+        if (!string.IsNullOrEmpty(Property.TestValue))
+        {
+            return Property.TestValue;
+        }
+        if (Property.ClrType == "bool")
+        {
+            return "true";
+        }
+        if (Property.ClrType.ClrTypeCategory() == ClrTypeCategory.StringList)
+        {
+            return string.Format("\"{0}\", \"{1}\"", valuesCounter++, valuesCounter++);
+        }
+        return (valuesCounter++).ToString();
+    }
+
+    private string GetTestValueForBuilder(string testValue)
+    {
+        switch (Property.ClrType.ClrTypeCategory())
+        {
+            case ClrTypeCategory.Primitive:
+            case ClrTypeCategory.StringList:
+                return testValue;
+            case ClrTypeCategory.Enum:
+                return Property.ClrType + "." + testValue;
+        }
+        return '"' + testValue + '"';
+    }
+
+    private string GetTestValueForJson(string testValue)
+    {
+        switch (Property.ClrType.ClrTypeCategory())
+        {
+            case ClrTypeCategory.Primitive:
+                return testValue;
+            case ClrTypeCategory.StringList:
+                return string.Format("[ {0} ]", testValue.Replace("\"", "'").Replace(" ", ""));
+        }
+        return "'" + testValue + "'";
+    }
 }
 
 #>

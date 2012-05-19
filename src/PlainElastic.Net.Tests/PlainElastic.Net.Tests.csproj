@@ -81,6 +81,8 @@
     <Compile Include="Builders\Analysis\TokenFilters\Shingle\When_empty_ShingleTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\Standard\When_complete_StandardTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\Standard\When_empty_StandardTokenFilter_built.cs" />
+    <Compile Include="Builders\Analysis\TokenFilters\Stop\When_complete_StopTokenFilter_built.cs" />
+    <Compile Include="Builders\Analysis\TokenFilters\Stop\When_empty_StopTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\When_complete_TokenFilterSettings_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\When_empty_TokenFilterSettings_built.cs" />
     <Compile Include="Builders\Analysis\Tokenizers\PathHierarchy\When_complete_PathHierarchyTokenizer_built.cs" />

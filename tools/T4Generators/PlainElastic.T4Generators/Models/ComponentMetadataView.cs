@@ -13,7 +13,7 @@ namespace PlainElastic.T4Generators.Models
             CamelCaseType = ElasticType.ToCamelCase();
             ClassName = CamelCaseType + settings.ClassNameSuffix;
             ComponentType = settings.ComponentTypeEnum + "." + ElasticType;
-            Description = metadata.Description;
+            Description = metadata.Description + "\nsee " + metadata.ReferenceUrl;
 
             Properties = (metadata.Properties ?? Enumerable.Empty<ComponentMetadataProperty>())
                             .Select(p => new ComponentMetadataPropertyView(p)).ToList();

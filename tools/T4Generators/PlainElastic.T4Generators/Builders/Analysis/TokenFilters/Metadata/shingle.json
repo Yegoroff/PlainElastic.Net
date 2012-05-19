@@ -1,17 +1,18 @@
 ﻿{
-    "description": "A token filter of type shingle that constructs shingles (token n-grams) from a token stream.\nIn other words, it creates combinations of tokens as a single token.\nsee http://www.elasticsearch.org/guide/reference/index-modules/analysis/shingle-tokenfilter.html",
+    "description": "A token filter of type shingle that constructs shingles (token n-grams) from a token stream.\nIn other words, it creates combinations of tokens as a single token.",
+    "referenceUrl": "http://www.elasticsearch.org/guide/reference/index-modules/analysis/shingle-tokenfilter.html",
     "properties": [
         {
             "name": "max_shingle_size",
             "type": "int",
             "defaultValue": "2",
-            "description": "Sets the maximal shingle size.\nDefaults to 2."
+            "description": "Sets the maximal shingle size."
         },
         {
             "name": "output_unigrams",
             "type": "bool",
             "defaultValue": "true",
-            "description": "Sets flag indicating whether unigrams should be sent to output.\nDefaults to true."
+            "description": "Sets flag indicating whether unigrams should be sent to output."
         }
     ]
 }

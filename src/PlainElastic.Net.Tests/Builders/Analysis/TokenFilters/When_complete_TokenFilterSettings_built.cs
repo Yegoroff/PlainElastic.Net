@@ -24,6 +24,8 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
                                             .Shingle("named_shingle")
                                             .Standard(x => x.CustomPart("Standard"))
                                             .Standard("named_standard")
+                                            .Stop(x => x.CustomPart("Stop"))
+                                            .Stop("named_stop")
                                             .CustomPart("{ Custom }")
                                             .ToString();
 
@@ -59,6 +61,10 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
 
         It should_contain_named_standard_part = () => result.ShouldContain("'named_standard': { 'type': 'standard' }".AltQuote());
 
+        It should_contain_stop_part = () => result.ShouldContain("'stop': { 'type': 'stop',Stop }".AltQuote());
+
+        It should_contain_named_stop_part = () => result.ShouldContain("'named_stop': { 'type': 'stop' }".AltQuote());
+
         It should_contain_custom_part = () => result.ShouldContain("{ Custom }".AltQuote());
         
         It should_return_correct_result = () => result.ShouldEqual(("'token_filter': { " +
@@ -78,6 +84,8 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
                                                                     "'named_shingle': { 'type': 'shingle' }," +
                                                                     "'standard': { 'type': 'standard',Standard }," +
                                                                     "'named_standard': { 'type': 'standard' }," +
+                                                                    "'stop': { 'type': 'stop',Stop }," +
+                                                                    "'named_stop': { 'type': 'stop' }," +
                                                                     "{ Custom } }").AltQuote());
 
         private static string result;

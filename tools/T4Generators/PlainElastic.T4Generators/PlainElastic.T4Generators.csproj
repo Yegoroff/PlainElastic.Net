@@ -45,6 +45,7 @@
   <ItemGroup>
     <None Include="Builders\Analysis\ComponentEmptyTestTemplate.tt" />
     <None Include="Builders\Analysis\ComponentCompleteTestTemplate.tt" />
+    <None Include="Builders\Analysis\StringListPropertyTemplate.tt" />
     <None Include="Builders\Analysis\PropertyTemplate.tt" />
     <None Include="Builders\Analysis\SettingsTemplate.tt" />
     <None Include="Builders\Analysis\SettingsEmptyTestTemplate.tt" />
@@ -53,6 +54,7 @@
     <None Include="Builders\Analysis\TokenFilters\AsciifoldingTokenFilter.cs">
       <DependentUpon>Generator.tt</DependentUpon>
     </None>
+    <None Include="Builders\Analysis\TokenFilters\Metadata\stop.json" />
     <None Include="Builders\Analysis\TokenFilters\Metadata\shingle.json" />
     <None Include="Builders\Analysis\TokenFilters\Metadata\porterStem.json" />
     <None Include="Builders\Analysis\TokenFilters\Metadata\edgeNGram.json" />
@@ -134,6 +136,15 @@
       <DependentUpon>Generator.tt</DependentUpon>
     </None>
     <None Include="Builders\Analysis\TokenFilters\When_complete_ShingleTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\StopTokenFilter.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_empty_StopTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_complete_StopTokenFilter_built.cs">
       <DependentUpon>Generator.tt</DependentUpon>
     </None>
     <Compile Include="Models\ComponentMetadataView.cs" />

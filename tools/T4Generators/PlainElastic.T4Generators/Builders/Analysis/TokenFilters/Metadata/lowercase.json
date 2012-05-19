@@ -1,5 +1,6 @@
 ﻿{
-    "description": "A token filter of type lowercase that normalizes token text to lower case.\nsee http://www.elasticsearch.org/guide/reference/index-modules/analysis/lowercase-tokenfilter.html",
+    "description": "A token filter of type lowercase that normalizes token text to lower case.",
+    "referenceUrl": "http://www.elasticsearch.org/guide/reference/index-modules/analysis/lowercase-tokenfilter.html",
     "properties": [
         {
             "name": "language",

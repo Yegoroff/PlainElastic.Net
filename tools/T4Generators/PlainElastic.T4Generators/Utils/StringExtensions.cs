@@ -37,6 +37,8 @@ namespace PlainElastic.T4Generators.Utils
                     return Utils.ClrTypeCategory.Primitive;
                 case "string":
                     return Utils.ClrTypeCategory.String;
+                case "IEnumerable<string>":
+                    return Utils.ClrTypeCategory.StringList;
                 default:
                     return Utils.ClrTypeCategory.Enum;
             }
@@ -48,6 +50,7 @@ namespace PlainElastic.T4Generators.Utils
         None,
         Primitive,
         Enum,
-        String
+        String,
+        StringList
     }
 }

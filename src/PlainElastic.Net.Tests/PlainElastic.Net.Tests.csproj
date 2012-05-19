@@ -85,6 +85,8 @@
     <Compile Include="Builders\Analysis\TokenFilters\Stop\When_empty_StopTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\When_complete_TokenFilterSettings_built.cs" />
     <Compile Include="Builders\Analysis\TokenFilters\When_empty_TokenFilterSettings_built.cs" />
+    <Compile Include="Builders\Analysis\TokenFilters\WordDelimiter\When_complete_WordDelimiterTokenFilter_built.cs" />
+    <Compile Include="Builders\Analysis\TokenFilters\WordDelimiter\When_empty_WordDelimiterTokenFilter_built.cs" />
     <Compile Include="Builders\Analysis\Tokenizers\PathHierarchy\When_complete_PathHierarchyTokenizer_built.cs" />
     <Compile Include="Builders\Analysis\Tokenizers\PathHierarchy\When_empty_PathHierarchyTokenizer_built.cs" />
     <Compile Include="Builders\Analysis\Tokenizers\UaxUrlEmail\When_complete_UaxUrlEmailTokenizer_built.cs" />

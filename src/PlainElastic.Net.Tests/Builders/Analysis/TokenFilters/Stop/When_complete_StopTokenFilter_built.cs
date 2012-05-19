@@ -12,7 +12,7 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
                                             .Version("3.6")
                                             .Stopwords("2", "3")
                                             .StopwordsPath("4")
-                                            .EnablePositionIncrements(true)
+                                            .EnablePositionIncrements(false)
                                             .IgnoreCase(true)
                                             .CustomPart("{ Custom }")
                                             .ToString();
@@ -27,7 +27,7 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
 
         It should_contain_stopwords_path_part = () => result.ShouldContain("'stopwords_path': '4'".AltQuote());
 
-        It should_contain_enable_position_increments_part = () => result.ShouldContain("'enable_position_increments': true".AltQuote());
+        It should_contain_enable_position_increments_part = () => result.ShouldContain("'enable_position_increments': false".AltQuote());
 
         It should_contain_ignore_case_part = () => result.ShouldContain("'ignore_case': true".AltQuote());
 
@@ -38,7 +38,7 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
                                                                     "'version': '3.6'," +
                                                                     "'stopwords': [ '2','3' ]," +
                                                                     "'stopwords_path': '4'," +
-                                                                    "'enable_position_increments': true," +
+                                                                    "'enable_position_increments': false," +
                                                                     "'ignore_case': true," +
                                                                     "{ Custom } }").AltQuote());
 

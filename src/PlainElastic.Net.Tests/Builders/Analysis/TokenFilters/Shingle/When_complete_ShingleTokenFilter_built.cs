@@ -11,7 +11,7 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
                                             .Name("name")
                                             .Version("3.6")
                                             .MaxShingleSize(2)
-                                            .OutputUnigrams(true)
+                                            .OutputUnigrams(false)
                                             .CustomPart("{ Custom }")
                                             .ToString();
 
@@ -23,7 +23,7 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
 
         It should_contain_max_shingle_size_part = () => result.ShouldContain("'max_shingle_size': 2".AltQuote());
 
-        It should_contain_output_unigrams_part = () => result.ShouldContain("'output_unigrams': true".AltQuote());
+        It should_contain_output_unigrams_part = () => result.ShouldContain("'output_unigrams': false".AltQuote());
 
         It should_contain_custom_part = () => result.ShouldContain("{ Custom }".AltQuote());
         
@@ -31,7 +31,7 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
                                                                     "'type': 'shingle'," +
                                                                     "'version': '3.6'," +
                                                                     "'max_shingle_size': 2," +
-                                                                    "'output_unigrams': true," +
+                                                                    "'output_unigrams': false," +
                                                                     "{ Custom } }").AltQuote());
 
         private static string result;

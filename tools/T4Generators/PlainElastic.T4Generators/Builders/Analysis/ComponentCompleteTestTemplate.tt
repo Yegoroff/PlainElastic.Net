@@ -104,7 +104,7 @@ public class PropertyTestData
         }
         if (Property.ClrType == "bool")
         {
-            return "true";
+            return Property.DefaultCode == "true" ? "false" : "true";
         }
         if (Property.ClrType.ClrTypeCategory() == ClrTypeCategory.StringList)
         {

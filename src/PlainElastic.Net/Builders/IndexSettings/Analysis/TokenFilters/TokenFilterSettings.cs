@@ -233,6 +233,30 @@ namespace PlainElastic.Net.IndexSettings
         #endregion
 
 
+        #region WordDelimiter
+
+        /// <summary>
+        /// Named word_delimiter, it splits words into subwords and performs optional transformations on subword groups.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/word-delimiter-tokenfilter.html
+        /// </summary>
+        public TokenFilterSettings WordDelimiter(string name, Func<WordDelimiterTokenFilter, WordDelimiterTokenFilter> wordDelimiter = null)
+        {
+            RegisterJsonPartExpression(wordDelimiter.Bind(tokenizer => tokenizer.Name(name)));
+            return this;
+        }
+
+        /// <summary>
+        /// Named word_delimiter, it splits words into subwords and performs optional transformations on subword groups.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/word-delimiter-tokenfilter.html
+        /// </summary>
+        public TokenFilterSettings WordDelimiter(Func<WordDelimiterTokenFilter, WordDelimiterTokenFilter> wordDelimiter)
+        {
+            return WordDelimiter(DefaultTokenFilters.word_delimiter.AsString(), wordDelimiter);
+        }
+
+        #endregion
+
+
         protected override string ApplyJsonTemplate(string body)
         {
             return "'token_filter': {{ {0} }}".AltQuoteF(body);

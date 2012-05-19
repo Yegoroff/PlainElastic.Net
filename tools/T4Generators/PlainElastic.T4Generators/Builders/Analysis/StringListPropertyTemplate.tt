@@ -30,7 +30,7 @@ public class StringListPropertyTemplate : PropertyTemplate
         /// <summary>
         /// <#= Property.Description.ToCodeSummary(indentSpaces: 8) #>
         /// </summary>
-        public <#= ClassName #> Stopwords(params string[] <#= parameterName #>)
+        public <#= ClassName #> <#= Property.ClrName #>(params string[] <#= parameterName #>)
         {
             return <#= Property.ClrName #>((IEnumerable<string>)<#= parameterName #>);
         }

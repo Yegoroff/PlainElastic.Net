@@ -26,6 +26,8 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
                                             .Standard("named_standard")
                                             .Stop(x => x.CustomPart("Stop"))
                                             .Stop("named_stop")
+                                            .WordDelimiter(x => x.CustomPart("WordDelimiter"))
+                                            .WordDelimiter("named_word_delimiter")
                                             .CustomPart("{ Custom }")
                                             .ToString();
 
@@ -65,6 +67,10 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
 
         It should_contain_named_stop_part = () => result.ShouldContain("'named_stop': { 'type': 'stop' }".AltQuote());
 
+        It should_contain_word_delimiter_part = () => result.ShouldContain("'word_delimiter': { 'type': 'word_delimiter',WordDelimiter }".AltQuote());
+
+        It should_contain_named_word_delimiter_part = () => result.ShouldContain("'named_word_delimiter': { 'type': 'word_delimiter' }".AltQuote());
+
         It should_contain_custom_part = () => result.ShouldContain("{ Custom }".AltQuote());
         
         It should_return_correct_result = () => result.ShouldEqual(("'token_filter': { " +
@@ -86,6 +92,8 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
                                                                     "'named_standard': { 'type': 'standard' }," +
                                                                     "'stop': { 'type': 'stop',Stop }," +
                                                                     "'named_stop': { 'type': 'stop' }," +
+                                                                    "'word_delimiter': { 'type': 'word_delimiter',WordDelimiter }," +
+                                                                    "'named_word_delimiter': { 'type': 'word_delimiter' }," +
                                                                     "{ Custom } }").AltQuote());
 
         private static string result;

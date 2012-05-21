@@ -1,0 +1,78 @@
+﻿<#@ assembly name="System.Core" #>
+<#@ assembly name="$(ProjectDir)\bin\PlainElastic.T4Generators.dll" #>
+
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="Microsoft.VisualStudio.TextTemplating" #>
+<#@ import namespace="PlainElastic.T4Generators.Models" #>
+<#@ import namespace="PlainElastic.T4Generators.Utils" #>
+
+<#@ include file="ComponentTemplate.tt" #>
+<#@ include file="ComponentEmptyTestTemplate.tt" #>
+<#@ include file="ComponentCompleteTestTemplate.tt" #>
+<#@ include file="SettingsTemplate.tt" #>
+<#@ include file="SettingsEmptyTestTemplate.tt" #>
+<#@ include file="SettingsCompleteTestTemplate.tt" #>
+
+<#+
+public class ComponentsGenerator : Generator
+{
+    public ComponentsGenerator(ITextTemplatingEngineHost host, AnalysisViewSettings settings)
+    {
+        Host = host;
+        Settings = settings;
+    }
+
+    public ITextTemplatingEngineHost Host { get; private set; }
+    public AnalysisViewSettings Settings { get; private set; }
+
+    protected override void RunCore()
+    {
+        var metadataFolder = Path.Combine(Path.GetDirectoryName(Host.TemplateFile), "Metadata");
+        var metadataViews = MetadataHelper.ReadComponentsMetadata(metadataFolder)
+                                .Select(m => new ComponentMetadataView(m, Settings)).ToList();
+
+        foreach (var metadataView in metadataViews)
+        {
+            var template = new ComponentTemplate(metadataView);
+            RenderCodeTemplate(metadataView.ClassName, template);
+
+            var emptyTestClassName = GetEmptyTestClassName(metadataView.ClassName);
+            var emptyTestTemplate = new ComponentEmptyTestTemplate(emptyTestClassName, metadataView);
+            RenderCodeTemplate(emptyTestClassName, emptyTestTemplate);
+
+            var completeTestClassName = GetCompleteTestClassName(metadataView.ClassName);
+            var completeTestTemplate = new ComponentCompleteTestTemplate(completeTestClassName, metadataView);
+            RenderCodeTemplate(completeTestClassName, completeTestTemplate);
+        }
+
+        var settingsTemplate = new SettingsTemplate(metadataViews, Settings);
+        RenderCodeTemplate(Settings.SettingsClassName, settingsTemplate);
+
+        var settingsEmptyTestClassName = GetEmptyTestClassName(Settings.SettingsClassName);
+        var settingsEmptyTestTemplate = new SettingsEmptyTestTemplate(settingsEmptyTestClassName, Settings);
+        RenderCodeTemplate(settingsEmptyTestClassName, settingsEmptyTestTemplate);
+
+        var settingsCompleteTestClassName = GetCompleteTestClassName(Settings.SettingsClassName);
+        var settingsCompleteTestTemplate = new SettingsCompleteTestTemplate(settingsCompleteTestClassName, metadataViews, Settings);
+        RenderCodeTemplate(settingsCompleteTestClassName, settingsCompleteTestTemplate);
+    }
+
+    private static string GetEmptyTestClassName(string testedClassName)
+    {
+        return string.Format("When_empty_{0}_built", testedClassName);
+    }
+
+    private static string GetCompleteTestClassName(string testedClassName)
+    {
+        return string.Format("When_complete_{0}_built", testedClassName);
+    }
+
+    private static void RenderCodeTemplate(string fileName, Template template)
+    {
+        template.Output.BuildAction = "None";
+        template.RenderToFile(fileName + ".cs");
+    }
+}
+
+#>

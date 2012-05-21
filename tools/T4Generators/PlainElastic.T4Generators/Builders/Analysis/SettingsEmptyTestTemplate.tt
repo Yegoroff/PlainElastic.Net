@@ -1,0 +1,42 @@
+﻿<#@ assembly name="$(ProjectDir)\bin\PlainElastic.T4Generators.dll" #>
+
+<#@ import namespace="PlainElastic.T4Generators.Models" #>
+
+<#+
+public class SettingsEmptyTestTemplate : Template
+{
+    public SettingsEmptyTestTemplate(string testClassName, AnalysisViewSettings settings)
+    {
+        TestClassName = testClassName;
+        Settings = settings;
+    }
+
+    public string TestClassName { get; private set; }
+    public AnalysisViewSettings Settings { get; private set; }
+
+    public override string TransformText()
+    {
+
+#>
+using Machine.Specifications;
+using PlainElastic.Net.IndexSettings;
+using PlainElastic.Net.Utils;
+
+namespace PlainElastic.Net.Tests.Builders.IndexSettings
+{
+    [Subject(typeof(<#= Settings.SettingsClassName #>))]
+    class <#= TestClassName #>
+    {
+        Because of = () => result = new <#= Settings.SettingsClassName #>()
+                                            .ToString();
+
+        It should_return_correct_result = () => result.ShouldEqual("'<#= Settings.ElasticSectionName #>': {  }".AltQuote());
+
+        private static string result;
+    }
+}<#+
+        return this.GenerationEnvironment.ToString();
+    }
+}
+
+#>

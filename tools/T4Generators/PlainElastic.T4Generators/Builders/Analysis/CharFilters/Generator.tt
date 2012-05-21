@@ -1,0 +1,14 @@
+<#@ template language="C#" hostspecific="True" debug="True" #>
+<#@ output extension="ignore" #>
+
+<#@ assembly name="$(ProjectDir)\bin\PlainElastic.T4Generators.dll" #>
+
+<#@ import namespace="PlainElastic.T4Generators.Models" #>
+
+<#@ include file="T4Toolbox.tt" #>
+<#@ include file="..\ComponentsGenerator.tt" #>
+
+<#
+    var settings = new AnalysisViewSettings("char_filter");
+    new ComponentsGenerator(Host, settings).Run();
+#>

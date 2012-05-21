@@ -1,0 +1,16 @@
+﻿{
+    "description": "The pattern_replace token filter allows to easily handle string replacements based on a regular expression.",
+    "referenceUrl": "http://www.elasticsearch.org/guide/reference/index-modules/analysis/pattern_replace-tokenfilter.html",
+    "properties": [
+        {
+            "name": "pattern",
+            "type": "string",
+            "description": "Sets the regular expression pattern."
+        },
+        {
+            "name": "replacement",
+            "type": "string",
+            "description": "Sets the replacement string.\nSupports referencing the original text, see http://docs.oracle.com/javase/6/docs/api/java/util/regex/Matcher.html"
+        }
+    ]
+}

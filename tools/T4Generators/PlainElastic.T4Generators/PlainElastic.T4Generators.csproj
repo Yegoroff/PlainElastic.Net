@@ -1,0 +1,356 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B33CDFAC-BDA9-4460-9E14-49D0C0E6A452}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PlainElastic.T4Generators</RootNamespace>
+    <AssemblyName>PlainElastic.T4Generators</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\packages\Newtonsoft.Json.4.0.7\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Builders\Analysis\CharFilters\Generator.ignore">
+      <DependentUpon>Generator.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </None>
+    <None Include="Builders\Analysis\CharFilters\Generator.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Generator.ignore</LastGenOutput>
+    </None>
+    <None Include="Builders\Analysis\CharFilters\Metadata\html_strip.json" />
+    <None Include="Builders\Analysis\CharFilters\Metadata\mapping.json" />
+    <None Include="Builders\Analysis\ComponentEmptyTestTemplate.tt" />
+    <None Include="Builders\Analysis\ComponentCompleteTestTemplate.tt" />
+    <None Include="Builders\Analysis\StringListPropertyTemplate.tt" />
+    <None Include="Builders\Analysis\PropertyTemplate.tt" />
+    <None Include="Builders\Analysis\SettingsTemplate.tt" />
+    <None Include="Builders\Analysis\SettingsEmptyTestTemplate.tt" />
+    <None Include="Builders\Analysis\SettingsCompleteTestTemplate.tt" />
+    <None Include="Builders\Analysis\TokenFilters\Metadata\asciifolding.json" />
+    <None Include="Builders\Analysis\TokenFilters\AsciifoldingTokenFilter.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\Metadata\trim.json" />
+    <None Include="Builders\Analysis\TokenFilters\Metadata\pattern_replace.json" />
+    <None Include="Builders\Analysis\TokenFilters\Metadata\unique.json" />
+    <None Include="Builders\Analysis\TokenFilters\Metadata\truncate.json" />
+    <None Include="Builders\Analysis\TokenFilters\Metadata\elision.json" />
+    <None Include="Builders\Analysis\TokenFilters\Metadata\reverse.json" />
+    <None Include="Builders\Analysis\TokenFilters\Metadata\hyphenation_decompounder.json" />
+    <None Include="Builders\Analysis\TokenFilters\Metadata\dictionary_decompounder.json" />
+    <None Include="Builders\Analysis\TokenFilters\Metadata\synonym.json" />
+    <None Include="Builders\Analysis\TokenFilters\Metadata\phonetic.json" />
+    <None Include="Builders\Analysis\TokenFilters\Metadata\snowball.json" />
+    <None Include="Builders\Analysis\TokenFilters\Metadata\kstem.json" />
+    <None Include="Builders\Analysis\TokenFilters\Metadata\stemmer.json" />
+    <None Include="Builders\Analysis\TokenFilters\Metadata\word_delimiter.json" />
+    <None Include="Builders\Analysis\TokenFilters\Metadata\stop.json" />
+    <None Include="Builders\Analysis\TokenFilters\Metadata\shingle.json" />
+    <None Include="Builders\Analysis\TokenFilters\Metadata\porterStem.json" />
+    <None Include="Builders\Analysis\TokenFilters\Metadata\edgeNGram.json" />
+    <None Include="Builders\Analysis\TokenFilters\Metadata\nGram.json" />
+    <None Include="Builders\Analysis\TokenFilters\Metadata\lowercase.json" />
+    <None Include="Builders\Analysis\TokenFilters\When_empty_AsciifoldingTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_complete_AsciifoldingTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\LengthTokenFilter.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_empty_LengthTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_complete_LengthTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\StandardTokenFilter.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_empty_StandardTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_complete_StandardTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\LowercaseTokenFilter.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_empty_LowercaseTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_complete_LowercaseTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\NGramTokenFilter.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_empty_NGramTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_complete_NGramTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\TokenFilterSettings.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_empty_TokenFilterSettings_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_complete_TokenFilterSettings_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\EdgeNGramTokenFilter.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_empty_EdgeNGramTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_complete_EdgeNGramTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\PorterStemTokenFilter.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_empty_PorterStemTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_complete_PorterStemTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\ShingleTokenFilter.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_empty_ShingleTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_complete_ShingleTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\StopTokenFilter.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_empty_StopTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_complete_StopTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\WordDelimiterTokenFilter.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_empty_WordDelimiterTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_complete_WordDelimiterTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\StemmerTokenFilter.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_empty_StemmerTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_complete_StemmerTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\KstemTokenFilter.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_empty_KstemTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_complete_KstemTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\SnowballTokenFilter.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_empty_SnowballTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_complete_SnowballTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\PhoneticTokenFilter.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_empty_PhoneticTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_complete_PhoneticTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\SynonymTokenFilter.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_empty_SynonymTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_complete_SynonymTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\DictionaryDecompounderTokenFilter.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_empty_DictionaryDecompounderTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_complete_DictionaryDecompounderTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\HyphenationDecompounderTokenFilter.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_empty_HyphenationDecompounderTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_complete_HyphenationDecompounderTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\ElisionTokenFilter.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_empty_ElisionTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_complete_ElisionTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\ReverseTokenFilter.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_empty_ReverseTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_complete_ReverseTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\TruncateTokenFilter.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_empty_TruncateTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_complete_TruncateTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\PatternReplaceTokenFilter.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_empty_PatternReplaceTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_complete_PatternReplaceTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\TrimTokenFilter.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_empty_TrimTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_complete_TrimTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\UniqueTokenFilter.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_empty_UniqueTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\When_complete_UniqueTokenFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\CharFilters\HtmlStripCharFilter.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\CharFilters\When_empty_HtmlStripCharFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\CharFilters\When_complete_HtmlStripCharFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\CharFilters\MappingCharFilter.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\CharFilters\When_empty_MappingCharFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\CharFilters\When_complete_MappingCharFilter_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\CharFilters\CharFilterSettings.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\CharFilters\When_empty_CharFilterSettings_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\CharFilters\When_complete_CharFilterSettings_built.cs">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <Compile Include="Models\ComponentMetadataView.cs" />
+    <Compile Include="Models\AnalysisViewSettings.cs" />
+    <Compile Include="Utils\StringExtensions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Models\ComponentMetadata.cs" />
+    <Compile Include="Utils\MetadataHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Builders\Analysis\ComponentTemplate.tt" />
+    <None Include="Builders\Analysis\ComponentsGenerator.tt" />
+    <None Include="Builders\Analysis\TokenFilters\Metadata\standard.json" />
+    <None Include="Builders\Analysis\TokenFilters\Metadata\length.json" />
+    <None Include="Builders\Analysis\TokenFilters\Generator.ignore">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Generator.tt</DependentUpon>
+    </None>
+    <None Include="Builders\Analysis\TokenFilters\Generator.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Generator.ignore</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,4 @@
+﻿{
+    "description": "A token filter of type standard that normalizes tokens extracted with the Standard Tokenizer.",
+    "referenceUrl": "http://www.elasticsearch.org/guide/reference/index-modules/analysis/standard-tokenfilter.html"
+}

@@ -1,0 +1,4 @@
+﻿{
+    "description": "A token filter of type porterStem that transforms the token stream as per the Porter stemming algorithm.\nNote, the input to the stemming filter must already be in lower case, so you will need to use Lower Case Token Filter\nor Lower Case Tokenizer farther down the Tokenizer chain in order for this to work properly!",
+    "referenceUrl": "http://www.elasticsearch.org/guide/reference/index-modules/analysis/porterstem-tokenfilter.html"
+}

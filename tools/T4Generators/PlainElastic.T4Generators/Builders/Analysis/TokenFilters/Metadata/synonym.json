@@ -1,0 +1,43 @@
+﻿{
+    "description": "The synonym token filter allows to easily handle synonyms during the analysis process.",
+    "referenceUrl": "http://www.elasticsearch.org/guide/reference/index-modules/analysis/synonym-tokenfilter.html",
+    "properties": [
+        {
+            "name": "synonyms",
+            "type": "IEnumerable<string>",
+            "description": "Sets the synonyms configuration in the specified format."
+        },
+        {
+            "name": "synonyms_path",
+            "type": "string",
+            "description": "Sets a path (either relative to config location, or absolute) to a synonyms file configuration."
+        },
+        {
+            "name": "format",
+            "type": "SynonymTokenFilterFormats",
+            "defaultValue": "Solr",
+            "testValue": "WordNet",
+            "description": "Sets the synonyms configuration format."
+        },
+        {
+            "name": "ignore_case",
+            "type": "bool",
+            "defaultValue": "false",
+            "description": "Sets flag indicating that tokens case should be ignored."
+        },
+        {
+            "name": "expand",
+            "type": "bool",
+            "defaultValue": "true",
+            "description": "Sets flag which enables synonyms further tokenization."
+        },
+        {
+            "name": "tokenizer",
+            "type": "DefaultTokenizers",
+            "defaultValue": "whitespace",
+            "addStringOverload": true,
+            "testValue": "standard",
+            "description": "Sets the logical / registered name of the tokenizer to use for synonyms tokenization."
+        }
+    ]
+}

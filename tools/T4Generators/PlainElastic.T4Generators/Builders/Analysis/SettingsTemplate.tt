@@ -1,0 +1,78 @@
+﻿<#@ assembly name="$(ProjectDir)\bin\PlainElastic.T4Generators.dll" #>
+
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="PlainElastic.T4Generators.Models" #>
+<#@ import namespace="PlainElastic.T4Generators.Utils" #>
+
+<#+
+public class SettingsTemplate : Template
+{
+    public SettingsTemplate(IEnumerable<ComponentMetadataView> metadataViews, AnalysisViewSettings settings)
+    {
+        MetadataViews = metadataViews;
+        Settings = settings;
+    }
+
+    public IEnumerable<ComponentMetadataView> MetadataViews { get; private set; }
+    public AnalysisViewSettings Settings { get; private set; }
+
+    public override string TransformText()
+    {
+        var pluralSectionName = Settings.ElasticSectionName.Replace("_", " ") + "s";
+
+#>
+using System;
+using PlainElastic.Net.Utils;
+
+namespace PlainElastic.Net.IndexSettings
+{
+    /// <summary>
+    /// Allows to configure <#= pluralSectionName #> to be used in custom analyzers.
+    /// </summary>
+    public class <#= Settings.SettingsClassName #> : SettingsBase<<#= Settings.SettingsClassName #>>
+    {
+
+<#+
+        foreach (var metadata in MetadataViews)
+        {
+            var camelCaseType = metadata.CamelCaseType;
+            var className = metadata.ClassName;
+            var returnClassName = metadata.JsonPartFuncReturnClass ?? metadata.ClassName;
+            var parameterName = camelCaseType.Uncapitalize();
+
+#>        #region <#= metadata.CamelCaseType #>
+
+        /// <summary>
+        /// <#= metadata.Description.ToCodeSummary(indentSpaces: 8) #>
+        /// </summary>
+        public <#= Settings.SettingsClassName #> <#= camelCaseType #>(string name, Func<<#= className #>, <#= returnClassName #>> <#= parameterName #> = null)
+        {
+            RegisterJsonPartExpression(<#= parameterName #>.Bind(tokenizer => tokenizer.Name(name)));
+            return this;
+        }
+
+        /// <summary>
+        /// <#= metadata.Description.ToCodeSummary(indentSpaces: 8) #>
+        /// </summary>
+        public <#= Settings.SettingsClassName #> <#= camelCaseType #>(Func<<#= className #>, <#= returnClassName #>> <#= parameterName #>)
+        {
+            return <#= camelCaseType #>(<#= metadata.ComponentType #>.AsString(), <#= parameterName #>);
+        }
+
+        #endregion
+
+
+<#+
+        }
+
+#>        protected override string ApplyJsonTemplate(string body)
+        {
+            return "'<#= Settings.ElasticSectionName #>': {{ {0} }}".AltQuoteF(body);
+        }
+    }
+}<#+
+        return this.GenerationEnvironment.ToString();
+    }
+}
+
+#>

@@ -1,0 +1,13 @@
+﻿{
+    "description": "A token filter of type lowercase that normalizes token text to lower case.",
+    "referenceUrl": "http://www.elasticsearch.org/guide/reference/index-modules/analysis/lowercase-tokenfilter.html",
+    "properties": [
+        {
+            "name": "language",
+            "type": "LowercaseTokenFilterLanguages",
+            "addStringOverload": true,
+            "testValue": "greek",
+            "description": "Sets non-Latin lowercase filter language."
+        }
+    ]
+}

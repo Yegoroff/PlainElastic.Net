@@ -1,0 +1,43 @@
+﻿<#@ assembly name="$(ProjectDir)\bin\PlainElastic.T4Generators.dll" #>
+
+<#@ import namespace="PlainElastic.T4Generators.Models" #>
+<#@ import namespace="PlainElastic.T4Generators.Utils" #>
+
+<#+
+public class ComponentEmptyTestTemplate : Template
+{
+    public ComponentEmptyTestTemplate(string testClassName, ComponentMetadataView metadata)
+    {
+        TestClassName = testClassName;
+        Metadata = metadata;
+    }
+
+    public string TestClassName { get; set; }
+    public ComponentMetadataView Metadata { get; private set; }
+
+    public override string TransformText()
+    {
+
+#>
+using Machine.Specifications;
+using PlainElastic.Net.IndexSettings;
+using PlainElastic.Net.Utils;
+
+namespace PlainElastic.Net.Tests.Builders.IndexSettings
+{
+    [Subject(typeof(<#= Metadata.ClassName #>))]
+    class <#= TestClassName #>
+    {
+        Because of = () => result = new <#= Metadata.ClassName #>()
+                                            .Name("name")
+                                            .ToString();
+
+        It should_return_correct_result = () => result.ShouldEqual("'name': { 'type': '<#= Metadata.ElasticType #>' }".AltQuote());
+
+        private static string result;
+    }
+}<#+
+        return this.GenerationEnvironment.ToString();
+    }
+}
+#>

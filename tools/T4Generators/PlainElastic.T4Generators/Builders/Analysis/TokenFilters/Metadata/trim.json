@@ -1,0 +1,4 @@
+﻿{
+    "description": "The trim token filter trims surrounding whitespaces around a token.",
+    "referenceUrl": "http://www.elasticsearch.org/guide/reference/index-modules/analysis/trim-tokenfilter.html"
+}

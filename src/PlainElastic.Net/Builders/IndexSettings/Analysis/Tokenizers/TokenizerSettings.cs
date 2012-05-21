@@ -57,6 +57,56 @@ namespace PlainElastic.Net.IndexSettings
         #endregion
 
 
+        #region Letter
+
+        /// <summary>
+        /// A tokenizer of type letter that divides text at non-letters. That's to say, it defines tokens as maximal strings of adjacent letters.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/letter-tokenizer.html
+        /// </summary>
+        public TokenizerSettings Letter(string name, Func<LetterTokenizer, LetterTokenizer> letter = null)
+        {
+            RegisterJsonPartExpression(letter.Bind(tokenizer => tokenizer.Name(name)));
+            return this;
+        }
+
+        /// <summary>
+        /// A tokenizer of type letter that divides text at non-letters. That's to say, it defines tokens as maximal strings of adjacent letters.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/letter-tokenizer.html
+        /// </summary>
+        public TokenizerSettings Letter(Func<LetterTokenizer, LetterTokenizer> letter)
+        {
+            return Letter(DefaultTokenizers.letter.AsString(), letter);
+        }
+
+        #endregion
+
+
+        #region Lowercase
+
+        /// <summary>
+        /// A tokenizer of type lowercase that performs the function of Letter Tokenizer and Lower Case Token Filter together.
+        /// It divides text at non-letters and converts them to lower case.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/lowercase-tokenizer.html
+        /// </summary>
+        public TokenizerSettings Lowercase(string name, Func<LowercaseTokenizer, LowercaseTokenizer> lowercase = null)
+        {
+            RegisterJsonPartExpression(lowercase.Bind(tokenizer => tokenizer.Name(name)));
+            return this;
+        }
+
+        /// <summary>
+        /// A tokenizer of type lowercase that performs the function of Letter Tokenizer and Lower Case Token Filter together.
+        /// It divides text at non-letters and converts them to lower case.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/lowercase-tokenizer.html
+        /// </summary>
+        public TokenizerSettings Lowercase(Func<LowercaseTokenizer, LowercaseTokenizer> lowercase)
+        {
+            return Lowercase(DefaultTokenizers.lowercase.AsString(), lowercase);
+        }
+
+        #endregion
+
+
         #region NGram
 
         /// <summary>
@@ -100,6 +150,30 @@ namespace PlainElastic.Net.IndexSettings
         public TokenizerSettings Standard(Func<StandardTokenizer, StandardTokenizer> standard)
         {
             return Standard(DefaultTokenizers.standard.AsString(), standard);
+        }
+
+        #endregion
+
+
+        #region Whitespace
+
+        /// <summary>
+        /// A tokenizer of type whitespace that divides text at whitespace.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/whitespace-tokenizer.html
+        /// </summary>
+        public TokenizerSettings Whitespace(string name, Func<WhitespaceTokenizer, WhitespaceTokenizer> whitespace = null)
+        {
+            RegisterJsonPartExpression(whitespace.Bind(tokenizer => tokenizer.Name(name)));
+            return this;
+        }
+
+        /// <summary>
+        /// A tokenizer of type whitespace that divides text at whitespace.
+        /// see http://www.elasticsearch.org/guide/reference/index-modules/analysis/whitespace-tokenizer.html
+        /// </summary>
+        public TokenizerSettings Whitespace(Func<WhitespaceTokenizer, WhitespaceTokenizer> whitespace)
+        {
+            return Whitespace(DefaultTokenizers.whitespace.AsString(), whitespace);
         }
 
         #endregion

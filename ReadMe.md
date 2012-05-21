@@ -242,8 +242,198 @@ IEnumerable<string> bulkJsons =
             });
 ```
 
+### Queries
+*ES documentation:*  http://www.elasticsearch.org/guide/reference/query-dsl/
+
+The main idea of QueryBuilder is to repeat JSON syntaxes of ES queries.<br/>
+Besides this it provides *intellisense* with fluent builder interface <br/>
+and *property references*:
+
+for single property `.Field(tweet => tweet.Name)` <br/>
+for collection type property `.FieldOfCollection(collection: user => user.Tweets, field: tweet => tweet.Name)`
 
 
+So let’s see how it works.
+
+We have *http://localhost:9200/twitter* index with type *user*.
+Below we add sample "user" document to it:
+
+```json
+PUT http://localhost:9200/twitter/user/1
+{
+    "Id": 1,
+    "Active": true,
+    "Name": "John Smith",
+    "Alias": "Johnnie"
+}
+```
+
+Now let's create some synthetic JSON query to get this document:
+
+```json
+POST http://localhost:9200/twitter/user/_search
+{
+    "query": {
+        "bool": {
+            "must": [
+                {
+                   "query_string": {
+                      "fields": ["Name","Alias"], "query" : "John" 
+                    }
+                },
+                {
+                   "prefix" : {
+                      "Alias": { "prefix": "john" } 
+                   }
+                }
+            ]
+        }
+    },
+    "filter": {
+        "term": { "Active": "true" }
+    }
+}
+```
+
+Assuming that we have defined class User:
+
+```csharp
+class User
+{
+    public int Id { get; set; }
+    public bool Active { get; set; }
+    public string Name { get; set; }
+    public string Alias { get; set; }
+}
+```
+
+This query could be constructed using:
+
+```csharp
+string query = new QueryBuilder<User>()
+    .Query(q => q
+        .Bool(b => b
+           .Must(m => m
+               .QueryString(qs => qs
+                   .Fields(user => user.Name, user => user.Alias).Query("John")
+               )
+               .Prefix(p => p
+                    .Field(user => user.Alias).Prefix("john")
+               )
+           )
+        )
+    )
+    .Filter(f => f
+        .Term(t => t 
+            .Field(user=> user.Active).Value("true")
+        )
+    )
+    .BuildBeautified();
+```
+
+And then to execute this query we can use the following code:
+```csharp
+var connection = new ElasticConnection("localhost", 9200);
+var serializer = new JsonNetSerializer();
+
+string result = connection.Post(Commands.Search("twitter", "user"), query);
+User foundUser = serializer.ToSearchResult<User>(result).Documents.First();
+```
+
+See [Query Builder Gist](https://gist.github.com/2765230) for complete sample.
+
+
+#### Condition-less Queries:
+
+Its usual case when you have a bunch of UI filters to define full-text query, price range filter, category filter etc.<br/>
+None of these filters are mandatory, so when you construct final query you should use only defined filters.
+This brings ugly conditional logic to your query-building code.
+
+So how PlainElastic.Net addresses this?
+
+The idea behind is really simple:<br/> 
+**if provided query or filter value is null or empty - the whole query or filter will not be generated.**
+
+Expression 
+
+```csharp
+string query = new QueryBuilder<User>()
+    .Query(q => q
+        .QueryString(qs => qs
+           .Fields(user => user.Name, user => user.Alias).Query("")
+        )
+    )
+    .Filter(f => f
+        .Term(t => t 
+            .Field(user=> user.Active).Value(null)
+        )
+    )
+    .Build();
+```
+
+will generate "{}" string that will return all documents from the index.
+
+The real life usage sample: <br/>
+Let's say we have criterion object that represents UI filters:
+
+```csharp
+class Criterion
+{
+    public string FullText { get; set; }
+    public double? MinPrice { get; set; }
+    public double? MaxPrice { get; set; }
+    public bool? Active { get; set; }
+}
+```
+
+So our query builder could look like this: 
+
+```csharp
+public string BuildQuery(Criterion criterion)
+{
+    string query = new QueryBuilder<Item>()
+        .Query(q => q
+            .QueryString(qs => qs
+                .Fields(item => item.Name, item => item.Description)
+                .Query(criterion.FullText)
+            )
+        )
+        .Filter(f => f
+            .And(a => a
+                .Range(r => r
+                    .Field(item => item.Price)                           
+                    // AsString extension allows to convert nullable values to string or null
+                    .From(criterion.MinPrice.AsString())
+                    .To(criterion.MaxPrice.AsString())
+                )
+                .Term(t => t
+                    .Field(user => user.Active).Value(criterion.Active.AsString())
+                )
+            )
+        ).BuildBeautified();
+}
+```
+
+And that's all: no ugly ifs or switches.<br/>
+You just write query builder using most complex scenario, and then it will build only defined criterions.
+
+If we call this function with `BuildQuery( new Criterion { FullText = "text" })`
+then it will generate:
+
+```json
+{
+    "query": {
+        "query_string": {
+            "fields": ["Name", "Description"],
+            "query": "text"
+        }
+    }
+}
+```
+
+so it will omit all not defined filters.
+
+See [Condion-less Query Builder Gist](https://gist.github.com/2765335) for complete sample.
 
 ### License
 

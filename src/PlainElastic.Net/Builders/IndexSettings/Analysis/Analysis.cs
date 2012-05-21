@@ -32,9 +32,9 @@ namespace PlainElastic.Net.IndexSettings
         /// <summary>
         /// Allows to configure token filters to be used in custom analyzers.
         /// </summary>
-        public Analysis TokenFilter(Func<TokenFilterSettings, TokenFilterSettings> tokenFilter)
+        public Analysis Filter(Func<TokenFilterSettings, TokenFilterSettings> filter)
         {
-            RegisterJsonPartExpression(tokenFilter);
+            RegisterJsonPartExpression(filter);
             return this;
         }
 

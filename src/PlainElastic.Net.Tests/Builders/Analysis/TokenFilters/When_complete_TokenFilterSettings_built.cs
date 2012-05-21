@@ -150,8 +150,8 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
         It should_contain_named_word_delimiter_part = () => result.ShouldContain("'named_word_delimiter': { 'type': 'word_delimiter' }".AltQuote());
 
         It should_contain_custom_part = () => result.ShouldContain("{ Custom }".AltQuote());
-        
-        It should_return_correct_result = () => result.ShouldEqual(("'token_filter': { " +
+
+        It should_return_correct_result = () => result.ShouldEqual(("'filter': { " +
                                                                     "'asciifolding': { 'type': 'asciifolding',Asciifolding }," +
                                                                     "'named_asciifolding': { 'type': 'asciifolding' }," +
                                                                     "'dictionary_decompounder': { 'type': 'dictionary_decompounder',DictionaryDecompounder }," +

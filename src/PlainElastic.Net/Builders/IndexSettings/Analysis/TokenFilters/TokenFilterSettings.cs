@@ -573,7 +573,7 @@ namespace PlainElastic.Net.IndexSettings
 
         protected override string ApplyJsonTemplate(string body)
         {
-            return "'token_filter': {{ {0} }}".AltQuoteF(body);
+            return "'filter': {{ {0} }}".AltQuoteF(body);
         }
     }
 }

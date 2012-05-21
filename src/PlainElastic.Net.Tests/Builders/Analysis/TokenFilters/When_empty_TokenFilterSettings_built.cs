@@ -10,7 +10,7 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
         Because of = () => result = new TokenFilterSettings()
                                             .ToString();
 
-        It should_return_correct_result = () => result.ShouldEqual("'token_filter': {  }".AltQuote());
+        It should_return_correct_result = () => result.ShouldEqual("'filter': {  }".AltQuote());
 
         private static string result;
     }

@@ -10,7 +10,7 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
         Because of = () => result = new Analysis()
                                             .Analyzer(a => a.CustomPart("Analyzers"))
                                             .Tokenizer(t => t.CustomPart("Tokenizers"))
-                                            .TokenFilter(t => t.CustomPart("TokenFilters"))
+                                            .Filter(t => t.CustomPart("TokenFilters"))
                                             .CharFilter(c => c.CustomPart("CharFilters"))
                                             .CustomPart("{ Custom }")
                                             .ToString();
@@ -19,7 +19,7 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
 
         It should_contain_tokenizer_part = () => result.ShouldContain("'tokenizer': { Tokenizers }".AltQuote());
 
-        It should_contain_token_filter_part = () => result.ShouldContain("'token_filter': { TokenFilters }".AltQuote());
+        It should_contain_filter_part = () => result.ShouldContain("'filter': { TokenFilters }".AltQuote());
 
         It should_contain_char_filter_part = () => result.ShouldContain("'char_filter': { CharFilters }".AltQuote());
 
@@ -28,7 +28,7 @@ namespace PlainElastic.Net.Tests.Builders.IndexSettings
         It should_return_correct_result = () => result.ShouldEqual(("'analysis': { " +
                                                                     "'analyzer': { Analyzers }," +
                                                                     "'tokenizer': { Tokenizers }," +
-                                                                    "'token_filter': { TokenFilters }," +
+                                                                    "'filter': { TokenFilters }," +
                                                                     "'char_filter': { CharFilters }," +
                                                                     "{ Custom } }").AltQuote());
 

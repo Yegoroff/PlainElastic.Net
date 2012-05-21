@@ -9,6 +9,9 @@
 <#@ include file="..\ComponentsGenerator.tt" #>
 
 <#
-    var settings = new AnalysisViewSettings("token_filter");
+    var settings = new AnalysisViewSettings("token_filter")
+                    {
+                        ElasticSectionName = "filter"
+                    };
     new ComponentsGenerator(Host, settings).Run();
 #>

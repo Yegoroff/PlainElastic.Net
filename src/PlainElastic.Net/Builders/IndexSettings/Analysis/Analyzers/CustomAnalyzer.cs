@@ -11,11 +11,6 @@ namespace PlainElastic.Net.IndexSettings
     /// </summary>
     public class CustomAnalyzer : AnalyzerBase<CustomAnalyzer>
     {
-        protected override string GetComponentType()
-        {
-            return "custom";
-        }
-
 
         /// <summary>
         /// Sets the logical / registered name of the tokenizer to use.
@@ -102,6 +97,12 @@ namespace PlainElastic.Net.IndexSettings
         public CustomAnalyzer CharFilter(params DefaultCharFilters[] filters)
         {
             return CharFilter((IEnumerable<DefaultCharFilters>)filters);
+        }
+
+
+        protected override string GetComponentType()
+        {
+            return "custom";
         }
     }
 }

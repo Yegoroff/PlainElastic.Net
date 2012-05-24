@@ -8,11 +8,6 @@ namespace PlainElastic.Net.IndexSettings
     /// </summary>
     public class UniqueTokenFilter : NamedComponentBase<UniqueTokenFilter>
     {
-        protected override string GetComponentType()
-        {
-            return DefaultTokenFilters.unique.AsString();
-        }
-
 
         /// <summary>
         /// Sets flag indicating that only duplicate tokens on the same position should be removed.
@@ -22,6 +17,12 @@ namespace PlainElastic.Net.IndexSettings
         {
             RegisterJsonPart("'only_on_same_position': {0}", onlyOnSamePosition.AsString());
             return this;
+        }
+
+
+        protected override string GetComponentType()
+        {
+            return DefaultTokenFilters.unique.AsString();
         }
     }
 }

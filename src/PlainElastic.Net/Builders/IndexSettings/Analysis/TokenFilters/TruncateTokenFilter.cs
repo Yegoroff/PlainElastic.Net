@@ -8,11 +8,6 @@ namespace PlainElastic.Net.IndexSettings
     /// </summary>
     public class TruncateTokenFilter : NamedComponentBase<TruncateTokenFilter>
     {
-        protected override string GetComponentType()
-        {
-            return DefaultTokenFilters.truncate.AsString();
-        }
-
 
         /// <summary>
         /// Sets the number of characters to truncate to.
@@ -22,6 +17,12 @@ namespace PlainElastic.Net.IndexSettings
         {
             RegisterJsonPart("'length': {0}", length.AsString());
             return this;
+        }
+
+
+        protected override string GetComponentType()
+        {
+            return DefaultTokenFilters.truncate.AsString();
         }
     }
 }

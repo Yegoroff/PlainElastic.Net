@@ -9,11 +9,6 @@ namespace PlainElastic.Net.IndexSettings
     /// </summary>
     public class StopTokenFilter : NamedComponentBase<StopTokenFilter>
     {
-        protected override string GetComponentType()
-        {
-            return DefaultTokenFilters.stop.AsString();
-        }
-
 
         /// <summary>
         /// Sets a list of stopwords to initialize the filter with.
@@ -64,6 +59,12 @@ namespace PlainElastic.Net.IndexSettings
         {
             RegisterJsonPart("'ignore_case': {0}", ignoreCase.AsString());
             return this;
+        }
+
+
+        protected override string GetComponentType()
+        {
+            return DefaultTokenFilters.stop.AsString();
         }
     }
 }

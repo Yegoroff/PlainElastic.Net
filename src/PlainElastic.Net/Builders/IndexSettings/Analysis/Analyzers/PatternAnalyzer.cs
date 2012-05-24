@@ -8,11 +8,6 @@ namespace PlainElastic.Net.IndexSettings
     /// </summary>
     public class PatternAnalyzer : AnalyzerBase<PatternAnalyzer>
     {
-        protected override string GetComponentType()
-        {
-            return DefaultAnalyzers.pattern.AsString();
-        }
-
 
         /// <summary>
         /// Should terms be lowercased or not.
@@ -42,6 +37,12 @@ namespace PlainElastic.Net.IndexSettings
         {
             RegisterJsonPart("'flags': {0}", flags.AsString().Quotate());
             return this;
+        }
+
+
+        protected override string GetComponentType()
+        {
+            return DefaultAnalyzers.pattern.AsString();
         }
     }
 }

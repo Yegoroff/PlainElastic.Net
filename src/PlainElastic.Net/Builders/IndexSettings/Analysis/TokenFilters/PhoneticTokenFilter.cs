@@ -8,11 +8,6 @@ namespace PlainElastic.Net.IndexSettings
     /// </summary>
     public class PhoneticTokenFilter : NamedComponentBase<PhoneticTokenFilter>
     {
-        protected override string GetComponentType()
-        {
-            return DefaultTokenFilters.phonetic.AsString();
-        }
-
 
         /// <summary>
         /// Sets a phonetic encoder.
@@ -28,7 +23,7 @@ namespace PlainElastic.Net.IndexSettings
         /// </summary>
         public PhoneticTokenFilter Encoder(PhoneticTokenFilterEncoders encoder)
         {
-            RegisterJsonPart("'encoder': {0}", encoder.AsString().Quotate());
+            Encoder(encoder.AsString());
             return this;
         }
 
@@ -40,6 +35,12 @@ namespace PlainElastic.Net.IndexSettings
         {
             RegisterJsonPart("'replace': {0}", replace.AsString());
             return this;
+        }
+
+
+        protected override string GetComponentType()
+        {
+            return DefaultTokenFilters.phonetic.AsString();
         }
     }
 }

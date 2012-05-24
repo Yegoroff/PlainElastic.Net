@@ -8,11 +8,6 @@ namespace PlainElastic.Net.IndexSettings
     /// </summary>
     public class PatternReplaceTokenFilter : NamedComponentBase<PatternReplaceTokenFilter>
     {
-        protected override string GetComponentType()
-        {
-            return DefaultTokenFilters.pattern_replace.AsString();
-        }
-
 
         /// <summary>
         /// Sets the regular expression pattern.
@@ -31,6 +26,12 @@ namespace PlainElastic.Net.IndexSettings
         {
             RegisterJsonPart("'replacement': {0}", replacement.Quotate());
             return this;
+        }
+
+
+        protected override string GetComponentType()
+        {
+            return DefaultTokenFilters.pattern_replace.AsString();
         }
     }
 }

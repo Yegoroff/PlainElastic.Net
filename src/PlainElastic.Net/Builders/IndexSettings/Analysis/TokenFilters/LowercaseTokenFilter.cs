@@ -8,11 +8,6 @@ namespace PlainElastic.Net.IndexSettings
     /// </summary>
     public class LowercaseTokenFilter : NamedComponentBase<LowercaseTokenFilter>
     {
-        protected override string GetComponentType()
-        {
-            return DefaultTokenFilters.lowercase.AsString();
-        }
-
 
         /// <summary>
         /// Sets non-Latin lowercase filter language.
@@ -28,8 +23,14 @@ namespace PlainElastic.Net.IndexSettings
         /// </summary>
         public LowercaseTokenFilter Language(LowercaseTokenFilterLanguages language)
         {
-            RegisterJsonPart("'language': {0}", language.AsString().Quotate());
+            Language(language.AsString());
             return this;
+        }
+
+
+        protected override string GetComponentType()
+        {
+            return DefaultTokenFilters.lowercase.AsString();
         }
     }
 }

@@ -9,11 +9,6 @@ namespace PlainElastic.Net.IndexSettings
     /// </summary>
     public class DictionaryDecompounderTokenFilter : NamedComponentBase<DictionaryDecompounderTokenFilter>
     {
-        protected override string GetComponentType()
-        {
-            return DefaultTokenFilters.dictionary_decompounder.AsString();
-        }
-
 
         /// <summary>
         /// Sets a list of words to use.
@@ -40,6 +35,12 @@ namespace PlainElastic.Net.IndexSettings
         {
             RegisterJsonPart("'word_list_path': {0}", wordListPath.Quotate());
             return this;
+        }
+
+
+        protected override string GetComponentType()
+        {
+            return DefaultTokenFilters.dictionary_decompounder.AsString();
         }
     }
 }

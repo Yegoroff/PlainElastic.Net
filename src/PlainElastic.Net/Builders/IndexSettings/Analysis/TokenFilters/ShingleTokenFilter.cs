@@ -9,11 +9,6 @@ namespace PlainElastic.Net.IndexSettings
     /// </summary>
     public class ShingleTokenFilter : NamedComponentBase<ShingleTokenFilter>
     {
-        protected override string GetComponentType()
-        {
-            return DefaultTokenFilters.shingle.AsString();
-        }
-
 
         /// <summary>
         /// Sets the maximal shingle size.
@@ -33,6 +28,12 @@ namespace PlainElastic.Net.IndexSettings
         {
             RegisterJsonPart("'output_unigrams': {0}", outputUnigrams.AsString());
             return this;
+        }
+
+
+        protected override string GetComponentType()
+        {
+            return DefaultTokenFilters.shingle.AsString();
         }
     }
 }

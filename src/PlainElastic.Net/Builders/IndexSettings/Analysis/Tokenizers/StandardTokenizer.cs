@@ -8,11 +8,6 @@ namespace PlainElastic.Net.IndexSettings
     /// </summary>
     public class StandardTokenizer : NamedComponentBase<StandardTokenizer>
     {
-        protected override string GetComponentType()
-        {
-            return DefaultTokenizers.standard.AsString();
-        }
-
 
         /// <summary>
         /// Sets the maximum token length. If a token is seen that exceeds this length then it is discarded.
@@ -22,6 +17,12 @@ namespace PlainElastic.Net.IndexSettings
         {
             RegisterJsonPart("'max_token_length': {0}", maxTokenLength.AsString());
             return this;
+        }
+
+
+        protected override string GetComponentType()
+        {
+            return DefaultTokenizers.standard.AsString();
         }
     }
 }

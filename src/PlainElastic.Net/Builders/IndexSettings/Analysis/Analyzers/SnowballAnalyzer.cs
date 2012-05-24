@@ -9,11 +9,6 @@ namespace PlainElastic.Net.IndexSettings
     /// </summary>
     public class SnowballAnalyzer : StopwordsAnalyzerBase<SnowballAnalyzer>
     {
-        protected override string GetComponentType()
-        {
-            return DefaultAnalyzers.snowball.AsString();
-        }
-
 
         /// <summary>
         /// Sets the Snowball-generated stemmer language.
@@ -32,6 +27,12 @@ namespace PlainElastic.Net.IndexSettings
         public SnowballAnalyzer Language(SnowballLanguages language = SnowballLanguages.English)
         {
             return Language(language.AsString());
+        }
+
+
+        protected override string GetComponentType()
+        {
+            return DefaultAnalyzers.snowball.AsString();
         }
     }
 }

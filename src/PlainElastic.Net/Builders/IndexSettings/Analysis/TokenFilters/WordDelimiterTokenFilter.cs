@@ -9,11 +9,6 @@ namespace PlainElastic.Net.IndexSettings
     /// </summary>
     public class WordDelimiterTokenFilter : NamedComponentBase<WordDelimiterTokenFilter>
     {
-        protected override string GetComponentType()
-        {
-            return DefaultTokenFilters.word_delimiter.AsString();
-        }
-
 
         /// <summary>
         /// Sets flag causing parts of words to be generated: "PowerShot" => "Power" "Shot".
@@ -157,6 +152,12 @@ namespace PlainElastic.Net.IndexSettings
         {
             RegisterJsonPart("'type_table_path': {0}", typeTablePath.Quotate());
             return this;
+        }
+
+
+        protected override string GetComponentType()
+        {
+            return DefaultTokenFilters.word_delimiter.AsString();
         }
     }
 }

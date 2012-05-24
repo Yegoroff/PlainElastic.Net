@@ -8,11 +8,6 @@ namespace PlainElastic.Net.IndexSettings
     /// </summary>
     public class SnowballTokenFilter : NamedComponentBase<SnowballTokenFilter>
     {
-        protected override string GetComponentType()
-        {
-            return DefaultTokenFilters.snowball.AsString();
-        }
-
 
         /// <summary>
         /// Sets the Snowball-generated stemmer language.
@@ -30,8 +25,14 @@ namespace PlainElastic.Net.IndexSettings
         /// </summary>
         public SnowballTokenFilter Language(SnowballLanguages language = SnowballLanguages.English)
         {
-            RegisterJsonPart("'language': {0}", language.AsString().Quotate());
+           Language(language.AsString());
             return this;
+        }
+
+
+        protected override string GetComponentType()
+        {
+            return DefaultTokenFilters.snowball.AsString();
         }
     }
 }

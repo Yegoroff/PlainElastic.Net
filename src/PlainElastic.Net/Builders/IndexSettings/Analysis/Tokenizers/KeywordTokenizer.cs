@@ -8,11 +8,6 @@ namespace PlainElastic.Net.IndexSettings
     /// </summary>
     public class KeywordTokenizer : NamedComponentBase<KeywordTokenizer>
     {
-        protected override string GetComponentType()
-        {
-            return DefaultTokenizers.keyword.AsString();
-        }
-
 
         /// <summary>
         /// Sets the term buffer size.
@@ -22,6 +17,12 @@ namespace PlainElastic.Net.IndexSettings
         {
             RegisterJsonPart("'buffer_size': {0}", bufferSize.AsString());
             return this;
+        }
+
+
+        protected override string GetComponentType()
+        {
+            return DefaultTokenizers.keyword.AsString();
         }
     }
 }

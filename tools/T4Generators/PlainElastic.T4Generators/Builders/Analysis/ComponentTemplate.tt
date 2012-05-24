@@ -40,14 +40,9 @@ namespace PlainElastic.Net.IndexSettings
     /// </summary>
     public class <#= Metadata.ClassName #> : <#= baseClass #>
     {
-        protected override string GetComponentType()
-        {
-            return <#= Metadata.ComponentType #>.AsString();
-        }
-<#+
+<#+  
         if (properties.Any())
         {
-            WriteLine(string.Empty);
             foreach (var property in properties)
             {
                 var propertyTemplate = property.ClrType.ClrTypeCategory() == ClrTypeCategory.StringList
@@ -55,9 +50,15 @@ namespace PlainElastic.Net.IndexSettings
                                         : new PropertyTemplate(Metadata.ClassName, property);
                 Write(propertyTemplate.TransformText());
             }
+            WriteLine(string.Empty);
+            WriteLine(string.Empty);
         }
-
-#>    }
+#>
+        protected override string GetComponentType()
+        {
+            return <#= Metadata.ComponentType #>.AsString();
+        }
+    }
 }<#+
         return this.GenerationEnvironment.ToString();
     }

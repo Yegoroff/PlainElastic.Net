@@ -17,12 +17,6 @@ namespace PlainElastic.Net.IndexSettings
         }
 
 
-        protected override string GetComponentType()
-        {
-            return type;
-        }
-
-
         /// <summary>
         /// Sets the language analyzer type.
         /// </summary>
@@ -62,6 +56,12 @@ namespace PlainElastic.Net.IndexSettings
         public LanguageAnalyzer StemExclusion(params string[] stemExclusion)
         {
             return StemExclusion((IEnumerable<string>)stemExclusion);
+        }
+
+
+        protected override string GetComponentType()
+        {
+            return type;
         }
     }
 }

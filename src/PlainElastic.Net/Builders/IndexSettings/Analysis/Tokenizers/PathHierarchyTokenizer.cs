@@ -9,11 +9,6 @@ namespace PlainElastic.Net.IndexSettings
     /// </summary>
     public class PathHierarchyTokenizer : NamedComponentBase<PathHierarchyTokenizer>
     {
-        protected override string GetComponentType()
-        {
-            return DefaultTokenizers.path_hierarchy.AsString();
-        }
-
 
         /// <summary>
         /// Sets the character delimiter to use.
@@ -63,6 +58,12 @@ namespace PlainElastic.Net.IndexSettings
         {
             RegisterJsonPart("'skip': {0}", skip.AsString());
             return this;
+        }
+
+
+        protected override string GetComponentType()
+        {
+            return DefaultTokenizers.path_hierarchy.AsString();
         }
     }
 }

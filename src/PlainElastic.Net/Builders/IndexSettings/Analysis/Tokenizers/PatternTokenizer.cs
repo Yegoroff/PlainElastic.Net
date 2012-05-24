@@ -8,11 +8,6 @@ namespace PlainElastic.Net.IndexSettings
     /// </summary>
     public class PatternTokenizer : NamedComponentBase<PatternTokenizer>
     {
-        protected override string GetComponentType()
-        {
-            return DefaultTokenizers.pattern.AsString();
-        }
-
 
         /// <summary>
         /// Sets the regular expression pattern.
@@ -42,6 +37,12 @@ namespace PlainElastic.Net.IndexSettings
         {
             RegisterJsonPart("'group': {0}", group.AsString());
             return this;
+        }
+
+
+        protected override string GetComponentType()
+        {
+            return DefaultTokenizers.pattern.AsString();
         }
     }
 }

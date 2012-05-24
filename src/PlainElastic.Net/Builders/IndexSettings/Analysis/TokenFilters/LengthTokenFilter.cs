@@ -8,11 +8,6 @@ namespace PlainElastic.Net.IndexSettings
     /// </summary>
     public class LengthTokenFilter : NamedComponentBase<LengthTokenFilter>
     {
-        protected override string GetComponentType()
-        {
-            return DefaultTokenFilters.length.AsString();
-        }
-
 
         /// <summary>
         /// Sets the minimum length.
@@ -32,6 +27,12 @@ namespace PlainElastic.Net.IndexSettings
         {
             RegisterJsonPart("'max': {0}", max.AsString());
             return this;
+        }
+
+
+        protected override string GetComponentType()
+        {
+            return DefaultTokenFilters.length.AsString();
         }
     }
 }

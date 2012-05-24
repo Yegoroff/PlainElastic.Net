@@ -8,11 +8,6 @@ namespace PlainElastic.Net.IndexSettings
     /// </summary>
     public class StemmerTokenFilter : NamedComponentBase<StemmerTokenFilter>
     {
-        protected override string GetComponentType()
-        {
-            return DefaultTokenFilters.stemmer.AsString();
-        }
-
 
         /// <summary>
         /// Sets the stemmer language.
@@ -28,8 +23,14 @@ namespace PlainElastic.Net.IndexSettings
         /// </summary>
         public StemmerTokenFilter Language(StemmerTokenFilterLanguages language)
         {
-            RegisterJsonPart("'language': {0}", language.AsString().Quotate());
+            Language(language.AsString());
             return this;
+        }
+
+
+        protected override string GetComponentType()
+        {
+            return DefaultTokenFilters.stemmer.AsString();
         }
     }
 }

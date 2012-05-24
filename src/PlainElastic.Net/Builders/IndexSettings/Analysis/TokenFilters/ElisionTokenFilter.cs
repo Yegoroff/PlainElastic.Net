@@ -9,11 +9,6 @@ namespace PlainElastic.Net.IndexSettings
     /// </summary>
     public class ElisionTokenFilter : NamedComponentBase<ElisionTokenFilter>
     {
-        protected override string GetComponentType()
-        {
-            return DefaultTokenFilters.elision.AsString();
-        }
-
 
         /// <summary>
         /// Sets a list of stop words articles.
@@ -31,6 +26,12 @@ namespace PlainElastic.Net.IndexSettings
         public ElisionTokenFilter Articles(params string[] articles)
         {
             return Articles((IEnumerable<string>)articles);
+        }
+
+
+        protected override string GetComponentType()
+        {
+            return DefaultTokenFilters.elision.AsString();
         }
     }
 }

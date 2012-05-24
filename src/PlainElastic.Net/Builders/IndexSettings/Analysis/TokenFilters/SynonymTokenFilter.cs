@@ -9,11 +9,6 @@ namespace PlainElastic.Net.IndexSettings
     /// </summary>
     public class SynonymTokenFilter : NamedComponentBase<SynonymTokenFilter>
     {
-        protected override string GetComponentType()
-        {
-            return DefaultTokenFilters.synonym.AsString();
-        }
-
 
         /// <summary>
         /// Sets the synonyms configuration in the specified format.
@@ -88,8 +83,14 @@ namespace PlainElastic.Net.IndexSettings
         /// </summary>
         public SynonymTokenFilter Tokenizer(DefaultTokenizers tokenizer = DefaultTokenizers.whitespace)
         {
-            RegisterJsonPart("'tokenizer': {0}", tokenizer.AsString().Quotate());
+            Tokenizer(tokenizer.AsString());
             return this;
+        }
+
+
+        protected override string GetComponentType()
+        {
+            return DefaultTokenFilters.synonym.AsString();
         }
     }
 }

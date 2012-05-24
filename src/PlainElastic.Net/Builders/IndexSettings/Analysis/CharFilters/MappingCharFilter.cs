@@ -9,12 +9,6 @@ namespace PlainElastic.Net.IndexSettings
     /// </summary>
     public class MappingCharFilter : NamedComponentBase<MappingCharFilter>
     {
-        protected override string GetComponentType()
-        {
-            return DefaultCharFilters.mapping.AsString();
-        }
-
-
         /// <summary>
         /// Sets a list of character mappings.
         /// </summary>
@@ -40,6 +34,12 @@ namespace PlainElastic.Net.IndexSettings
         {
             RegisterJsonPart("'mappings_path': {0}", mappingsPath.Quotate());
             return this;
+        }
+
+
+        protected override string GetComponentType()
+        {
+            return DefaultCharFilters.mapping.AsString();
         }
     }
 }

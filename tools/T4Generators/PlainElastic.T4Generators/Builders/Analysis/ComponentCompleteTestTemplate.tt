@@ -1,0 +1,142 @@
+﻿<#@ assembly name="$(ProjectDir)\bin\PlainElastic.T4Generators.dll" #>
+
+<#@ import namespace="PlainElastic.T4Generators.Models" #>
+<#@ import namespace="PlainElastic.T4Generators.Utils" #>
+
+<#+
+public class ComponentCompleteTestTemplate : Template
+{
+    public ComponentCompleteTestTemplate(string testClassName, ComponentMetadataView metadata)
+    {
+        TestClassName = testClassName;
+        Metadata = metadata;
+    }
+
+    public string TestClassName { get; set; }
+    public ComponentMetadataView Metadata { get; private set; }
+
+    public override string TransformText()
+    {
+        var valuesCounter = 2;
+        var testDataList = Metadata.Properties.Select(p => new PropertyTestData(p, ref valuesCounter)).ToList();
+
+#>
+using Machine.Specifications;
+using PlainElastic.Net.IndexSettings;
+using PlainElastic.Net.Utils;
+
+namespace PlainElastic.Net.Tests.Builders.IndexSettings
+{
+    [Subject(typeof(<#= Metadata.ClassName #>))]
+    class <#= TestClassName #>
+    {
+        Because of = () => result = new <#= Metadata.ClassName #>()
+                                            .Name("name")
+                                            .Version("3.6")
+<#+
+        foreach (var testData in testDataList)
+        {
+
+#>                                            <#= testData.BuilderCode #>
+<#+
+        }
+
+#>                                            .CustomPart("{ Custom }")
+                                            .ToString();
+
+        It should_start_with_name = () => result.ShouldStartWith("'name': {".AltQuote());
+
+        It should_contain_type_part = () => result.ShouldContain("'type': '<#= Metadata.ElasticType #>'".AltQuote());
+
+        It should_contain_version_part = () => result.ShouldContain("'version': '3.6'".AltQuote());
+
+<#+
+        foreach (var testData in testDataList)
+        {
+
+#>        It should_contain_<#= testData.Property.ElasticName #>_part = () => result.ShouldContain("<#= testData.AssertString #>".AltQuote());
+
+<#+
+        }
+
+#>        It should_contain_custom_part = () => result.ShouldContain("{ Custom }".AltQuote());
+        
+        It should_return_correct_result = () => result.ShouldEqual(("'name': { " +
+                                                                    "'type': '<#= Metadata.ElasticType #>'," +
+                                                                    "'version': '3.6'," +
+<#+
+        foreach (var testData in testDataList)
+        {
+
+#>                                                                    "<#= testData.AssertString #>," +
+<#+
+        }
+
+#>                                                                    "{ Custom } }").AltQuote());
+
+        private static string result;
+    }
+}<#+
+        return this.GenerationEnvironment.ToString();
+    }
+}
+
+public class PropertyTestData
+{
+    public PropertyTestData(ComponentMetadataPropertyView property, ref int valuesCounter)
+    {
+        Property = property;
+
+        var testValue = GetTestValue(ref valuesCounter);
+        BuilderCode = string.Format(".{0}({1})", property.ClrName, GetTestValueForBuilder(testValue));
+        AssertString = string.Format("'{0}': {1}", property.ElasticName, GetTestValueForJson(testValue));
+    }
+
+    public ComponentMetadataPropertyView Property { get; private set; }
+    public string BuilderCode { get; private set; }
+    public string AssertString { get; private set; }
+
+    private string GetTestValue(ref int valuesCounter)
+    {
+        if (!string.IsNullOrEmpty(Property.TestValue))
+        {
+            return Property.TestValue;
+        }
+        if (Property.ClrType == "bool")
+        {
+            return Property.DefaultCode == "true" ? "false" : "true";
+        }
+        if (Property.ClrType.ClrTypeCategory() == ClrTypeCategory.StringList)
+        {
+            return string.Format("\"{0}\", \"{1}\"", valuesCounter++, valuesCounter++);
+        }
+        return (valuesCounter++).ToString();
+    }
+
+    private string GetTestValueForBuilder(string testValue)
+    {
+        switch (Property.ClrType.ClrTypeCategory())
+        {
+            case ClrTypeCategory.Primitive:
+            case ClrTypeCategory.StringList:
+                return testValue;
+            case ClrTypeCategory.Enum:
+                return Property.ClrType + "." + testValue;
+        }
+        return '"' + testValue + '"';
+    }
+
+    private string GetTestValueForJson(string testValue)
+    {
+        switch (Property.ClrType.ClrTypeCategory())
+        {
+            case ClrTypeCategory.Primitive:
+                return testValue;
+            case ClrTypeCategory.StringList:
+                return string.Format("[ {0} ]", testValue.Replace("\"", "'").Replace(" ", ""));
+        }
+        return "'" + testValue + "'";
+    }
+}
+
+#>

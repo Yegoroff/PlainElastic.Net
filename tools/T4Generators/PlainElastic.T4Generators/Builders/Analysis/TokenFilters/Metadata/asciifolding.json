@@ -1,0 +1,4 @@
+﻿{
+    "description": "A token filter of type asciifolding that converts alphabetic, numeric, and symbolic Unicode characters\nwhich are not in the first 127 ASCII characters (the \"Basic Latin\" Unicode block) into their ASCII equivalents, if one exists.",
+    "referenceUrl": "http://www.elasticsearch.org/guide/reference/index-modules/analysis/asciifolding-tokenfilter.html"
+}

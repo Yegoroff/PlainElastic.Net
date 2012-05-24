@@ -1,0 +1,12 @@
+﻿{
+    "description": "The unique token filter can be used to only index unique tokens during analysis.",
+    "referenceUrl": "http://www.elasticsearch.org/guide/reference/index-modules/analysis/unique-tokenfilter.html",
+    "properties": [
+        {
+            "name": "only_on_same_position",
+            "type": "bool",
+            "defaultValue": "false",
+            "description": "Sets flag indicating that only duplicate tokens on the same position should be removed."
+        }
+    ]
+}

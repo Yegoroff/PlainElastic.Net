@@ -1,0 +1,77 @@
+﻿<#@ assembly name="$(ProjectDir)\bin\PlainElastic.T4Generators.dll" #>
+
+<#@ import namespace="PlainElastic.T4Generators.Models" #>
+<#@ import namespace="PlainElastic.T4Generators.Utils" #>
+
+<#+
+public class PropertyTemplate : Template
+{
+    public PropertyTemplate(string className, ComponentMetadataPropertyView property)
+    {
+        ClassName = className;
+        Property = property;
+    }
+
+    public string ClassName { get; private set; }
+    public ComponentMetadataPropertyView Property { get; private set; }
+
+    public override string TransformText()
+    {
+        if (Property.AddStringOverload)
+        {
+            var stringProperty = new ComponentMetadataProperty
+                                    {
+                                        Name = Property.ElasticName,
+                                        Type = "string",
+                                        DefaultValue = Property.DefaultCode,
+                                        Description = Property.Description
+                                    };
+            var stringPropertyTemplate = new PropertyTemplate(ClassName, new ComponentMetadataPropertyView(stringProperty));
+            Write(stringPropertyTemplate.TransformText());
+        }
+
+        var clrTypeCategory = Property.ClrType.ClrTypeCategory();
+        var parameterName = Property.ClrName.Uncapitalize();
+
+        var description = Property.Description;
+        if (!string.IsNullOrEmpty(Property.DefaultCode))
+        {
+            description += string.Format("\nDefaults to {0}.", Property.DefaultCode);
+        }
+
+        var defaultValueStatement = !string.IsNullOrEmpty(Property.DefaultCode)
+                                        ? " = "
+                                          + (clrTypeCategory == ClrTypeCategory.Enum ? Property.ClrType + "." : string.Empty)
+                                          + Property.DefaultCode
+                                        : string.Empty;
+
+        string parameterTransformStatement = string.Empty;
+        switch (clrTypeCategory)
+        {
+            case ClrTypeCategory.Primitive:
+                parameterTransformStatement = ".AsString()";
+                break;
+            case ClrTypeCategory.Enum:
+                parameterTransformStatement = ".AsString().Quotate()";
+                break;
+            case ClrTypeCategory.String:
+                parameterTransformStatement = ".Quotate()";
+                break;
+        }
+
+#>
+
+        /// <summary>
+        /// <#= description.ToCodeSummary(indentSpaces: 8) #>
+        /// </summary>
+        public <#= ClassName #> <#= Property.ClrName #>(<#= Property.ClrType #> <#= parameterName #><#= defaultValueStatement #>)
+        {
+            RegisterJsonPart("'<#= Property.ElasticName #>': {0}", <#= parameterName #><#= parameterTransformStatement #>);
+            return this;
+        }
+<#+
+        return this.GenerationEnvironment.ToString();
+    }
+}
+
+#>

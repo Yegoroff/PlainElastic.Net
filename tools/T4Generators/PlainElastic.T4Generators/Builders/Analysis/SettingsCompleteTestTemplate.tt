@@ -1,0 +1,94 @@
+﻿<#@ assembly name="$(ProjectDir)\bin\PlainElastic.T4Generators.dll" #>
+
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="PlainElastic.T4Generators.Models" #>
+<#@ import namespace="PlainElastic.T4Generators.Utils" #>
+
+<#+
+public class SettingsCompleteTestTemplate : Template
+{
+    public SettingsCompleteTestTemplate(string testClassName, IEnumerable<ComponentMetadataView> metadataViews, AnalysisViewSettings settings)
+    {
+        TestClassName = testClassName;
+        MetadataViews= metadataViews;
+        Settings = settings;
+    }
+
+    public string TestClassName { get; private set; }
+    public IEnumerable<ComponentMetadataView> MetadataViews { get; private set; }
+    public AnalysisViewSettings Settings { get; private set; }
+
+    public override string TransformText()
+    {
+        var testDataList = MetadataViews.Select(m => new BuilderTestData(m)).ToList();
+
+#>
+using Machine.Specifications;
+using PlainElastic.Net.IndexSettings;
+using PlainElastic.Net.Utils;
+
+namespace PlainElastic.Net.Tests.Builders.IndexSettings
+{
+    [Subject(typeof(<#= Settings.SettingsClassName #>))]
+    class <#= TestClassName #>
+    {
+        Because of = () => result = new <#= Settings.SettingsClassName #>()
+<#+
+        foreach (var metadata in MetadataViews)
+        {
+
+#>                                            .<#= metadata.CamelCaseType #>(x => x.CustomPart("<#= metadata.CamelCaseType #>"))
+                                            .<#= metadata.CamelCaseType #>("named_<#= metadata.ElasticType #>")
+<#+
+        }
+
+#>                                            .CustomPart("{ Custom }")
+                                            .ToString();
+
+<#+
+        foreach (var testData in testDataList)
+        {
+
+#>        It should_contain_<#= testData.Metadata.ElasticType #>_part = () => result.ShouldContain("<#= testData.AssertString #>".AltQuote());
+
+        It should_contain_named_<#= testData.Metadata.ElasticType #>_part = () => result.ShouldContain("<#= testData.NamedAssertString #>".AltQuote());
+
+<#+
+        }
+
+#>        It should_contain_custom_part = () => result.ShouldContain("{ Custom }".AltQuote());
+        
+        It should_return_correct_result = () => result.ShouldEqual(("'<#= Settings.ElasticSectionName #>': { " +
+<#+
+        foreach (var testData in testDataList)
+        {
+
+#>                                                                    "<#= testData.AssertString #>," +
+                                                                    "<#= testData.NamedAssertString #>," +
+<#+
+        }
+
+#>                                                                    "{ Custom } }").AltQuote());
+
+        private static string result;
+    }
+}<#+
+        return this.GenerationEnvironment.ToString();
+    }
+}
+
+public class BuilderTestData
+{
+    public BuilderTestData(ComponentMetadataView metadata)
+    {
+        Metadata = metadata;
+        AssertString = string.Format("'{0}': {{ 'type': '{0}',{1} }}", metadata.ElasticType, metadata.CamelCaseType);
+        NamedAssertString = string.Format("'named_{0}': {{ 'type': '{0}' }}", metadata.ElasticType);
+    }
+
+    public ComponentMetadataView Metadata { get; private set; }
+    public string AssertString { get; private set; }
+    public string NamedAssertString { get; private set; }
+}
+
+#>

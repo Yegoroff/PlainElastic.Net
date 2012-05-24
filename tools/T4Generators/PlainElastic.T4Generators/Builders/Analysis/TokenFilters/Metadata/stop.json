@@ -1,0 +1,28 @@
+﻿{
+    "description": "A token filter of type stop that removes stop words from token streams.",
+    "referenceUrl": "http://www.elasticsearch.org/guide/reference/index-modules/analysis/stop-tokenfilter.html",
+    "properties": [
+        {
+            "name": "stopwords",
+            "type": "IEnumerable<string>",
+            "description": "Sets a list of stopwords to initialize the filter with.\nDefaults to English stop words.\nstopwords allow for custom language specific expansion of default stopwords. It follows the _lang_ notation."
+        },
+        {
+            "name": "stopwords_path",
+            "type": "string",
+            "description": "Sets a path (either relative to config location, or absolute) to a stopwords file configuration."
+        },
+        {
+            "name": "enable_position_increments",
+            "type": "bool",
+            "defaultValue": "true",
+            "description": "Sets flag indicating that token positions should record the removed stop words."
+        },
+        {
+            "name": "ignore_case",
+            "type": "bool",
+            "defaultValue": "false",
+            "description": "Sets flag indicating that filter should lower case all words first."
+        }
+    ]
+}

@@ -29,6 +29,24 @@ namespace PlainElastic.Net.IndexSettings
             return this;
         }
 
+        /// <summary>
+        /// Allows to configure token filters to be used in custom analyzers.
+        /// </summary>
+        public Analysis Filter(Func<TokenFilterSettings, TokenFilterSettings> filter)
+        {
+            RegisterJsonPartExpression(filter);
+            return this;
+        }
+
+        /// <summary>
+        /// Allows to configure char filters to be used in custom analyzers.
+        /// </summary>
+        public Analysis CharFilter(Func<CharFilterSettings, CharFilterSettings> charFilter)
+        {
+            RegisterJsonPartExpression(charFilter);
+            return this;
+        }
+
 
         protected override string ApplyJsonTemplate(string body)
         {

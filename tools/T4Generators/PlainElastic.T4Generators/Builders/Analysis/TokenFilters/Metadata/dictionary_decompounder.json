@@ -1,0 +1,16 @@
+﻿{
+    "description": "A token filter of type dictionary_decompounder that allows to decompose compound words.",
+    "referenceUrl": "http://www.elasticsearch.org/guide/reference/index-modules/analysis/compound-word-tokenfilter.html",
+    "properties": [
+        {
+            "name": "word_list",
+            "type": "IEnumerable<string>",
+            "description": "Sets a list of words to use."
+        },
+        {
+            "name": "word_list_path",
+            "type": "string",
+            "description": "Sets a path (either relative to config location, or absolute) to a list of words file."
+        }
+    ]
+}

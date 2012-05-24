@@ -1,0 +1,66 @@
+﻿<#@ assembly name="System.Core" #>
+<#@ assembly name="$(ProjectDir)\bin\PlainElastic.T4Generators.dll" #>
+
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="PlainElastic.T4Generators.Models" #>
+<#@ import namespace="PlainElastic.T4Generators.Utils" #>
+
+<#@ include file="PropertyTemplate.tt" #>
+<#@ include file="StringListPropertyTemplate.tt" #>
+
+<#+
+public class ComponentTemplate : Template
+{
+    public ComponentTemplate(ComponentMetadataView metadata)
+    {
+        Metadata = metadata;
+    }
+
+    public ComponentMetadataView Metadata { get; private set; }
+
+    public override string TransformText()
+    {
+        var baseClass = string.Format(Metadata.BaseClassTemplate ?? "NamedComponentBase<{0}>", Metadata.ClassName);
+        var properties = Metadata.Properties.Where(p => !p.IsTestOnly).ToList();
+
+        if (properties.Any(p => p.ClrType.ClrTypeCategory() == ClrTypeCategory.StringList))
+        {
+#>
+using System.Collections.Generic;
+<#+
+        }
+
+#>
+using PlainElastic.Net.Utils;
+
+namespace PlainElastic.Net.IndexSettings
+{
+    /// <summary>
+    /// <#= Metadata.Description.ToCodeSummary(indentSpaces: 4) #>
+    /// </summary>
+    public class <#= Metadata.ClassName #> : <#= baseClass #>
+    {
+        protected override string GetComponentType()
+        {
+            return <#= Metadata.ComponentType #>.AsString();
+        }
+<#+
+        if (properties.Any())
+        {
+            WriteLine(string.Empty);
+            foreach (var property in properties)
+            {
+                var propertyTemplate = property.ClrType.ClrTypeCategory() == ClrTypeCategory.StringList
+                                        ? new StringListPropertyTemplate(Metadata.ClassName, property)
+                                        : new PropertyTemplate(Metadata.ClassName, property);
+                Write(propertyTemplate.TransformText());
+            }
+        }
+
+#>    }
+}<#+
+        return this.GenerationEnvironment.ToString();
+    }
+}
+
+#>

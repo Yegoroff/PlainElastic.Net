@@ -1,0 +1,19 @@
+﻿{
+    "description": "A phonetic analysis token filter plugin.",
+    "referenceUrl": "http://www.elasticsearch.org/guide/reference/index-modules/analysis/phonetic-tokenfilter.html",
+    "properties": [
+        {
+            "name": "encoder",
+            "type": "PhoneticTokenFilterEncoders",
+            "addStringOverload": true,
+            "testValue": "soundex",
+            "description": "Sets a phonetic encoder."
+        },
+        {
+            "name": "replace",
+            "type": "bool",
+            "defaultValue": "true",
+            "description": "Sets flag controlling if the token processed should be replaced with the encoded one (true), or added (false)."
+        }
+    ]
+}

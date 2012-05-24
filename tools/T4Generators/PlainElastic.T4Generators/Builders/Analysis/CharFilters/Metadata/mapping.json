@@ -1,0 +1,17 @@
+﻿{
+    "description": "A char filter of type mapping replacing characters of an analyzed text with given mapping.",
+    "referenceUrl": "http://www.elasticsearch.org/guide/reference/index-modules/analysis/mapping-charfilter.html",
+    "properties": [
+        {
+            "name": "mappings",
+            "type": "IEnumerable<string>",
+            "testValue": "\"ph=>f\", \"qu=>q\"",
+            "description": "Sets a list of character mappings."
+        },
+        {
+            "name": "mappings_path",
+            "type": "string",
+            "description": "Sets a path (either relative to config location, or absolute) to a mappings file."
+        }
+    ]
+}

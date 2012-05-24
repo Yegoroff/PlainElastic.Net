@@ -1,0 +1,42 @@
+﻿<#@ assembly name="$(ProjectDir)\bin\PlainElastic.T4Generators.dll" #>
+
+<#@ import namespace="PlainElastic.T4Generators.Models" #>
+<#@ import namespace="PlainElastic.T4Generators.Utils" #>
+
+<#+
+public class StringListPropertyTemplate : PropertyTemplate
+{
+    public StringListPropertyTemplate(string className, ComponentMetadataPropertyView property)
+        : base(className, property)
+    {
+    }
+
+    public override string TransformText()
+    {
+        var parameterName = Property.ClrName.Uncapitalize();
+
+#>
+
+        /// <summary>
+        /// <#= Property.Description.ToCodeSummary(indentSpaces: 8) #>
+        /// </summary>
+        public <#= ClassName #> <#= Property.ClrName #>(IEnumerable<string> <#= parameterName #>)
+        {
+            string propertyJson = JsonHelper.BuildJsonStringsProperty("<#= Property.ElasticName #>", <#= parameterName #>);
+            RegisterJsonPart(propertyJson);
+            return this;
+        }
+
+        /// <summary>
+        /// <#= Property.Description.ToCodeSummary(indentSpaces: 8) #>
+        /// </summary>
+        public <#= ClassName #> <#= Property.ClrName #>(params string[] <#= parameterName #>)
+        {
+            return <#= Property.ClrName #>((IEnumerable<string>)<#= parameterName #>);
+        }
+<#+
+        return this.GenerationEnvironment.ToString();
+    }
+}
+
+#>

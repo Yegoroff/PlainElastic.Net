@@ -51,7 +51,7 @@ The solution file `PlainElastic.Net.sln` is located in the root of the repo.
   var connection  = new ElasticConnection();
 ```
 
-2) Than you can write stings with ES command 
+2) Than you can declare sting with ES command
 
 ```csharp
   string command = "http://localhost:9200/twitter/user/test";

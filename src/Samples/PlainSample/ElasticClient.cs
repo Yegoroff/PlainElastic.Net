@@ -58,17 +58,9 @@ namespace PlainSample
             }
         }
 
-        public IndexResult CreateIndex(IndexCommand indexCommand)
+        public IndexResult CreateIndex(IndexCommand indexCommand, IndexSettingsBuilder indexSettings)
         {
-            var indexSettings = new IndexSettingsBuilder()
-                .Analysis(analysis => analysis
-                    .Analyzer(analyzer => analyzer
-                        .Custom("keyword_lowercase", custom => custom
-                            .Tokenizer(DefaultTokenizers.keyword)
-                            .Filter(DefaultTokenFilters.lowercase))))
-                .Build();
-
-            var result = connection.Put(indexCommand, indexSettings);
+            var result = connection.Put(indexCommand, indexSettings.Build());
             return Serializer.ToIndexResult(result);
         }
 

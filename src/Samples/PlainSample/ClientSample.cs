@@ -1,5 +1,6 @@
 ﻿using System;
 using PlainElastic.Net;
+using PlainElastic.Net.IndexSettings;
 using PlainElastic.Net.Queries;
 using PlainElastic.Net.Serialization;
 
@@ -24,6 +25,16 @@ namespace PlainSample
                 User = "anotherUser",
                 Message = "one more message"
             };
+
+
+            var indexSettings = new IndexSettingsBuilder()
+                    .Analysis(analysis => analysis
+                        .Analyzer(analyzer => analyzer
+                            .Custom("keyword_lowercase", custom => custom
+                            .Tokenizer(DefaultTokenizers.keyword)
+                            .Filter(DefaultTokenFilters.lowercase))));
+
+            client.CreateIndex(new IndexCommand(index: "twitter").Refresh(), indexSettings);
 
 
             IndexResult indexResult1 = client.Index(new IndexCommand(index: "twitter", type: "tweet", id: "1").Refresh(),

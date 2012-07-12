@@ -3,6 +3,23 @@ PlainElastic.Net
 
 The really plain Elastic Search .Net client.
 
+
+* [Idea](#plain-idea)
+* [Installation](#installation)
+* [How its works](#how-its-works)
+* [Concepts](#concepts)
+* [Command building](#command-building)
+* [Indexing](#indexing)
+* [Bulk operations](#bulk-operations)
+* [Queries](#queries)
+* [Condition less queries](#condition-less-queries)
+* [Facets](#facets)
+* [Mapping](#mapping)
+* [Index Settings](#index-settings)
+* [If something is missed](#if-something-is-missed)
+* [License](#license)
+
+
 ### Plain Idea 
 
 Usually connectivity clients built using **BLACK BOX** principle: **there is a client interface and some unknown magic behind it**.<br/>
@@ -10,6 +27,20 @@ Usually connectivity clients built using **BLACK BOX** principle: **there is a c
 As the result user hardly can debug connectivity issues or extend client functional with missed features.
 
 The main Idea of PlainElastic.Net is to be a **GLASS BOX**. e.g. provide a **full control over connectivity process to user**.
+
+
+### Installation
+
+##### NuGet support
+You can find **PlainElastic.Net** in NuGet Gallery or just install it using VS *NuGet Packages Manager*. <br/>
+Or just type `Install-Package PlainElastic.Net` in Package Manager Console.
+
+##### Building from Source
+The easiest way to build PlainElastic.Net from source is to clone the git repository on GitHub and build the PlainElastic.Net solution.
+
+`git clone git://github.com/Yegoroff/PlainElastic.Net.git`
+
+The solution file `PlainElastic.Net.sln` is located in the root of the repo.
 
 
 ### How Its works
@@ -21,7 +52,7 @@ The main Idea of PlainElastic.Net is to be a **GLASS BOX**. e.g. provide a **ful
 ```
 
 2) Than you can write stings with ES command 
-  
+
 ```csharp
   string command = "http://localhost:9200/twitter/user/test";
 ```
@@ -29,21 +60,21 @@ The main Idea of PlainElastic.Net is to be a **GLASS BOX**. e.g. provide a **ful
 3) And JSON string with data
 
 ```csharp
-	string jsonData = "{ \"name\": \"Some Name\" }";
+  string jsonData = "{ \"name\": \"Some Name\" }";
 ```
 
 4) And pass them using connection to ES.
 
 ```csharp
-	string response = connection.Put(command, jsonData);
+  string response = connection.Put(command, jsonData);
 ```
 
 5) Get JSON string response and analyze it.
 
-```csharp	
+```csharp
   if(response.Contains("\"ok\":true")) {
-	 ... // do something useful
-	}
+   ... // do something useful
+  }
 ```
 
 #### So, how PlainElastic can help you here?
@@ -84,12 +115,12 @@ and also it allows you not to guess how driver will generate actual ES query whe
 #### All you need is strings.
 
 Let's take some ES query sample in a format that you will see in ES documentation:
-	
+
 ```
 $ curl -XGET http://localhost:9200/twitter/tweet/_search -d '{
-   	"query" : {
-       	"term" : { "User": "somebody" }
-   	}
+     "query" : {
+         "term" : { "User": "somebody" }
+     }
 }'
 ```
 
@@ -98,12 +129,12 @@ In PlainElastic.Net this could be done using:
 ```csharp
 var connection  = new ElasticConnection("localhost", 9200);
 string command = new SearchCommand("twitter", "tweet"); // This will generate: twitter/tweet/_search
-string query = new QueryBuilder<Tweet>()				// This will generate: 
-					.Query(q => q						// { "query": { "term": { "User": "somebody" } } }
-						.Term(t => t
-							.Field(tweet=> tweet.User).Value("somebody")
-						)
-					).Build()
+string query = new QueryBuilder<Tweet>()        // This will generate: 
+          .Query(q => q                         // { "query": { "term": { "User": "somebody" } } }
+            .Term(t => t
+              .Field(tweet=> tweet.User).Value("somebody")
+            )
+          ).Build()
 string result = connection.Get( command, query);
 
 // Than we can convert search results to typed results
@@ -111,13 +142,13 @@ var serializer = new JsonNetSerializer();
 var foundTweets = serializer.ToSearchResults<Tweet>(result);
 foreach (Tweet tweet in  foundTweets.Documents)
 {
-	...
+  ...
 }
 ```
 
 As you can see *all parameters* passed to and returned from Get HTTP verb execution are just **strings**.<br/> 
-This give us complete control over generated commands and queries. You can copy/paste and debug them in any ES tool that allows to execute JSON queries (e.g. CURL or ElasticHead ).
-	
+This gives us complete control over generated commands and queries. You can copy/paste and debug them in any ES tool that allows to execute JSON queries (e.g. CURL or ElasticHead ).
+
 
 ### Command building
 
@@ -130,8 +161,8 @@ all other options could be set using fluent builder interface.
 
 ```csharp
 string indexCommand = new IndexCommand(index: "twitter", type: "tweet", id: "10")
-						 	.Routing("route_value")
-						 	.Refresh();
+               .Routing("route_value")
+               .Refresh();
 ```
 
 There is also a Commands class that represents a command registry and allows you to easily build commands,
@@ -139,12 +170,12 @@ without necessity to remember command class name.
 
 ```csharp
 string searchCommand = Commands.Index(index: "twitter", type: "tweet", id: "10")
-						 	.Routing("route_value")
-						 	.Refresh();
+               .Routing("route_value")
+               .Refresh();
 ```
 
 ### Indexing
-	
+
 *ES documentation:*  http://www.elasticsearch.org/guide/reference/api/index_.html
 
 The easiest way to index document is to serialize your document object to JSON and pass it to PUT index command:
@@ -225,20 +256,20 @@ foreach(string bulk in bulkJsons )
 ```
 
 **Note:** You can build not only *Index* Bulk operations but also *Create* and *Delete*.
-	
+
 ```csharp
-IEnumerable<string> bulkJsons = 		
-	new BulkBuilder(serializer)
-		 .PipelineCollection(tweets,
+IEnumerable<string> bulkJsons = 
+  new BulkBuilder(serializer)
+     .PipelineCollection(tweets,
             (builder, tweet) => {
-            	switch (tweet.State) {
-            		case State.Added: 
-            			builder.Create(data: tweet,  id: myObject.Id))
-            		case State.Updated: 
-            			builder.Index(data: tweet,  id: myObject.Id))
-            		case State.Deleted:
-            			builder.Delete(id: myObject.Id))
-            	}
+              switch (tweet.State) {
+                case State.Added: 
+                  builder.Create(data: tweet,  id: myObject.Id))
+                case State.Updated: 
+                  builder.Index(data: tweet,  id: myObject.Id))
+                case State.Deleted:
+                  builder.Delete(id: myObject.Id))
+              }
             });
 ```
 
@@ -352,7 +383,7 @@ This brings ugly conditional logic to your query-building code.
 So how PlainElastic.Net addresses this?
 
 The idea behind is really simple:<br/> 
-**if provided query or filter value is null or empty - the whole query or filter will not be generated.**
+**If provided condition value is null or empty - the corresponding query or filter will not be generated.**
 
 Expression 
 
@@ -414,7 +445,7 @@ public string BuildQuery(Criterion criterion)
 }
 ```
 
-And that's all: no ugly ifs or switches.<br/>
+And that's all - no ugly ifs or switches.<br/>
 You just write query builder using most complex scenario, and then it will build only defined criterions.
 
 If we call this function with `BuildQuery( new Criterion { FullText = "text" })`
@@ -431,11 +462,207 @@ then it will generate:
 }
 ```
 
-so it will omit all not defined filters.
+so it omits all not defined filters.
 
 See [Condion-less Query Builder Gist](https://gist.github.com/2765335) for complete sample.
+
+
+### Facets
+*ES documentation:*  http://www.elasticsearch.org/guide/reference/api/search/facets/index.html
+
+For now only *Terms* facet and *FilterFacet* supported.
+
+You can construct facet queries using the following syntax:
+
+```csharp
+public string BuildFacetQuery(Criterion criterion)
+{
+  return new QueryBuilder<Item>()
+        .Query(q => q
+            .QueryString(qs => qs
+                .Fields(item => item.Name, item => item.Description)
+                .Query(criterion.FullText)
+            )
+        )
+
+        // Facets Part
+        .Facets(facets => facets
+            .Terms(t => t
+                .FacetName("ItemsPerCategoryCount")
+                .Field(item => item.Category)
+                .Size(100)
+                )
+        )
+        .BuildBeautified();
+}
+```
+
+To read facets result you need to deserialize it to `SearchResults` and access its `.facet` property:
+
+```csharp
+  // Build faceted query with FullText criterion defined.
+  string query = BuildFacetQuery(new Criterion { FullText = "text" });
+  string result = connection.Post(Commands.Search("store", "item"), query);
+
+  // Parse facets query result 
+  var searchResults = serializer.ToSearchResult<Item>(result);
+  var itemsPerCategoryTerms = searchResults.facets.Facet<TermsFacetResult>("ItemsPerCategoryCount").terms;
+
+  foreach (var facetTerm in itemsPerCategoryTerms)
+  {
+      Console.WriteLine("Category: {0}  Items Count: {1}".F(facetTerm.term, facetTerm.count));
+  }
+```
+
+See [Facet Query Builder Gist](https://gist.github.com/3093936) for complete sample.
+
+
+### Mapping
+*ES documentation:*  http://www.elasticsearch.org/guide/reference/mapping/
+
+Mapping of core and object types could be performed in the following manner:
+
+```csharp
+private static string BuildCompanyMapping()
+    {
+        return new MapBuilder<Company>()
+            .RootObject(typeName: "company",
+                        map: r => r
+                .All(a => a.Enabled(false))
+                .Dynamic(false)
+                .Properties(pr => pr
+                    .String(company => company.Name, f => f.Analyzer(DefaultAnalyzers.standard).Boost(2))
+                    .String(company => company.Description, f => f.Analyzer(DefaultAnalyzers.standard))
+                    .String(company => company.Fax, f => f.Analyzer(DefaultAnalyzers.keyword))
+
+                    .Object(company => company.Address, address => address
+                        .Properties(ap => ap
+                            .String(addr => addr.City)
+                            .String(addr => addr.State)
+                            .String(addr => addr.Country)
+                        )
+                    )
+
+                    .NestedObject(company => company.Contacts, o => o
+                        .Properties(p => p
+                            .String(contact => contact.Name)
+                            .String(contact => contact.Department)
+                            .String(contact => contact.Email)
+
+                            // It's unnecessary to specify opt.Type(NumberMappingType.Integer)
+                            // cause it will be inferred from property type.
+                            // Showed here only for educational purpose.
+                            .Number(contact => contact.Age, opt => opt.Type(NumberMappingType.Integer))
+
+                            .Object(ct => ct.Address, oa => oa
+                                .Properties( pp => pp
+                                    .String(a => a.City)
+                                    .String(a => a.State)
+                                    .String(a => a.Country)
+                                )
+                            )
+                        )
+                    )
+                )
+          )
+          .BuildBeautified();
+```
+
+To apply mapping you need to use PutMappingCommand:
+
+```csharp
+var connection = new ElasticConnection("localhost", 9200);
+string jsonMapping = BuildCompanyMapping();
+
+connection.Put(new PutMappingCommand("store", "company"), jsonMapping);
+```
+
+See [Mapping Builder Gist](https://gist.github.com/3094283) for complete sample.
+
+
+### Index Settings
+*ES documentation:*  http://www.elasticsearch.org/guide/reference/api/admin-indices-update-settings.html
+
+You can build index settings by using IndexSettinsBuilder:
+
+```csharp
+private static string BuildIndexSettings()
+{
+    return new IndexSettingsBuilder()
+        .Analysis(als => als
+            .Analyzer(a => a
+                .Custom("lowerkey", custom => custom
+                    .Tokenizer(DefaultTokenizers.keyword)
+                    .Filter(DefaultTokenFilters.lowercase)
+                )
+                .Custom("fulltext", custom => custom
+                    .CharFilter(DefaultCharFilters.html_strip)
+                    .Tokenizer(DefaultTokenizers.standard)
+                    .Filter(DefaultTokenFilters.word_delimiter,
+                            DefaultTokenFilters.lowercase,
+                            DefaultTokenFilters.stop,
+                            DefaultTokenFilters.standard)
+                )
+            )
+        )
+        .BuildBeautified();
+}
+```
+
+You can put index settings to index by UpdateSettingsCommand or by passing settings to index creation command:
+
+```csharp
+var connection = new ElasticConnection("localhost", 9200);
+
+var settings = BuildIndexSettings();
+
+if (IsIndexExists("store", connection))
+{
+    // We can't update settings on active index.
+    // So we need to close it, then update settings and then open index back.
+    connection.Post(new CloseCommand("store"));
+
+    connection.Put(new UpdateSettingsCommand("store"), settings);
+
+    connection.Post(new OpenCommand("store"));
+}
+else
+{
+    // Create Index with settings.
+    connection.Put(Commands.Index("store").Refresh(), settings);
+}
+```
+
+See [Index Settings Gist](https://gist.github.com/3094421) for complete sample.
+
+
+*Special thanks to [devoyster (Andriy Kozachuk)](https://github.com/devoyster) for providing Index Settings support.*
+
+
+### If something is missed
+
+  In case you need ElasticSearch feature that not yet covered by PlainElastic.Net, just remember that everything passed to ES connection is a string,
+  so you can add missed functionality using `.Custom(string)` functions, that exists in every builder.
+  
+```csharp  
+return new QueryBuilder<Item>()
+    .Query(q => q
+        .Term(t => t
+              .Field(user => user.Active)
+              .Value(true.ToString())
+
+              // Custom string representing boost part.
+              .Custom("\"boost\": 3")
+          )
+    )
+    .BuildBeautified();
+```
+  or even more - just pass you string with JSON to ES connection.
+
+  Also don't forget to add an issue to PlainElastic.Net github repository [PlainElastic Issues](https://github.com/Yegoroff/PlainElastic.Net/issues) 
+  so I can add this functionality to the future builds.
+
 
 ### License
 
 PlainElastic.Net is free software distributed under the terms of MIT License (see LICENSE.txt) these terms don’t apply to other 3rd party tools, utilities or code which may be used to develop this application.
-

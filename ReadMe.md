@@ -642,7 +642,7 @@ See [Index Settings Gist](https://gist.github.com/3094421) for complete sample.
 ### If something is missed
 
   In case you need ElasticSearch feature that not yet covered by PlainElastic.Net, just remember that everything passed to ES connection is a string,
-  so you can add missed functionality using `.Custom(string)` functions, that exists in every builder.
+  so you can add missed functionality using `.Custom(string)` function, that exists in every builder.
   
 ```csharp  
 return new QueryBuilder<Item>()

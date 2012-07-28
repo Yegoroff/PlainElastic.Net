@@ -60,6 +60,7 @@
     <Compile Include="Builders\Commands\OptimizeCommand.cs" />
     <Compile Include="Builders\Commands\CountCommand.cs" />
     <Compile Include="Builders\Commands\RefreshCommand.cs" />
+    <Compile Include="Builders\Commands\StatusCommand.cs" />
     <Compile Include="Builders\Commands\UpdateSettingsCommand.cs" />
     <Compile Include="Builders\Commands\OpenCommand.cs" />
     <Compile Include="Builders\Commands\IndexExistsCommand.cs" />

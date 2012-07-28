@@ -156,6 +156,7 @@
     <Compile Include="Builders\Commands\CountCommand\When_complete_CountCommand_built.cs" />
     <Compile Include="Builders\Commands\CountCommand\When_CountCommand_with_multiple_indexes_and_types_built.cs" />
     <Compile Include="Builders\Commands\SearchCommand\When_SearchCommand_with_default_sort_direction_built.cs" />
+    <Compile Include="Builders\Commands\StatusCommand\When_complete_StatusCommand_built.cs" />
     <Compile Include="Builders\Commands\UpdateSettingsCommand\When_complete_UpdateSettingsCommand_built.cs" />
     <Compile Include="Builders\Commands\PutMappingCommand\When_complete_PutMappingCommand_built.cs" />
     <Compile Include="Builders\Commands\PutMappingCommand\When_PutMappingCommand_with_multiple_indexes_built.cs" />

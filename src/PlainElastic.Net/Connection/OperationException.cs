@@ -2,9 +2,9 @@
 
 namespace PlainElastic.Net
 {
-    public class OperationExeception : Exception
+    public class OperationException : Exception
     {
-        public OperationExeception(string message, int httpStatusCode, Exception innerException): base(message, innerException)
+        public OperationException(string message, int httpStatusCode, Exception innerException): base(message, innerException)
         {
             HttpStatusCode = httpStatusCode;
         }

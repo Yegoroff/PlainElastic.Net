@@ -240,7 +240,7 @@
     <Compile Include="Builders\Queries\Enums.cs" />
     <Compile Include="Builders\Queries\QueryBase.cs" />
     <Compile Include="Builders\Queries\RangeQuery.cs" />
-    <Compile Include="Connection\OperationExeception.cs" />
+    <Compile Include="Connection\OperationException.cs" />
     <Compile Include="Connection\ElasticConnection.cs" />
     <Compile Include="Connection\OperationResult.cs" />
     <Compile Include="Connection\IElasticConnection.cs" />

@@ -50,7 +50,7 @@ namespace PlainSample
                 connection.Head(indexExistsCommand);
                 return true;
             }
-            catch (OperationExeception ex)
+            catch (OperationException ex)
             {
                 if (ex.HttpStatusCode == 404)
                     return false;

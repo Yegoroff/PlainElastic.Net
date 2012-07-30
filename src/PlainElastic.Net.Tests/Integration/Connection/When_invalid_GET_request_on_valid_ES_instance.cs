@@ -17,7 +17,7 @@ namespace PlainElastic.Net.Tests.Integration.Connection
             exception = Catch.Exception(() => connection.Get(@"http://localhost:9200/invalid"));
 
 
-        It should_throw_OperationException = () => exception.ShouldBe(typeof(OperationExeception));
+        It should_throw_OperationException = () => exception.ShouldBe(typeof(OperationException));
 
         It should_throw_exception_with_message = () => exception.Message.ShouldEqual("No handler found for uri [/invalid] and method [GET]");
 

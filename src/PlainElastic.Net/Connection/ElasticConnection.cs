@@ -93,7 +93,7 @@ namespace PlainElastic.Net
                 if (response is HttpWebResponse)
                     statusCode = (int)((HttpWebResponse)response).StatusCode;
 
-                throw new OperationExeception(message, statusCode, ex);
+                throw new OperationException(message, statusCode, ex);
             }
 
         }

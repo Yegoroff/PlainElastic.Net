@@ -225,6 +225,25 @@ namespace PlainElastic.Net
         }
 
         /// <summary>
+        /// Builds a command that allows to get a comprehensive status information of one or more indices.
+        /// http://www.elasticsearch.org/guide/reference/api/admin-indices-status.html
+        /// </summary>
+        public static StatusCommand Status(string index = null)
+        {
+            return new StatusCommand(index);
+        }
+
+        /// <summary>
+        /// Builds a command that allows to get a comprehensive status information of one or more indices.
+        /// http://www.elasticsearch.org/guide/reference/api/admin-indices-status.html
+        /// </summary>
+        public static StatusCommand Status(string[] indexes)
+        {
+            return new StatusCommand(indexes);
+        }
+
+
+        /// <summary>
         /// Builds a command that allows to change specific index level settings in real time.
         /// http://www.elasticsearch.org/guide/reference/api/admin-indices-update-settings.html
         /// </summary>

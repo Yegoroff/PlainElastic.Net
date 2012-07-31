@@ -2,7 +2,7 @@
 
 @echo ==========================
 @echo NuGet package publishing.
-@%NUGET% Push NuGet\PlainElastic.Net.1.0.23.nupkg
+@%NUGET% Push NuGet\PlainElastic.Net.1.0.24.nupkg
 @if not errorlevel 0 goto error
 
 @echo PlainElastic.Net publishing sucessfull.

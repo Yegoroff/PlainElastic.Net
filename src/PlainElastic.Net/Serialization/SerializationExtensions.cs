@@ -53,6 +53,11 @@ namespace PlainElastic.Net.Serialization
         {
             return serializer.Deserialize<BulkResult>(operationResult);
         }
+
+        public static StatusResult ToStatusResult(this IJsonSerializer serializer, string operationResult)
+        {
+            return serializer.Deserialize<StatusResult>(operationResult);
+        }
     }
 
 }

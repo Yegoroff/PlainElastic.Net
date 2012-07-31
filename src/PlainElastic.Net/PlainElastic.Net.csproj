@@ -271,6 +271,7 @@
     <Compile Include="Serialization\Results\BaseResult.cs" />
     <Compile Include="Serialization\Results\CommandResult.cs" />
     <Compile Include="Serialization\Results\BulkResult.cs" />
+    <Compile Include="Serialization\Results\StatusResult.cs" />
     <Compile Include="Serialization\Results\CountResult.cs" />
     <Compile Include="Serialization\Results\FacetResult.cs" />
     <Compile Include="Serialization\Results\SearchResult.cs" />

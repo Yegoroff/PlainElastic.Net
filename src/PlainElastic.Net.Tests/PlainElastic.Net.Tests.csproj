@@ -151,6 +151,8 @@
     <Compile Include="Builders\Bulk\When_Bulk_indexes_built_from_collection.cs" />
     <Compile Include="Builders\Commands\CloseCommand\When_complete_CloseCommand_built.cs" />
     <Compile Include="Builders\Commands\BulkCommand\When_complete_BulkCommand_built.cs" />
+    <Compile Include="Builders\Commands\MoreLikeThisCommand\When_complete_MoreLikeThisCommand_built.cs" />
+    <Compile Include="Builders\Commands\MoreLikeThisCommand\When_MoreLikeThisCommand_with_reflected_fields_built.cs" />
     <Compile Include="Builders\Commands\CreateIndexCommand\When_complete_CreateIndexCommand_built.cs" />
     <Compile Include="Builders\Commands\OptimizeCommand\When_complete_OptimizeCommand_built.cs" />
     <Compile Include="Builders\Commands\CountCommand\When_complete_CountCommand_built.cs" />

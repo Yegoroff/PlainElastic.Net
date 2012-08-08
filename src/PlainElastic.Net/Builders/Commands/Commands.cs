@@ -252,5 +252,14 @@ namespace PlainElastic.Net
             return new UpdateSettingsCommand(index);
         }
 
+        /// <summary>
+        /// Builds a command that finds more like a specific item.
+        /// http://www.elasticsearch.org/guide/reference/api/more-like-this.html
+        /// </summary>
+        public static MoreLikeThisCommand MoreLikeThis(string index = null, string type = null, string id = null)
+        {
+            return new MoreLikeThisCommand(index, type, id);
+        }
+
     }
 }

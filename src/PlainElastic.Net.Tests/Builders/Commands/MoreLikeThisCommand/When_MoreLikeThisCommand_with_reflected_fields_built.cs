@@ -21,7 +21,7 @@ namespace PlainElastic.Net.Tests.Builders.Commands
 
         It should_contain_first_parameter_fields_with_StringProperty_and_BoolProperty = () => result.ShouldContain("?mlt_fields=StringProperty,BoolProperty");
 
-        It should_return_correct_value = () => result.ShouldEqual(@"index/type/id/_mlt?fields=StringProperty,BoolProperty");
+        It should_return_correct_value = () => result.ShouldEqual(@"index/type/id/_mlt?mlt_fields=StringProperty,BoolProperty");
 
         private static MoreLikeThisCommand command;
         private static string result;

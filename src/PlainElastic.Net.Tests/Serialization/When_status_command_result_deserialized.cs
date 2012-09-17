@@ -20,9 +20,9 @@ namespace PlainElastic.Net.Tests.Serialization
         'twitter': {
             'index': {
                 'primary_size': '430b',
-                'primary_size_in_bytes': 430,
+                'primary_size_in_bytes': 5000000000,
                 'size': '430b',
-                'size_in_bytes': 430
+                'size_in_bytes': 5000000000
             },
             'translog': {
                 'operations': 5
@@ -152,8 +152,11 @@ namespace PlainElastic.Net.Tests.Serialization
         It should_contain_twitter_index = () =>
             result.indices["twitter"].ShouldNotBeNull();
 
-        It should_contain_correct_twitter_index_size = () =>
-            result.indices["twitter"].index.size_in_bytes.ShouldEqual(430);
+        It should_contain_correct_twitter_index_primary_size_in_bytes = () =>
+            result.indices["twitter"].index.primary_size_in_bytes.ShouldEqual(5000000000);
+
+        It should_contain_correct_twitter_index_size_in_bytes = () =>
+            result.indices["twitter"].index.size_in_bytes.ShouldEqual(5000000000);
 
         It should_contain_correct_translog_operations = () =>
             result.indices["twitter"].translog.operations.ShouldEqual(5);

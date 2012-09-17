@@ -53,7 +53,7 @@ namespace PlainElastic.Net.Serialization
     public class SnapshotIndexStats
     {
         public string size;
-        public int size_in_bytes;
+        public long size_in_bytes;
     }
 
     public class GatewayRecoveryStats
@@ -75,13 +75,13 @@ namespace PlainElastic.Net.Serialization
     {
         public int progress;
         public string size;
-        public int size_in_bytes;
+        public long size_in_bytes;
         public string reused_size;
-        public int reused_size_in_bytes;
+        public long reused_size_in_bytes;
         public string expected_recovered_size;
-        public int expected_recovered_size_in_bytes;
+        public long expected_recovered_size_in_bytes;
         public string recovered_size;
-        public int recovered_size_in_bytes;
+        public long recovered_size_in_bytes;
     }
 
     public class RoutingStats
@@ -113,13 +113,13 @@ namespace PlainElastic.Net.Serialization
         public int current;
         public int current_docs;
         public string current_size;
-        public int current_size_in_bytes;
+        public long current_size_in_bytes;
         public int total;
         public string total_time;
         public int total_time_in_millis;
         public int total_docs;
         public string total_size;
-        public int total_size_in_bytes;
+        public long total_size_in_bytes;
     }
 
     public class DocsStats
@@ -138,8 +138,8 @@ namespace PlainElastic.Net.Serialization
     public class IndexStats
     {
         public string primary_size;
-        public int primary_size_in_bytes;
+        public long primary_size_in_bytes;
         public string size;
-        public int size_in_bytes;
+        public long size_in_bytes;
     }
 }

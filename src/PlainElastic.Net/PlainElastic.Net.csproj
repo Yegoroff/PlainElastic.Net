@@ -157,6 +157,7 @@
     <Compile Include="Builders\Mappings\Core\StringMap.cs" />
     <Compile Include="Builders\Queries\ConstantScoreQuery.cs" />
     <Compile Include="Builders\Queries\BoostingQuery.cs" />
+    <Compile Include="Builders\Queries\Facets\RangeFacet.cs" />
     <Compile Include="Builders\Queries\Filters\NumericRangeFilter.cs" />
     <Compile Include="Builders\Queries\Filters\ScriptFilter.cs" />
     <Compile Include="Builders\Queries\Filters\IndicesFilter.cs" />

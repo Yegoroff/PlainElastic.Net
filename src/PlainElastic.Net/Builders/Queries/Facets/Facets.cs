@@ -30,6 +30,16 @@ namespace PlainElastic.Net.Queries
             return this;
         }
 
+        /// <summary>
+        /// Allows to specify field facets that return the N most frequent terms
+        /// see http://www.elasticsearch.org/guide/reference/api/search/facets/terms-facet.html
+        /// </summary>
+        public Facets<T> Range(Func<RangeFacet<T>, RangeFacet<T>> rangeFacet)
+        {
+            RegisterJsonPartExpression(rangeFacet);
+            return this;
+        }
+
 
         protected override bool HasRequiredParts()
         {

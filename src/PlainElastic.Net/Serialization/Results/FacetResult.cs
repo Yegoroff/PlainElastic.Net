@@ -28,10 +28,25 @@ namespace PlainElastic.Net.Serialization
         }
     }
 
+    public class RangeFacetResult : FacetResult
+    {
+        public List<Range> ranges;
+
+        public class Range
+        {
+            public int? from;
+            public int? to;
+            public int? count;
+            public int? min;
+            public int? max;
+            public int? total_count;
+            public int? total;
+            public int? mean;
+        }
+    }
+
     public class FilterFacetResult : FacetResult
     {
         public int count;
     }
-
-
 }

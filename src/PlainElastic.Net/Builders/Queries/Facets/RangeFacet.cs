@@ -12,8 +12,6 @@ namespace PlainElastic.Net.Queries
     /// </summary>
     public class RangeFacet<T> : FacetBase<RangeFacet<T>, T>
     {
-        private Dictionary<int?, int?> facetRanges = new Dictionary<int?, int?>();
-
         /// <summary>
         /// The field to execute range facet against.
         /// </summary>
@@ -45,29 +43,29 @@ namespace PlainElastic.Net.Queries
         /// <summary>
         /// The ranges of values to aggregate against, in format (to, from)
         /// </summary>
-        public RangeFacet<T> Ranges(Dictionary<int?, int?> ranges)
+        public RangeFacet<T> Ranges(List<RangeToFrom> ranges)
         {
             var rangeList = new List<string>();
 
             foreach (var range in ranges)
             {
-                if(range.Key == null)
+                if(range.From == null)
                 {
-                    rangeList.Add(string.Format("{{ 'to': {0} }}", range.Value));
+                    rangeList.Add(string.Format("{{ 'to': {0} }}", range.To).AltQuote());
                 }
 
-                if(range.Value == null)
+                if(range.To == null)
                 {
-                    rangeList.Add(string.Format("{{ 'from': {0} }}", range.Key));
+                    rangeList.Add(string.Format("{{ 'from': {0} }}", range.From).AltQuote());
                 }
 
-                if (range.Value != null && range.Key != null)
+                if (range.From != null && range.To != null)
                 {
-                    rangeList.Add(string.Format("{{ 'from': {0}, 'to': {1} }}", range.Key, range.Value));
+                    rangeList.Add(string.Format("{{'from': {0}, 'to': {1}}}", range.From, range.To).AltQuote());
                 }
             }
 
-            RegisterJsonPart("'ranges': [ {0} ]", rangeList.Quotate().JoinWithComma());
+            RegisterJsonPart("'ranges': [ {0} ]", rangeList.JoinWithComma());
 
             return this;
             
@@ -77,5 +75,11 @@ namespace PlainElastic.Net.Queries
         {
             return "'range': {{ {0} }}".AltQuoteF(body);
         }
+    }
+
+    public class RangeToFrom
+    {
+        public int? From { get; set; }
+        public int? To { get; set; }
     }
 }

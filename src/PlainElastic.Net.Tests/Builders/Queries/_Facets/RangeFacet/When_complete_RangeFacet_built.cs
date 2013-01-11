@@ -11,7 +11,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
         Because of = () => result = new RangeFacet<FieldsTestClass>()
                                                 .FacetName("TestFacet")
                                                 .Field(f => f.StringProperty)
-                                                .Ranges(new Dictionary<int?, int?>{{1,5}})
+                                                .Ranges(new List<RangeToFrom>(){new RangeToFrom(){From = 1, To = 5}})
                                                 .Scope("scope")
                                                 .Global(true)
                                                 .Nested("nested path")
@@ -35,7 +35,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
             "'TestFacet': { " +
                 "'range': { " +
                     "'field': 'StringProperty'," +
-                    "'ranges': [{'from': 1, 'to': 5}]," +
+                    "'ranges': [ {'from': 1, 'to': 5} ]" +
                 " }," + 
                 "'scope': 'scope'," +
                 "'global': true," +

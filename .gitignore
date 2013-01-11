@@ -4,6 +4,7 @@ bin
 obj
 *.user
 NuGet/lib/
+/.nuget
 *.nupkg
 *.ncrunchsolution
 *.ncrunchproject

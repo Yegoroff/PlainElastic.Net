@@ -1,4 +1,5 @@
-﻿using Machine.Specifications;
+﻿using System.Collections.Generic;
+using Machine.Specifications;
 using PlainElastic.Net.Queries;
 using PlainElastic.Net.Utils;
 

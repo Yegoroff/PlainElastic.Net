@@ -21,6 +21,12 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                                         )
                                                     )
                                                 )
+                                                .Range(r => r
+                                                    .FacetName("Range")
+                                                    .Ranges(i => i
+                                                        .FromTo(from: 1, to: 5)
+                                                    )                                                
+                                                )
                                                 .ToString();
 
         It should_starts_with_facets_declaration = () => result.ShouldStartWith("'facets': ".AltQuote());
@@ -29,10 +35,13 @@ namespace PlainElastic.Net.Tests.Builders.Queries
 
         It should_contain_filter_facet_part = () => result.ShouldContain("'Filter': { 'filter': { 'term': { 'StringProperty': 'test' } } }".AltQuote());
 
+        It should_contain_range_facet_part = () => result.ShouldContain("'Range': { 'range': { 'ranges': [ { 'from': 1, 'to': 5 } ] } }".AltQuote());
+
 
         It should_return_correct_JSON = () => result.ShouldEqual(("'facets': { " +
                                                                     "'Terms': { 'terms': { 'field': 'StringProperty' } }," +
-                                                                    "'Filter': { 'filter': { 'term': { 'StringProperty': 'test' } } } "+
+                                                                    "'Filter': { 'filter': { 'term': { 'StringProperty': 'test' } } },"+
+                                                                    "'Range': { 'range': { 'ranges': [ { 'from': 1, 'to': 5 } ] } } " +
                                                                  "}").AltQuote());
 
         private static string result;

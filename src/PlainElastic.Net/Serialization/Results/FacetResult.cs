@@ -34,14 +34,14 @@ namespace PlainElastic.Net.Serialization
 
         public class Range
         {
-            public int? from;
-            public int? to;
+            public double? from;
+            public double? to;
             public int? count;
-            public int? min;
-            public int? max;
+            public double? min;
+            public double? max;
             public int? total_count;
-            public int? total;
-            public int? mean;
+            public double? total;
+            public double? mean;
         }
     }
 

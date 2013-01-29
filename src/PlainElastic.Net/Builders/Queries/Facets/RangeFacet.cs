@@ -12,6 +12,8 @@ namespace PlainElastic.Net.Queries
     /// </summary>
     public class RangeFacet<T> : FacetBase<RangeFacet<T>, T>
     {
+        private bool hasValue;
+
         /// <summary>
         /// The field to execute range facet against.
         /// </summary>
@@ -40,46 +42,145 @@ namespace PlainElastic.Net.Queries
             return Field(fieldName);
         }
 
+
         /// <summary>
-        /// The ranges of values to aggregate against, in format (to, from)
+        /// The field to check if its value falls within a range.
         /// </summary>
-        public RangeFacet<T> Ranges(List<RangeToFrom> ranges)
+        public RangeFacet<T> KeyField(string fieldName)
         {
-            var rangeList = new List<string>();
-
-            foreach (var range in ranges)
-            {
-                if(range.From == null)
-                {
-                    rangeList.Add(string.Format("{{ 'to': {0} }}", range.To).AltQuote());
-                }
-
-                if(range.To == null)
-                {
-                    rangeList.Add(string.Format("{{ 'from': {0} }}", range.From).AltQuote());
-                }
-
-                if (range.From != null && range.To != null)
-                {
-                    rangeList.Add(string.Format("{{'from': {0}, 'to': {1}}}", range.From, range.To).AltQuote());
-                }
-            }
-
-            RegisterJsonPart("'ranges': [ {0} ]", rangeList.JoinWithComma());
-
+            RegisterJsonPart("'key_field': {0}", fieldName.Quotate());
             return this;
-            
         }
+
+        /// <summary>
+        /// The field to check if its value falls within a range.
+        /// </summary>
+        public RangeFacet<T> KeyField(Expression<Func<T, object>> keyField)
+        {
+            return KeyField(keyField.GetPropertyPath());
+        }
+
+        /// <summary>
+        /// The field to check if its value falls within a range.
+        /// </summary>
+        public RangeFacet<T> KeyFieldOfCollection<TProp>(Expression<Func<T, IEnumerable<TProp>>> collectionField, Expression<Func<TProp, object>> keyField)
+        {
+            var collectionProperty = collectionField.GetPropertyPath();
+            var fieldName = collectionProperty + "." + keyField.GetPropertyPath();
+
+            return KeyField(fieldName);
+        }
+
+
+        /// <summary>
+        /// The field to compute aggregated data per range.
+        /// </summary>
+        public RangeFacet<T> ValueField(string fieldName)
+        {
+            RegisterJsonPart("'value_field': {0}", fieldName.Quotate());
+            return this;
+        }
+
+        /// <summary>
+        /// The field to compute aggregated data per range.
+        /// </summary>
+        public RangeFacet<T> ValueField(Expression<Func<T, object>> valueField)
+        {
+            return ValueField(valueField.GetPropertyPath());
+        }
+
+        /// <summary>
+        /// The field to compute aggregated data per range.
+        /// </summary>
+        public RangeFacet<T> ValueFieldOfCollection<TProp>(Expression<Func<T, IEnumerable<TProp>>> collectionField, Expression<Func<TProp, object>> valueField)
+        {
+            var collectionProperty = collectionField.GetPropertyPath();
+            var fieldName = collectionProperty + "." + valueField.GetPropertyPath();
+
+            return ValueField(fieldName);
+        }
+
+
+        /// <summary>
+        /// The script to get value to check if it falls within a range.
+        /// </summary>
+        public RangeFacet<T> KeyScript(string keyScript)
+        {
+            RegisterJsonPart("'key_script': {0}", keyScript.Quotate());
+            return this;
+        }
+
+
+        /// <summary>
+        /// The script to get value to compute aggregated data per range.
+        /// </summary>
+        public RangeFacet<T> ValueScript(string valueScript)
+        {
+            RegisterJsonPart("'value_script': {0}", valueScript.Quotate());
+            return this;
+        }
+
+
+        /// <summary>
+        /// The ranges of values to aggregate against, in format (from, to)
+        /// </summary>
+        public RangeFacet<T> Ranges(Func<RangeFromTo, RangeFromTo> ranges)
+        {
+            hasValue = !RegisterJsonPartExpression(ranges).GetIsEmpty();
+            return this;
+        }
+
 
         protected override string ApplyFacetBodyJsonTemplate(string body)
         {
             return "'range': {{ {0} }}".AltQuoteF(body);
         }
+
+        protected override bool HasRequiredParts()
+        {
+            return hasValue;
+        }
+
+
+
+        public class RangeFromTo : QueryBase<RangeFromTo>
+        {
+            private bool hasValue;
+
+
+            public RangeFromTo FromTo(double? from = null, double? to = null)
+            {
+                if (!to.HasValue && !from.HasValue)
+                    return this;
+
+                hasValue = true;
+
+                if (from.HasValue)
+                {
+                    if (to.HasValue)
+                        RegisterJsonPart("{{ 'from': {0}, 'to': {1} }}", from.AsString(), to.AsString());
+                    else
+                        RegisterJsonPart("{{ 'from': {0} }}", from.AsString());
+                }
+                else
+                    RegisterJsonPart("{{ 'to': {0} }}", to.AsString());
+
+                return this;
+            }
+
+
+            protected override bool HasRequiredParts()
+            {
+                return hasValue;
+            }
+
+            protected override string ApplyJsonTemplate(string body)
+            {
+                return "'ranges': [ {0} ]".AltQuoteF(body);
+            }
+
+        }
+
     }
 
-    public class RangeToFrom
-    {
-        public int? From { get; set; }
-        public int? To { get; set; }
-    }
 }

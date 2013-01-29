@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
 using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Queries
 {
     /// <summary>
-    /// allows to specify a set of ranges and get both the number of docs (count) that fall within each range, and aggregated data either based on the field, or using another field.
+    /// Allows to specify a set of ranges and get both the number of docs (count) that fall within each range,
+    /// and aggregated data either based on the field, or using another field.
     /// see http://www.elasticsearch.org/guide/reference/api/search/facets/range-facet.html
     /// </summary>
     public class RangeFacet<T> : FacetBase<RangeFacet<T>, T>

@@ -31,8 +31,9 @@ namespace PlainElastic.Net.Queries
         }
 
         /// <summary>
-        /// Allows to specify field facets that return the N most frequent terms
-        /// see http://www.elasticsearch.org/guide/reference/api/search/facets/terms-facet.html
+        /// Allows to specify a set of ranges and get both the number of docs (count) that fall within each range,
+        /// and aggregated data either based on the field, or using another field.
+        /// see http://www.elasticsearch.org/guide/reference/api/search/facets/range-facet.html
         /// </summary>
         public Facets<T> Range(Func<RangeFacet<T>, RangeFacet<T>> rangeFacet)
         {

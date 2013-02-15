@@ -17,12 +17,13 @@ namespace PlainElastic.Net.Queries
         /// <param name="field">The field.</param>
         /// <param name="order">The sort order. By default order depends on chosen field (descending for "_scope", ascending for others) and field analyzer.</param>
         /// <param name="missing">The missing value handling strategy. Use _last, _first or custom value.</param>
+        /// <param name="ignoreUnmapped"> The ignore_unmapped option allows to ignore fields that have no mapping and not sort by them. </param>
         /// <returns></returns>
-        public Sort<T> Field(Expression<Func<T, object>> field, SortDirection order = SortDirection.@default, string missing = null)
+        public Sort<T> Field(Expression<Func<T, object>> field, SortDirection order = SortDirection.@default, string missing = null, bool ignoreUnmapped = false)
         {
             var fieldName = field.GetPropertyPath();
             
-            return Field(fieldName, order, missing);
+            return Field(fieldName, order, missing, ignoreUnmapped);
         }
 
         /// <summary>
@@ -32,8 +33,9 @@ namespace PlainElastic.Net.Queries
         /// <param name="field">The field. Use _score to sort by score.</param>
         /// <param name="order">The sort order. By default order depends on chosen field (descending for "_scope", ascending for others) and field analyzer.</param>
         /// <param name="missing">The missing value handling strategy. Use _last, _first or custom value.</param>
+        /// <param name="ignoreUnmapped"> The ignore_unmapped option allows to ignore fields that have no mapping and not sort by them. </param>
         /// <returns></returns>
-        public Sort<T> Field(string field, SortDirection order = SortDirection.@default, string missing = null)
+        public Sort<T> Field(string field, SortDirection order = SortDirection.@default, string missing = null, bool ignoreUnmapped = false)
         {
             var fieldParams = new List<string>();
             if (order != SortDirection.@default)
@@ -41,6 +43,9 @@ namespace PlainElastic.Net.Queries
 
             if (!missing.IsNullOrEmpty())
                 fieldParams.Add("'missing': {0}".AltQuoteF(missing.Quotate()));
+
+            if (ignoreUnmapped)
+                fieldParams.Add("'ignore_unmapped': true".AltQuote());
 
             if (fieldParams.Any())
                 RegisterJsonPart("{{ {0}: {{ {1} }} }}", field.Quotate(), fieldParams.JoinWithComma());

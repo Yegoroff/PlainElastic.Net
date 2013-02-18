@@ -7,18 +7,18 @@ namespace PlainElastic.Net
     public abstract class CommandBuilder<T> where T: CommandBuilder<T>
     {
 
-        public readonly Dictionary<string, string> Parameters = new Dictionary<string, string>();
+        public readonly List<KeyValuePair<string, string>> Parameters = new List<KeyValuePair<string, string>>();
 
 
         public T WithParameter(string name, string value)
         {
-            Parameters[name] = value;
+            Parameters.Add(new KeyValuePair<string, string>(name, value));
             return (T)this;
         }
 
         public T Pretty()
         {
-            Parameters.Add("pretty", "true");
+            this.WithParameter("pretty", "true");
             return (T)this;
         }
 

@@ -31,7 +31,7 @@ namespace PlainElastic.Net
         /// </summary>
         public DeleteCommand Consistency(WriteConsistency consistency)
         {
-            Parameters.Add("consistency", consistency.AsString());
+            WithParameter("consistency", consistency.AsString());
             return this;
         }
 
@@ -41,7 +41,7 @@ namespace PlainElastic.Net
         /// </summary>
         public DeleteCommand Parent(string parentId)
         {
-            Parameters.Add("parent", parentId);
+            WithParameter("parent", parentId);
             return this;
         }
 
@@ -52,7 +52,7 @@ namespace PlainElastic.Net
         /// </summary>
         public DeleteCommand Refresh(bool refresh = true)
         {
-            Parameters.Add("refresh", refresh.AsString());
+            WithParameter("refresh", refresh.AsString());
             return this;
         }
 
@@ -63,7 +63,7 @@ namespace PlainElastic.Net
         /// </summary>
         public DeleteCommand Replication(DocumentReplication replication)
         {
-            Parameters.Add("replication", replication.AsString());
+            WithParameter("replication", replication.AsString());
             return this;
         }
 
@@ -73,7 +73,7 @@ namespace PlainElastic.Net
         /// </summary>
         public DeleteCommand Routing(string routing)
         {
-            Parameters.Add("routing", routing);
+            WithParameter("routing", routing);
             return this;
         }
 
@@ -83,7 +83,7 @@ namespace PlainElastic.Net
         /// </summary>
         public DeleteCommand Version(long version)
         {
-            Parameters.Add("version", version.AsString());
+            WithParameter("version", version.AsString());
             return this;
         }
 

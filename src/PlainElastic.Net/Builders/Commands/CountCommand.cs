@@ -36,7 +36,7 @@ namespace PlainElastic.Net
         /// </summary>
         public CountCommand Analyzer(string analyzer)
         {
-            Parameters.Add("analyzer", analyzer);
+            WithParameter("analyzer", analyzer);
             return this;
         }
 
@@ -45,7 +45,7 @@ namespace PlainElastic.Net
         /// </summary>
         public CountCommand Analyzer(DefaultAnalyzers analyzer)
         {
-            Parameters.Add("analyzer", analyzer.AsString());
+            WithParameter("analyzer", analyzer.AsString());
             return this;
         }
 
@@ -54,7 +54,7 @@ namespace PlainElastic.Net
         /// </summary>
         public CountCommand Df(string defaultField)
         {
-            Parameters.Add("df", defaultField);
+            WithParameter("df", defaultField);
             return this;
         }
 
@@ -63,7 +63,7 @@ namespace PlainElastic.Net
         /// </summary>
         public CountCommand DefaultOperator(Operator defaultOperator)
         {
-            Parameters.Add("default_operator", defaultOperator.AsString());
+            WithParameter("default_operator", defaultOperator.AsString());
             return this;
         }
 
@@ -72,7 +72,7 @@ namespace PlainElastic.Net
         /// </summary>
         public CountCommand Q(string query)
         {
-            Parameters.Add("q", query);
+            WithParameter("q", query);
             return this;
         }
 
@@ -81,7 +81,7 @@ namespace PlainElastic.Net
         /// </summary>
         public CountCommand Routing(string routing)
         {
-            Parameters.Add("routing", routing);
+            WithParameter("routing", routing);
             return this;
         }
 
@@ -92,7 +92,7 @@ namespace PlainElastic.Net
         /// </summary>
         public CountCommand SearchType(SearchType searchType)
         {
-            Parameters.Add("search_type", searchType.AsString());
+            WithParameter("search_type", searchType.AsString());
             return this;
         }
 

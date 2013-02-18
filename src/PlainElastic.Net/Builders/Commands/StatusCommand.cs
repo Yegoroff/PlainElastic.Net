@@ -2,18 +2,18 @@
 
 namespace PlainElastic.Net
 {
-	/// <summary>
-	/// Builds a command that allows to get a comprehensive status information of one or more indices.
-	/// http://www.elasticsearch.org/guide/reference/api/admin-indices-status.html
-	/// </summary>
-	public class StatusCommand : CommandBuilder<StatusCommand>
-	{
+    /// <summary>
+    /// Builds a command that allows to get a comprehensive status information of one or more indices.
+    /// http://www.elasticsearch.org/guide/reference/api/admin-indices-status.html
+    /// </summary>
+    public class StatusCommand : CommandBuilder<StatusCommand>
+    {
         public string Indexes { get; private set; }
 
-		public StatusCommand(string index = null)
-		{
-			Indexes = index;
-		}
+        public StatusCommand(string index = null)
+        {
+            Indexes = index;
+        }
 
         public StatusCommand(string[] indexes)
         {
@@ -27,7 +27,7 @@ namespace PlainElastic.Net
         /// </summary>
         public StatusCommand Recovery(bool recoveryStatus)
         {
-            Parameters.Add("recovery", recoveryStatus.AsString());
+           WithParameter("recovery", recoveryStatus.AsString());
             return this;
         }
 
@@ -36,18 +36,18 @@ namespace PlainElastic.Net
         /// </summary>
         public StatusCommand Snapshot(bool snapshotStatus)
         {
-            Parameters.Add("snapshot", snapshotStatus.AsString());
+           WithParameter("snapshot", snapshotStatus.AsString());
             return this;
         }
 
         #endregion
 
 
-		protected override string BuildUrlPath()
-		{
-			return UrlBuilder.BuildUrlPath(Indexes, "_status");
-		}
-	}
+        protected override string BuildUrlPath()
+        {
+            return UrlBuilder.BuildUrlPath(Indexes, "_status");
+        }
+    }
 
 
 }

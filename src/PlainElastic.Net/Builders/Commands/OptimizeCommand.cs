@@ -41,7 +41,7 @@ namespace PlainElastic.Net
         /// </summary>
         public OptimizeCommand MaxNumSegments(int maxNumSegments)
         {
-            Parameters.Add("max_num_segments", maxNumSegments.AsString());
+            WithParameter("max_num_segments", maxNumSegments.AsString());
             return this;
         }
 
@@ -53,7 +53,7 @@ namespace PlainElastic.Net
         /// </summary>
         public OptimizeCommand OnlyExpungeDeletes(bool onlyExpungeDeletes)
         {
-            Parameters.Add("only_expunge_deletes", onlyExpungeDeletes.AsString());
+            WithParameter("only_expunge_deletes", onlyExpungeDeletes.AsString());
             return this;
         }
 
@@ -63,7 +63,7 @@ namespace PlainElastic.Net
         /// </summary>
         public OptimizeCommand Refresh(bool refresh = true)
         {
-            Parameters.Add("refresh", refresh.AsString());
+            WithParameter("refresh", refresh.AsString());
             return this;
         }
 
@@ -72,7 +72,7 @@ namespace PlainElastic.Net
         /// </summary>
         public OptimizeCommand Flush(bool flush = true)
         {
-            Parameters.Add("flush", flush.AsString());
+            WithParameter("flush", flush.AsString());
             return this;
         }
 
@@ -83,7 +83,7 @@ namespace PlainElastic.Net
         /// </summary>
         public OptimizeCommand WaitForMerge(bool waitForMerge = true)
         {
-            Parameters.Add("wait_for_merge", waitForMerge.AsString());
+            WithParameter("wait_for_merge", waitForMerge.AsString());
             return this;
         }
 

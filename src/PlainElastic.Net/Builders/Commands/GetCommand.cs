@@ -30,14 +30,14 @@ namespace PlainElastic.Net
 
         public GetCommand Fields(string fields)
         {
-            Parameters.Add("fields", fields);
+            WithParameter("fields", fields);
             return this;
         }
 
         public GetCommand Fields<T>(params Expression<Func<T, object>>[] properties)
         {
             string fields = properties.Select(prop => prop.GetPropertyPath()).JoinWithComma();
-            Parameters.Add("fields", fields);
+            WithParameter("fields", fields);
             return this;
         }
 
@@ -48,26 +48,26 @@ namespace PlainElastic.Net
                 value = customPreference;
 
             if (!value.IsNullOrEmpty())
-                Parameters.Add("preference", value);
+                WithParameter("preference", value);
 
             return this;
         }
 
         public GetCommand Realtime(bool realtime = true)
         {
-            Parameters.Add("realtime", realtime.AsString());
+            WithParameter("realtime", realtime.AsString());
             return this;
         }
 
         public GetCommand Refresh(bool refresh = true)
         {
-            Parameters.Add("refresh", refresh.AsString());
+            WithParameter("refresh", refresh.AsString());
             return this;
         }
 
         public GetCommand Routing(string routing)
         {
-            Parameters.Add("routing", routing);
+            WithParameter("routing", routing);
             return this;
         }
 

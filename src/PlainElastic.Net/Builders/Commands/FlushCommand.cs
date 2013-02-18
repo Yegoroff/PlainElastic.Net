@@ -30,7 +30,7 @@ namespace PlainElastic.Net
 
         public FlushCommand Refresh(bool refresh = true)
         {
-            Parameters.Add("refresh", refresh.AsString());
+            WithParameter("refresh", refresh.AsString());
             return this;
         }
 

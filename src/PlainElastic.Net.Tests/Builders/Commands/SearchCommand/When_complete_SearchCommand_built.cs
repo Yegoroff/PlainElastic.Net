@@ -20,7 +20,8 @@ namespace PlainElastic.Net.Tests.Builders.Commands
             .SearchType(SearchType.dfs_query_then_fetch)
             .Scroll("1h")
             .Size(321)
-            .Sort("field1",SortDirection.desc)
+            .Sort("field1", SortDirection.desc)
+            .Sort("field2", SortDirection.asc)
             .Timeout("1m")
             .TrackScores(true)
             .Pretty()
@@ -58,11 +59,13 @@ namespace PlainElastic.Net.Tests.Builders.Commands
 
         It should_contain_parameter_sort_equals_to_field1_desc = () => result.ShouldContain("&sort=field1:desc");
 
+        It should_contain_parameter_sort_equals_to_field2_asc = () => result.ShouldContain("&sort=field2:asc");
+
         It should_contain_parameter_timeout_equals_to_1m = () => result.ShouldContain("&timeout=1m");
 
         It should_contain_parameter_track_scores_equals_to_true = () => result.ShouldContain("&track_scores=true");
 
-        It should_return_correct_value = () => result.ShouldEqual(@"index/type/_search?analyze_wildcard=true&analyzer=analyzer&default_operator=OR&df=defaultField&explain=true&fields=field1, field2&from=123&lowercase_expanded_terms=false&q=query:test&routing=route&search_type=dfs_query_then_fetch&scroll=1h&size=321&sort=field1:desc&timeout=1m&track_scores=true&pretty=true");
+        It should_return_correct_value = () => result.ShouldEqual(@"index/type/_search?analyze_wildcard=true&analyzer=analyzer&default_operator=OR&df=defaultField&explain=true&fields=field1, field2&from=123&lowercase_expanded_terms=false&q=query:test&routing=route&search_type=dfs_query_then_fetch&scroll=1h&size=321&sort=field1:desc&sort=field2:asc&timeout=1m&track_scores=true&pretty=true");
 
 
         private static string result;

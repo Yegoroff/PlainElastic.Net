@@ -33,7 +33,7 @@ namespace PlainElastic.Net
         /// </summary>
         public PutMappingCommand IgnoreConflicts(bool ignore)
         {
-            Parameters.Add("ignore_conflicts", ignore.AsString());
+            WithParameter("ignore_conflicts", ignore.AsString());
             return this;
         }
 

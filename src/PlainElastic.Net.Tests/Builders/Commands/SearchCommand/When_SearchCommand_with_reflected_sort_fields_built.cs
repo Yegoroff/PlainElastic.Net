@@ -8,6 +8,7 @@ namespace PlainElastic.Net.Tests.Builders.Commands
 
         Because of = () => result = new SearchCommand(index:"Index", type:"Type")
             .Sort<FieldsTestClass>(c => c.StringProperty, SortDirection.asc)
+            .Sort<FieldsTestClass>(c => c.DateProperty, SortDirection.desc)
             .BuildCommand();
 
 
@@ -15,7 +16,9 @@ namespace PlainElastic.Net.Tests.Builders.Commands
 
         It should_contain_first_parameter_sort_with_StringProperty_ask = () => result.ShouldContain("?sort=StringProperty:asc");
 
-        It should_return_correct_value = () => result.ShouldEqual(@"index/type/_search?sort=StringProperty:asc");
+        It should_contain_second_parameter_sort_with_DateProperty_ask = () => result.ShouldContain("&sort=DateProperty:desc");
+
+        It should_return_correct_value = () => result.ShouldEqual(@"index/type/_search?sort=StringProperty:asc&sort=DateProperty:desc");
 
 
         private static string result;

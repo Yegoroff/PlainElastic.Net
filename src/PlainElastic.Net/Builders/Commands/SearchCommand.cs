@@ -36,7 +36,7 @@ namespace PlainElastic.Net
         /// </summary>
         public SearchCommand Analyzer(string analyzer)
         {
-            Parameters.Add("analyzer", analyzer);
+            WithParameter("analyzer", analyzer);
             return this;
         }
 
@@ -45,7 +45,7 @@ namespace PlainElastic.Net
         /// </summary>
         public SearchCommand Analyzer(DefaultAnalyzers analyzer)
         {
-            Parameters.Add("analyzer", analyzer.AsString());
+            WithParameter("analyzer", analyzer.AsString());
             return this;
         }
 
@@ -56,7 +56,7 @@ namespace PlainElastic.Net
         /// </summary>
         public SearchCommand AnalyzeWildcard(bool analyzeWildcard = false)
         {
-            Parameters.Add("analyze_wildcard", analyzeWildcard.AsString());
+            WithParameter("analyze_wildcard", analyzeWildcard.AsString());
             return this;
         }
 
@@ -65,7 +65,7 @@ namespace PlainElastic.Net
         /// </summary>
         public SearchCommand Df(string defaultField)
         {
-            Parameters.Add("df", defaultField);
+            WithParameter("df", defaultField);
             return this;
         }
 
@@ -74,7 +74,7 @@ namespace PlainElastic.Net
         /// </summary>
         public SearchCommand DefaultOperator(Operator defaultOperator = Operator.OR)
         {
-            Parameters.Add("default_operator", defaultOperator.AsString());
+            WithParameter("default_operator", defaultOperator.AsString());
             return this;
         }
 
@@ -83,7 +83,7 @@ namespace PlainElastic.Net
         /// </summary>
         public SearchCommand Explain()
         {
-            Parameters.Add("explain", "true");
+            WithParameter("explain", "true");
             return this;
         }
 
@@ -92,7 +92,7 @@ namespace PlainElastic.Net
         /// </summary>
         public SearchCommand Fields(string fields)
         {
-            Parameters.Add("fields", fields);
+            WithParameter("fields", fields);
             return this;
         }
 
@@ -102,7 +102,7 @@ namespace PlainElastic.Net
         public SearchCommand Fields<T>(params Expression<Func<T, object>>[] properties)
         {
             string fields = properties.Select(prop => prop.GetPropertyPath()).JoinWithComma();
-            Parameters.Add("fields", fields);
+            WithParameter("fields", fields);
             return this;
         }
 
@@ -111,7 +111,7 @@ namespace PlainElastic.Net
         /// </summary>
         public SearchCommand From(int fromIndex = 0)
         {
-            Parameters.Add("from", fromIndex.AsString());
+            WithParameter("from", fromIndex.AsString());
             return this;
         }
 
@@ -120,7 +120,7 @@ namespace PlainElastic.Net
         /// </summary>
         public SearchCommand LowercaseExpandedTerms(bool lowercaseExpandedTerms = true)
         {
-            Parameters.Add("lowercase_expanded_terms", lowercaseExpandedTerms.AsString());
+            WithParameter("lowercase_expanded_terms", lowercaseExpandedTerms.AsString());
             return this;
 
         }
@@ -131,7 +131,7 @@ namespace PlainElastic.Net
         /// </summary>
         public SearchCommand Q(string query)
         {
-            Parameters.Add("q", query);
+            WithParameter("q", query);
             return this;
         }
 
@@ -140,7 +140,7 @@ namespace PlainElastic.Net
         /// </summary>
         public SearchCommand Routing(string routing)
         {
-            Parameters.Add("routing", routing);
+            WithParameter("routing", routing);
             return this;
         }
 
@@ -151,7 +151,7 @@ namespace PlainElastic.Net
         /// </summary>
         public SearchCommand Scroll(string scrollActiveTime)
         {
-            Parameters.Add("scroll", scrollActiveTime);
+            WithParameter("scroll", scrollActiveTime);
             return this;
         }
 
@@ -162,7 +162,7 @@ namespace PlainElastic.Net
         /// </summary>
         public SearchCommand SearchType(SearchType searchType)
         {
-            Parameters.Add("search_type", searchType.AsString());
+            WithParameter("search_type", searchType.AsString());
             return this;
         }
 
@@ -171,7 +171,7 @@ namespace PlainElastic.Net
         /// </summary>
         public SearchCommand Size(int size = 10)
         {
-            Parameters.Add("size", size.AsString());
+            WithParameter("size", size.AsString());
             return this;
         }
 
@@ -185,7 +185,7 @@ namespace PlainElastic.Net
             if (direction != SortDirection.@default)
                 value += ":" + direction.AsString();
 
-            Parameters.Add("sort", value);
+            WithParameter("sort", value);
             return this;
         }
 
@@ -201,13 +201,13 @@ namespace PlainElastic.Net
 
         public SearchCommand Timeout(string timeout)
         {
-            Parameters.Add("timeout", timeout);
+            WithParameter("timeout", timeout);
             return this;
         }
 
         public SearchCommand TrackScores(bool trackScores)
         {
-            Parameters.Add("track_scores", trackScores.AsString());
+            WithParameter("track_scores", trackScores.AsString());
             return this;
         }
 

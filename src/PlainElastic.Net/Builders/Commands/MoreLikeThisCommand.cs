@@ -33,7 +33,7 @@ namespace PlainElastic.Net
         /// </summary>
         public MoreLikeThisCommand MltFields(string fields)
         {
-            Parameters.Add("mlt_fields", fields);
+            WithParameter("mlt_fields", fields);
             return this;
         }
 
@@ -43,7 +43,7 @@ namespace PlainElastic.Net
         public MoreLikeThisCommand MltFields<T>(params Expression<Func<T, object>>[] properties)
         {
             string fields = properties.Select(prop => prop.GetPropertyPath()).JoinWithComma();
-            Parameters.Add("mlt_fields", fields);
+            WithParameter("mlt_fields", fields);
             return this;
         }
 
@@ -52,7 +52,7 @@ namespace PlainElastic.Net
         /// </summary>
         public MoreLikeThisCommand PercentTermsToMatch(double value)
         {
-            Parameters.Add("percent_terms_to_match", value.AsString());
+            WithParameter("percent_terms_to_match", value.AsString());
             return this;
         }
 
@@ -61,7 +61,7 @@ namespace PlainElastic.Net
         /// </summary>
         public MoreLikeThisCommand MinTermFreq(int value)
         {
-            Parameters.Add("min_term_freq", value.AsString());
+            WithParameter("min_term_freq", value.AsString());
             return this;
         }
 
@@ -71,7 +71,7 @@ namespace PlainElastic.Net
         /// </summary>
         public MoreLikeThisCommand MaxQueryTerms(int value)
         {
-            Parameters.Add("max_query_terms", value.AsString());
+            WithParameter("max_query_terms", value.AsString());
             return this;
         }
 
@@ -81,7 +81,7 @@ namespace PlainElastic.Net
         /// </summary>
         public MoreLikeThisCommand StopWords(params string[] terms)
         {
-            Parameters.Add("stop_words", terms.JoinWithComma());
+            WithParameter("stop_words", terms.JoinWithComma());
             return this;
         }
 
@@ -91,7 +91,7 @@ namespace PlainElastic.Net
         /// </summary>
         public MoreLikeThisCommand MinDocFreq(int value)
         {
-            Parameters.Add("min_doc_freq", value.AsString());
+            WithParameter("min_doc_freq", value.AsString());
             return this;
         }
 
@@ -101,7 +101,7 @@ namespace PlainElastic.Net
         /// </summary>
         public MoreLikeThisCommand MaxDocFreq(int value)
         {
-            Parameters.Add("max_doc_freq", value.AsString());
+            WithParameter("max_doc_freq", value.AsString());
             return this;
         }
 
@@ -110,7 +110,7 @@ namespace PlainElastic.Net
         /// </summary>
         public MoreLikeThisCommand MinWordLen(int value)
         {
-            Parameters.Add("min_word_len", value.AsString());
+            WithParameter("min_word_len", value.AsString());
             return this;
         }
 
@@ -120,7 +120,7 @@ namespace PlainElastic.Net
         /// </summary>
         public MoreLikeThisCommand MaxWordLen(int value)
         {
-            Parameters.Add("max_word_len", value.AsString());
+            WithParameter("max_word_len", value.AsString());
             return this;
         }
 
@@ -129,7 +129,7 @@ namespace PlainElastic.Net
         /// </summary>
         public MoreLikeThisCommand BoostTerms(int value)
         {
-            Parameters.Add("boost_terms", value.AsString());
+            WithParameter("boost_terms", value.AsString());
             return this;
         }
 
@@ -138,7 +138,7 @@ namespace PlainElastic.Net
         /// </summary>
         public MoreLikeThisCommand Boost(double value)
         {
-            Parameters.Add("boost", value.AsString());
+            WithParameter("boost", value.AsString());
             return this;
         }
 
@@ -149,7 +149,7 @@ namespace PlainElastic.Net
         /// </summary>
         public MoreLikeThisCommand SearchType(SearchType searchType)
         {
-            Parameters.Add("search_type", searchType.AsString());
+            WithParameter("search_type", searchType.AsString());
             return this;
         }
 
@@ -158,7 +158,7 @@ namespace PlainElastic.Net
         /// </summary>
         public MoreLikeThisCommand SearchIndices(string [] indices)
         {
-            Parameters.Add("search_indices", indices.JoinWithComma());
+            WithParameter("search_indices", indices.JoinWithComma());
             return this;
         }
 
@@ -167,13 +167,13 @@ namespace PlainElastic.Net
         /// </summary>
         public MoreLikeThisCommand SearchTypes(string [] types)
         {
-            Parameters.Add("search_types", types.JoinWithComma());
+            WithParameter("search_types", types.JoinWithComma());
             return this;
         }
         
         public MoreLikeThisCommand SearchQueryHint(string searchQueryHint)
         {
-            Parameters.Add("search_query_hint", searchQueryHint);
+            WithParameter("search_query_hint", searchQueryHint);
             return this;
         }
 
@@ -182,7 +182,7 @@ namespace PlainElastic.Net
         /// </summary>
         public MoreLikeThisCommand SearchFrom(int fromIndex = 0)
         {
-            Parameters.Add("search_from", fromIndex.AsString());
+            WithParameter("search_from", fromIndex.AsString());
             return this;
         }
 
@@ -191,7 +191,7 @@ namespace PlainElastic.Net
         /// </summary>
         public MoreLikeThisCommand SearchSize(int search_size = 10)
         {
-            Parameters.Add("search_size", search_size.AsString());
+            WithParameter("search_size", search_size.AsString());
             return this;
         }
         
@@ -203,13 +203,13 @@ namespace PlainElastic.Net
         /// </summary>
         public MoreLikeThisCommand SearchScroll(string scrollActiveTime)
         {
-            Parameters.Add("search_scroll", scrollActiveTime);
+            WithParameter("search_scroll", scrollActiveTime);
             return this;
         }
 
         public MoreLikeThisCommand SearchSource(string searchSource)
         {
-            Parameters.Add("search_source", searchSource);
+            WithParameter("search_source", searchSource);
             return this;
         }
 

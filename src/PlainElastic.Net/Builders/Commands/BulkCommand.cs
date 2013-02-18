@@ -29,7 +29,7 @@ namespace PlainElastic.Net
         /// </summary>
         public BulkCommand Consistency(WriteConsistency consistency)
         {
-            Parameters.Add("consistency", consistency.AsString());
+            WithParameter("consistency", consistency.AsString());
             return this;
         }
 
@@ -42,7 +42,7 @@ namespace PlainElastic.Net
         /// </summary>
         public BulkCommand Replication(DocumentReplication replication)
         {
-            Parameters.Add("replication", replication.AsString());
+            WithParameter("replication", replication.AsString());
             return this;
         }
 
@@ -54,7 +54,7 @@ namespace PlainElastic.Net
         /// </summary>
         public BulkCommand Refresh(bool refresh = true)
         {
-            Parameters.Add("refresh", refresh.AsString());
+            WithParameter("refresh", refresh.AsString());
             return this;
         }
 

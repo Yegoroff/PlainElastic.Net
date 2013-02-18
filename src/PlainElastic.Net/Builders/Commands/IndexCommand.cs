@@ -35,65 +35,65 @@ namespace PlainElastic.Net
 
         public IndexCommand Consistency(WriteConsistency consistency)
         {
-            Parameters.Add("consistency", consistency.AsString());
+            WithParameter("consistency", consistency.AsString());
             return this;
         }
 
         public IndexCommand OperationType(IndexOperation operation)
         {
-            Parameters.Add("op_type", operation.AsString());
+            WithParameter("op_type", operation.AsString());
             return this;            
         }
 
         public IndexCommand Parent(string parentId)
         {
-            Parameters.Add("parent", parentId);
+            WithParameter("parent", parentId);
             return this;
         }
 
         public IndexCommand Percolate(PercolateMode percolateMode, string color = null)
         {
             if (percolateMode == PercolateMode.All)
-                Parameters.Add("percolate", "*");
+                WithParameter("percolate", "*");
             else
-                Parameters.Add("percolate", "color:" + color);
+                WithParameter("percolate", "color:" + color);
 
             return this;
         }
 
         public IndexCommand Refresh(bool refresh = true)
         {
-            Parameters.Add("refresh", refresh.AsString());
+            WithParameter("refresh", refresh.AsString());
             return this;
         }
         
         public IndexCommand Replication(DocumentReplication replication)
         {
-            Parameters.Add("replication", replication.AsString());
+            WithParameter("replication", replication.AsString());
             return this;
         }
 
         public IndexCommand Routing(string routing)
         {
-            Parameters.Add("routing", routing);
+            WithParameter("routing", routing);
             return this;
         }
 
         public IndexCommand Timeout(string timeout)
         {
-            Parameters.Add("timeout", timeout);
+            WithParameter("timeout", timeout);
             return this;
         }
 
         public IndexCommand Timestamp(DateTime timestamp)
         {
-            Parameters.Add("timestamp", timestamp.ToString("s"));
+            WithParameter("timestamp", timestamp.ToString("s"));
             return this;
         }
 
         public IndexCommand TTL(string timeToLive)
         {
-            Parameters.Add("ttl", timeToLive);
+            WithParameter("ttl", timeToLive);
             return this;
         }
 
@@ -105,7 +105,7 @@ namespace PlainElastic.Net
         /// </summary>
         public IndexCommand VersionType(VersionType versionType)
         {
-            Parameters.Add("version_type", versionType.AsString());
+            WithParameter("version_type", versionType.AsString());
             return this;
         }
 
@@ -115,7 +115,7 @@ namespace PlainElastic.Net
         /// </summary>
         public IndexCommand Version(long version)
         {
-            Parameters.Add("version", version.AsString());
+            WithParameter("version", version.AsString());
             return this;
         }
 

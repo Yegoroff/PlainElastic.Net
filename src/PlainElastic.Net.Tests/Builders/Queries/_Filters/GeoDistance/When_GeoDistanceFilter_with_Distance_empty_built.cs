@@ -4,7 +4,7 @@ using PlainElastic.Net.Queries;
 namespace PlainElastic.Net.Tests.Builders.Queries
 {
     [Subject(typeof(GeoDistanceFilter<>))]
-    class When_GeoDistanceFilter_built_with_empty_distance
+    public class When_GeoDistanceFilter_with_Distance_empty_built
     {
         Because of = () => result = new GeoDistanceFilter<FieldsTestClass>()
                                                 .Field(f => f.StringProperty)

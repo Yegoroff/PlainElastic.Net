@@ -17,12 +17,12 @@ namespace PlainElastic.Net.Queries
 
         protected override string ApplyJsonTemplate(string body)
         {
-            if (!HasRequiredParts())
-            {
-                return string.Empty;
-            }
-
             return "{{ 'geo_distance': {{ {0} }} }}".AltQuoteF(body);
+        }
+
+        public GeoDistanceFilter<T> Distance(double distance, DistanceUnit distanceUnit)
+        {
+            return Distance(distance + distanceUnit.ToString());
         }
 
         public GeoDistanceFilter<T> Distance(string distance)
@@ -39,12 +39,24 @@ namespace PlainElastic.Net.Queries
             return this;
         }
 
-        public GeoDistanceFilter<T> Point(double lat, double lon)
+        public GeoDistanceFilter<T> GeoPoint(double lat, double lon)
         {
-            RegisterJsonPart(" {0}: {{ 'lat': {1}, 'lon': {2} }}", RegisteredField, lat.AsString(), lon.AsString());
+            RegisterJsonPart("{0}: {{ 'lat': {1},'lon': {2} }}", RegisteredField, lat.AsString(), lon.AsString());
 
             hasPoint = true;
 
+            return this;
+        }
+
+        public GeoDistanceFilter<T> DistanceType(DistanceType distanceType)
+        {
+            RegisterJsonPart("'distance_type': {0}", distanceType.ToString().Quotate());
+            return this;
+        }
+
+        public GeoDistanceFilter<T> OptimizeBoundingBox(OptimizeBoundingBox optimizeBoundingBox)
+        {
+            RegisterJsonPart("'optimize_bbox': {0}", optimizeBoundingBox.ToString().Quotate());
             return this;
         }
     }

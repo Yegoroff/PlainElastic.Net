@@ -88,4 +88,50 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         phrase_prefix
     }
+
+    /// <summary>
+    /// How to compute the distance. Can either be arc (better precision) or plane (faster). Defaults to arc.
+    /// </summary>
+    public enum DistanceType
+    {
+        /// <summary>
+        /// Use arc for better precision.
+        /// </summary>
+        arc,
+
+        /// <summary>
+        /// Use place for performace.
+        /// </summary>
+        plane 
+    }
+
+    /// <summary>
+    /// Will an optimization of using first a bounding box check will be used. Defaults to memory which will do in memory checks.
+    /// Can also have value of indexed to use indexed value check (make sure the geo_point type index lat lon in this case), or
+    /// none which disables bounding box optimization.
+    /// </summary>
+    public enum OptimizeBoundingBox
+    {
+        /// <summary>
+        /// Perform in memory check.
+        /// </summary>
+        memory,
+
+        /// <summary>
+        /// Perform index value check.
+        /// </summary>
+        indexed,
+
+        /// <summary>
+        /// Disables bounding box optimization.
+        /// </summary>
+        none
+    }
+
+    public enum DistanceUnit
+    {
+        mi,
+        miles,
+        km
+    }
 }

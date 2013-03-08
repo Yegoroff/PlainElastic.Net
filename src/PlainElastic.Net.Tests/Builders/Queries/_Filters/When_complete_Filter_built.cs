@@ -27,6 +27,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                             .Prefix(p => p.Custom("Prefix"))
                                             .Indices(i => i.Custom("Indices"))
                                             .Script(s => s.Custom("Script"))
+                                            .GeoDistance(g => g.Custom("GeoDistance"))
                                             .MatchAll()
                                             .ToString();
 
@@ -53,6 +54,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                                                         "{ 'prefix': { Prefix } }," +
                                                                         "{ 'indices': { Indices } }," +
                                                                         "{ 'script': { Script } }," +
+                                                                        "{ 'geo_distance': { GeoDistance } }," +
                                                                         "{ 'match_all': {} }").AltQuote());
 
         private static string result;

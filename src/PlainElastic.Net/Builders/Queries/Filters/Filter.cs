@@ -226,6 +226,14 @@ namespace PlainElastic.Net.Queries
             return this;
         }
 
+        /// <summary>
+        /// see http://www.elasticsearch.org/guide/reference/query-dsl/geo-distance-filter.html
+        /// </summary>
+        public Filter<T> GeoDistance(Func<GeoDistanceFilter<T>, GeoDistanceFilter<T>> geoDistanceFilter)
+        {
+            RegisterJsonPartExpression(geoDistanceFilter);
+            return this;
+        }
 
         protected override bool HasRequiredParts()
         {

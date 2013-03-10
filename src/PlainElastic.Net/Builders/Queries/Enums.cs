@@ -95,12 +95,14 @@ namespace PlainElastic.Net.Queries
     public enum DistanceType
     {
         /// <summary>
+        /// Calculates distance as points in a globe.
         /// Use arc for better precision.
         /// </summary>
         arc,
 
         /// <summary>
-        /// Use place for performace.
+        /// Calculates distance as points on a plane. Faster, but less accurate than arc
+        /// Use plane for performance.
         /// </summary>
         plane 
     }

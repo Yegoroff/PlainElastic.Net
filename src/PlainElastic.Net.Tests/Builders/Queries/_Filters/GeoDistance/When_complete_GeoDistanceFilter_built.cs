@@ -13,6 +13,10 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                                 .DistanceType(DistanceType.plane)
                                                 .OptimizeBoundingBox(OptimizeBoundingBox.indexed)
                                                 .GeoPoint(lat: 40, lon: -70)
+                                                .Cache(true)
+                                                .CacheKey("CacheKey")
+                                                .Name("FilterName")
+                                                .Custom("{ custom part }")
                                                 .ToString();
 
         It should_starts_with_geo_distance_declaration = () => result.ShouldStartWith("{ 'geo_distance': {".AltQuote());
@@ -29,6 +33,18 @@ namespace PlainElastic.Net.Tests.Builders.Queries
 
         It should_contain_lon_part = () => result.ShouldContain("'lon': -70".AltQuote());
 
+        It should_contain_cache_part = () =>
+            result.ShouldContain("'_cache': true".AltQuote());
+
+        It should_contain_cache_key_part = () =>
+            result.ShouldContain("'_cache_key': 'CacheKey'".AltQuote());
+
+        It should_contain_name_part = () =>
+            result.ShouldContain("'_name': 'FilterName'".AltQuote());
+
+        It should_contain_custom_part = () =>
+            result.ShouldContain("{ custom part }".AltQuote());
+
         It should_return_correct_query = () => result.ShouldEqual(("{ " +
                                                               "'geo_distance': { " +
                                                                   "'distance': '200km'," +
@@ -37,7 +53,11 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                                                   "'StringProperty': { " +
                                                                       "'lat': 40," +
                                                                       "'lon': -70 " +
-                                                                  "} " +
+                                                                  "}," +
+                                                                  "'_cache': true," +
+                                                                  "'_cache_key': 'CacheKey'," +
+                                                                  "'_name': 'FilterName'," +
+                                                                  "{ custom part } " +
                                                               "} " +
                                                           "}").AltQuote());
 

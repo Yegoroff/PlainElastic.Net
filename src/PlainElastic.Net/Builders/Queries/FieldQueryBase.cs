@@ -7,13 +7,22 @@ namespace PlainElastic.Net.Queries
 {
     public abstract class FieldQueryBase<T, TQuery>: QueryBase<TQuery> where TQuery: FieldQueryBase<T, TQuery>
     {
-        protected string RegisteredField { get; set; }
+        /// <summary>
+        /// Quoted field name for this query.
+        /// </summary>
+        protected string RegisteredField { get; private set; }
+
+        /// <summary>
+        /// Raw/unquoted field name for this query.
+        /// </summary>
+        protected string RawFieldName { get; private set; }
 
         /// <summary>
         /// Allows to specify field name to execute query/filter against.
         /// </summary>
         public TQuery Field(string fieldName)
         {
+            RawFieldName = fieldName;
             RegisteredField = fieldName.Quotate();
             return (TQuery)this;
         }

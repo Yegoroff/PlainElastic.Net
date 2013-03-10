@@ -227,6 +227,7 @@ namespace PlainElastic.Net.Queries
         }
 
         /// <summary>
+        /// Filters documents that include only hits that exists within a specific distance from a geo point.
         /// see http://www.elasticsearch.org/guide/reference/query-dsl/geo-distance-filter.html
         /// </summary>
         public Filter<T> GeoDistance(Func<GeoDistanceFilter<T>, GeoDistanceFilter<T>> geoDistanceFilter)
@@ -234,6 +235,7 @@ namespace PlainElastic.Net.Queries
             RegisterJsonPartExpression(geoDistanceFilter);
             return this;
         }
+
 
         protected override bool HasRequiredParts()
         {

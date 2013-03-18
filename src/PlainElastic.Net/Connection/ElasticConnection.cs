@@ -8,6 +8,8 @@ namespace PlainElastic.Net
 {
     public class ElasticConnection: IElasticConnection
     {
+        private IWebProxy proxy;
+        private bool proxySet;
 
         public ElasticConnection(string defaultHost = null, int defaultPort = 9200)
         {
@@ -20,7 +22,14 @@ namespace PlainElastic.Net
 
         public int DefaultPort { get; set; }
 
-        public IWebProxy Proxy { get; set; }
+        public IWebProxy Proxy
+        {
+            get { return proxySet ? proxy : WebRequest.DefaultWebProxy; }
+            set {
+                proxy = value;
+                proxySet = true;
+            }
+        }
 
         public ICredentials Credentials { get; set; }
 
@@ -108,8 +117,8 @@ namespace PlainElastic.Net
             request.ReadWriteTimeout = 60 * 1000;
             request.Method = method;
 
-            if (Proxy != null )
-                request.Proxy = Proxy;
+            if (proxySet)
+                request.Proxy = proxy;
 
             if (Credentials != null)
                 request.Credentials = Credentials;

@@ -107,9 +107,7 @@ namespace PlainElastic.Net
             request.Timeout = 60 * 1000;
             request.ReadWriteTimeout = 60 * 1000;
             request.Method = method;
-
-            if (Proxy != null )
-                request.Proxy = Proxy;
+            request.Proxy = Proxy;
 
             if (Credentials != null)
                 request.Credentials = Credentials;

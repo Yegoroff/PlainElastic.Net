@@ -9,6 +9,8 @@ namespace PlainElastic.Net.Tests.Builders.Queries
         Because of = () => result = new GeoDistanceFilter<FieldsTestClass>()
                                                 .Field(f => f.StringProperty)
                                                 .Distance("")
+                                                .Distance(null, DistanceUnit.miles)
+                                                .GeoPoint(lat: 40, lon: -70)
                                                 .Cache(true)
                                                 .CacheKey("CacheKey")
                                                 .Name("FilterName")

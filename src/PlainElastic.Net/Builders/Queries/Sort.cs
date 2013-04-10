@@ -18,7 +18,6 @@ namespace PlainElastic.Net.Queries
         /// <param name="order">The sort order. By default order depends on chosen field (descending for "_scope", ascending for others) and field analyzer.</param>
         /// <param name="missing">The missing value handling strategy. Use _last, _first or custom value.</param>
         /// <param name="ignoreUnmapped"> The ignore_unmapped option allows to ignore fields that have no mapping and not sort by them. </param>
-        /// <returns></returns>
         public Sort<T> Field(Expression<Func<T, object>> field, SortDirection order = SortDirection.@default, string missing = null, bool ignoreUnmapped = false)
         {
             var fieldName = field.GetPropertyPath();
@@ -34,7 +33,6 @@ namespace PlainElastic.Net.Queries
         /// <param name="order">The sort order. By default order depends on chosen field (descending for "_scope", ascending for others) and field analyzer.</param>
         /// <param name="missing">The missing value handling strategy. Use _last, _first or custom value.</param>
         /// <param name="ignoreUnmapped"> The ignore_unmapped option allows to ignore fields that have no mapping and not sort by them. </param>
-        /// <returns></returns>
         public Sort<T> Field(string field, SortDirection order = SortDirection.@default, string missing = null, bool ignoreUnmapped = false)
         {
             var fieldParams = new List<string>();
@@ -65,12 +63,11 @@ namespace PlainElastic.Net.Queries
         /// <param name="lon">The longitude.</param>
         /// <param name="unit">The distance unit.</param>
         /// <param name="order">The sort order. By default results will be sorted ascending.</param>
-        /// <returns></returns>
-        public Sort<T> Field(Expression<Func<T, object>> field, double lat, double lon, DistanceUnit unit, SortDirection order = SortDirection.@default)
+        public Sort<T> GeoDistance(Expression<Func<T, object>> field, double lat, double lon, DistanceUnit unit, SortDirection order = SortDirection.@default)
         {
             var fieldName = field.GetPropertyPath();
 
-            return Field(fieldName, lat, lon, unit, order);
+            return GeoDistance(fieldName, lat, lon, unit, order);
         }
 
         /// <summary>
@@ -82,12 +79,11 @@ namespace PlainElastic.Net.Queries
         /// <param name="lon">The longitude.</param>
         /// <param name="unit">The distance unit.</param>
         /// <param name="order">The sort order. By default results will be sorted ascending.</param>
-        /// <returns></returns>
-        public Sort<T> Field(string field, double lat, double lon, DistanceUnit unit, SortDirection order = SortDirection.@default)
+        public Sort<T> GeoDistance(string field, double lat, double lon, DistanceUnit unit, SortDirection order = SortDirection.@default)
         {
             string geoField = "'{0}': {{ 'lat': {1},'lon': {2} }}".AltQuoteF(field, lat.AsString(), lon.AsString());
 
-            return GeoField(geoField, unit, order);
+            return AddGeoDistancePart(geoField, unit, order);
         }
 
         /// <summary>
@@ -98,12 +94,11 @@ namespace PlainElastic.Net.Queries
         /// <param name="geohash">The geohash.</param>
         /// <param name="unit">The distance unit.</param>
         /// <param name="order">The sort order. By default results will be sorted ascending.</param>
-        /// <returns></returns>
-        public Sort<T> Field(Expression<Func<T, object>> field, string geohash, DistanceUnit unit, SortDirection order = SortDirection.@default)
+        public Sort<T> GeoDistance(Expression<Func<T, object>> field, string geohash, DistanceUnit unit, SortDirection order = SortDirection.@default)
         {
             var fieldName = field.GetPropertyPath();
 
-            return Field(fieldName, geohash, unit, order);
+            return GeoDistance(fieldName, geohash, unit, order);
         }
 
         /// <summary>
@@ -114,15 +109,35 @@ namespace PlainElastic.Net.Queries
         /// <param name="geohash">The geohash.</param>
         /// <param name="unit">The distance unit.</param>
         /// <param name="order">The sort order. By default results will be sorted ascending.</param>
-        /// <returns></returns>
-        public Sort<T> Field(string field, string geohash, DistanceUnit unit, SortDirection order = SortDirection.@default)
+        public Sort<T> GeoDistance(string field, string geohash, DistanceUnit unit, SortDirection order = SortDirection.@default)
         {
             string geoField = "'{0}.location': '{1}'".AltQuoteF(field, geohash);
 
-            return GeoField(geoField, unit, order);
+            return AddGeoDistancePart(geoField, unit, order);
         }
 
-        private Sort<T> GeoField(string geoField, DistanceUnit unit, SortDirection order = SortDirection.@default)
+        public Sort<T> Script(string script, string type, SortDirection order, string[] @params)
+        {
+            var expression = "'_script' : {0}, 'type': {1}, 'order': {2}, 'params': {3} ".AltQuoteF(script, type.Quotate(), order.AsString().Quotate(), @params.JoinWithComma());
+            RegisterJsonPart(expression);
+
+            return this;
+        }
+
+
+        protected override bool HasRequiredParts()
+        {
+            return true;
+        }
+
+        protected override string ApplyJsonTemplate(string body)
+        {
+            return "'sort': [{0}]".AltQuoteF(body);
+
+        }
+
+
+        private Sort<T> AddGeoDistancePart(string geoField, DistanceUnit unit, SortDirection order = SortDirection.@default)
         {
             var fieldParams = new List<string>();
 
@@ -138,23 +153,5 @@ namespace PlainElastic.Net.Queries
             return this;
         }
 
-        public Sort<T> Script(string script, string type, SortDirection order, string[] @params)
-        {
-            var expression = "'_script' : {0}, 'type': {1}, 'order': {2}, 'params': {3} ".AltQuoteF(script, type.Quotate(), order.AsString().Quotate(), @params.JoinWithComma());
-            RegisterJsonPart(expression);
-
-            return this;
-        }
-
-        protected override bool HasRequiredParts()
-        {
-            return true;
-        }
-
-        protected override string ApplyJsonTemplate(string body)
-        {
-            return "'sort': [{0}]".AltQuoteF(body);
-
-        }
     }
 }

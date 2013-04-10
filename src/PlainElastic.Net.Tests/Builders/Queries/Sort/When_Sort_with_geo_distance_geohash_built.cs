@@ -8,7 +8,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
     public class When_Sort_with_geo_distance_geohash_built
     {
         Because of = () => result = new Sort<FieldsTestClass>()
-                                       .Field("field", "drm3btev3e86", DistanceUnit.miles, SortDirection.asc)
+                                       .GeoDistance("field", "drm3btev3e86", DistanceUnit.miles, SortDirection.asc)
                                        .ToString();
 
         It should_contain_correct_order = () => result.ShouldContain(@"'order': 'asc'".AltQuote());

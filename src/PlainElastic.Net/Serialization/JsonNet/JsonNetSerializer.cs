@@ -14,7 +14,7 @@ namespace PlainElastic.Net.Serialization
             Settings = new JsonSerializerSettings();
             Settings.Converters.Add(new IsoDateTimeConverter());
             Settings.Converters.Add(new FacetCreationConverter());
-            Settings.NullValueHandling = NullValueHandling.Ignore;                           
+            Settings.NullValueHandling = NullValueHandling.Ignore;
         }
 
 

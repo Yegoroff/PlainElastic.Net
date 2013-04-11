@@ -34,6 +34,7 @@
     <Reference Include="Machine.Specifications">
       <HintPath>..\..\packages\Machine.Specifications.0.5.3.0\lib\Machine.Specifications.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Moq">
       <HintPath>..\..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
     </Reference>
@@ -229,6 +230,12 @@
     <Compile Include="Builders\Queries\Indices\When_IndicesQuery_with_all_no_match_query_built.cs" />
     <Compile Include="Builders\Queries\Indices\When_complete_IndicesQuery_built.cs" />
     <Compile Include="Builders\Queries\Indices\When_empty_IndicesQuery_built.cs" />
+    <Compile Include="Builders\Queries\Sort\When_Sort_with_geo_distance_geohash_with_default_order_built.cs" />
+    <Compile Include="Builders\Queries\Sort\When_Sort_with_geo_distance_lat_lon_with_default_order_built.cs" />
+    <Compile Include="Builders\Queries\Sort\When_Sort_with_geo_distance_geohash_by_reflected_field_built.cs" />
+    <Compile Include="Builders\Queries\Sort\When_Sort_with_geo_distance_lat_lon_by_reflected_field_built.cs" />
+    <Compile Include="Builders\Queries\Sort\When_Sort_with_geo_distance_geohash_built.cs" />
+    <Compile Include="Builders\Queries\Sort\When_Sort_with_geo_distance_lat_lon_built.cs" />
     <Compile Include="Builders\Queries\TopChildren\When_complete_TopChildrenQuery_built.cs" />
     <Compile Include="Builders\Queries\TopChildren\When_empty_TopChildrenQuery_built.cs" />
     <Compile Include="Builders\Queries\Prefix\When_complete_PrefixQuery_built.cs" />
@@ -369,6 +376,7 @@
     <Compile Include="Integration\Connection\When_full_GET_request_on_valid_ES_instance.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Serialization\When_range_facets_result_deserialized.cs" />
+    <Compile Include="Serialization\When_sorted_query_deserialized.cs" />
     <Compile Include="Serialization\When_status_command_result_deserialized.cs" />
     <Compile Include="Serialization\When_count_command_result_deserialized.cs" />
     <Compile Include="Serialization\When_bulk_operations_result_deserialized.cs" />

@@ -17,6 +17,9 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public GeoDistanceFilter<T> Distance(double? distance, DistanceUnit distanceUnit)
         {
+            if (!distance.HasValue)
+                return this;
+
             return Distance(distance.AsString() + distanceUnit.AsString());
         }
 

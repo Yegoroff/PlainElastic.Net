@@ -18,11 +18,10 @@ namespace PlainElastic.Net.Queries
         /// <param name="order">The sort order. By default order depends on chosen field (descending for "_scope", ascending for others) and field analyzer.</param>
         /// <param name="missing">The missing value handling strategy. Use _last, _first or custom value.</param>
         /// <param name="ignoreUnmapped"> The ignore_unmapped option allows to ignore fields that have no mapping and not sort by them. </param>
-        /// <returns></returns>
         public Sort<T> Field(Expression<Func<T, object>> field, SortDirection order = SortDirection.@default, string missing = null, bool ignoreUnmapped = false)
         {
             var fieldName = field.GetPropertyPath();
-            
+
             return Field(fieldName, order, missing, ignoreUnmapped);
         }
 
@@ -34,10 +33,10 @@ namespace PlainElastic.Net.Queries
         /// <param name="order">The sort order. By default order depends on chosen field (descending for "_scope", ascending for others) and field analyzer.</param>
         /// <param name="missing">The missing value handling strategy. Use _last, _first or custom value.</param>
         /// <param name="ignoreUnmapped"> The ignore_unmapped option allows to ignore fields that have no mapping and not sort by them. </param>
-        /// <returns></returns>
         public Sort<T> Field(string field, SortDirection order = SortDirection.@default, string missing = null, bool ignoreUnmapped = false)
         {
             var fieldParams = new List<string>();
+
             if (order != SortDirection.@default)
                 fieldParams.Add("'order': {0}".AltQuoteF(order.AsString().Quotate()));
 
@@ -50,13 +49,74 @@ namespace PlainElastic.Net.Queries
             if (fieldParams.Any())
                 RegisterJsonPart("{{ {0}: {{ {1} }} }}", field.Quotate(), fieldParams.JoinWithComma());
             else
-                RegisterJsonPart(field.Quotate());                
+                RegisterJsonPart(field.Quotate());
 
             return this;
         }
 
+        /// <summary>
+        /// Sort result by geo distance using specified field.
+        /// There can be several Sort parameters (order is important).
+        /// </summary>
+        /// <param name="field">The field.</param>
+        /// <param name="lat">The latitude.</param>
+        /// <param name="lon">The longitude.</param>
+        /// <param name="unit">The distance unit.</param>
+        /// <param name="order">The sort order. By default results will be sorted ascending.</param>
+        public Sort<T> GeoDistance(Expression<Func<T, object>> field, double lat, double lon, DistanceUnit unit, SortDirection order = SortDirection.@default)
+        {
+            var fieldName = field.GetPropertyPath();
 
-        public Sort<T> Script(string script, string type, SortDirection order, string [] @params)
+            return GeoDistance(fieldName, lat, lon, unit, order);
+        }
+
+        /// <summary>
+        /// Sort result by geo distance using specified field.
+        /// There can be several Sort parameters (order is important).
+        /// </summary>
+        /// <param name="field">The field.</param>
+        /// <param name="lat">The latitude.</param>
+        /// <param name="lon">The longitude.</param>
+        /// <param name="unit">The distance unit.</param>
+        /// <param name="order">The sort order. By default results will be sorted ascending.</param>
+        public Sort<T> GeoDistance(string field, double lat, double lon, DistanceUnit unit, SortDirection order = SortDirection.@default)
+        {
+            string geoField = "'{0}': {{ 'lat': {1},'lon': {2} }}".AltQuoteF(field, lat.AsString(), lon.AsString());
+
+            return AddGeoDistancePart(geoField, unit, order);
+        }
+
+        /// <summary>
+        /// Sort result by geo distance using specified field.
+        /// There can be several Sort parameters (order is important).
+        /// </summary>
+        /// <param name="field">The field.</param>
+        /// <param name="geohash">The geohash.</param>
+        /// <param name="unit">The distance unit.</param>
+        /// <param name="order">The sort order. By default results will be sorted ascending.</param>
+        public Sort<T> GeoDistance(Expression<Func<T, object>> field, string geohash, DistanceUnit unit, SortDirection order = SortDirection.@default)
+        {
+            var fieldName = field.GetPropertyPath();
+
+            return GeoDistance(fieldName, geohash, unit, order);
+        }
+
+        /// <summary>
+        /// Sort result by geo distance using specified field.
+        /// There can be several Sort parameters (order is important).
+        /// </summary>
+        /// <param name="field">The field.</param>
+        /// <param name="geohash">The geohash.</param>
+        /// <param name="unit">The distance unit.</param>
+        /// <param name="order">The sort order. By default results will be sorted ascending.</param>
+        public Sort<T> GeoDistance(string field, string geohash, DistanceUnit unit, SortDirection order = SortDirection.@default)
+        {
+            string geoField = "'{0}.location': '{1}'".AltQuoteF(field, geohash);
+
+            return AddGeoDistancePart(geoField, unit, order);
+        }
+
+        public Sort<T> Script(string script, string type, SortDirection order, string[] @params)
         {
             var expression = "'_script' : {0}, 'type': {1}, 'order': {2}, 'params': {3} ".AltQuoteF(script, type.Quotate(), order.AsString().Quotate(), @params.JoinWithComma());
             RegisterJsonPart(expression);
@@ -70,11 +130,28 @@ namespace PlainElastic.Net.Queries
             return true;
         }
 
-
         protected override string ApplyJsonTemplate(string body)
         {
             return "'sort': [{0}]".AltQuoteF(body);
 
         }
+
+
+        private Sort<T> AddGeoDistancePart(string geoField, DistanceUnit unit, SortDirection order = SortDirection.@default)
+        {
+            var fieldParams = new List<string>();
+
+            fieldParams.Add("'unit': {0}".AltQuoteF(unit.AsString().Quotate()));
+
+            if (order != SortDirection.@default)
+                fieldParams.Add("'order': {0}".AltQuoteF(order.AsString().Quotate()));
+
+            fieldParams.Add(geoField);
+
+            RegisterJsonPart("{{ '_geo_distance': {{ {0} }} }}", fieldParams.JoinWithComma());
+
+            return this;
+        }
+
     }
 }

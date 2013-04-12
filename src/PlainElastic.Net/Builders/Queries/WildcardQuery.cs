@@ -44,24 +44,12 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public WildcardQuery<T> Rewrite(Rewrite rewrite, int n = 0)
         {
-            var rewriteValue = GetRewriteValue(rewrite, n);
+            var rewriteValue = rewrite.GetRewriteValue(n);
             RegisterJsonPart("'rewrite': {0}", rewriteValue.Quotate());
             return this;
         }
 
 
-        private static string GetRewriteValue(Rewrite rewrite, int n)
-        {
-            switch (rewrite)
-            {
-                case Queries.Rewrite.top_terms_boost_n:
-                    return "top_terms_boost_" + n;
-
-                case Queries.Rewrite.top_terms_n:
-                    return "top_terms_" + n;
-            }
-            return rewrite.AsString();
-        }
 
 
         protected override bool HasRequiredParts()

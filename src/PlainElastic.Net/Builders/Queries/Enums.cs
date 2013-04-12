@@ -1,3 +1,5 @@
+using PlainElastic.Net.Utils;
+
 namespace PlainElastic.Net.Queries
 {
 
@@ -64,6 +66,23 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         top_terms_n
     }
+
+    public static class RewriteExtensions
+    {
+        public static string GetRewriteValue(this Rewrite rewrite, int n)
+        {
+            switch (rewrite)
+            {
+                case Rewrite.top_terms_boost_n:
+                    return "top_terms_boost_" + n;
+
+                case Rewrite.top_terms_n:
+                    return "top_terms_" + n;
+            }
+            return rewrite.AsString();
+        }
+    }
+
 
     public enum TermsFilterExecution { plain, @bool, @and }
 
@@ -135,5 +154,11 @@ namespace PlainElastic.Net.Queries
         mi,
         miles,
         km
+    }
+
+    public enum ZeroTermsQuery
+    {
+        NONE,
+        ALL
     }
 }

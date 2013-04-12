@@ -42,7 +42,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public FieldQuery<T> Rewrite(Rewrite rewrite, int n = 0)
         {
-            var rewriteValue = GetRewriteValue(rewrite, n);
+            var rewriteValue = rewrite.GetRewriteValue(n);
             RegisterJsonPart("'rewrite': {0}", rewriteValue.Quotate());
             return this;
         }
@@ -182,18 +182,5 @@ namespace PlainElastic.Net.Queries
             return "{{ 'field': {{ {0}: {{ {1} }} }} }}".AltQuoteF(RegisteredField, body);
         }
 
-
-        private static string GetRewriteValue(Rewrite rewrite, int n)
-        {
-            switch (rewrite)
-            {
-                case Queries.Rewrite.top_terms_boost_n:
-                    return "top_terms_boost_" + n;
-
-                case Queries.Rewrite.top_terms_n:
-                    return "top_terms_" + n;
-            }
-            return rewrite.AsString();
-        }
     }
 }

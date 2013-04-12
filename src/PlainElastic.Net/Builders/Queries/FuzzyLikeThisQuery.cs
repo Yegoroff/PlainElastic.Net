@@ -59,11 +59,11 @@ namespace PlainElastic.Net.Queries
         /// <summary>
         /// The text to use in order to find documents that are "like" this.
         /// </summary>
-        public FuzzyLikeThisQuery<T> LikText(string likeText)
+        public FuzzyLikeThisQuery<T> LikeText(string likeText)
         {
             if (likeText.IsNullOrEmpty())
                 return this;
-
+             
             RegisterJsonPart("'like_text': {0}", likeText.Quotate());
             hasValue = true;
             return this;

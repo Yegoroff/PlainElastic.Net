@@ -9,7 +9,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
         Because of = () => result = new FuzzyLikeThisQuery<FieldsTestClass>()
                                                 .Fields(f => f.StringProperty, f => f.BoolProperty)
                                                 .FieldsOfCollection(f => f.CollectionProperty, collection => collection.EnumProperty, collection => collection.StringProperty)
-                                                .LikText("")
+                                                .LikeText("")
                                                 .IgnoreTf(true)
                                                 .MaxQueryTerms(10)
                                                 .MinSimilarity(0.8)

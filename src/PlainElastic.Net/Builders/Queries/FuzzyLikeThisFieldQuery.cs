@@ -17,7 +17,7 @@ namespace PlainElastic.Net.Queries
         /// <summary>
         /// The text to use in order to find documents that are "like" this.
         /// </summary>
-        public FuzzyLikeThisFieldQuery<T> LikText(string likeText)
+        public FuzzyLikeThisFieldQuery<T> LikeText(string likeText)
         {
             if (likeText.IsNullOrEmpty())
                 return this;

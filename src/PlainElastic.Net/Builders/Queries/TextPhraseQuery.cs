@@ -6,7 +6,7 @@ namespace PlainElastic.Net.Queries
     /// Analyzes the text and creates a phrase query out of the analyzed text.
     /// see http://www.elasticsearch.org/guide/reference/query-dsl/text-query.html
     /// </summary>
-    public class TextPhraseQuery<T> : TextQuery<T>
+    public class TextPhraseQuery<T> : MatchQueryBase<T, TextPhraseQuery<T>>
     {
 
         protected override string ApplyJsonTemplate(string body)

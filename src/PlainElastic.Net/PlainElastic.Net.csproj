@@ -157,6 +157,9 @@
     <Compile Include="Builders\Mappings\Core\StringMap.cs" />
     <Compile Include="Builders\Queries\ConstantScoreQuery.cs" />
     <Compile Include="Builders\Queries\BoostingQuery.cs" />
+    <Compile Include="Builders\Queries\MatchQueryBase.cs" />
+    <Compile Include="Builders\Queries\MultiMatchQuery.cs" />
+    <Compile Include="Builders\Queries\MatchQuery.cs" />
     <Compile Include="Builders\Queries\Facets\RangeFacet.cs" />
     <Compile Include="Builders\Queries\Filters\GeoDistanceFilter.cs" />
     <Compile Include="Builders\Queries\Filters\NumericRangeFilter.cs" />

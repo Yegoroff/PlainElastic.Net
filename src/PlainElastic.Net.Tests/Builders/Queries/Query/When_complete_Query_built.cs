@@ -11,6 +11,8 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                                 .Text(t => t.Custom("text query"))
                                                 .TextPhrase(t => t.Custom("text phrase query"))
                                                 .TextPhrasePrefix(t => t.Custom("text phrase prefix query"))
+                                                .Match(m => m.Custom("match query"))
+                                                .MultiMatch(m=> m.Custom("multi match query"))
                                                 .Bool(b => b.Custom("bool query"))
                                                 .Boosting(b => b.Custom("boosting query"))
                                                 .Ids(ids => ids.Custom("ids query"))
@@ -45,6 +47,8 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                                                     "{ 'text': { text query } }," +
                                                                     "{ 'text_phrase': { text phrase query } }," +
                                                                     "{ 'text_phrase_prefix': { text phrase prefix query } }," +
+                                                                    "{ 'match': { match query } }," +
+                                                                    "{ 'multi_match': { multi match query } }," +
                                                                     "{ 'bool': { bool query } }," +
                                                                     "{ 'boosting': { boosting query } }," +
                                                                     "{ 'ids': { ids query } }," +

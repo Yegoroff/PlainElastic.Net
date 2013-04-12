@@ -24,7 +24,7 @@ namespace PlainElastic.Net.Queries
         /// Analyzes the text and creates a phrase query out of the analyzed text.
         /// see http://www.elasticsearch.org/guide/reference/query-dsl/text-query.html
         /// </summary>
-        public Query<T> TextPhrase(Func<TextPhraseQuery<T>, TextQuery<T>> textPhraseQuery)
+        public Query<T> TextPhrase(Func<TextPhraseQuery<T>, TextPhraseQuery<T>> textPhraseQuery)
         {
             RegisterJsonPartExpression(textPhraseQuery);
             return this;
@@ -35,9 +35,32 @@ namespace PlainElastic.Net.Queries
         /// allows for prefix matches on the last term in the text.
         /// see http://www.elasticsearch.org/guide/reference/query-dsl/text-query.html
         /// </summary>
-        public Query<T> TextPhrasePrefix(Func<TextPhrasePrefixQuery<T>, TextQuery<T>> textPhrasePrefixQuery)
+        public Query<T> TextPhrasePrefix(Func<TextPhrasePrefixQuery<T>, TextPhrasePrefixQuery<T>> textPhrasePrefixQuery)
         {
             RegisterJsonPartExpression(textPhrasePrefixQuery);
+            return this;
+        }
+
+        /// <summary>
+        /// A family of match queries that accept text/numerics/dates, analyzes it, and constructs a query out of it.
+        /// see http://www.elasticsearch.org/guide/reference/query-dsl/match-query/
+        /// </summary>
+        public Query<T> Match(Func<MatchQuery<T>, MatchQuery<T>> matchQuery)
+        {
+            RegisterJsonPartExpression(matchQuery);
+            return this;
+        }
+
+        /// <summary>
+        /// The multi_match query builds further on top of the match query by allowing multiple fields to be specified.
+        /// The idea here is to allow to more easily build a concise match type query 
+        /// over multiple fields instead of using a relatively more expressive query
+        /// by using multiple match queries within a bool query.
+        /// http://www.elasticsearch.org/guide/reference/query-dsl/multi-match-query/
+        /// </summary>
+        public Query<T> MultiMatch(Func<MultiMatchQuery<T>, MultiMatchQuery<T>> multiMatchQuery)
+        {
+            RegisterJsonPartExpression(multiMatchQuery);
             return this;
         }
 

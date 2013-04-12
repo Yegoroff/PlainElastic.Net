@@ -7,7 +7,7 @@ namespace PlainElastic.Net.Queries
     /// allows for prefix matches on the last term in the text.
     /// see http://www.elasticsearch.org/guide/reference/query-dsl/text-query.html
     /// </summary>
-    public class TextPhrasePrefixQuery<T> : TextQuery<T>
+    public class TextPhrasePrefixQuery<T> : MatchQueryBase<T, TextPhrasePrefixQuery<T>>
     {
 
         protected override string ApplyJsonTemplate(string body)

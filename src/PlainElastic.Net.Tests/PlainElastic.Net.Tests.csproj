@@ -227,6 +227,10 @@
     <Compile Include="Builders\Queries\Bool\When_BoolQuery_with_useActualShouldCount_built.cs" />
     <Compile Include="Builders\Queries\Boosting\When_complete_BoostingQuery_built.cs" />
     <Compile Include="Builders\Queries\Boosting\When_empty_BoostingQuery_built.cs" />
+    <Compile Include="Builders\Queries\MultiMatch\When_complete_MultiMatchQuery_built.cs" />
+    <Compile Include="Builders\Queries\MultiMatch\When_MultiMatchQuery_without_query_built.cs" />
+    <Compile Include="Builders\Queries\Match\When_complete_MatchQuery_built.cs" />
+    <Compile Include="Builders\Queries\Match\When_MatchQuery_without_query_built.cs" />
     <Compile Include="Builders\Queries\Indices\When_IndicesQuery_with_all_no_match_query_built.cs" />
     <Compile Include="Builders\Queries\Indices\When_complete_IndicesQuery_built.cs" />
     <Compile Include="Builders\Queries\Indices\When_empty_IndicesQuery_built.cs" />

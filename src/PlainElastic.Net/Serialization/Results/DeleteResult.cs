@@ -12,6 +12,8 @@
         
         public string _id;
 
+        public int _version;
+
         public bool found;
     }
 }

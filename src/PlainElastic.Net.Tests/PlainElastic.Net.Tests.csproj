@@ -379,6 +379,7 @@
     <Compile Include="Integration\Connection\When_partial_GET_request_on_valid_ES_instance.cs" />
     <Compile Include="Integration\Connection\When_full_GET_request_on_valid_ES_instance.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Serialization\When_delete_command_result_deserialized.cs" />
     <Compile Include="Serialization\When_range_facets_result_deserialized.cs" />
     <Compile Include="Serialization\When_sorted_query_deserialized.cs" />
     <Compile Include="Serialization\When_status_command_result_deserialized.cs" />

@@ -31,8 +31,10 @@ namespace PlainElastic.Net.Queries
             var configuredFacetFilter = facetFilter(new FacetFilter<T>());
             var filterJson = ((IJsonConvertible) configuredFacetFilter).ToJson();
 
-            if (!string.IsNullOrEmpty(filterJson))
+            if (!filterJson.IsNullOrEmpty())
+            {
                 facetParts.Add(filterJson);
+            }
 
             return (TFacet)this;
         }

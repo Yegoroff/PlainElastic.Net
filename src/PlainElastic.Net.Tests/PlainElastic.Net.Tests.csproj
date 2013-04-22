@@ -279,14 +279,15 @@
     <Compile Include="Builders\Queries\Terms\When_complete_TermQuery_built.cs" />
     <Compile Include="Builders\Queries\Term\When_TermQuery_with_empty_custom_part_built.cs" />
     <Compile Include="Builders\Queries\Term\When_TermQuery_with_collection_field_built.cs" />
+    <Compile Include="Builders\Queries\_Facets\When_facet_with_empty_FacetFilter_built.cs" />
     <Compile Include="Builders\Queries\_Facets\RangeFacet\When_empty_RangeFacet_built.cs" />
     <Compile Include="Builders\Queries\_Facets\RangeFacet\When_complete_RangeFacet_built.cs" />
     <Compile Include="Builders\Queries\_Facets\When_complete_Facets_built.cs" />
-    <Compile Include="Builders\Queries\_Facets\FacetFiler\When_empty_FacetFilter_built.cs" />
+    <Compile Include="Builders\Queries\_Facets\FacetFilter\When_empty_FacetFilter_built.cs" />
     <Compile Include="Builders\Queries\_Facets\FilterFacet\When_empty_FilterFacet_built.cs" />
     <Compile Include="Builders\Queries\_Facets\FilterFacet\When_complete_FilterFacet_built.cs" />
     <Compile Include="Builders\Queries\_Facets\Terms\When_custom_TermsFacet_with_FacetFilter_built.cs" />
-    <Compile Include="Builders\Queries\_Facets\FacetFiler\When_complete_FacetFilter_built.cs" />
+    <Compile Include="Builders\Queries\_Facets\FacetFilter\When_complete_FacetFilter_built.cs" />
     <Compile Include="Builders\Queries\_Filters\And\When_complete_AndFilter_built.cs" />
     <Compile Include="Builders\Queries\_Filters\And\When_empty_AndFilter_built.cs" />
     <Compile Include="Builders\Queries\_Filters\Bool\When_complete_BoolFilter_built.cs" />

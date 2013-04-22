@@ -279,6 +279,7 @@
     <Compile Include="Builders\Queries\Terms\When_complete_TermQuery_built.cs" />
     <Compile Include="Builders\Queries\Term\When_TermQuery_with_empty_custom_part_built.cs" />
     <Compile Include="Builders\Queries\Term\When_TermQuery_with_collection_field_built.cs" />
+    <Compile Include="Builders\Queries\_Facets\When_facet_with_empty_FacetFilter_built.cs" />
     <Compile Include="Builders\Queries\_Facets\RangeFacet\When_empty_RangeFacet_built.cs" />
     <Compile Include="Builders\Queries\_Facets\RangeFacet\When_complete_RangeFacet_built.cs" />
     <Compile Include="Builders\Queries\_Facets\When_complete_Facets_built.cs" />

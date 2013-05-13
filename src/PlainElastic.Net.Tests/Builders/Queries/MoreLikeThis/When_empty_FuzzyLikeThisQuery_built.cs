@@ -9,7 +9,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
         Because of = () => result = new MoreLikeThisQuery<FieldsTestClass>()
                                                 .Fields(f => f.StringProperty, f => f.BoolProperty)
                                                 .FieldsOfCollection(f => f.CollectionProperty, collection => collection.EnumProperty, collection => collection.StringProperty)
-                                                .LikText("")
+                                                .LikeText("")
                                                 .PercentTermsToMatch(0.5)
                                                 .MinTermFreq(5)
                                                 .MaxQueryTerms(15)

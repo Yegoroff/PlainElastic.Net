@@ -60,7 +60,7 @@ namespace PlainElastic.Net.Queries
         /// <summary>
         /// The text to use in order to find documents that are "like" this.
         /// </summary>
-        public MoreLikeThisQuery<T> LikText(string likeText)
+        public MoreLikeThisQuery<T> LikeText(string likeText)
         {
             if (likeText.IsNullOrEmpty())
                 return this;

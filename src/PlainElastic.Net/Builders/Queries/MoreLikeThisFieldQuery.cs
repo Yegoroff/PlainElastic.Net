@@ -21,7 +21,7 @@ namespace PlainElastic.Net.Queries
         /// <summary>
         /// The text to use in order to find documents that are "like" this.
         /// </summary>
-        public MoreLikeThisFieldQuery<T> LikText(string likeText)
+        public MoreLikeThisFieldQuery<T> LikeText(string likeText)
         {
             if (likeText.IsNullOrEmpty())
                 return this;

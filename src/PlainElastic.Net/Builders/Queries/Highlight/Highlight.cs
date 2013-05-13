@@ -41,9 +41,6 @@ namespace PlainElastic.Net.Queries
         #endregion
 
 
-        public Highlight() : base(forcedJsonBuild: false) { }
-
-
         public Highlight<T> Fields(params Func<HighlightField<T>, HighlightField<T>>[] fields)
         {
 

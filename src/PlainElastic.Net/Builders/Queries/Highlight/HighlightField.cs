@@ -13,9 +13,6 @@ namespace PlainElastic.Net.Queries
         private string fieldName;
 
 
-        public HighlightField(): base(forcedJsonBuild:true) { }
-
-
         /// <summary>
         /// Allows to specify field name to highlight.
         /// </summary>
@@ -52,5 +49,10 @@ namespace PlainElastic.Net.Queries
             return "{{ '{0}': {{ {1} }} }}".AltQuoteF(fieldName, body);
         }
 
+
+        protected override bool ForceJsonBuild()
+        {
+            return true;
+        }
     }
 }

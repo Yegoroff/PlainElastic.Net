@@ -8,7 +8,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
     class When_QueryBuilder_withot_query_part_built
     {
         Because of = () => 
-            result = new QueryBuilder<FieldsTestClass>()                         
+            result = new QueryBuilder<FieldsTestClass>()
                         .From(10)
                         .Size(20)
                         .Sort(s=>s

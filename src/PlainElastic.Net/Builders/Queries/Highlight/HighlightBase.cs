@@ -7,8 +7,6 @@ namespace PlainElastic.Net.Queries
     /// </summary>
     public abstract class HighlightBase<T, THighlight> : QueryBase<THighlight> where THighlight : HighlightBase<T, THighlight>
     {
-        protected HighlightBase(bool forcedJsonBuild) : base(forcedJsonBuild) { }
-
 
         /// <summary>
         /// Set the post tags that will be used for highlighting.

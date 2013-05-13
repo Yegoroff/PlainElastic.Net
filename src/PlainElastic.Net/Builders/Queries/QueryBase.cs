@@ -10,21 +10,10 @@ namespace PlainElastic.Net.Queries
 
         private readonly List<string> jsonParts = new List<string>();
 
-        private readonly bool forcedJsonBuild;
-
 
         public IEnumerable<string> JsonParts { get { return jsonParts; } }
 
         protected bool HasCustomPatrs { get; private set; }
-
-
-
-        protected QueryBase() {}
-
-        protected QueryBase(bool forcedJsonBuild)
-        {
-            this.forcedJsonBuild = forcedJsonBuild;
-        }
 
 
         /// <summary>
@@ -67,6 +56,13 @@ namespace PlainElastic.Net.Queries
             return resultPart;
         }
 
+        /// <summary>
+        /// Determines whether JSON should be build despite empty content.
+        /// </summary>
+        protected virtual bool ForceJsonBuild()
+        {
+            return false;
+        }
 
         /// <summary>
         /// Determines whether this query/filter should generate any JSON.
@@ -96,7 +92,7 @@ namespace PlainElastic.Net.Queries
 
         string IJsonConvertible.ToJson()
         {
-            if (!forcedJsonBuild && 
+            if (!ForceJsonBuild() && 
                 (jsonParts.Count == 0 || (!HasCustomPatrs && !HasRequiredParts())))
                 return "";
 

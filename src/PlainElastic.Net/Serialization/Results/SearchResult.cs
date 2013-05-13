@@ -32,6 +32,7 @@ namespace PlainElastic.Net.Serialization
             public double _score;
             public dynamic[] sort;
             public T _source;
+            public Highlight highlight;
         }
 
         public class Facets : Dictionary<string, FacetResult>
@@ -41,5 +42,8 @@ namespace PlainElastic.Net.Serialization
                 return this[facetName] as TFacet;
             }
         }
+
+        public class Highlight : Dictionary<string, string[]> 
+        { }
     }
 }

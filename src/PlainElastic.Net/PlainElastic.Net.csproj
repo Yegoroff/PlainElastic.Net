@@ -157,6 +157,10 @@
     <Compile Include="Builders\Mappings\Core\StringMap.cs" />
     <Compile Include="Builders\Queries\ConstantScoreQuery.cs" />
     <Compile Include="Builders\Queries\BoostingQuery.cs" />
+    <Compile Include="Builders\Queries\Highlight\HighlightField.cs" />
+    <Compile Include="Builders\Queries\Highlight\Highlight.cs" />
+    <Compile Include="Builders\Queries\Highlight\HighlightBase.cs" />
+    <Compile Include="Builders\Queries\IdsQuery.cs" />
     <Compile Include="Builders\Queries\MatchQueryBase.cs" />
     <Compile Include="Builders\Queries\MultiMatchQuery.cs" />
     <Compile Include="Builders\Queries\MatchQuery.cs" />
@@ -186,7 +190,6 @@
     <Compile Include="Builders\Queries\CustomScoreQuery.cs" />
     <Compile Include="Builders\Queries\WildcardQuery.cs" />
     <Compile Include="Builders\Queries\Filters\IdsFilter.cs" />
-    <Compile Include="Builders\Queries\IdsQuery.cs" />
     <Compile Include="Builders\Queries\NegativeQuery.cs">
       <DependentUpon>BoostingQuery.cs</DependentUpon>
     </Compile>

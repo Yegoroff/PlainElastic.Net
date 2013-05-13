@@ -156,9 +156,16 @@ namespace PlainElastic.Net.Queries
         km
     }
 
-    public enum ZeroTermsQuery
-    {
-        NONE,
-        ALL
-    }
+    public enum ZeroTermsQuery { NONE, ALL }
+
+
+    public enum HighlightTagsSchema { styled, @default }
+
+    public enum HighlightOrder { score, @default }
+
+    public enum HighlightEncoder { html, @default }
+
+    public enum HighlighterType { plain, fvh }
+
+    public enum HighlightFragmenter { simple, span }
 }

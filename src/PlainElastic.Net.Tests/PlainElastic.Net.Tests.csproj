@@ -371,6 +371,7 @@
     <Compile Include="Builders\Queries\Filtered\When_complete_FilteredQuery_built.cs" />
     <Compile Include="Builders\Queries\Query\When_Query_with_empty_subqueries_built.cs" />
     <Compile Include="Builders\Queries\QueryString\When_QueryString_Query_called_for_html_injection.cs" />
+    <Compile Include="Builders\Queries\_Highlight\When_highlighted_part_built.cs" />
     <Compile Include="Connection\When_CreateRequest_with_null_Proxy_called.cs" />
     <Compile Include="Connection\When_CreateRequest_with_no_Proxy_specified_called.cs" />
     <Compile Include="Connection\When_CreateRequest_with_Credentials_called.cs" />
@@ -388,6 +389,7 @@
     <Compile Include="Serialization\When_bulk_operations_result_deserialized.cs" />
     <Compile Include="Serialization\When_filter_facets_result_deserialized.cs" />
     <Compile Include="Serialization\When_terms_facets_result_deserialized.cs" />
+    <Compile Include="Serialization\When_highlighted_result_deserialized.cs" />
     <Compile Include="Utils\When_Quotate_with_non_printable_characters_called.cs" />
     <Compile Include="Utils\When_Quotate_with_special_characters_called.cs" />
     <Compile Include="Utils\When_First_element_from_JoinInBatches_for_enumeration_of_string_requested.cs" />

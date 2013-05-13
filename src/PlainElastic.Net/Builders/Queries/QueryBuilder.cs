@@ -114,6 +114,16 @@ namespace PlainElastic.Net.Queries
             return this;
         }
 
+        /// <summary>
+        /// Allows to highlight search results on one or more fields.
+        /// see http://www.elasticsearch.org/guide/reference/api/search/highlighting.html
+        /// </summary>
+        public QueryBuilder<T> Highlight(Func<Highlight<T>, Highlight<T>> highlight)
+        {
+            RegisterJsonPartExpression(highlight);
+            return this;
+        }
+
 
         // A search timeout, bounding the search request to be executed within the specified time value and bail with the hits accumulated up to that point when expired. Defaults to no timeout.
         //TODO: timeout

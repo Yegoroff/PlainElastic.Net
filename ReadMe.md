@@ -14,6 +14,7 @@ The really plain Elastic Search .Net client.
 * [Queries](#queries)
 * [Condition less queries](#condition-less-queries)
 * [Facets](#facets)
+* [Highlighting](#highlighting)
 * [Mapping](#mapping)
 * [Index Settings](#index-settings)
 * [If something is missed](#if-something-is-missed)
@@ -515,6 +516,46 @@ To read facets result you need to deserialize it to `SearchResults` and access i
 ```
 
 See [Facet Query Builder Gist](https://gist.github.com/3093936) for complete sample.
+
+
+### Highlighting
+
+*ES documentation:*  http://www.elasticsearch.org/guide/reference/api/search/highlighting/
+
+You can construct highlighted queries using the following syntax:
+
+```csharp
+string query = new QueryBuilder<Note>()
+    .Query(q => q
+        .QueryString(qs => qs
+            .Fields(c => c.Caption)
+            .Query("Note")
+        )
+     )
+     .Highlight(h => h
+        .PreTags("<b>")
+        .PostTags("</b>")
+        .Fields(
+             f => f.FieldName(n => n.Caption).Order(HighlightOrder.score),
+             f => f.FieldName("_all")
+        )
+     )
+    .BuildBeautified();
+```
+
+To get highlighted fragments you need to deserialize results it to `SearchResults` and access `.highlight` property of each hit:
+
+```csharp
+// Execute query and deserialize results.
+string results = connection.Post(Commands.Search("notes", "note"), query);
+var noteResults = serializer.ToSearchResult<Note>(results);
+
+// Array of higlighted fragments for Caption field for the first hit.
+var hit = noteResults.hits.hits[0];
+string[] fragments = hit.highlight["Caption"];
+```
+
+See [Highlighting Gist](https://gist.github.com/Yegoroff/5569008) for complete sample.
 
 
 ### Mapping

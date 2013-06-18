@@ -8,8 +8,8 @@ namespace PlainElastic.Net.Serialization
         public int took;
         public bool timed_out;
         public ShardsResult _shards;
-        public Hits hits;
-        public Facets facets;
+        public SearchHits hits;
+        public SearchFacets facets;
         
         public IEnumerable<T> Documents
         {
@@ -17,7 +17,7 @@ namespace PlainElastic.Net.Serialization
         }
 
 
-        public class Hits
+        public class SearchHits
         {
             public int total;
             public double ?max_score;
@@ -35,7 +35,7 @@ namespace PlainElastic.Net.Serialization
             public Highlight highlight;
         }
 
-        public class Facets : Dictionary<string, FacetResult>
+        public class SearchFacets : Dictionary<string, FacetResult>
         {
             public TFacet Facet<TFacet>(string facetName) where TFacet : FacetResult
             {

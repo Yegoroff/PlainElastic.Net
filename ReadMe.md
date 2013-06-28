@@ -15,6 +15,7 @@ The really plain Elastic Search .Net client.
 * [Condition less queries](#condition-less-queries)
 * [Facets](#facets)
 * [Highlighting](#highlighting)
+* [Scrolling](#scrolling)
 * [Mapping](#mapping)
 * [Index Settings](#index-settings)
 * [If something is missed](#if-something-is-missed)
@@ -543,7 +544,7 @@ string query = new QueryBuilder<Note>()
     .BuildBeautified();
 ```
 
-To get highlighted fragments you need to deserialize results it to `SearchResults` and access `.highlight` property of each hit:
+To get highlighted fragments you need to deserialize results to `SearchResult<T>` and access `highlight` property of each hit:
 
 ```csharp
 // Execute query and deserialize results.
@@ -556,6 +557,37 @@ string[] fragments = hit.highlight["Caption"];
 ```
 
 See [Highlighting Gist](https://gist.github.com/Yegoroff/5569008) for complete sample.
+
+### Scrolling
+
+*ES documentation:*  http://www.elasticsearch.org/guide/reference/api/search/scroll/
+
+You can construct scrolling search request by specifing scroll keep alive time in SearchCommand:
+
+```csharp
+string scrollingSearchCommand = new SearchCommand(index:"notes", type:"note")
+                                      .Scroll("5m")
+                                      .SearchType(SearchType.scan);
+
+```
+
+To scroll found documents you need to deserialize results to `SearchResult<T>` and get the `_scroll_id` field.
+Then you should execute `SearchScrollCommand` with acquired `scroll_id`
+
+```csharp
+// Execute query and deserialize results.
+string results = connection.Post(scrollingSearchCommand, queryJson);
+var noteResults = serializer.ToSearchResult<Note>(results);
+
+// Get the initial scroll ID
+string scrollId = scrollResults._scroll_id;
+
+// Execute SearchScroll request to scroll found documents.
+results = connection.Get(Commands.SearchScroll(scrollId).Scroll("5m"));
+
+```
+
+See [Scrolling Gist](https://gist.github.com/Yegoroff/5888926) for complete sample.
 
 
 ### Mapping

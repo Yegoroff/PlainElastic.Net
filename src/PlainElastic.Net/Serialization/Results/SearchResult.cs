@@ -10,7 +10,8 @@ namespace PlainElastic.Net.Serialization
         public ShardsResult _shards;
         public SearchHits hits;
         public SearchFacets facets;
-        
+        public string _scroll_id;
+
         public IEnumerable<T> Documents
         {
             get { return hits.hits.Select(hit => hit._source); }

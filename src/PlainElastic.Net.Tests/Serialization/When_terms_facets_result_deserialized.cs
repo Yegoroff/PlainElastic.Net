@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Machine.Specifications;
 using PlainElastic.Net.Serialization;
+using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Tests.Serialization
 {
@@ -9,7 +10,7 @@ namespace PlainElastic.Net.Tests.Serialization
     class When_terms_facets_result_deserialized
     {
         #region Terms Facets Json Result
-        private const string termsFacetsJsonResult =
+        private static readonly string termsFacetsJsonResult =
 @"{
     'took': 0,
     'timed_out': false,
@@ -45,7 +46,7 @@ namespace PlainElastic.Net.Tests.Serialization
             ]
         }
     }
-}";
+}".AltQuote();
         #endregion
 
         Establish context = () => 

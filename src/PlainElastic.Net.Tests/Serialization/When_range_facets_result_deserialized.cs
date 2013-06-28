@@ -1,5 +1,6 @@
 using Machine.Specifications;
 using PlainElastic.Net.Serialization;
+using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Tests.Serialization
 {
@@ -7,7 +8,7 @@ namespace PlainElastic.Net.Tests.Serialization
     class When_range_facets_result_deserialized
     {
         #region Range Facets Json Result
-        private const string rangeFacetsJsonResult =
+        private static readonly string rangeFacetsJsonResult =
 @"{
     'took': 16,
     'timed_out': false,
@@ -47,7 +48,7 @@ namespace PlainElastic.Net.Tests.Serialization
             ]
         }
     }
-}";
+}".AltQuote();
         #endregion
 
         Establish context = () => 

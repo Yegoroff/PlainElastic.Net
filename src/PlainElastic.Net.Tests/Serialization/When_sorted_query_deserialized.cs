@@ -1,6 +1,7 @@
 using System;
 using Machine.Specifications;
 using PlainElastic.Net.Serialization;
+using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Tests.Serialization
 {
@@ -8,7 +9,7 @@ namespace PlainElastic.Net.Tests.Serialization
     class When_sorted_query_deserialized
     {
         #region Sorted Query Json Result
-        private const string sortedQueryJsonResult =
+        private static readonly string sortedQueryJsonResult =
 @"{
     'took': 24,
     'timed_out': false,
@@ -67,7 +68,7 @@ namespace PlainElastic.Net.Tests.Serialization
             }
         ]
     }
-}";
+}".AltQuote();
         #endregion
 
         Establish context = () => 

@@ -234,6 +234,15 @@ namespace PlainElastic.Net
         }
 
         /// <summary>
+        ///  Allows to scroll search request's hits.
+        ///  http://www.elasticsearch.org/guide/reference/api/search/scroll
+        /// </summary>
+        public static SearchScrollCommand SearchScroll(string scrollId)
+        {
+            return new SearchScrollCommand(scrollId);
+        }
+
+        /// <summary>
         /// Builds a command that allows to get a comprehensive status information of one or more indices.
         /// http://www.elasticsearch.org/guide/reference/api/admin-indices-status.html
         /// </summary>

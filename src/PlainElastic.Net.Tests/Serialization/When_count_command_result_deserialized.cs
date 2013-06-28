@@ -8,7 +8,7 @@ namespace PlainElastic.Net.Tests.Serialization
     class When_count_command_result_deserialized
     {
         #region Count Command Json Result
-        private const string countCommandJsonResult =
+        private static readonly string countCommandJsonResult =
 @"{
     'count': 100,
     '_shards': {
@@ -16,7 +16,7 @@ namespace PlainElastic.Net.Tests.Serialization
         'successful': 3,
         'failed': 2
     }
-}";
+}".AltQuote();
         #endregion
 
         Establish context = () =>

@@ -8,7 +8,7 @@ namespace PlainElastic.Net.Tests.Serialization
     class When_delete_command_result_deserialized
     {
         #region Delete Command Json Result
-        private const string deleteCommandJsonResult =
+        private static readonly string deleteCommandJsonResult =
 @"{
     'ok': true,
     'found': true,
@@ -16,7 +16,7 @@ namespace PlainElastic.Net.Tests.Serialization
     '_type': 'tweet',
     '_id': '1',
     '_version': 3
-}";
+}".AltQuote();
         #endregion
 
         Establish context = () =>

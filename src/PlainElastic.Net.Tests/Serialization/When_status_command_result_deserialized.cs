@@ -8,7 +8,7 @@ namespace PlainElastic.Net.Tests.Serialization
     class When_status_command_result_deserialized
     {
         #region Status Command Json Result
-        private const string statusCommandJsonResult =
+        private static readonly string statusCommandJsonResult =
 @"{
     'ok': true,
     '_shards': {
@@ -126,7 +126,7 @@ namespace PlainElastic.Net.Tests.Serialization
             }
         }
     }
-}";
+}".AltQuote();
         #endregion
 
         Establish context = () =>

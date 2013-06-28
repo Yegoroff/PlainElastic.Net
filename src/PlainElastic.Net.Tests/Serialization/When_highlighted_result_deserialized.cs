@@ -1,6 +1,7 @@
 using System.Linq;
 using Machine.Specifications;
 using PlainElastic.Net.Serialization;
+using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Tests.Serialization
 {
@@ -8,7 +9,7 @@ namespace PlainElastic.Net.Tests.Serialization
     class When_highlighted_result_deserialized
     {
         #region Highlighted Json Result
-        private const string highlightedJsonResult =
+        private static readonly string highlightedJsonResult =
             @"{
     'took': 4,
     'timed_out': false,
@@ -42,7 +43,7 @@ namespace PlainElastic.Net.Tests.Serialization
             }
         ]
     }
-}";
+}".AltQuote();
         #endregion
 
         Establish context = () => 

@@ -1,5 +1,6 @@
 using Machine.Specifications;
 using PlainElastic.Net.Serialization;
+using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Tests.Serialization
 {
@@ -7,7 +8,7 @@ namespace PlainElastic.Net.Tests.Serialization
     class When_bulk_operations_result_deserialized
     {
         #region Bulk Operatins Json Result
-        private const string bulkOperationJsonResult =
+        private static readonly string bulkOperationJsonResult =
 @"{
     'took': 100,
     'items': [
@@ -56,7 +57,7 @@ namespace PlainElastic.Net.Tests.Serialization
             }
         }
     ]
-}";
+}".AltQuote();
         #endregion
 
         Establish context = () =>

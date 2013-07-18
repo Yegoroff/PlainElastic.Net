@@ -6,7 +6,7 @@ using PlainElastic.Net.Utils;
 namespace PlainElastic.Net.Tests.Serialization
 {
     [Subject(typeof(JsonNetSerializer))]
-    class When_scrolled_query_deserialized
+    class When_scrolled_query_result_deserialized
     {
         #region Scrolled Query Json Result
         private static readonly string scrolleddQueryJsonResult =

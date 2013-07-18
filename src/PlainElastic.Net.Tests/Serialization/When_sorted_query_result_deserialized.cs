@@ -6,7 +6,7 @@ using PlainElastic.Net.Utils;
 namespace PlainElastic.Net.Tests.Serialization
 {
     [Subject(typeof(JsonNetSerializer))]
-    class When_sorted_query_deserialized
+    class When_sorted_query_result_deserialized
     {
         #region Sorted Query Json Result
         private static readonly string sortedQueryJsonResult =

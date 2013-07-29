@@ -158,6 +158,8 @@
     <Compile Include="Builders\Mappings\Core\StringMap.cs" />
     <Compile Include="Builders\Queries\ConstantScoreQuery.cs" />
     <Compile Include="Builders\Queries\BoostingQuery.cs" />
+    <Compile Include="Builders\Queries\Facets\TermsStatsFacet.cs" />
+    <Compile Include="Builders\Queries\Facets\StatisticalFacet.cs" />
     <Compile Include="Builders\Queries\Highlight\HighlightField.cs" />
     <Compile Include="Builders\Queries\Highlight\Highlight.cs" />
     <Compile Include="Builders\Queries\Highlight\HighlightBase.cs" />

@@ -49,4 +49,34 @@ namespace PlainElastic.Net.Serialization
     {
         public int count;
     }
+
+    public class StatisticalFacetResult : FacetResult
+    {
+        public int count;
+        public double? total;
+        public double? min;
+        public double? max;
+        public double? mean;
+        public double? sum_of_squares;
+        public double? variance;
+        public double? std_deviation;
+    }
+
+    public class TermsStatsFacetResult: FacetResult
+    {
+        public int missing;
+        public List<Term> terms;
+
+        public class Term
+        {
+            public string term;
+            public int count;
+            public int total_count;
+            public double? min;
+            public double? max;
+            public double? total;
+            public double? mean;
+        }
+    }
+
 }

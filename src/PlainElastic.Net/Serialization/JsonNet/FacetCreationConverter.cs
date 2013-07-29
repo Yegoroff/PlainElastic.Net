@@ -11,7 +11,9 @@ namespace PlainElastic.Net.Serialization
         {
             {"terms", typeof(TermsFacetResult)},
             {"range", typeof(RangeFacetResult)},
-            {"filter", typeof(FilterFacetResult)}
+            {"filter", typeof(FilterFacetResult)},
+            {"statistical", typeof(StatisticalFacetResult)},
+            {"terms_stats", typeof(TermsStatsFacetResult)}
         };
 
 

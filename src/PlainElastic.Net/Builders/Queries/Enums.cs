@@ -88,6 +88,8 @@ namespace PlainElastic.Net.Queries
 
     public enum TermsFacetOrder { count, term, reverse_count, reverse_term }
 
+    public enum TermsStatsFacetOrder { count, term, reverse_count, reverse_term, total, reverse_total, min, reverse_min, max, reverse_max, mean, reverse_mean }
+
     public enum ScriptLangs {  mvel, js, groovy, python, native }
 
     public enum TextQueryType

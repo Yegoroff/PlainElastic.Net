@@ -41,6 +41,27 @@ namespace PlainElastic.Net.Queries
             return this;
         }
 
+        /// <summary>
+        /// Allows to compute statistical data on a numeric fields.
+        /// The statistical data include count, total, sum of squares, mean (average), minimum, maximum, variance, and standard deviation.
+        /// see http://www.elasticsearch.org/guide/reference/api/search/facets/statistical-facet/
+        /// </summary>
+        public Facets<T> Statistical(Func<StatisticalFacet<T>, StatisticalFacet<T>> statisticalFacet)
+        {
+            RegisterJsonPartExpression(statisticalFacet);
+            return this;
+        }
+
+        /// <summary>
+        /// Combines both the terms and statistical allowing to compute stats computed on a field, per term value driven by another field.
+        /// see http://www.elasticsearch.org/guide/reference/api/search/facets/terms-stats-facet/
+        /// </summary>
+        public Facets<T> TermsStats(Func<TermsStatsFacet<T>, TermsStatsFacet<T>> termsStatsFacet)
+        {
+            RegisterJsonPartExpression(termsStatsFacet);
+            return this;
+        }
+        
 
         protected override bool HasRequiredParts()
         {

@@ -27,6 +27,15 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                                         .FromTo(from: 1, to: 5)
                                                     )                                                
                                                 )
+                                                .Statistical(s => s
+                                                    .FacetName("Statistical")
+                                                    .Field(f=>f.IntProperty)
+                                                )
+                                                .TermsStats(ts => ts
+                                                    .FacetName("TermsStats")
+                                                    .KeyField(f => f.StringProperty)
+                                                    .ValueField(f => f.IntProperty)   
+                                                )
                                                 .ToString();
 
         It should_starts_with_facets_declaration = () => result.ShouldStartWith("'facets': ".AltQuote());
@@ -37,11 +46,17 @@ namespace PlainElastic.Net.Tests.Builders.Queries
 
         It should_contain_range_facet_part = () => result.ShouldContain("'Range': { 'range': { 'ranges': [ { 'from': 1, 'to': 5 } ] } }".AltQuote());
 
+        It should_contain_statistical_facet_part = () => result.ShouldContain("'Statistical': { 'statistical': { 'field': 'IntProperty' } }".AltQuote());
+
+        It should_contain_terms_stats_facet_part = () => result.ShouldContain("'TermsStats': { 'terms_stats': { 'key_field': 'StringProperty','value_field': 'IntProperty' } }".AltQuote());
+
 
         It should_return_correct_JSON = () => result.ShouldEqual(("'facets': { " +
                                                                     "'Terms': { 'terms': { 'field': 'StringProperty' } }," +
                                                                     "'Filter': { 'filter': { 'term': { 'StringProperty': 'test' } } },"+
-                                                                    "'Range': { 'range': { 'ranges': [ { 'from': 1, 'to': 5 } ] } } " +
+                                                                    "'Range': { 'range': { 'ranges': [ { 'from': 1, 'to': 5 } ] } }," +
+                                                                    "'Statistical': { 'statistical': { 'field': 'IntProperty' } }," +
+                                                                    "'TermsStats': { 'terms_stats': { 'key_field': 'StringProperty','value_field': 'IntProperty' } } " +
                                                                  "}").AltQuote());
 
         private static string result;

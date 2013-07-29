@@ -160,6 +160,36 @@ namespace PlainElastic.Net.Queries
         }
 
 
+        /// <summary>
+        /// Sets a scripting language used for scripts.
+        /// By default used mvel language.
+        /// see: http://www.elasticsearch.org/guide/reference/modules/scripting.html
+        /// </summary>
+        public TermsFacet<T> Lang(string lang)
+        {
+            RegisterJsonPart("'lang': {0}", lang.Quotate());
+            return this;
+        }
+
+        /// <summary>
+        /// Sets a scripting language used for scripts.
+        /// By default used mvel language.
+        /// see: http://www.elasticsearch.org/guide/reference/modules/scripting.html
+        /// </summary>
+        public TermsFacet<T> Lang(ScriptLangs lang)
+        {
+            return Lang(lang.AsString());
+        }
+
+        /// <summary>
+        /// Sets parameters used for scripts.
+        /// </summary>
+        public TermsFacet<T> Params(string paramsBody)
+        {
+            RegisterJsonPart("'params': {0}", paramsBody);
+            return this;
+        }
+
         private string GenerateFieldsFacetPart()
         {
             var fields = facetFields.JoinWithComma();

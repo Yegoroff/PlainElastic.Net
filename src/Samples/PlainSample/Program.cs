@@ -9,9 +9,9 @@
             plainSample.Execute();
 
 
-            //var clientSample = new ClientSample();
+            var clientSample = new ClientSample();
 
-            //clientSample.Execute();
+            clientSample.Execute();
         }
      }
 }

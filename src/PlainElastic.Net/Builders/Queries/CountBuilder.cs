@@ -10,7 +10,7 @@ namespace PlainElastic.Net.Queries
         /// The query element within the search request body allows to define a query using the Query DSL. 
         /// QueryDsl does return content of expression without wrapping it into 'query' element. This is
         /// necessary for some commands e.g. Count.
-        /// see http://www.elasticsearch.org/guide/reference/api/search/query.html
+        /// see http://www.elasticsearch.org/guide/reference/query-dsl/
         /// </summary>
         public CountBuilder<T> Query(Func<QueryDsl<T>, Query<T>> query)
         {

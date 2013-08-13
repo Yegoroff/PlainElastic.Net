@@ -295,6 +295,8 @@
     <Compile Include="Builders\Queries\_Filters\And\When_empty_AndFilter_built.cs" />
     <Compile Include="Builders\Queries\_Filters\Bool\When_complete_BoolFilter_built.cs" />
     <Compile Include="Builders\Queries\_Filters\Bool\When_empty_BoolFilter_built.cs" />
+    <Compile Include="Builders\Queries\_Filters\GeoBoundingBox\When_complete_GeoBoundingBox_Is_Built.cs" />
+    <Compile Include="Builders\Queries\_Filters\GeoBoundingBox\When_GeoBoundingBox_with_empty_properties_is_built.cs" />
     <Compile Include="Builders\Queries\_Filters\GeoDistance\When_GeoDistanceFilter_with_empty_geo_point_built.cs" />
     <Compile Include="Builders\Queries\_Filters\GeoDistance\When_complete_GeoDistanceFilter_built_with_geohash_specified.cs" />
     <Compile Include="Builders\Queries\_Filters\GeoDistance\When_complete_GeoDistanceFilter_built_with_DistanceType_specified.cs" />

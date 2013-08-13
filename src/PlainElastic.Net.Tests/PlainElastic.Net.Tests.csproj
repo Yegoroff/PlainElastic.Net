@@ -375,10 +375,9 @@
     <Compile Include="Builders\Queries\Query\When_Query_with_empty_subqueries_built.cs" />
     <Compile Include="Builders\Queries\QueryString\When_QueryString_Query_called_for_html_injection.cs" />
     <Compile Include="Builders\Queries\_Highlight\When_highlighted_part_built.cs" />
-    <Compile Include="Builders\Settings\When_settings_builder_has_replicas.cs" />
-    <Compile Include="Builders\Settings\When_settings_builder_has_shards.cs" />
-    <Compile Include="Builders\Settings\When_settings_builder_has_shards_and_a_replica.cs" />
-    <Compile Include="Builders\Settings\When_settings_builder_is_empty.cs" />
+    <Compile Include="Builders\IndexSettings\When_IndexSettingsBuilder_builder_has_replicas.cs" />
+    <Compile Include="Builders\IndexSettings\When_IndexSettingsBuilder_builder_has_shards.cs" />
+    <Compile Include="Builders\IndexSettings\When_IndexSettingsBuilder_builder_has_shards_and_a_replica.cs" />
     <Compile Include="Connection\When_CreateRequest_with_null_Proxy_called.cs" />
     <Compile Include="Connection\When_CreateRequest_with_no_Proxy_specified_called.cs" />
     <Compile Include="Connection\When_CreateRequest_with_Credentials_called.cs" />

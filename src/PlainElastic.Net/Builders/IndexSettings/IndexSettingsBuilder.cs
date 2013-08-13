@@ -1,6 +1,5 @@
 using System;
 using PlainElastic.Net.Builders;
-using PlainElastic.Net.Builders.IndexSettings.Settings;
 using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.IndexSettings
@@ -23,9 +22,21 @@ namespace PlainElastic.Net.IndexSettings
             return this;
         }
 
-        public IndexSettingsBuilder Settings(Func<Setting, Setting> settings)
+        /// <summary>
+        /// Defines the number of shards 
+        /// </summary>
+        public IndexSettingsBuilder NumberOfShards(int number)
         {
-            RegisterJsonPartExpression(settings);
+            RegisterJsonPart("'number_of_shards': {0}", number.AsString());
+            return this;
+        }
+
+        /// <summary>
+        /// Defines the number of replicas each shard has
+        /// </summary>
+        public IndexSettingsBuilder NumberOfReplicas(int number)
+        {
+            RegisterJsonPart("'number_of_replicas': {0}", number.AsString());
             return this;
         }
 
@@ -39,17 +50,19 @@ namespace PlainElastic.Net.IndexSettings
             return Build().BeautifyJson();
         }
 
+
         public override string ToString()
         {
             return BuildBeautified();
         }
+
 
         protected override string ApplyJsonTemplate(string body)
         {
             if (body.IsNullOrEmpty())
                 return "";
 
-            return "{{ 'settings': {{ 'index': {{ {0} }} }} }}".AltQuoteF(body);
+            return "{{ 'index': {{ {0} }} }}".AltQuoteF(body);
         }
     }
 }

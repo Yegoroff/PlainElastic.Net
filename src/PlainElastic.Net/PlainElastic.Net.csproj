@@ -134,7 +134,6 @@
     <Compile Include="Builders\IndexSettings\Analysis\Analyzers\WhitespaceAnalyzer.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\Enums.cs" />
     <Compile Include="Builders\IndexSettings\IndexSettingsBuilder.cs" />
-    <Compile Include="Builders\IndexSettings\Settings\Setting.cs" />
     <Compile Include="Builders\Mappings\Attachment.cs" />
     <Compile Include="Builders\Mappings\Core\ElasticCoreTypeMapper.cs" />
     <Compile Include="Builders\Mappings\Core\CustomPropertyMap.cs" />

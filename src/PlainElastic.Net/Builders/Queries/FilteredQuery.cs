@@ -1,6 +1,7 @@
 using System;
-using PlainElastic.Net.Utils;
 
+using PlainElastic.Net.Builders.Queries.Filters;
+using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Queries
 {
@@ -23,6 +24,13 @@ namespace PlainElastic.Net.Queries
         {
             RegisterJsonPartExpression(filter);
 
+            return this;
+        }
+
+        public FilteredQuery<T> GeoBoundingBox(Func<GeoBoundingBoxFilter<T>, GeoBoundingBoxFilter<T>> filter)
+        {
+            RegisterJsonPartExpression(filter);
+            
             return this;
         }
 

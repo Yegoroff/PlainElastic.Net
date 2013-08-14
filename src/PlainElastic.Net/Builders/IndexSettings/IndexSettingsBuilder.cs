@@ -4,14 +4,12 @@ using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.IndexSettings
 {
-
     /// <summary>
     /// Allows to build index level settings.
     /// see: http://www.elasticsearch.org/guide/reference/api/admin-indices-update-settings.html
     /// </summary>
     public class IndexSettingsBuilder : SettingsBase<IndexSettingsBuilder>
     {
-
         /// <summary>
         /// The index analysis module acts as a configurable registry of Analyzers
         /// that can be used in order to both break indexed (analyzed) fields when a document is indexed and process query strings.
@@ -24,20 +22,27 @@ namespace PlainElastic.Net.IndexSettings
             return this;
         }
 
-
-        protected override string ApplyJsonTemplate(string body)
+        /// <summary>
+        /// Defines the number of shards 
+        /// </summary>
+        public IndexSettingsBuilder NumberOfShards(int number)
         {
-            if (body.IsNullOrEmpty())
-                return "";
-
-            return "{{ 'index': {{ {0} }} }}".AltQuoteF(body);
+            RegisterJsonPart("'number_of_shards': {0}", number.AsString());
+            return this;
         }
 
-
+        /// <summary>
+        /// Defines the number of replicas each shard has
+        /// </summary>
+        public IndexSettingsBuilder NumberOfReplicas(int number)
+        {
+            RegisterJsonPart("'number_of_replicas': {0}", number.AsString());
+            return this;
+        }
 
         public string Build()
         {
-            return ((IJsonConvertible) this).ToJson();
+            return ((IJsonConvertible)this).ToJson();
         }
 
         public string BuildBeautified()
@@ -49,6 +54,15 @@ namespace PlainElastic.Net.IndexSettings
         public override string ToString()
         {
             return BuildBeautified();
+        }
+
+
+        protected override string ApplyJsonTemplate(string body)
+        {
+            if (body.IsNullOrEmpty())
+                return "";
+
+            return "{{ 'index': {{ {0} }} }}".AltQuoteF(body);
         }
     }
 }

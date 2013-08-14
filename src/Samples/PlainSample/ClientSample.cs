@@ -28,6 +28,8 @@ namespace PlainSample
 
 
             var indexSettings = new IndexSettingsBuilder()
+                    .NumberOfShards(8)
+                    .NumberOfReplicas(1)
                     .Analysis(analysis => analysis
                         .Analyzer(analyzer => analyzer
                             .Custom("keyword_lowercase", custom => custom

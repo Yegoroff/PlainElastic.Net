@@ -1,6 +1,5 @@
 using System;
 
-using PlainElastic.Net.Builders.Queries.Filters;
 using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Queries
@@ -12,7 +11,6 @@ namespace PlainElastic.Net.Queries
     /// </summary>    
     public class FilteredQuery<T> : QueryBase<FilteredQuery<T>>
     {
-
         public FilteredQuery<T> Query(Func<Query<T>, Query<T>> query)
         {
             RegisterJsonPartExpression(query);
@@ -27,13 +25,6 @@ namespace PlainElastic.Net.Queries
             return this;
         }
 
-        public FilteredQuery<T> GeoBoundingBox(Func<GeoBoundingBoxFilter<T>, GeoBoundingBoxFilter<T>> filter)
-        {
-            RegisterJsonPartExpression(filter);
-            
-            return this;
-        }
-
         protected override bool HasRequiredParts()
         {
             return true;
@@ -43,6 +34,5 @@ namespace PlainElastic.Net.Queries
         {
             return "{{ 'filtered': {{ {0} }} }}".AltQuoteF(body);
         }
-
     }
 }

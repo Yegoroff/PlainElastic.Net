@@ -20,7 +20,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries._Filters.GeoBoundingBox
 
         It should_set_the_bottom_right_point = () => _result.ShouldContain("'bottom_right': { 'lat': 3.03,'lon': 4.04 }".AltQuote());
 
-        It should_return_correct_query = () => _result.ShouldEqual("'geo_bounding_box': { 'StringProperty': { 'top_left': { 'lat': 1.01,'lon': 2.02 },'bottom_right': { 'lat': 3.03,'lon': 4.04 } } }".AltQuote());
+        It should_return_correct_query = () => _result.ShouldEqual("{ 'geo_bounding_box': { 'StringProperty': { 'top_left': { 'lat': 1.01,'lon': 2.02 },'bottom_right': { 'lat': 3.03,'lon': 4.04 } } } }".AltQuote());
 
         private static string _result;
     }

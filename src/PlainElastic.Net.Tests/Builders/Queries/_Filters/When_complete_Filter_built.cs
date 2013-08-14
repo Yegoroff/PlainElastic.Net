@@ -9,8 +9,9 @@ namespace PlainElastic.Net.Tests.Builders.Queries
     {
         Because of = () => result = new Filter<FieldsTestClass>()                                                
                                             .And(a => a.Custom("And"))
+                                            .GeoBoundingBox(b => b.Custom("BoundingBox"))
                                             .Or(o => o.Custom("Or"))
-                                            .Not( n => n.Custom("Not") )
+                                            .Not(n => n.Custom("Not"))
                                             .Exists(e => e.Custom("Exists"))
                                             .Missing(m => m.Custom("Missing"))
                                             .Ids(ids => ids.Custom("Ids"))
@@ -36,6 +37,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
 
         It should_return_correct_result = () => result.ShouldEqual(("'filter': " +
                                                                         "{ 'and': [ And ] }," +
+                                                                        "{ 'geo_bounding_box': BoundingBox }," +
                                                                         "{ 'or': [ Or ] }," +
                                                                         "{ 'not': { Not } }," +
                                                                         "{ 'exists': { Exists } }," +

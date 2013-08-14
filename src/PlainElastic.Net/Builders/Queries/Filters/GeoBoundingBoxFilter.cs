@@ -30,9 +30,9 @@ namespace PlainElastic.Net.Builders.Queries.Filters
         protected override string ApplyJsonTemplate(string body)
         {
             if (string.IsNullOrWhiteSpace(RegisteredField))
-                return "'geo_bounding_box': {0}".AltQuoteF(body);
+                return "{{ 'geo_bounding_box': {0} }}".AltQuoteF(body);
 
-            return "'geo_bounding_box': {{ {0}: {{ {1} }} }}".AltQuoteF(RegisteredField, body);
+            return "{{ 'geo_bounding_box': {{ {0}: {{ {1} }} }} }}".AltQuoteF(RegisteredField, body);
         }
     }
 }

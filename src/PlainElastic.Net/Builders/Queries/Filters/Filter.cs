@@ -1,4 +1,6 @@
 using System;
+
+using PlainElastic.Net.Builders.Queries.Filters;
 using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Queries
@@ -9,6 +11,11 @@ namespace PlainElastic.Net.Queries
     /// </summary>
     public class Filter<T> : QueryBase<Filter<T>>
     {
+        public Filter<T> GeoBoundingBox(Func<GeoBoundingBoxFilter<T>, GeoBoundingBoxFilter<T>> filter)
+        {
+            RegisterJsonPartExpression(filter);
+            return this;
+        }
 
         /// <summary>
         /// A filter that matches documents using AND boolean operator on other queries.

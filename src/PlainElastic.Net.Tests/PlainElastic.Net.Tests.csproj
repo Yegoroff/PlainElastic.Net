@@ -239,6 +239,7 @@
     <Compile Include="Builders\Queries\Indices\When_IndicesQuery_with_all_no_match_query_built.cs" />
     <Compile Include="Builders\Queries\Indices\When_complete_IndicesQuery_built.cs" />
     <Compile Include="Builders\Queries\Indices\When_empty_IndicesQuery_built.cs" />
+    <Compile Include="Builders\Queries\QueryDsl\When_QueryDsl_built.cs" />
     <Compile Include="Builders\Queries\Sort\When_Sort_with_geo_distance_geohash_with_default_order_built.cs" />
     <Compile Include="Builders\Queries\Sort\When_Sort_with_geo_distance_lat_lon_with_default_order_built.cs" />
     <Compile Include="Builders\Queries\Sort\When_Sort_with_geo_distance_geohash_by_reflected_field_built.cs" />

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using PlainElastic.Net;
-using PlainElastic.Net.Mappings;
 using PlainElastic.Net.Queries;
 using PlainElastic.Net.Serialization;
 using PlainElastic.Net.Utils;
@@ -292,20 +291,19 @@ namespace PlainSample
         {
             string searchCommand = Commands.Count("twitter", "tweet").Pretty();
 
-            string query = new CountBuilder<Tweet>().Query(qry => qry
-                                                        .Filtered(filtq => filtq
-                                                            //.Query(q=>q.MatchAll())
-                                                            .Filter(f => f
-                                                                .Query(q => q
-                                                                    .Cache(true)
-                                                                    .Term(t => t
-                                                                        .Field(x => x.User)
-                                                                        .Value("testuser")))
+            string query = new SingleQueryBuilder<Tweet>()
+                                    .Term(t => t
+                                        .Field(x => x.User)
+                                        .Value("testuser")
+                                    )
+                                    .BuildBeautified();
 
-                                                            )
-                                                        )                                                        
-                                                        
-            ).BuildBeautified();
+            /* or alternatively 
+            query = new TermQuery<Tweet>()
+                            .Field(x => x.User)
+                            .Value("testuser")
+                            .BuildBeautified();
+            */
 
             var results = connection.Post(searchCommand, query);
 

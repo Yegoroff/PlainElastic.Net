@@ -151,6 +151,8 @@
     <Compile Include="Builders\Bulk\When_Bulk_indexes_built_from_collection.cs" />
     <Compile Include="Builders\Commands\CloseCommand\When_complete_CloseCommand_built.cs" />
     <Compile Include="Builders\Commands\BulkCommand\When_complete_BulkCommand_built.cs" />
+    <Compile Include="Builders\Commands\DeleteByQuery\When_complete_DeleteByQueryCommand_built.cs" />
+    <Compile Include="Builders\Commands\DeleteByQuery\When_DeleteByQueryCommand_with_multiple_indexes_and_types_built.cs" />
     <Compile Include="Builders\Commands\SearchScrollCommand\When_complete_SearchScrollCommand_built.cs" />
     <Compile Include="Builders\Commands\MoreLikeThisCommand\When_complete_MoreLikeThisCommand_built.cs" />
     <Compile Include="Builders\Commands\MoreLikeThisCommand\When_MoreLikeThisCommand_with_reflected_fields_built.cs" />
@@ -235,7 +237,8 @@
     <Compile Include="Builders\Queries\Indices\When_IndicesQuery_with_all_no_match_query_built.cs" />
     <Compile Include="Builders\Queries\Indices\When_complete_IndicesQuery_built.cs" />
     <Compile Include="Builders\Queries\Indices\When_empty_IndicesQuery_built.cs" />
-    <Compile Include="Builders\Queries\QueryDsl\When_QueryDsl_built.cs" />
+    <Compile Include="Builders\Queries\SingleQueryBuilder\When_empty_SingleQueryBuilder_built.cs" />
+    <Compile Include="Builders\Queries\SingleQueryBuilder\When_SingleQueryBuilder_built.cs" />
     <Compile Include="Builders\Queries\Sort\When_Sort_with_geo_distance_geohash_with_default_order_built.cs" />
     <Compile Include="Builders\Queries\Sort\When_Sort_with_geo_distance_lat_lon_with_default_order_built.cs" />
     <Compile Include="Builders\Queries\Sort\When_Sort_with_geo_distance_geohash_by_reflected_field_built.cs" />

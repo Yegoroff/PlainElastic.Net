@@ -71,6 +71,24 @@ namespace PlainElastic.Net
         }
 
         /// <summary>
+        /// Builds a command that allows to delete documents from one or more indices and one or more types based on a query.
+        /// http://www.elasticsearch.org/guide/reference/api/delete-by-query/
+        /// </summary>
+        public static DeleteByQueryCommand DeleteByQuery(string index = null, string type = null)
+        {
+            return new DeleteByQueryCommand(index, type);
+        }
+
+        /// <summary>
+        /// Builds a command that allows to delete documents from one or more indices and one or more types based on a query.
+        /// http://www.elasticsearch.org/guide/reference/api/delete-by-query/
+        /// </summary>
+        public static DeleteByQueryCommand DeleteByQuery(string[] indexes, string[] types)
+        {
+            return new DeleteByQueryCommand(indexes, types);
+        }
+
+        /// <summary>
         /// Builds a command that allows to delete a mapping (type) along with its data.
         /// Note, most times, it make more sense to reindex the data into a fresh index compared to delete large chunks of it.
         /// http://www.elasticsearch.org/guide/reference/api/admin-indices-delete-mapping.html

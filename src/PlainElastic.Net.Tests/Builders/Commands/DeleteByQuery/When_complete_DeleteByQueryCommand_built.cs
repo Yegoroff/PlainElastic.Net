@@ -2,23 +2,28 @@
 
 namespace PlainElastic.Net.Tests.Builders.Commands
 {
-    [Subject(typeof(CountCommand))]
-    class When_complete_CountCommand_built
+    [Subject(typeof(DeleteByQueryCommand))]
+    class When_complete_DeleteByQueryCommand_built
     {
 
-        Because of = () => result = new CountCommand(index: "Index", type: "Type")
+        Because of = () => result = new DeleteByQueryCommand(index: "Index", type: "Type")
             .Analyzer("analyzer")
             .DefaultOperator(Operator.OR)
             .Df("defaultField")
             .Q("query:test")
             .Routing("route")
+            .Timeout("1m")
+            .Replication(DocumentReplication.async)
+            .Consistency(WriteConsistency.all)
+            .Refresh()
             .Pretty()
+
             .BuildCommand();
 
 
         It should_starts_with_index_type = () => result.ShouldStartWith("index/type");
 
-        It should_contains_count_verb = () => result.ShouldContain("_count");
+        It should_contains_query_verb = () => result.ShouldContain("_query");
 
         It should_contain_parameter_analyzer_equals_to_analyzer = () => result.ShouldContain("?analyzer=analyzer");
 
@@ -30,7 +35,13 @@ namespace PlainElastic.Net.Tests.Builders.Commands
 
         It should_contain_parameter_routing_equals_to_route = () => result.ShouldContain("&routing=route");
 
-        It should_return_correct_value = () => result.ShouldEqual(@"index/type/_count?analyzer=analyzer&default_operator=OR&df=defaultField&q=query:test&routing=route&pretty=true");
+        It should_contain_parameter_timeout_equals_to_1m = () => result.ShouldContain("&timeout=1m");
+
+        It should_contain_parameter_replication_equals_to_async = () => result.ShouldContain("&replication=async");
+
+        It should_contain_parameter_consistency_equals_to_all = () => result.ShouldContain("&consistency=all");
+
+        It should_return_correct_value = () => result.ShouldEqual(@"index/type/_query?analyzer=analyzer&default_operator=OR&df=defaultField&q=query:test&routing=route&timeout=1m&replication=async&consistency=all&refresh=true&pretty=true");
 
 
         private static string result;

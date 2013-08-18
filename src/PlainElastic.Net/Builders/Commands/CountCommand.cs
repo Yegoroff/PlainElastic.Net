@@ -85,18 +85,6 @@ namespace PlainElastic.Net
             return this;
         }
 
-        /// <summary>
-        /// The type of the search operation to perform.
-        /// Defaults to query_then_fetch.
-        /// see http://www.elasticsearch.org/guide/reference/api/search/search-type.html
-        /// </summary>
-        public CountCommand SearchType(SearchType searchType)
-        {
-            WithParameter("search_type", searchType.AsString());
-            return this;
-        }
-
-
         #endregion
 
 

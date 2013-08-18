@@ -12,7 +12,6 @@ namespace PlainElastic.Net.Queries
     /// </summary>
     public class QueryBuilder<T> : QueryBase<QueryBuilder<T>>
     {
-
         /// <summary>
         /// The query element within the search request body allows to define a query using the Query DSL.
         /// see http://www.elasticsearch.org/guide/reference/api/search/query.html

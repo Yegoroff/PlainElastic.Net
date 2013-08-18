@@ -289,27 +289,27 @@ namespace PlainSample
 
         private static long CountTweets(ElasticConnection connection, JsonNetSerializer serializer)
         {
-            string searchCommand = Commands.Count("twitter", "tweet").Pretty();
+            string countCommand = Commands.Count("twitter", "tweet").Pretty();
 
             string query = new SingleQueryBuilder<Tweet>()
                                     .Term(t => t
                                         .Field(x => x.User)
                                         .Value("testuser")
                                     )
-                                    .BuildBeautified();
+                                    .BuildBeautified();  // or .Buid(); to get condensed single line query.
 
-            /* or alternatively 
+            /* or alternatively  
             query = new TermQuery<Tweet>()
                             .Field(x => x.User)
                             .Value("testuser")
-                            .BuildBeautified();
+                            .BuildBeautified();  // or .Buid(); to get condensed single line query.
             */
 
-            var results = connection.Post(searchCommand, query);
+            var results = connection.Post(countCommand, query);
 
             var searchResult = serializer.ToCountResult(results);
 
-            PrintCountResults(searchResult, searchCommand, query, results);
+            PrintCountResults(searchResult, countCommand, query, results);
 
             return searchResult.count;
         }

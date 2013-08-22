@@ -15,6 +15,7 @@ namespace PlainElastic.Net
         {
             DefaultHost = defaultHost;
             DefaultPort = defaultPort;
+            Timeout = 60 * 1000; // 60 seconds
         }
 
         
@@ -32,6 +33,11 @@ namespace PlainElastic.Net
         }
 
         public ICredentials Credentials { get; set; }
+
+        /// <summary>
+        /// Timeout in milliseconds. Default value 1 minute or 60000 msec
+        /// </summary>
+        public int Timeout { get; set; }
 
 
         public OperationResult Get(string command, string jsonData = null)
@@ -113,8 +119,7 @@ namespace PlainElastic.Net
 
             request.Accept = "application/json";
             request.ContentType = "application/json";
-            request.Timeout = 60 * 1000;
-            request.ReadWriteTimeout = 60 * 1000;
+            request.Timeout = Timeout;
             request.Method = method;
 
             if (proxySet)

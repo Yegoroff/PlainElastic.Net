@@ -13,6 +13,11 @@ namespace PlainElastic.Net
 
         ICredentials Credentials { get; set; }
 
+        /// <summary>
+        /// Timeout in milliseconds.
+        /// </summary>
+        int Timeout { get; set; }
+
 
         OperationResult Get(string command, string jsonData = null);
 

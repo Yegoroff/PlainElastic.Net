@@ -102,7 +102,8 @@ namespace PlainElastic.Net.Utils
                 }
             }
 
-            yield return batch.ToString();
+            if (batch.Length > 0)
+                yield return batch.ToString();
         }
 
 

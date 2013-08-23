@@ -84,9 +84,7 @@ namespace PlainElastic.Net
 					}
 
 				}, requestStream);
-
 			}
-
 			catch (Exception ex)
 			{
 				if (ex is WebException) ex = GetDetailedOuterException((WebException)ex);
@@ -106,7 +104,7 @@ namespace PlainElastic.Net
 				var buffer = new byte[4096];
 				if (response.ContentLength != 0)
 				{
-					var output = new MemoryStream((int)Math.Max(response.ContentLength, 4096));
+					var output = new MemoryStream(4096);
 					var newState = new Tuple<AsyncResult, WebResponse, byte[], Stream, MemoryStream>(state.Item2, response, buffer, stream, output);
 					stream.BeginRead(buffer, 0, buffer.Length, CompleteReadChunk, newState);
 				}
@@ -128,7 +126,7 @@ namespace PlainElastic.Net
 				if (readed > 0)
 				{
 					state.Item5.Write(state.Item3, 0, readed);
-					if (state.Item2.ContentLength < state.Item5.Length)
+					if (state.Item2.ContentLength == -1 || state.Item2.ContentLength > state.Item5.Length)
 						state.Item4.BeginRead(state.Item3, 0, state.Item3.Length, CompleteReadChunk, state);
 					else
 						CompleteReadData(state.Item1, state.Item2, state.Item5, state.Item4);

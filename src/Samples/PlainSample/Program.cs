@@ -11,7 +11,7 @@
 
             var clientSample = new ClientSample();
 
-            clientSample.Execute();
+            clientSample.ExecuteAsync();
         }
      }
 }

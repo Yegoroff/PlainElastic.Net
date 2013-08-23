@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.Net;
 
 namespace PlainElastic.Net
@@ -28,5 +29,10 @@ namespace PlainElastic.Net
         OperationResult Delete(string command, string jsonData = null);
 
         OperationResult Head(string command, string jsonData = null);
+
+		IAsyncResult BeginRequest(RequestMethodEnum method, string command, string jsonData, AsyncCallback cb, object state);
+
+		OperationResult EndRequest(IAsyncResult res);
+
     }
 }

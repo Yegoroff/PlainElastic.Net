@@ -4,11 +4,11 @@ using PlainElastic.Net.Queries;
 
 namespace PlainElastic.Net.Tests.Builders.Queries
 {
-    [Subject(typeof(HasChildFilter<,>))]
-    class When_empty_HasChildFilter_built
+    [Subject(typeof(HasParentFilter<,>))]
+    class When_empty_HasParentFilter_built
     {
-        Because of = () => result = new HasChildFilter<FieldsTestClass, AnotherTestClass>()
-                                                .Type("childType")
+        Because of = () => result = new HasParentFilter<FieldsTestClass, AnotherTestClass>()
+                                                .ParentType("childType")
                                                 .Query(q => q)
                                                 .Scope("query_scope")
                                                 .Name("filter_name")

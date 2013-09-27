@@ -173,11 +173,24 @@ namespace PlainElastic.Net.Queries
         /// and results in parent documents that have child docs matching the query.
         /// see: http://www.elasticsearch.org/guide/reference/query-dsl/has-child-query.html
         /// </summary>
-        public Query<T> HasChild(Func<HasChildQuery<T>, HasChildQuery<T>> hasChildQuery)
+        public Query<T> HasChild<TChild>(Func<HasChildQuery<T, TChild>, HasChildQuery<T, TChild>> hasChildQuery)
         {
             RegisterJsonPartExpression(hasChildQuery);
             return this;
         }
+
+        /// <summary>
+        /// The has_parent query accepts a query and the parent type to run against,
+        /// The query is executed in the parent document space, which is specified by the parent type. 
+        /// This query return child documents which associated parents have matched.
+        /// see: http://www.elasticsearch.org/guide/reference/query-dsl/has-parent-query/
+        /// </summary>
+        public Query<T> HasParent<TParent>(Func<HasParentQuery<T, TParent>, HasParentQuery<T, TParent>> hasParentQuery)
+        {
+            RegisterJsonPartExpression(hasParentQuery);
+            return this;
+        }
+
 
         /// <summary>
         /// The top_children query runs the child query with an estimated hits size,

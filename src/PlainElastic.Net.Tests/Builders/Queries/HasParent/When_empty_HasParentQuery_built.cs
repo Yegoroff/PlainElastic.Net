@@ -1,17 +1,16 @@
 ﻿using Machine.Specifications;
 using PlainElastic.Net.Queries;
 
-
 namespace PlainElastic.Net.Tests.Builders.Queries
 {
-    [Subject(typeof(HasChildFilter<,>))]
-    class When_empty_HasChildFilter_built
+    [Subject(typeof(HasParentQuery<,>))]
+    class When_empty_HasParentQuery_built
     {
-        Because of = () => result = new HasChildFilter<FieldsTestClass, AnotherTestClass>()
-                                                .Type("childType")
+        Because of = () => result = new HasParentQuery<FieldsTestClass, AnotherTestClass>()
+                                                .ParentType("parentType")
                                                 .Query(q => q)
-                                                .Scope("query_scope")
-                                                .Name("filter_name")
+                                                .ScoreType(HasParentScoreType.score)
+                                                .Boost(5)
                                                 .Custom("")
                                                 .ToString();
 

@@ -234,6 +234,8 @@
     <Compile Include="Builders\Queries\Bool\When_BoolQuery_with_useActualShouldCount_built.cs" />
     <Compile Include="Builders\Queries\Boosting\When_complete_BoostingQuery_built.cs" />
     <Compile Include="Builders\Queries\Boosting\When_empty_BoostingQuery_built.cs" />
+    <Compile Include="Builders\Queries\HasParent\When_complete_HasParentQuery_built.cs" />
+    <Compile Include="Builders\Queries\HasParent\When_empty_HasParentQuery_built.cs" />
     <Compile Include="Builders\Queries\MultiMatch\When_complete_MultiMatchQuery_built.cs" />
     <Compile Include="Builders\Queries\MultiMatch\When_MultiMatchQuery_without_query_built.cs" />
     <Compile Include="Builders\Queries\Match\When_complete_MatchQuery_built.cs" />
@@ -303,6 +305,8 @@
     <Compile Include="Builders\Queries\_Filters\And\When_empty_AndFilter_built.cs" />
     <Compile Include="Builders\Queries\_Filters\Bool\When_complete_BoolFilter_built.cs" />
     <Compile Include="Builders\Queries\_Filters\Bool\When_empty_BoolFilter_built.cs" />
+    <Compile Include="Builders\Queries\_Filters\HasParent\When_complete_HasParentFilter_built.cs" />
+    <Compile Include="Builders\Queries\_Filters\HasParent\When_empty_HasParentFilter_built.cs" />
     <Compile Include="Builders\Queries\_Filters\GeoDistance\When_GeoDistanceFilter_with_empty_geo_point_built.cs" />
     <Compile Include="Builders\Queries\_Filters\GeoDistance\When_complete_GeoDistanceFilter_built_with_geohash_specified.cs" />
     <Compile Include="Builders\Queries\_Filters\GeoDistance\When_complete_GeoDistanceFilter_built_with_DistanceType_specified.cs" />

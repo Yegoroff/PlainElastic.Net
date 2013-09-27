@@ -4,11 +4,11 @@ using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Tests.Builders.Queries
 {
-    [Subject(typeof(HasChildFilter<,>))]
-    class When_complete_HasChildFilter_built
+    [Subject(typeof(HasParentFilter<,>))]
+    class When_complete_HasParentFilter_built
     {
-        Because of = () => result = new HasChildFilter<FieldsTestClass, AnotherTestClass>()
-                                                .Type("childType")
+        Because of = () => result = new HasParentFilter<FieldsTestClass, AnotherTestClass>()
+                                                .ParentType("parentType")
                                                 .Query(q => q
                                                     .Term(t => t.Field(another => another.AnotherProperty).Value("query") )
                                                 )
@@ -22,10 +22,10 @@ namespace PlainElastic.Net.Tests.Builders.Queries
 
 
         It should_starts_with_has_child_declaration = () =>
-            result.ShouldStartWith("{ 'has_child':".AltQuote());
+            result.ShouldStartWith("{ 'has_parent':".AltQuote());
 
         It should_contain_type_part = () =>
-            result.ShouldContain("'type': 'childType'".AltQuote());
+            result.ShouldContain("'parent_type': 'parentType'".AltQuote());
 
         It should_contain_query_part = () =>
             result.ShouldContain("'query': { 'term': { 'AnotherProperty': { 'value': 'query' } } }".AltQuote());
@@ -46,8 +46,8 @@ namespace PlainElastic.Net.Tests.Builders.Queries
 
         It should_return_correct_result = () =>
             result.ShouldEqual(("{ " +
-                                    "'has_child': { " +
-                                        "'type': 'childType'," +
+                                    "'has_parent': { " +
+                                        "'parent_type': 'parentType'," +
                                         "'query': { 'term': { 'AnotherProperty': { 'value': 'query' } } }," +
                                         "'filter': { 'term': { 'AnotherProperty': 'filter' } }," +
                                         "'_scope': 'query_scope'," +

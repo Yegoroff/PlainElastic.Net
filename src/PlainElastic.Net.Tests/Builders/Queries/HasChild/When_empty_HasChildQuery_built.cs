@@ -5,10 +5,10 @@ using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Tests.Builders.Queries
 {
-    [Subject(typeof(HasChildQuery<>))]
+    [Subject(typeof(HasChildQuery<,>))]
     class When_empty_HasChildQuery_built
     {
-        Because of = () => result = new HasChildQuery<FieldsTestClass>()
+        Because of = () => result = new HasChildQuery<FieldsTestClass, AnotherTestClass>()
                                                 .Type("childType")
                                                 .Query(q => q)
                                                 .Scope("query_scope")

@@ -32,7 +32,9 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClientSample.async.cs" />
     <Compile Include="ClientSample.cs" />
+    <Compile Include="ElasticClient.async.cs" />
     <Compile Include="PlainSample.cs" />
     <Compile Include="ElasticClient.cs" />
     <Compile Include="Program.cs" />

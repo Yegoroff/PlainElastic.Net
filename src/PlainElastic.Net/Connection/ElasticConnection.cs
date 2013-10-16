@@ -6,7 +6,7 @@ using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net
 {
-    public class ElasticConnection: IElasticConnection
+    public partial class ElasticConnection: IElasticConnection
     {
         private IWebProxy proxy;
         private bool proxySet;

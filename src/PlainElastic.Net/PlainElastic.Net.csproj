@@ -256,11 +256,14 @@
     <Compile Include="Builders\Queries\Enums.cs" />
     <Compile Include="Builders\Queries\QueryBase.cs" />
     <Compile Include="Builders\Queries\RangeQuery.cs" />
+    <Compile Include="Connection\AsyncResult.cs" />
+    <Compile Include="Connection\ElasticConnection.async.cs" />
     <Compile Include="Connection\OperationException.cs" />
     <Compile Include="Connection\ElasticConnection.cs" />
     <Compile Include="Connection\OperationResult.cs" />
     <Compile Include="Connection\IElasticConnection.cs" />
     <Compile Include="Builders\Mappings\MapBuilder.cs" />
+    <Compile Include="Connection\RequestMethodEnum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Builders\Queries\Filters\AndFilter.cs" />
     <Compile Include="Builders\Queries\BoolQuery.cs" />

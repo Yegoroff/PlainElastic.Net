@@ -5,7 +5,7 @@ using PlainElastic.Net.Serialization;
 
 namespace PlainSample
 {
-    public class ElasticClient<T>
+    public partial class ElasticClient<T>
     {
         private readonly IElasticConnection connection;
         private readonly IJsonSerializer serializer;

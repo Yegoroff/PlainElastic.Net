@@ -6,7 +6,7 @@ using PlainElastic.Net.Serialization;
 
 namespace PlainSample
 {
-    class ClientSample
+    partial class ClientSample
      {
         public void Execute()
         {

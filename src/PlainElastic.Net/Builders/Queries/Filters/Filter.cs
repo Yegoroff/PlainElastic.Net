@@ -120,11 +120,24 @@ namespace PlainElastic.Net.Queries
         /// and results in parent documents that have child docs matching the query.
         /// see: http://www.elasticsearch.org/guide/reference/query-dsl/has-child-filter.html
         /// </summary>
-        public Filter<T> HasChild(Func<HasChildFilter<T>, HasChildFilter<T>> hasChildFilter)
+        public Filter<T> HasChild<TChild>(Func<HasChildFilter<T, TChild>, HasChildFilter<T, TChild>> hasChildFilter)
         {
             RegisterJsonPartExpression(hasChildFilter);
             return this;
         }
+
+        /// <summary>
+        /// The has_parent filter accepts a query or filterand the parent type to run against,
+        /// The filter is executed in the parent document space, which is specified by the parent type. 
+        /// This filer return child documents which associated parents have matched.
+        /// see: http://www.elasticsearch.org/guide/reference/query-dsl/has-parent-filter/
+        /// </summary>
+        public Filter<T> HasParent<TParent>(Func<HasParentFilter<T, TParent>, HasParentFilter<T, TParent>> hasParentFilter)
+        {
+            RegisterJsonPartExpression(hasParentFilter);
+            return this;
+        }
+
 
         /// <summary>
         /// Filters documents with fields that have terms within a certain range.

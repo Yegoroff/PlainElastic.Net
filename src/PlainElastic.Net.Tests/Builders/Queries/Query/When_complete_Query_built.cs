@@ -34,7 +34,8 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                                 .Fuzzy(f => f.Custom("fuzzy query"))
                                                 .MoreLikeThis(m=> m.Custom("mlt query"))
                                                 .MoreLikeThisField(m => m.Custom("mlt_field query"))
-                                                .HasChild( h => h.Custom("has child query"))
+                                                .HasChild<AnotherTestClass>( h => h.Custom("has child query"))
+                                                .HasParent<AnotherTestClass>(h => h.Custom("has parent query"))
                                                 .TopChildren(t => t.Custom("top children query"))
                                                 .Wildcard(w => w.Custom("wildcard query"))
                                                 .Indices(i => i.Custom("indices query"))
@@ -71,6 +72,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                                                     "{ 'more_like_this': { mlt query } }," +
                                                                     "{ 'more_like_this_field': { mlt_field query } }," +
                                                                     "{ 'has_child': { has child query } }," +
+                                                                    "{ 'has_parent': { has parent query } }," +
                                                                     "{ 'top_children': { top children query } }," +                                                                    
                                                                     "{ 'wildcard': { wildcard query } }," +
                                                                     "{ 'indices': { indices query } }," +

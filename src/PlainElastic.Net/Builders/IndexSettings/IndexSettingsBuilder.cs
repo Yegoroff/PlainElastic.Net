@@ -29,6 +29,24 @@ namespace PlainElastic.Net.IndexSettings
             return this;
         }
 
+        /// <summary>
+        /// Defines the number of shards 
+        /// </summary>
+        public IndexSettingsBuilder NumberOfShards(int number)
+        {
+            RegisterJsonPart("'number_of_shards': {0}", number.AsString());
+            return this;
+        }
+
+        /// <summary>
+        /// Defines the number of replicas each shard has
+        /// </summary>
+        public IndexSettingsBuilder NumberOfReplicas(int number)
+        {
+            RegisterJsonPart("'number_of_replicas': {0}", number.AsString());
+            return this;
+        }
+
         public string Build()
         {
             return ((IJsonConvertible)this).ToJson();
@@ -49,7 +67,7 @@ namespace PlainElastic.Net.IndexSettings
             if (body.IsNullOrEmpty())
                 return "";
 
-            return "{{ 'settings': {{ 'index': {{ {0} }} }} }}".AltQuoteF(body);
+            return "{{ 'index': {{ {0} }} }}".AltQuoteF(body);
         }
     }
 }

@@ -15,4 +15,9 @@ namespace PlainElastic.Net.Tests.Builders
         public FieldsTestClass ObjectProperty { get; set; }
         public List<FieldsTestClass> CollectionProperty { get; set; }
     }
+
+    public class AnotherTestClass: FieldsTestClass
+    {
+        public string AnotherProperty { get; set; }
+    }
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using PlainElastic.Net;
-using PlainElastic.Net.Mappings;
 using PlainElastic.Net.Queries;
 using PlainElastic.Net.Serialization;
 using PlainElastic.Net.Utils;
@@ -58,6 +57,8 @@ namespace PlainSample
             GetTweet("1", serializer, connection);
 
             SearchTweets(connection, serializer);
+
+            CountTweets(connection, serializer);
 
             DeleteTweeterIndex(connection, serializer);
 
@@ -282,6 +283,51 @@ namespace PlainSample
                 Console.WriteLine("             Message: " + hit._source.Message);
                 Console.WriteLine();
             }
+
+            Console.WriteLine();
+        }
+
+        private static long CountTweets(ElasticConnection connection, JsonNetSerializer serializer)
+        {
+            string countCommand = Commands.Count("twitter", "tweet").Pretty();
+
+            string query = new SingleQueryBuilder<Tweet>()
+                                    .Term(t => t
+                                        .Field(x => x.User)
+                                        .Value("testuser")
+                                    )
+                                    .BuildBeautified();  // or .Buid(); to get condensed single line query.
+
+            /* or alternatively  
+            query = new TermQuery<Tweet>()
+                            .Field(x => x.User)
+                            .Value("testuser")
+                            .BuildBeautified();  // or .Buid(); to get condensed single line query.
+            */
+
+            var results = connection.Post(countCommand, query);
+
+            var searchResult = serializer.ToCountResult(results);
+
+            PrintCountResults(searchResult, countCommand, query, results);
+
+            return searchResult.count;
+        }
+
+        private static void PrintCountResults(CountResult countResult, string countCommand, string query, OperationResult results)
+        {
+            Console.WriteLine("Executed: \r\nPOST {0} \r\n{1} \r\n".F(countCommand, query));
+
+            Console.WriteLine("Count Result: \r\n {0} \r\n".F(results));
+
+            Console.WriteLine("Parsed Count Results");
+            Console.WriteLine(" count: " + countResult.count);
+            Console.WriteLine(" status: " + countResult.status);
+            Console.WriteLine(" error: " + countResult.error);
+            Console.WriteLine(" _shards:");
+            Console.WriteLine("     total: " + countResult._shards.total);
+            Console.WriteLine("     successful: " + countResult._shards.successful);
+            Console.WriteLine("     failed: " + countResult._shards.failed);
 
             Console.WriteLine();
         }

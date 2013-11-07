@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata> 
     <id>PlainElastic.Net</id> 
-    <version>1.0.39</version>
+    <version>1.0.43</version>
     <authors>Alexander Yegorov</authors>
     <projectUrl>https://github.com/Yegoroff/PlainElastic.Net</projectUrl>
     <licenseUrl>https://github.com/Yegoroff/PlainElastic.Net/blob/master/license.txt</licenseUrl>

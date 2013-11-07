@@ -170,4 +170,9 @@ namespace PlainElastic.Net.Queries
     public enum HighlighterType { plain, fvh }
 
     public enum HighlightFragmenter { simple, span }
+
+    public enum HasParentScoreType { none, score }
+
+    public enum HasChildScoreType { max, sum, avg, score }
+
 }

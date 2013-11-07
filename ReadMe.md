@@ -472,7 +472,7 @@ See [Condion-less Query Builder Gist](https://gist.github.com/2765335) for compl
 ### Facets
 *ES documentation:*  http://www.elasticsearch.org/guide/reference/api/search/facets/index.html
 
-For now only *Terms* facet and *FilterFacet* supported.
+For now only *Terms* facet, *Terms Stats* facet, *Statistical* facet, *Range* facet and *Filter Facet* supported.
 
 You can construct facet queries using the following syntax:
 

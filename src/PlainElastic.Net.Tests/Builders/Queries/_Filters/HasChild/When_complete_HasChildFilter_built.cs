@@ -4,12 +4,17 @@ using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Tests.Builders.Queries
 {
-    [Subject(typeof(HasChildFilter<>))]
+    [Subject(typeof(HasChildFilter<,>))]
     class When_complete_HasChildFilter_built
     {
-        Because of = () => result = new HasChildFilter<FieldsTestClass>()
+        Because of = () => result = new HasChildFilter<FieldsTestClass, AnotherTestClass>()
                                                 .Type("childType")
-                                                .Query(q => q.Custom("{ query }"))
+                                                .Query(q => q
+                                                    .Term(t => t.Field(another => another.AnotherProperty).Value("query") )
+                                                )
+                                                .Filter(f=>f
+                                                    .Term(t => t.Field(another => another.AnotherProperty).Value("filter") )
+                                                )
                                                 .Scope("query_scope")
                                                 .Name("filter_name")
                                                 .Custom("{ custom part }")
@@ -23,7 +28,10 @@ namespace PlainElastic.Net.Tests.Builders.Queries
             result.ShouldContain("'type': 'childType'".AltQuote());
 
         It should_contain_query_part = () =>
-            result.ShouldContain("'query': { query }".AltQuote());
+            result.ShouldContain("'query': { 'term': { 'AnotherProperty': { 'value': 'query' } } }".AltQuote());
+
+        It should_contain_filter_part = () =>
+            result.ShouldContain("'filter': { 'term': { 'AnotherProperty': 'filter' } }".AltQuote());
 
         It should_contain_scope_part = () =>
             result.ShouldContain("'_scope': 'query_scope'".AltQuote());
@@ -39,8 +47,9 @@ namespace PlainElastic.Net.Tests.Builders.Queries
         It should_return_correct_result = () =>
             result.ShouldEqual(("{ " +
                                     "'has_child': { " +
-                                        "'type': 'childType'," +    
-                                        "'query': { query }," +
+                                        "'type': 'childType'," +
+                                        "'query': { 'term': { 'AnotherProperty': { 'value': 'query' } } }," +
+                                        "'filter': { 'term': { 'AnotherProperty': 'filter' } }," +
                                         "'_scope': 'query_scope'," +
                                         "'_name': 'filter_name'," +
                                         "{ custom part } " +

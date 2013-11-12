@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using PlainElastic.Net;
 using PlainElastic.Net.Queries;
 using PlainElastic.Net.Serialization;
@@ -57,6 +59,8 @@ namespace PlainSample
             GetTweet("1", serializer, connection);
 
             SearchTweets(connection, serializer);
+
+            SearchTweetsAsync(connection, serializer).Wait();
 
             CountTweets(connection, serializer);
 
@@ -251,6 +255,36 @@ namespace PlainSample
             PrintSearchResults(searchResult, searchCommand, query, results);
 
             return searchResult.Documents;
+        }
+
+
+
+        private static Task<IEnumerable<Tweet>> SearchTweetsAsync(ElasticConnection connection, JsonNetSerializer serializer)
+        {
+            string searchCommand = Commands.Search("twitter", "tweet").Pretty();
+
+            string query = new QueryBuilder<Tweet>()
+                .Query(qry => qry
+                    .Term(term => term
+                        .Field(tweet => tweet.User)
+                        .Value("testUser".ToLower()) // by default terms query requires lowercased values.
+                        .Boost(5)
+                     )
+                ).BuildBeautified();
+
+
+            return connection.PostAsync(searchCommand, query)
+                             // process search results asynchronously
+                            .ContinueWith( searchTask => {
+
+                               OperationResult results = searchTask.Result;
+                               var searchResult = serializer.ToSearchResult<Tweet>(results);
+
+                               Console.WriteLine("ASYNC Search Results: \r\n");
+                               PrintSearchResults(searchResult, searchCommand, query, results);
+
+                               return searchResult.Documents;
+                           });
         }
 
         private static void PrintSearchResults(SearchResult<Tweet> searchResult, string searchCommand, string query, OperationResult results)

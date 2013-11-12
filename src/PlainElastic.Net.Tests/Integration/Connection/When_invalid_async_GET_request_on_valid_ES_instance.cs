@@ -5,7 +5,7 @@ using Machine.Specifications;
 namespace PlainElastic.Net.Tests.Integration.Connection
 {
     [Subject(typeof(ElasticConnection))]
-    class When_invalid_GetAsync_request_on_valid_ES_instance
+    class When_invalid_async_GET_request_on_valid_ES_instance
     {
         Establish context = () =>
         {

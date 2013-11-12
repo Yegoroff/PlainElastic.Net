@@ -3,7 +3,7 @@
 namespace PlainElastic.Net.Tests.Integration.Connection
 {
     [Subject(typeof(ElasticConnection))]
-    class When_full_GetAsync_request_on_valid_ES_instance
+    class When_async_GET_request_on_valid_ES_instance
     {
         Establish context = () =>
         {

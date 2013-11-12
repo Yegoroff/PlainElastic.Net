@@ -396,8 +396,12 @@
     <Compile Include="Connection\When_CreateRequest_with_Credentials_called.cs" />
     <Compile Include="Connection\TestableConnection.cs" />
     <Compile Include="Connection\When_CreateRequest_with_Proxy_called.cs" />
-    <Compile Include="Integration\Connection\When_invalid_GetAsync_request_on_valid_ES_instance.cs" />
-    <Compile Include="Integration\Connection\When_full_GetAsync_request_on_valid_ES_instance.cs" />
+    <Compile Include="Integration\Connection\When_async_HEAD_request_on_valid_ES_instance.cs" />
+    <Compile Include="Integration\Connection\When_async_DELETE_request_on_valid_ES_instance.cs" />
+    <Compile Include="Integration\Connection\When_async_PUT_request_on_valid_ES_instance.cs" />
+    <Compile Include="Integration\Connection\When_async_POST_request_on_valid_ES_instance.cs" />
+    <Compile Include="Integration\Connection\When_invalid_async_GET_request_on_valid_ES_instance.cs" />
+    <Compile Include="Integration\Connection\When_async_GET_request_on_valid_ES_instance.cs" />
     <Compile Include="Integration\Connection\When_invalid_GET_request_on_valid_ES_instance.cs" />
     <Compile Include="Integration\Connection\When_partial_GET_request_on_valid_ES_instance.cs" />
     <Compile Include="Integration\Connection\When_full_GET_request_on_valid_ES_instance.cs" />

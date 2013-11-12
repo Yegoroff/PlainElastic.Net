@@ -1,5 +1,6 @@
 ﻿
 using System.Net;
+using System.Threading.Tasks;
 
 namespace PlainElastic.Net
 {
@@ -28,5 +29,16 @@ namespace PlainElastic.Net
         OperationResult Delete(string command, string jsonData = null);
 
         OperationResult Head(string command, string jsonData = null);
+
+
+        Task<OperationResult> GetAsync(string command, string jsonData = null);
+
+        Task<OperationResult> PostAsync(string command, string jsonData = null);
+
+        Task<OperationResult> PutAsync(string command, string jsonData = null);
+
+        Task<OperationResult> DeleteAsync(string command, string jsonData = null);
+
+        Task<OperationResult> HeadAsync(string command, string jsonData = null);
     }
 }

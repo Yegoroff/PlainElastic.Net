@@ -1,6 +1,6 @@
 using System;
-using PlainElastic.Net.Utils;
 
+using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Queries
 {
@@ -11,7 +11,6 @@ namespace PlainElastic.Net.Queries
     /// </summary>    
     public class FilteredQuery<T> : QueryBase<FilteredQuery<T>>
     {
-
         public FilteredQuery<T> Query(Func<Query<T>, Query<T>> query)
         {
             RegisterJsonPartExpression(query);
@@ -35,6 +34,5 @@ namespace PlainElastic.Net.Queries
         {
             return "{{ 'filtered': {{ {0} }} }}".AltQuoteF(body);
         }
-
     }
 }

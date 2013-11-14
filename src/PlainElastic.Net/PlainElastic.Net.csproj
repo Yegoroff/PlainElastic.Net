@@ -135,6 +135,7 @@
     <Compile Include="Builders\IndexSettings\Analysis\Analyzers\WhitespaceAnalyzer.cs" />
     <Compile Include="Builders\IndexSettings\Analysis\Enums.cs" />
     <Compile Include="Builders\IndexSettings\IndexSettingsBuilder.cs" />
+    <Compile Include="Builders\IndexSettings\Settings\Setting.cs" />
     <Compile Include="Builders\Mappings\Attachment.cs" />
     <Compile Include="Builders\Mappings\Core\ElasticCoreTypeMapper.cs" />
     <Compile Include="Builders\Mappings\Core\CustomPropertyMap.cs" />
@@ -163,6 +164,7 @@
     <Compile Include="Builders\Queries\HasParentQuery.cs" />
     <Compile Include="Builders\Queries\Facets\TermsStatsFacet.cs" />
     <Compile Include="Builders\Queries\Facets\StatisticalFacet.cs" />
+    <Compile Include="Builders\Queries\Filters\GeoBoundingBoxFilter.cs" />
     <Compile Include="Builders\Queries\Highlight\HighlightField.cs" />
     <Compile Include="Builders\Queries\Highlight\Highlight.cs" />
     <Compile Include="Builders\Queries\Highlight\HighlightBase.cs" />
@@ -182,6 +184,8 @@
       <DependentUpon>IndicesQuery.cs</DependentUpon>
     </Compile>
     <Compile Include="Builders\Queries\IndicesQuery.cs" />
+    <Compile Include="Builders\Queries\Partial.cs" />
+    <Compile Include="Builders\Queries\PartialFields.cs" />
     <Compile Include="Builders\Queries\SingleQueryBuilder.cs" />
     <Compile Include="Builders\Queries\TopChildrenQuery.cs" />
     <Compile Include="Builders\Queries\Filters\PrefixFilter.cs" />

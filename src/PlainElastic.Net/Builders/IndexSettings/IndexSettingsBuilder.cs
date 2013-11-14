@@ -1,5 +1,6 @@
 using System;
 using PlainElastic.Net.Builders;
+using PlainElastic.Net.Builders.IndexSettings.Settings;
 using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.IndexSettings
@@ -19,6 +20,12 @@ namespace PlainElastic.Net.IndexSettings
         public IndexSettingsBuilder Analysis(Func<Analysis, Analysis> analysis)
         {
             RegisterJsonPartExpression(analysis);
+            return this;
+        }
+
+        public IndexSettingsBuilder Settings(Func<Setting, Setting> settings)
+        {
+            RegisterJsonPartExpression(settings);
             return this;
         }
 
@@ -50,12 +57,10 @@ namespace PlainElastic.Net.IndexSettings
             return Build().BeautifyJson();
         }
 
-
         public override string ToString()
         {
             return BuildBeautified();
         }
-
 
         protected override string ApplyJsonTemplate(string body)
         {

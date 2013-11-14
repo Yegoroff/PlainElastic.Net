@@ -305,6 +305,8 @@
     <Compile Include="Builders\Queries\_Filters\And\When_empty_AndFilter_built.cs" />
     <Compile Include="Builders\Queries\_Filters\Bool\When_complete_BoolFilter_built.cs" />
     <Compile Include="Builders\Queries\_Filters\Bool\When_empty_BoolFilter_built.cs" />
+    <Compile Include="Builders\Queries\_Filters\GeoBoundingBox\When_complete_GeoBoundingBox_Is_Built.cs" />
+    <Compile Include="Builders\Queries\_Filters\GeoBoundingBox\When_GeoBoundingBox_with_empty_properties_is_built.cs" />
     <Compile Include="Builders\Queries\_Filters\HasParent\When_complete_HasParentFilter_built.cs" />
     <Compile Include="Builders\Queries\_Filters\HasParent\When_empty_HasParentFilter_built.cs" />
     <Compile Include="Builders\Queries\_Filters\GeoDistance\When_GeoDistanceFilter_with_empty_geo_point_built.cs" />
@@ -387,6 +389,11 @@
     <Compile Include="Builders\Queries\Query\When_Query_with_empty_subqueries_built.cs" />
     <Compile Include="Builders\Queries\QueryString\When_QueryString_Query_called_for_html_injection.cs" />
     <Compile Include="Builders\Queries\_Highlight\When_highlighted_part_built.cs" />
+    <Compile Include="Builders\Queries\_PartialFields\When_complete_PartialFields_built.cs" />
+    <Compile Include="Builders\Settings\When_settings_builder_has_replicas.cs" />
+    <Compile Include="Builders\Settings\When_settings_builder_has_shards.cs" />
+    <Compile Include="Builders\Settings\When_settings_builder_has_shards_and_a_replica.cs" />
+    <Compile Include="Builders\Settings\When_settings_builder_is_empty.cs" />
     <Compile Include="Builders\IndexSettings\When_IndexSettingsBuilder_builder_has_replicas.cs" />
     <Compile Include="Builders\IndexSettings\When_IndexSettingsBuilder_builder_has_shards.cs" />
     <Compile Include="Builders\IndexSettings\When_IndexSettingsBuilder_builder_has_shards_and_a_replica.cs" />

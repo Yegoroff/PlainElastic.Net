@@ -184,6 +184,8 @@
       <DependentUpon>IndicesQuery.cs</DependentUpon>
     </Compile>
     <Compile Include="Builders\Queries\IndicesQuery.cs" />
+    <Compile Include="Builders\Queries\Partial.cs" />
+    <Compile Include="Builders\Queries\PartialFields.cs" />
     <Compile Include="Builders\Queries\SingleQueryBuilder.cs" />
     <Compile Include="Builders\Queries\TopChildrenQuery.cs" />
     <Compile Include="Builders\Queries\Filters\PrefixFilter.cs" />

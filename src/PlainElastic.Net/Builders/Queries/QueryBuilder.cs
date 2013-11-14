@@ -1,5 +1,6 @@
 using System;
 using PlainElastic.Net.Builders;
+using PlainElastic.Net.Builders.Queries;
 using PlainElastic.Net.Utils;
 
 
@@ -133,7 +134,11 @@ namespace PlainElastic.Net.Queries
 
         // Allows to selectively load specific fields for each document represented by a search hit. Defaults to load the internal _source field.
         // see  http://www.elasticsearch.org/guide/reference/api/search/fields.html
-        //TODO: fields
+        public QueryBuilder<T> PartialFields(Func<PartialFields<T>, PartialFields<T>> partialFields)
+        {
+            RegisterJsonPartExpression(partialFields);
+            return this;
+        }
 
         // Allows to return a script evaluation (based on different fields) for each hit.
         // see http://www.elasticsearch.org/guide/reference/api/search/script-fields.html

@@ -389,6 +389,7 @@
     <Compile Include="Builders\Queries\Query\When_Query_with_empty_subqueries_built.cs" />
     <Compile Include="Builders\Queries\QueryString\When_QueryString_Query_called_for_html_injection.cs" />
     <Compile Include="Builders\Queries\_Highlight\When_highlighted_part_built.cs" />
+    <Compile Include="Builders\Queries\_PartialFields\When_complete_PartialFields_built.cs" />
     <Compile Include="Builders\Settings\When_settings_builder_has_replicas.cs" />
     <Compile Include="Builders\Settings\When_settings_builder_has_shards.cs" />
     <Compile Include="Builders\Settings\When_settings_builder_has_shards_and_a_replica.cs" />

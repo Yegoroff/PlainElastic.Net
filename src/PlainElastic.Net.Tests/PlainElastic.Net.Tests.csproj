@@ -31,8 +31,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Machine.Specifications">
-      <HintPath>..\..\packages\Machine.Specifications.0.5.3.0\lib\Machine.Specifications.dll</HintPath>
+    <Reference Include="Machine.Specifications, Version=0.5.14.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Machine.Specifications.0.5.14\lib\net40\Machine.Specifications.dll</HintPath>
+    </Reference>
+    <Reference Include="Machine.Specifications.Clr4">
+      <HintPath>..\..\packages\Machine.Specifications.0.5.14\lib\net40\Machine.Specifications.Clr4.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Moq">
@@ -151,6 +155,8 @@
     <Compile Include="Builders\Bulk\When_Bulk_indexes_built_from_collection.cs" />
     <Compile Include="Builders\Commands\CloseCommand\When_complete_CloseCommand_built.cs" />
     <Compile Include="Builders\Commands\BulkCommand\When_complete_BulkCommand_built.cs" />
+    <Compile Include="Builders\Commands\DeleteByQuery\When_complete_DeleteByQueryCommand_built.cs" />
+    <Compile Include="Builders\Commands\DeleteByQuery\When_DeleteByQueryCommand_with_multiple_indexes_and_types_built.cs" />
     <Compile Include="Builders\Commands\SearchScrollCommand\When_complete_SearchScrollCommand_built.cs" />
     <Compile Include="Builders\Commands\MoreLikeThisCommand\When_complete_MoreLikeThisCommand_built.cs" />
     <Compile Include="Builders\Commands\MoreLikeThisCommand\When_MoreLikeThisCommand_with_reflected_fields_built.cs" />
@@ -228,6 +234,8 @@
     <Compile Include="Builders\Queries\Bool\When_BoolQuery_with_useActualShouldCount_built.cs" />
     <Compile Include="Builders\Queries\Boosting\When_complete_BoostingQuery_built.cs" />
     <Compile Include="Builders\Queries\Boosting\When_empty_BoostingQuery_built.cs" />
+    <Compile Include="Builders\Queries\HasParent\When_complete_HasParentQuery_built.cs" />
+    <Compile Include="Builders\Queries\HasParent\When_empty_HasParentQuery_built.cs" />
     <Compile Include="Builders\Queries\MultiMatch\When_complete_MultiMatchQuery_built.cs" />
     <Compile Include="Builders\Queries\MultiMatch\When_MultiMatchQuery_without_query_built.cs" />
     <Compile Include="Builders\Queries\Match\When_complete_MatchQuery_built.cs" />
@@ -235,6 +243,8 @@
     <Compile Include="Builders\Queries\Indices\When_IndicesQuery_with_all_no_match_query_built.cs" />
     <Compile Include="Builders\Queries\Indices\When_complete_IndicesQuery_built.cs" />
     <Compile Include="Builders\Queries\Indices\When_empty_IndicesQuery_built.cs" />
+    <Compile Include="Builders\Queries\SingleQueryBuilder\When_empty_SingleQueryBuilder_built.cs" />
+    <Compile Include="Builders\Queries\SingleQueryBuilder\When_SingleQueryBuilder_built.cs" />
     <Compile Include="Builders\Queries\Sort\When_Sort_with_geo_distance_geohash_with_default_order_built.cs" />
     <Compile Include="Builders\Queries\Sort\When_Sort_with_geo_distance_lat_lon_with_default_order_built.cs" />
     <Compile Include="Builders\Queries\Sort\When_Sort_with_geo_distance_geohash_by_reflected_field_built.cs" />
@@ -300,6 +310,8 @@
     <Compile Include="Builders\Queries\_Filters\And\When_empty_AndFilter_built.cs" />
     <Compile Include="Builders\Queries\_Filters\Bool\When_complete_BoolFilter_built.cs" />
     <Compile Include="Builders\Queries\_Filters\Bool\When_empty_BoolFilter_built.cs" />
+    <Compile Include="Builders\Queries\_Filters\HasParent\When_complete_HasParentFilter_built.cs" />
+    <Compile Include="Builders\Queries\_Filters\HasParent\When_empty_HasParentFilter_built.cs" />
     <Compile Include="Builders\Queries\_Filters\GeoDistance\When_GeoDistanceFilter_with_empty_geo_point_built.cs" />
     <Compile Include="Builders\Queries\_Filters\GeoDistance\When_complete_GeoDistanceFilter_built_with_geohash_specified.cs" />
     <Compile Include="Builders\Queries\_Filters\GeoDistance\When_complete_GeoDistanceFilter_built_with_DistanceType_specified.cs" />
@@ -380,11 +392,21 @@
     <Compile Include="Builders\Queries\Query\When_Query_with_empty_subqueries_built.cs" />
     <Compile Include="Builders\Queries\QueryString\When_QueryString_Query_called_for_html_injection.cs" />
     <Compile Include="Builders\Queries\_Highlight\When_highlighted_part_built.cs" />
+    <Compile Include="Builders\IndexSettings\When_IndexSettingsBuilder_builder_has_replicas.cs" />
+    <Compile Include="Builders\IndexSettings\When_IndexSettingsBuilder_builder_has_shards.cs" />
+    <Compile Include="Builders\IndexSettings\When_IndexSettingsBuilder_builder_has_shards_and_a_replica.cs" />
+    <Compile Include="Connection\When_CreateRequest_with_custom_Timeout_called.cs" />
     <Compile Include="Connection\When_CreateRequest_with_null_Proxy_called.cs" />
     <Compile Include="Connection\When_CreateRequest_with_no_Proxy_specified_called.cs" />
     <Compile Include="Connection\When_CreateRequest_with_Credentials_called.cs" />
     <Compile Include="Connection\TestableConnection.cs" />
     <Compile Include="Connection\When_CreateRequest_with_Proxy_called.cs" />
+    <Compile Include="Integration\Connection\When_async_HEAD_request_on_valid_ES_instance.cs" />
+    <Compile Include="Integration\Connection\When_async_DELETE_request_on_valid_ES_instance.cs" />
+    <Compile Include="Integration\Connection\When_async_PUT_request_on_valid_ES_instance.cs" />
+    <Compile Include="Integration\Connection\When_async_POST_request_on_valid_ES_instance.cs" />
+    <Compile Include="Integration\Connection\When_invalid_async_GET_request_on_valid_ES_instance.cs" />
+    <Compile Include="Integration\Connection\When_async_GET_request_on_valid_ES_instance.cs" />
     <Compile Include="Integration\Connection\When_invalid_GET_request_on_valid_ES_instance.cs" />
     <Compile Include="Integration\Connection\When_partial_GET_request_on_valid_ES_instance.cs" />
     <Compile Include="Integration\Connection\When_full_GET_request_on_valid_ES_instance.cs" />
@@ -402,6 +424,7 @@
     <Compile Include="Serialization\When_filter_facets_result_deserialized.cs" />
     <Compile Include="Serialization\When_terms_facets_result_deserialized.cs" />
     <Compile Include="Serialization\When_highlighted_result_deserialized.cs" />
+    <Compile Include="Utils\When_JoinInBatches_for_string_list_when_elments_count_is_a_multiplier_of_batch_size_called.cs" />
     <Compile Include="Utils\When_Quotate_with_non_printable_characters_called.cs" />
     <Compile Include="Utils\When_Quotate_with_special_characters_called.cs" />
     <Compile Include="Utils\When_First_element_from_JoinInBatches_for_enumeration_of_string_requested.cs" />

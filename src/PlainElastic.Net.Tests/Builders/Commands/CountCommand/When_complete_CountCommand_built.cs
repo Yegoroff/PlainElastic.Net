@@ -12,7 +12,6 @@ namespace PlainElastic.Net.Tests.Builders.Commands
             .Df("defaultField")
             .Q("query:test")
             .Routing("route")
-            .SearchType(SearchType.dfs_query_then_fetch)
             .Pretty()
             .BuildCommand();
 
@@ -31,9 +30,7 @@ namespace PlainElastic.Net.Tests.Builders.Commands
 
         It should_contain_parameter_routing_equals_to_route = () => result.ShouldContain("&routing=route");
 
-        It should_contain_parameter_search_type_equals_to_dfs_query_then_fetch = () => result.ShouldContain("&search_type=dfs_query_then_fetch");
-
-        It should_return_correct_value = () => result.ShouldEqual(@"index/type/_count?analyzer=analyzer&default_operator=OR&df=defaultField&q=query:test&routing=route&search_type=dfs_query_then_fetch&pretty=true");
+        It should_return_correct_value = () => result.ShouldEqual(@"index/type/_count?analyzer=analyzer&default_operator=OR&df=defaultField&q=query:test&routing=route&pretty=true");
 
 
         private static string result;

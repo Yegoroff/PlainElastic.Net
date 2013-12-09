@@ -56,6 +56,7 @@
     <Compile Include="Builders\Commands\CommandBuilder.cs" />
     <Compile Include="Builders\Commands\CloseCommand.cs" />
     <Compile Include="Builders\Commands\BulkCommand.cs" />
+    <Compile Include="Builders\Commands\DeleteByQueryCommand.cs" />
     <Compile Include="Builders\Commands\SearchScrollCommand.cs" />
     <Compile Include="Builders\Commands\MoreLikeThisCommand.cs" />
     <Compile Include="Builders\Commands\CreateIndexCommand.cs" />
@@ -159,6 +160,8 @@
     <Compile Include="Builders\Queries\ConstantScoreQuery.cs" />
     <Compile Include="Builders\Queries\BoostingQuery.cs" />
     <Compile Include="Builders\Queries\Facets\GeoDistanceRangeFacet.cs" />
+    <Compile Include="Builders\Queries\Filters\HasParentFilter.cs" />
+    <Compile Include="Builders\Queries\HasParentQuery.cs" />
     <Compile Include="Builders\Queries\Facets\TermsStatsFacet.cs" />
     <Compile Include="Builders\Queries\Facets\StatisticalFacet.cs" />
     <Compile Include="Builders\Queries\Highlight\HighlightField.cs" />
@@ -180,6 +183,7 @@
       <DependentUpon>IndicesQuery.cs</DependentUpon>
     </Compile>
     <Compile Include="Builders\Queries\IndicesQuery.cs" />
+    <Compile Include="Builders\Queries\SingleQueryBuilder.cs" />
     <Compile Include="Builders\Queries\TopChildrenQuery.cs" />
     <Compile Include="Builders\Queries\Filters\PrefixFilter.cs" />
     <Compile Include="Builders\Queries\PrefixQuery.cs" />

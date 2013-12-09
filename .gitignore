@@ -5,7 +5,7 @@ obj
 *.user
 NuGet/lib/
 /.nuget
-*.nupkg
+NuGet/*.nupkg
 *.ncrunchsolution
 *.ncrunchproject
 *.crunchsolution.cache

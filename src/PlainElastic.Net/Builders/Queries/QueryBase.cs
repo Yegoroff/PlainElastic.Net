@@ -46,8 +46,8 @@ namespace PlainElastic.Net.Queries
             where TJsonPart : new()
             where TResultJsonPart : IJsonConvertible
         {
-            var inputInstance = new TJsonPart();
-            var resultPart = partExpression.Invoke(inputInstance);
+            var jsonBuilderInstance = new TJsonPart();
+            var resultPart = partExpression.Invoke(jsonBuilderInstance);
            
             var json = resultPart.ToJson();
 

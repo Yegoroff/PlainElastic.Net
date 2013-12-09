@@ -4,12 +4,15 @@ using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Tests.Builders.Queries
 {
-    [Subject(typeof(HasChildQuery<>))]
+    [Subject(typeof(HasChildQuery<,>))]
     class When_complete_HasChildQuery_built
     {
-        Because of = () => result = new HasChildQuery<FieldsTestClass>()
+        Because of = () => result = new HasChildQuery<FieldsTestClass, AnotherTestClass>()
                                                 .Type("childType")
-                                                .Query(q => q.Custom("{ query }"))
+                                                .Query(q => q
+                                                    .Term(t => t.Field(another => another.AnotherProperty).Value("test") )
+                                                )
+                                                .ScoreType(HasChildScoreType.max)
                                                 .Scope("query_scope")
                                                 .Boost(5)
                                                 .Custom("{ custom part }")
@@ -22,8 +25,11 @@ namespace PlainElastic.Net.Tests.Builders.Queries
         It should_contain_type_part = () =>
             result.ShouldContain("'type': 'childType'".AltQuote());
 
+        It should_contain_score_type_part = () =>
+            result.ShouldContain("'score_type': 'max'".AltQuote());
+
         It should_contain_query_part = () =>
-            result.ShouldContain("'query': { query }".AltQuote());
+            result.ShouldContain("'query': { 'term': { 'AnotherProperty': { 'value': 'test' } } }".AltQuote());
 
         It should_contain_scope_part = () =>
             result.ShouldContain("'_scope': 'query_scope'".AltQuote());
@@ -38,8 +44,9 @@ namespace PlainElastic.Net.Tests.Builders.Queries
         It should_return_correct_result = () =>
             result.ShouldEqual(("{ " +
                                     "'has_child': { " +
-                                        "'type': 'childType'," +    
-                                        "'query': { query }," +
+                                        "'type': 'childType'," +
+                                        "'query': { 'term': { 'AnotherProperty': { 'value': 'test' } } }," +
+                                        "'score_type': 'max'," +
                                         "'_scope': 'query_scope'," +
                                         "'boost': 5," +
                                         "{ custom part } " +

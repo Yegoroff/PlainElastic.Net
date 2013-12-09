@@ -280,6 +280,11 @@
     <Compile Include="Builders\Queries\Terms\When_complete_TermQuery_built.cs" />
     <Compile Include="Builders\Queries\Term\When_TermQuery_with_empty_custom_part_built.cs" />
     <Compile Include="Builders\Queries\Term\When_TermQuery_with_collection_field_built.cs" />
+    <Compile Include="Builders\Queries\_Facets\GeoDistanceRangeFacet\When_complete_GeoDistanceRangeFacet_built.cs" />
+    <Compile Include="Builders\Queries\_Facets\GeoDistanceRangeFacet\When_empty_GeoDistanceRangeFacet_built.cs" />
+    <Compile Include="Builders\Queries\_Facets\GeoDistanceRangeFacet\When_GeoDistanceRangeFacet_with_distance_type_built.cs" />
+    <Compile Include="Builders\Queries\_Facets\GeoDistanceRangeFacet\When_GeoDistanceRangeFacet_with_distance_unit_built.cs" />
+    <Compile Include="Builders\Queries\_Facets\GeoDistanceRangeFacet\When_minimum_GeoDistanceRangeFacet_built.cs" />
     <Compile Include="Builders\Queries\_Facets\TermsStats\When_complete_TermsStatsFacet_built.cs" />
     <Compile Include="Builders\Queries\_Facets\Statistical\When_complete_StatisticalFacet_built.cs" />
     <Compile Include="Builders\Queries\_Facets\When_facet_with_empty_FacetFilter_built.cs" />

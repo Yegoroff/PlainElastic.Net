@@ -159,7 +159,16 @@
     <Compile Include="Builders\Mappings\Core\StringMap.cs" />
     <Compile Include="Builders\Queries\ConstantScoreQuery.cs" />
     <Compile Include="Builders\Queries\BoostingQuery.cs" />
+    <Compile Include="Builders\Queries\FunctionScoreQuery\BoostFactorFunction.cs" />
+    <Compile Include="Builders\Queries\FunctionScoreQuery\DecayFunction.cs" />
+    <Compile Include="Builders\Queries\FunctionScoreQuery\FilteredScoreFunction.cs" />
+    <Compile Include="Builders\Queries\FunctionScoreQuery\FilteredScoreFunctions.cs" />
+    <Compile Include="Builders\Queries\FunctionScoreQuery\FunctionScoreQuery.cs" />
     <Compile Include="Builders\Queries\Filters\HasParentFilter.cs" />
+    <Compile Include="Builders\Queries\FunctionScoreQuery\RandomScoreFunction.cs" />
+    <Compile Include="Builders\Queries\FunctionScoreQuery\ScoreFunction.cs" />
+    <Compile Include="Builders\Queries\FunctionScoreQuery\ScoreFunctionBase.cs" />
+    <Compile Include="Builders\Queries\FunctionScoreQuery\ScriptScoreFunction.cs" />
     <Compile Include="Builders\Queries\HasParentQuery.cs" />
     <Compile Include="Builders\Queries\Facets\TermsStatsFacet.cs" />
     <Compile Include="Builders\Queries\Facets\StatisticalFacet.cs" />

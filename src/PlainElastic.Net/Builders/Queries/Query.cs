@@ -124,6 +124,18 @@ namespace PlainElastic.Net.Queries
         }
 
         /// <summary>
+        /// A query that allows you to modify the score of documents that are retrieved by a query. 
+        /// This can be useful if, for example, a score function is computationally expensive 
+        /// and it is sufficient to compute the score on a filtered set of documents.
+        /// see: http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/query-dsl-function-score-query.html
+        /// </summary>
+        public Query<T> FunctionScore(Func<FunctionScoreQuery<T>, FunctionScoreQuery<T>> functionScoreQuery)
+        {
+            RegisterJsonPartExpression(functionScoreQuery);
+            return this;
+        }
+
+        /// <summary>
         /// Fuzzy like this query find documents that are “like” provided text by running it against one or more fields.
         /// see http://www.elasticsearch.org/guide/reference/query-dsl/flt-query.html
         /// </summary>

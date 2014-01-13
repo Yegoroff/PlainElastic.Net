@@ -234,6 +234,15 @@
     <Compile Include="Builders\Queries\Bool\When_BoolQuery_with_useActualShouldCount_built.cs" />
     <Compile Include="Builders\Queries\Boosting\When_complete_BoostingQuery_built.cs" />
     <Compile Include="Builders\Queries\Boosting\When_empty_BoostingQuery_built.cs" />
+    <Compile Include="Builders\Queries\FunctionScoreQuery\When_complete_DecayFunction_built.cs" />
+    <Compile Include="Builders\Queries\FunctionScoreQuery\When_complete_ScriptScoreFunction_built.cs" />
+    <Compile Include="Builders\Queries\FunctionScoreQuery\When_ScoreFunction_built.cs" />
+    <Compile Include="Builders\Queries\FunctionScoreQuery\When_empty_RandomScoreFunction_built.cs" />
+    <Compile Include="Builders\Queries\FunctionScoreQuery\When_complete_BoostFactorFunction_built.cs" />
+    <Compile Include="Builders\Queries\FunctionScoreQuery\When_complete_RandomScore_built.cs" />
+    <Compile Include="Builders\Queries\FunctionScoreQuery\When_empty_FilteredScoreFunction_built.cs" />
+    <Compile Include="Builders\Queries\FunctionScoreQuery\When_complete_FunctionScoreQuery_built.cs" />
+    <Compile Include="Builders\Queries\FunctionScoreQuery\When_empty_FunctionScoreQuery_built.cs" />
     <Compile Include="Builders\Queries\HasParent\When_complete_HasParentQuery_built.cs" />
     <Compile Include="Builders\Queries\HasParent\When_empty_HasParentQuery_built.cs" />
     <Compile Include="Builders\Queries\MultiMatch\When_complete_MultiMatchQuery_built.cs" />

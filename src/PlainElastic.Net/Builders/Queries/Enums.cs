@@ -5,7 +5,11 @@ namespace PlainElastic.Net.Queries
 
     public enum ScoreMode { avg, total, max, none }
 
+    public enum FunctionScoreMode { first, min, max, sum, avg, multiply }
+
     public enum CustomFiltersScoreMode { first, min, max, total, avg, multiply }
+
+    public enum FunctionBoostMode { multiply, replace, sum, avg, min, max }
 
     public enum TopChildrenScoreMode { max, sum, avg }
 
@@ -174,5 +178,7 @@ namespace PlainElastic.Net.Queries
     public enum HasParentScoreType { none, score }
 
     public enum HasChildScoreType { max, sum, avg, score }
+
+    public enum DecayFunctionType { linear, exp, gauss }
 
 }

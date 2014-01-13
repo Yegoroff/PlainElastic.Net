@@ -63,12 +63,13 @@ namespace PlainElastic.Net.Queries
         }
 
         /// <summary>
-        /// The geo_distance facet is a facet providing information for ranges of distances from a provided geo_point including count of the number of hits that fall within each range, and aggregation information (like total).
+        /// The geo_distance facet is a facet providing information for ranges of distances from a provided geo_point 
+        /// including count of the number of hits that fall within each range, and aggregation information (like total).
         /// see http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/search-facets-geo-distance-facet.html
         /// </summary>
-        public Facets<T> GeoDistance(Func<GeoDistanceRangeFacet<T>, GeoDistanceRangeFacet<T>> geoDistanceRangeFacet)
+        public Facets<T> GeoDistance(Func<GeoDistanceFacet<T>, GeoDistanceFacet<T>> geoDistanceFacet)
         {
-            RegisterJsonPartExpression(geoDistanceRangeFacet);
+            RegisterJsonPartExpression(geoDistanceFacet);
             return this;
         }
        

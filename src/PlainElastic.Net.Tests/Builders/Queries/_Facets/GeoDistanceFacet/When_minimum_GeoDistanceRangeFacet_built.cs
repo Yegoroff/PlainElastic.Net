@@ -4,20 +4,19 @@ using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Tests.Builders.Queries
 {
-    [Subject(typeof(GeoDistanceRangeFacet<>))]
+    [Subject(typeof(GeoDistanceFacet<>))]
     class When_minimum_GeoDistanceRangeFacet_built
     {
-        Because of = () => result = new GeoDistanceRangeFacet<FieldsTestClass>()
+        Because of = () => result = new GeoDistanceFacet<FieldsTestClass>()
             .FacetName("TestFacet")
             .Field(f => f.StringProperty)
-            .Ranges(r => r.FromTo())
-            //.DistanceUnit()
-            //.DistanceType()
+            .Geohash("ghash")
+            .Ranges(r => r.FromTo(from: 1))
             .ToString();
 
 
         It should_return_minimal_facet_string = () => result.ShouldEqual(
-            "'TestFacet': { 'geo_distance': { 'StringProperty': { 'lat': 0, 'lon': 0 } } }".AltQuote()
+            "'TestFacet': { 'geo_distance': { 'StringProperty': 'ghash','ranges': [ { 'from': 1 } ] } }".AltQuote()
             );
 
         private static string result;

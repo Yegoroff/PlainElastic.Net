@@ -122,6 +122,12 @@ namespace PlainElastic.Net.Queries
         arc,
 
         /// <summary>
+        /// Calculates distance as points in a globe.
+        /// Use sloppy_arc for faster calculation.
+        /// </summary>
+        sloppy_arc,
+
+        /// <summary>
         /// Calculates distance as points on a plane. Faster, but less accurate than arc
         /// Use plane for performance.
         /// </summary>
@@ -155,7 +161,18 @@ namespace PlainElastic.Net.Queries
     {
         mi,
         miles,
-        km
+        @in,
+        inch,
+        yd,
+        yards,
+        km,
+        kilometers,
+        mm,
+        millimeters,
+        cm,
+        centimeters,
+        m,
+        meters
     }
 
     public enum ZeroTermsQuery { NONE, ALL }

@@ -39,6 +39,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                                 .GeoDistance(g => g
                                                     .FacetName("GeoRange")
                                                     .Field(f => f.StringProperty)
+                                                    .GeoPoint(lat:10, lon:20)
                                                     .Ranges(i => i
                                                         .FromTo(from: 1, to: 5)
                                                     )
@@ -57,7 +58,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
 
         It should_contain_terms_stats_facet_part = () => result.ShouldContain("'TermsStats': { 'terms_stats': { 'key_field': 'StringProperty','value_field': 'IntProperty' } }".AltQuote());
 
-        It should_contain_geo_distance_range_facet_part = () => result.ShouldContain("'GeoRange': { 'geo_distance': { 'StringProperty': { 'lat': 0, 'lon': 0 },'ranges': [ { 'from': 1, 'to': 5 } ] } }".AltQuote());
+        It should_contain_geo_distance_range_facet_part = () => result.ShouldContain("'GeoRange': { 'geo_distance': { 'StringProperty': { 'lat': 10,'lon': 20 },'ranges': [ { 'from': 1, 'to': 5 } ] } }".AltQuote());
 
 
         It should_return_correct_JSON = () => result.ShouldEqual(("'facets': { " +
@@ -66,7 +67,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                                                     "'Range': { 'range': { 'ranges': [ { 'from': 1, 'to': 5 } ] } }," +
                                                                     "'Statistical': { 'statistical': { 'field': 'IntProperty' } }," +
                                                                     "'TermsStats': { 'terms_stats': { 'key_field': 'StringProperty','value_field': 'IntProperty' } }," +
-                                                                    "'GeoRange': { 'geo_distance': { 'StringProperty': { 'lat': 0, 'lon': 0 },'ranges': [ { 'from': 1, 'to': 5 } ] } } " +
+                                                                    "'GeoRange': { 'geo_distance': { 'StringProperty': { 'lat': 10,'lon': 20 },'ranges': [ { 'from': 1, 'to': 5 } ] } } " +
                                                                  "}").AltQuote());
 
         private static string result;

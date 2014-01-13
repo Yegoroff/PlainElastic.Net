@@ -44,6 +44,16 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                                         .FromTo(from: 1, to: 5)
                                                     )
                                                 )
+                                                .Histogram(h => h
+                                                    .FacetName("Histogram")
+                                                    .Field(f => f.IntProperty)
+                                                    .Interval(10)
+                                                )
+                                                .DateHistogram(dh => dh
+                                                    .FacetName("DateHistogram")
+                                                    .Field(f => f.DateProperty)
+                                                    .Interval("3m")
+                                                )
                                                 .ToString();
 
         It should_starts_with_facets_declaration = () => result.ShouldStartWith("'facets': ".AltQuote());
@@ -60,6 +70,9 @@ namespace PlainElastic.Net.Tests.Builders.Queries
 
         It should_contain_geo_distance_range_facet_part = () => result.ShouldContain("'GeoRange': { 'geo_distance': { 'StringProperty': { 'lat': 10,'lon': 20 },'ranges': [ { 'from': 1, 'to': 5 } ] } }".AltQuote());
 
+        It should_contain_histogram_facet_part = () => result.ShouldContain("'Histogram': { 'histogram': { 'field': 'IntProperty','interval': 10 } }".AltQuote());
+
+        It should_contain_date_histogram_facet_part = () => result.ShouldContain("'DateHistogram': { 'date_histogram': { 'field': 'DateProperty','interval': '3m' } }".AltQuote());
 
         It should_return_correct_JSON = () => result.ShouldEqual(("'facets': { " +
                                                                     "'Terms': { 'terms': { 'field': 'StringProperty' } }," +
@@ -67,8 +80,10 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                                                     "'Range': { 'range': { 'ranges': [ { 'from': 1, 'to': 5 } ] } }," +
                                                                     "'Statistical': { 'statistical': { 'field': 'IntProperty' } }," +
                                                                     "'TermsStats': { 'terms_stats': { 'key_field': 'StringProperty','value_field': 'IntProperty' } }," +
-                                                                    "'GeoRange': { 'geo_distance': { 'StringProperty': { 'lat': 10,'lon': 20 },'ranges': [ { 'from': 1, 'to': 5 } ] } } " +
-                                                                 "}").AltQuote());
+                                                                    "'GeoRange': { 'geo_distance': { 'StringProperty': { 'lat': 10,'lon': 20 },'ranges': [ { 'from': 1, 'to': 5 } ] } }," +
+                                                                    "'Histogram': { 'histogram': { 'field': 'IntProperty','interval': 10 } }," +
+                                                                    "'DateHistogram': { 'date_histogram': { 'field': 'DateProperty','interval': '3m' } }" +
+                                                                 " }").AltQuote());
 
         private static string result;
     }

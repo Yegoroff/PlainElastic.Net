@@ -65,32 +65,32 @@ namespace PlainElastic.Net.Tests.Serialization
         It should_contain_geo1_facet_with_filter_type = () =>
             result.facets["geo1"]._type.ShouldEqual("geo_distance");
 
-        It should_deserialize_geo1_facet_to_RanfgeFacetResults_type = () =>
-            result.facets["geo1"].ShouldBeOfType<RangeFacetResult>();
+        It should_deserialize_geo1_facet_to_GeoDistanceFacetResult_type = () =>
+            result.facets["geo1"].ShouldBeOfType<GeoDistanceFacetResult>();
 
         It should_contain_facet_with_correct_from_value = () =>
-            result.facets["geo1"].As<RangeFacetResult>().ranges[1].from.ShouldEqual(100);
+            result.facets["geo1"].As<GeoDistanceFacetResult>().ranges[1].from.ShouldEqual(100);
 
         It should_contain_facet_with_correct_to_value = () =>
-            result.facets["geo1"].As<RangeFacetResult>().ranges[1].to.ShouldEqual(1000);
+            result.facets["geo1"].As<GeoDistanceFacetResult>().ranges[1].to.ShouldEqual(1000);
 
         It should_contain_facet_with_correct_count = () =>
-            result.facets["geo1"].As<RangeFacetResult>().ranges[1].count.ShouldEqual(2);
+            result.facets["geo1"].As<GeoDistanceFacetResult>().ranges[1].count.ShouldEqual(2);
 
         It should_contain_facet_with_correct_min = () =>
-            result.facets["geo1"].As<RangeFacetResult>().ranges[1].min.ShouldEqual(114.95);
+            result.facets["geo1"].As<GeoDistanceFacetResult>().ranges[1].min.ShouldEqual(114.95);
 
         It should_contain_quantity_facet_with_correct_max = () =>
-            result.facets["geo1"].As<RangeFacetResult>().ranges[1].max.ShouldEqual(1314.35);
+            result.facets["geo1"].As<GeoDistanceFacetResult>().ranges[1].max.ShouldEqual(1314.35);
 
         It should_contain_facet_with_correct_total_count = () =>
-            result.facets["geo1"].As<RangeFacetResult>().ranges[1].total_count.ShouldEqual(2);
+            result.facets["geo1"].As<GeoDistanceFacetResult>().ranges[1].total_count.ShouldEqual(2);
 
         It should_contain_facet_with_correct_total = () =>
-            result.facets["geo1"].As<RangeFacetResult>().ranges[1].total.ShouldEqual(1429.3);
+            result.facets["geo1"].As<GeoDistanceFacetResult>().ranges[1].total.ShouldEqual(1429.3);
 
         It should_contain_facet_with_correct_mean = () =>
-            result.facets["geo1"].As<RangeFacetResult>().ranges[1].mean.ShouldEqual(714.65);
+            result.facets["geo1"].As<GeoDistanceFacetResult>().ranges[1].mean.ShouldEqual(714.65);
 
 
         private static JsonNetSerializer jsonSerializer;

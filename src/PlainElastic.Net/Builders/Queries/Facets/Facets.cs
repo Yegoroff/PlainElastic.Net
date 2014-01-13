@@ -72,7 +72,31 @@ namespace PlainElastic.Net.Queries
             RegisterJsonPartExpression(geoDistanceFacet);
             return this;
         }
-       
+
+        /// <summary>
+        /// The histogram facet works with numeric data by building a histogram across intervals of the field values.
+        /// Each value is "rounded" into an interval (or placed in a bucket),
+        /// and statistics are provided per interval/bucket (count and total)
+        /// see http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/search-facets-histogram-facet.html
+        /// </summary>
+        public Facets<T> Histogram(Func<HistogramFacet<T>, HistogramFacet<T>> histogramFacet)
+        {
+            RegisterJsonPartExpression(histogramFacet);
+            return this;
+        }
+
+        /// <summary>
+        /// The histogram facet works with numeric data by building a histogram across intervals of the field values.
+        /// Each value is "rounded" into an interval (or placed in a bucket),
+        /// and statistics are provided per interval/bucket (count and total)
+        /// see http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/search-facets-histogram-facet.html
+        /// </summary>
+        public Facets<T> DateHistogram(Func<DateHistogramFacet<T>, DateHistogramFacet<T>> dateHistogramFacet)
+        {
+            RegisterJsonPartExpression(dateHistogramFacet);
+            return this;
+        }
+
 
         protected override bool HasRequiredParts()
         {

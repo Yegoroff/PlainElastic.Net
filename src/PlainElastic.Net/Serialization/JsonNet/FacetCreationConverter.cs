@@ -14,7 +14,9 @@ namespace PlainElastic.Net.Serialization
             {"filter", typeof(FilterFacetResult)},
             {"statistical", typeof(StatisticalFacetResult)},
             {"terms_stats", typeof(TermsStatsFacetResult)},
-            {"geo_distance", typeof(RangeFacetResult)}
+            {"geo_distance", typeof(GeoDistanceFacetResult)},
+            {"histogram", typeof(HistogramFacetResult)},
+            {"date_histogram", typeof(DateHistogramFacetResult)}
         };
 
 

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace PlainElastic.Net.Serialization
 {
@@ -76,6 +77,37 @@ namespace PlainElastic.Net.Serialization
             public double? max;
             public double? total;
             public double? mean;
+        }
+    }
+
+    public class GeoDistanceFacetResult: RangeFacetResult
+    { }
+
+    public class HistogramFacetResult: FacetResult
+    {
+        public List<Histogram> entries;
+
+        public class Histogram
+        {
+            public long key;
+            public long count;
+        }
+    }
+
+    public class DateHistogramFacetResult: FacetResult
+    {
+        public List<DateHistogram> entries;
+
+        public class DateHistogram
+        {
+            public long time;
+            public long count;
+
+            public DateTime UtcTime()
+            {
+                var epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+                return epoch.AddMilliseconds(time);
+            }
         }
     }
 

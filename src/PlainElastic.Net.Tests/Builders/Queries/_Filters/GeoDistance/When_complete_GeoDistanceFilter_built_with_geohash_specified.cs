@@ -17,12 +17,12 @@ namespace PlainElastic.Net.Tests.Builders.Queries
 
         It should_contain_distance_part = () => result.ShouldContain("'distance': '200km'".AltQuote());
 
-        It should_contain_geohash_part = () => result.ShouldContain("'StringProperty.location': 'ubcu4xtthj86'".AltQuote());
+        It should_contain_geohash_part = () => result.ShouldContain("'StringProperty': 'ubcu4xtthj86'".AltQuote());
 
         It should_return_correct_query = () => result.ShouldEqual(("{ " +
                                                               "'geo_distance': { " +
                                                                   "'distance': '200km'," +
-                                                                  "'StringProperty.location': 'ubcu4xtthj86' " +
+                                                                  "'StringProperty': 'ubcu4xtthj86' " +
                                                               "} " +
                                                           "}").AltQuote());
 

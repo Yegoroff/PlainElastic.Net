@@ -164,6 +164,8 @@
     <Compile Include="Builders\Queries\FunctionScoreQuery\FilteredScoreFunction.cs" />
     <Compile Include="Builders\Queries\FunctionScoreQuery\FilteredScoreFunctions.cs" />
     <Compile Include="Builders\Queries\FunctionScoreQuery\FunctionScoreQuery.cs" />
+    <Compile Include="Builders\Queries\Facets\GeoDistanceFacet.cs" />
+    <Compile Include="Builders\Queries\Facets\RangeFromTo.cs" />
     <Compile Include="Builders\Queries\Filters\HasParentFilter.cs" />
     <Compile Include="Builders\Queries\FunctionScoreQuery\RandomScoreFunction.cs" />
     <Compile Include="Builders\Queries\FunctionScoreQuery\ScoreFunction.cs" />

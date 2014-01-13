@@ -57,12 +57,12 @@ namespace PlainElastic.Net.Queries
             if (geohash.IsNullOrEmpty())
                 return this;
 
-            RegisterJsonPart("'{0}.location': '{1}'", RawFieldName, geohash);
+            RegisterJsonPart("'{0}': '{1}'", RawFieldName, geohash);
 
             hasPoint = true;
 
             return this;
-        }       
+        }
 
         /// <summary>
         /// How to compute the distance.

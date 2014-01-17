@@ -116,9 +116,9 @@ namespace PlainElastic.Net.Queries
             return AddGeoDistancePart(geoField, unit, order);
         }
 
-        public Sort<T> Script(string script, string type, SortDirection order, string[] @params)
+        public Sort<T> Script(string script, string type, string @params, SortDirection order)
         {
-            var expression = "'_script' : {0}, 'type': {1}, 'order': {2}, 'params': {3} ".AltQuoteF(script, type.Quotate(), order.AsString().Quotate(), @params.JoinWithComma());
+            var expression = "{{ '_script': {{ 'script': {0},'type': {1},'params': {2},'order': {3} }} }}".AltQuoteF(script.Quotate(), type.Quotate(), @params, order.AsString().Quotate());
             RegisterJsonPart(expression);
 
             return this;

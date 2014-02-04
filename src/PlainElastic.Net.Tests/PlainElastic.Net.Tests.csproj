@@ -147,6 +147,8 @@
     <Compile Include="Builders\Analysis\Tokenizers\When_empty_TokenizerSettings_built.cs" />
     <Compile Include="Builders\Analysis\When_complete_Analysis_built.cs" />
     <Compile Include="Builders\Analysis\When_empty_Analysis_built.cs" />
+    <Compile Include="Builders\Bulk\When_Create_Bulk_operation_built_for_string.cs" />
+    <Compile Include="Builders\Bulk\When_Bulk_indexes_built_from_string_collection.cs" />
     <Compile Include="Builders\Bulk\When_Bulk_mixed_operations_built_from_collection.cs" />
     <Compile Include="Builders\Bulk\When_Bulk_indexes_pipelined_from_collection.cs" />
     <Compile Include="Builders\Bulk\When_Delete_Bulk_operation_built.cs" />

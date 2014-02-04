@@ -42,8 +42,9 @@ namespace PlainElastic.Net
 
             var parameters = BuildOperationParameters(index, type, id, optionsJson, customOptions);
             var command = "{{ 'index': {{ {0} }} }}\n".AltQuoteF(parameters);
-            var dataJson = serializer.Serialize(data) + "\n";
-            return command + dataJson;
+
+            var dataJson = data as string ?? serializer.Serialize(data);
+            return command + dataJson + "\n";
         }
 
 
@@ -68,7 +69,7 @@ namespace PlainElastic.Net
             var parameters = BuildOperationParameters(index, type, id, optionsJson, customOptions);
 
             var command = "{{ 'create': {{ {0} }} }}\n".AltQuoteF(parameters);
-            var dataJson = serializer.Serialize(data);
+            var dataJson = data as string ?? serializer.Serialize(data);
             return command + dataJson + "\n";
         }
 

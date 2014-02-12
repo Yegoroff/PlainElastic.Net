@@ -136,7 +136,7 @@ string query = new QueryBuilder<Tweet>()        // This will generate:
             .Term(t => t
               .Field(tweet=> tweet.User).Value("somebody")
             )
-          ).Build()
+          ).Build();
 string result = connection.Get( command, query);
 
 // Than we can convert search results to typed results

@@ -1,0 +1,17 @@
+C:\Projects\PlainElastic.Net\src\PlainElastic.Net.Connection.Thrift\Fakes\NetReflector.fakes : warning : Cannot generate stub for Exortech.NetReflector.ReflectorCollectionAttribute: type is sealed.
+C:\Projects\PlainElastic.Net\src\PlainElastic.Net.Connection.Thrift\Fakes\NetReflector.fakes : warning : Cannot generate stub for Exortech.NetReflector.InvalidNodeEventHandler: type is sealed.
+C:\Projects\PlainElastic.Net\src\PlainElastic.Net.Connection.Thrift\Fakes\NetReflector.fakes : warning : Cannot generate stub for Exortech.NetReflector.ReflectorTypeAttribute: type is sealed.
+C:\Projects\PlainElastic.Net\src\PlainElastic.Net.Connection.Thrift\Fakes\NetReflector.fakes : warning : Cannot generate stub for Exortech.NetReflector.Util.ReflectionUtil: type is sealed.
+C:\Projects\PlainElastic.Net\src\PlainElastic.Net.Connection.Thrift\Fakes\NetReflector.fakes : warning : Cannot generate stub for Exortech.NetReflector.Util.StringUtil: type is sealed.
+C:\Projects\PlainElastic.Net\src\PlainElastic.Net.Connection.Thrift\Fakes\NetReflector.fakes : warning : Cannot generate stub for Exortech.NetReflector.ReflectorArrayAttribute: type is sealed.
+C:\Projects\PlainElastic.Net\src\PlainElastic.Net.Connection.Thrift\Fakes\NetReflector.fakes : warning : Cannot generate stub for Exortech.NetReflector.ReflectorHashAttribute: type is sealed.
+C:\Projects\PlainElastic.Net\src\PlainElastic.Net.Connection.Thrift\Fakes\NetReflector.fakes : warning : Cannot generate shim for Exortech.NetReflector.IReflectorAttribute: type is an interface.
+C:\Projects\PlainElastic.Net\src\PlainElastic.Net.Connection.Thrift\Fakes\NetReflector.fakes : warning : Cannot generate shim for Exortech.NetReflector.Util.IInstantiator: type is an interface.
+C:\Projects\PlainElastic.Net\src\PlainElastic.Net.Connection.Thrift\Fakes\NetReflector.fakes : warning : Cannot generate shim for Exortech.NetReflector.ISerialiserFactory: type is an interface.
+C:\Projects\PlainElastic.Net\src\PlainElastic.Net.Connection.Thrift\Fakes\NetReflector.fakes : warning : Cannot generate shim for Exortech.NetReflector.IXmlSerialiser: type is an interface.
+C:\Projects\PlainElastic.Net\src\PlainElastic.Net.Connection.Thrift\Fakes\NetReflector.fakes : warning : Cannot generate shim for Exortech.NetReflector.IXmlTypeSerialiser: type is an interface.
+C:\Projects\PlainElastic.Net\src\PlainElastic.Net.Connection.Thrift\Fakes\NetReflector.fakes : warning : Cannot generate shim for Exortech.NetReflector.InvalidNodeEventHandler: type is a delegate.
+C:\Projects\PlainElastic.Net\src\PlainElastic.Net.Connection.Thrift\Fakes\NetReflector.fakes : warning : Cannot generate shim for Exortech.NetReflector.IXmlMemberSerialiser: type is an interface.
+C:\Projects\PlainElastic.Net\src\PlainElastic.Net.Connection.Thrift\Fakes\NetReflector.fakes : warning : Cannot generate shim for Exortech.NetReflector.Generators.XsdGenerator+ReferencedType: type is not visible to exported or assembly(NetReflector.Fakes).
+C:\Projects\PlainElastic.Net\src\PlainElastic.Net.Connection.Thrift\Fakes\NetReflector.fakes : warning : Cannot generate shim for Exortech.NetReflector.Util.ReflectorMember+ReflectorField: type is not visible to exported or assembly(NetReflector.Fakes).
+C:\Projects\PlainElastic.Net\src\PlainElastic.Net.Connection.Thrift\Fakes\NetReflector.fakes : warning : Cannot generate shim for Exortech.NetReflector.Util.ReflectorMember+ReflectorProperty: type is not visible to exported or assembly(NetReflector.Fakes).

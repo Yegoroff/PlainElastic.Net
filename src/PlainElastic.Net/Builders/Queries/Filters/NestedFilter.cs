@@ -33,7 +33,7 @@ namespace PlainElastic.Net.Queries
 
         protected override bool HasRequiredParts()
         {
-            return hasRequiredPart;
+            return base.HasRequiredParts() || hasRequiredPart;
         }
     }
 }

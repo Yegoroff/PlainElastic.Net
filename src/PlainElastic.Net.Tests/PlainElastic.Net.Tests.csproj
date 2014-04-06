@@ -331,6 +331,7 @@
     <Compile Include="Builders\Queries\_Filters\GeoDistance\When_complete_GeoDistanceFilter_built_with_DistanceType_specified.cs" />
     <Compile Include="Builders\Queries\_Filters\GeoDistance\When_complete_GeoDistanceFilter_built.cs" />
     <Compile Include="Builders\Queries\_Filters\GeoDistance\When_GeoDistanceFilter_with_Distance_empty_built.cs" />
+    <Compile Include="Builders\Queries\_Filters\Nested\When_NestedFilter_with_query_part_built.cs" />
     <Compile Include="Builders\Queries\_Filters\NumericRange\When_complete_NumericRangeFilter_built.cs" />
     <Compile Include="Builders\Queries\_Filters\NumericRange\When_NumericRangeFilter_without_range_parts_built.cs" />
     <Compile Include="Builders\Queries\_Filters\Script\When_complete_ScriptFilter_built.cs" />

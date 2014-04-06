@@ -1,3 +1,4 @@
+using System;
 using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Queries
@@ -10,6 +11,8 @@ namespace PlainElastic.Net.Queries
     /// </summary>
     public class NestedFilter<T> : NestedBase<NestedFilter<T>, T>
     {
+        private bool hasRequiredPart;
+
         /// <summary>
         /// Controls whether the filter will be cached.
         /// </summary>
@@ -18,6 +21,19 @@ namespace PlainElastic.Net.Queries
             RegisterJsonPart("'_cache': {0}", cache.AsString());
 
             return this;
+        }
+
+        public NestedFilter<T> Filter(Func<Filter<T>, Filter<T>> filter)
+        {
+            var result = RegisterJsonPartExpression(filter);
+            hasRequiredPart = !result.GetIsEmpty();
+
+            return this;
+        }
+
+        protected override bool HasRequiredParts()
+        {
+            return hasRequiredPart;
         }
     }
 }

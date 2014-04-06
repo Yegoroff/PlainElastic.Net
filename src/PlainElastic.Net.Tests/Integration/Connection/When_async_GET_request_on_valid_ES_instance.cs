@@ -15,7 +15,7 @@ namespace PlainElastic.Net.Tests.Integration.Connection
             result = connection.GetAsync(@"http://localhost:9200?pretty=true").Result;
 
 
-        It should_return_OK = () => result.Result.ShouldContain("\"ok\" : true");
+        It should_return_OK_status = () => result.Result.ShouldContain("\"status\" : 200");
 
         private static ElasticConnection connection;
         private static OperationResult result;

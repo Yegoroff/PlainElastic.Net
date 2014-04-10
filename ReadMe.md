@@ -19,6 +19,7 @@ The really plain Elastic Search .Net client.
 * [Mapping](#mapping)
 * [Index Settings](#index-settings)
 * [If something is missed](#if-something-is-missed)
+* [Samples](#samples)
 * [License](#license)
 
 
@@ -711,6 +712,24 @@ See [Index Settings Gist](https://gist.github.com/3094421) for complete sample.
 
 *Special thanks to [devoyster (Andriy Kozachuk)](https://github.com/devoyster) for providing Index Settings support.*
 
+### Samples
+  
+ -  [Date Histogram Facet sample](https://gist.github.com/Yegoroff/8424594)
+ -  [Parent/Child sample](https://gist.github.com/Yegoroff/10422763)
+ -  [Random Sort sample](https://gist.github.com/Yegoroff/7945379)
+ -  [And Or filtering sample](https://gist.github.com/Yegoroff/7679120)
+ -  [Query Scrolling sample](https://gist.github.com/Yegoroff/5888926)
+ -  [ES Mapping and MongoDb river configuration](https://gist.github.com/Yegoroff/5735870)
+ -  [Complex MoreLikeThis sample](https://gist.github.com/Yegoroff/5572590)
+ -  [MoreLikeThis sample](https://gist.github.com/Yegoroff/5572496)
+ -  [Highlighting sample](https://gist.github.com/Yegoroff/5569008)
+ -  [Query builder using JSON query as pattern](https://gist.github.com/Yegoroff/5327726)
+ -  [Index Settings sample](https://gist.github.com/Yegoroff/3094421)
+ -  [Mapping sample](https://gist.github.com/Yegoroff/3094283)
+ -  [Facet query builder sample](https://gist.github.com/Yegoroff/3093936)
+ -  [Condition-less query builder sample](https://gist.github.com/Yegoroff/2765335)
+ -  [Query builder sample](https://gist.github.com/Yegoroff/2765230)
+ -  [Bulk sample](https://gist.github.com/Yegoroff/2235286)
 
 ### If something is missed
 

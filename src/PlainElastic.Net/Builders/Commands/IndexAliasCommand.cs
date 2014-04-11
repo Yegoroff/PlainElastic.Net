@@ -31,9 +31,7 @@ namespace PlainElastic.Net.Builders.Commands
 
         protected override string BuildUrlPath()
         {
-            var commandKeyword = Alias.IsNullOrEmpty() ? "_aliases" : "_alias";
-
-            return UrlBuilder.BuildUrlPath(Index, commandKeyword, Alias);
+            return UrlBuilder.BuildUrlPath(Index, "_alias", Alias);
         }
     }
 }

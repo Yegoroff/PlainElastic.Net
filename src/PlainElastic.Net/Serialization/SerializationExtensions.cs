@@ -60,9 +60,9 @@ namespace PlainElastic.Net.Serialization
             return serializer.Deserialize<StatusResult>(operationResult);
         }
 
-        public static Dictionary<string, IndexAliasResult> ToIndexAliasResult(this IJsonSerializer serializer, string result)
+        public static Dictionary<string, IndexAliasesResult> ToIndexAliasesResult(this IJsonSerializer serializer, string result)
         {
-            return serializer.Deserialize<Dictionary<string, IndexAliasResult>>(result);
+            return serializer.Deserialize<Dictionary<string, IndexAliasesResult>>(result);
         }
 
     }

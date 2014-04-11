@@ -298,5 +298,14 @@ namespace PlainElastic.Net
         {
             return new IndexAliasCommand(index, alias);
         }
+
+        /// <summary>
+        /// Supports post 0.90.1 index alias api for alias retrieval
+        /// http://www.elasticsearch.org/guide/en/elasticsearch/reference/0.90/indices-aliases.html
+        /// </summary>
+        public static IndexAliasesCommand IndexAliases(string index = null, string alias = null)
+        {
+            return new IndexAliasesCommand(index, alias);
+        }
     }
 }

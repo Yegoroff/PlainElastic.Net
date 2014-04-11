@@ -96,13 +96,13 @@ namespace PlainSample
              * curl -XGET http://localhost:9200/twitter/_aliases
              */
 
-            string indexAliasCommand = Commands.IndexAlias("twitter")
+            string indexAliasCommand = Commands.IndexAliases("twitter")
                 .Pretty();
 
             var result = connection.Get(indexAliasCommand);
 
             // Parse index result.
-            var indexAliasResult = serializer.ToIndexAliasResult(result);
+            var indexAliasResult = serializer.ToIndexAliasesResult(result);
 
             PrintIndexAliasListResult(indexAliasResult, indexAliasCommand, result);
         }
@@ -408,7 +408,7 @@ namespace PlainSample
             Console.WriteLine("Alias Result: \r\n {0} \r\n".F(operationResult));
         }
 
-        private static void PrintIndexAliasListResult(IEnumerable<KeyValuePair<string, IndexAliasResult>> indexAliasResult, string aliasCommand, OperationResult operationResult)
+        private static void PrintIndexAliasListResult(IEnumerable<KeyValuePair<string, IndexAliasesResult>> indexAliasResult, string aliasCommand, OperationResult operationResult)
         {
             Console.WriteLine("Executed: \r\nPUT {0} \r\n".F(aliasCommand));
 

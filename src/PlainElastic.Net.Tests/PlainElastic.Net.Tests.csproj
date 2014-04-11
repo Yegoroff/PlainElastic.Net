@@ -160,7 +160,7 @@
     <Compile Include="Builders\Commands\DeleteByQuery\When_complete_DeleteByQueryCommand_built.cs" />
     <Compile Include="Builders\Commands\DeleteByQuery\When_DeleteByQueryCommand_with_multiple_indexes_and_types_built.cs" />
     <Compile Include="Builders\Commands\IndexAliasCommand\When_complete_IndexAliasCommand_built.cs" />
-    <Compile Include="Builders\Commands\IndexAliasCommand\When_partial_IndexAliasCommand_built_without_alias.cs" />
+    <Compile Include="Builders\Commands\IndexAliasesCommand\When_partial_IndexAliasesCommand_built_without_alias.cs" />
     <Compile Include="Builders\Commands\IndexAliasCommand\When_partial_IndexAliasCommand_built_without_index.cs" />
     <Compile Include="Builders\Commands\SearchScrollCommand\When_complete_SearchScrollCommand_built.cs" />
     <Compile Include="Builders\Commands\MoreLikeThisCommand\When_complete_MoreLikeThisCommand_built.cs" />

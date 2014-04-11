@@ -14,6 +14,13 @@ namespace PlainElastic.Net.Tests.Builders
         public DateTime DateProperty { get; set; }
         public FieldsTestClass ObjectProperty { get; set; }
         public List<FieldsTestClass> CollectionProperty { get; set; }
+        public GeoPointClass GeoPointProperty { get; set; }
+    }
+
+    public class GeoPointClass
+    {
+        public double Lat { get; set; }
+        public double Lon { get; set; }
     }
 
     public class AnotherTestClass: FieldsTestClass

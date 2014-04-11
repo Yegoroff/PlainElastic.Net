@@ -1,4 +1,5 @@
-﻿using PlainElastic.Net.Utils;
+﻿using System.Collections.Generic;
+using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Serialization
 {
@@ -58,6 +59,12 @@ namespace PlainElastic.Net.Serialization
         {
             return serializer.Deserialize<StatusResult>(operationResult);
         }
+
+        public static Dictionary<string, IndexAliasesResult> ToIndexAliasesResult(this IJsonSerializer serializer, string result)
+        {
+            return serializer.Deserialize<Dictionary<string, IndexAliasesResult>>(result);
+        }
+
     }
 
 }

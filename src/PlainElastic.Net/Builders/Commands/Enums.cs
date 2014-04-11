@@ -15,4 +15,7 @@ namespace PlainElastic.Net
     public enum SearchType { query_and_fetch, query_then_fetch, dfs_query_and_fetch, dfs_query_then_fetch, count, scan }
 
     public enum VersionType { @internal, external }
+
+    public enum IgnoreIndicesOption { none, missing }
+
 }

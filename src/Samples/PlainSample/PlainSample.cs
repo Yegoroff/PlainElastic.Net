@@ -49,12 +49,15 @@ namespace PlainSample
                                     },                                 
                              };
 
-
             IndexTweet(tweet, "1", connection, serializer);
 
             IndexTweet(anotherTweet, "2", connection, serializer);
 
             BulkTweetIndex(tweets, connection, serializer);
+
+            CreateIndexAlias(connection, serializer);
+
+            ListIndexAliases(connection, serializer);
 
             GetTweet("1", serializer, connection);
 
@@ -70,7 +73,39 @@ namespace PlainSample
             Console.ReadKey();
         }
 
+        private static void CreateIndexAlias(ElasticConnection connection, JsonNetSerializer serializer)
+        {
+            /*
+             * curl -XPUT http://localhost:9200/twitter/_alias/twitter_alias
+             */
+ 
+            string indexAliasCommand = Commands.IndexAlias("twitter", "twitter_alias")
+                .Pretty();
 
+            var result = connection.Put(indexAliasCommand);
+
+            // Parse index result.
+            var indexAliasResult = serializer.ToCommandResult(result);
+
+            PrintIndexAliasResult(indexAliasResult, indexAliasCommand, result);
+        }
+
+        private static void ListIndexAliases(ElasticConnection connection, JsonNetSerializer serializer)
+        {
+            /*
+             * curl -XGET http://localhost:9200/twitter/_aliases
+             */
+
+            string indexAliasCommand = Commands.IndexAliases("twitter")
+                .Pretty();
+
+            var result = connection.Get(indexAliasCommand);
+
+            // Parse index result.
+            var indexAliasResult = serializer.ToIndexAliasesResult(result);
+
+            PrintIndexAliasListResult(indexAliasResult, indexAliasCommand, result);
+        }
 
         private static void IndexTweet(Tweet tweet, string id, ElasticConnection connection, JsonNetSerializer serializer)
         {
@@ -364,6 +399,29 @@ namespace PlainSample
             Console.WriteLine("     failed: " + countResult._shards.failed);
 
             Console.WriteLine();
+        }
+
+        private static void PrintIndexAliasResult(CommandResult commandResult, string aliasCommand, OperationResult operationResult)
+        {
+            Console.WriteLine("Executed: \r\nPUT {0} \r\n".F(aliasCommand));
+
+            Console.WriteLine("Alias Result: \r\n {0} \r\n".F(operationResult));
+        }
+
+        private static void PrintIndexAliasListResult(IEnumerable<KeyValuePair<string, IndexAliasesResult>> indexAliasResult, string aliasCommand, OperationResult operationResult)
+        {
+            Console.WriteLine("Executed: \r\nPUT {0} \r\n".F(aliasCommand));
+
+            Console.WriteLine("Alias Result: \r\n {0} \r\n".F(operationResult));
+
+            Console.WriteLine("Index Aliases: ");
+            foreach (var index in indexAliasResult)
+            {
+                foreach (var alias in index.Value.Aliases)
+                {
+                    Console.WriteLine("\t{0} => {1}", index.Key, alias.Key);
+                }
+            }
         }
      }
 }

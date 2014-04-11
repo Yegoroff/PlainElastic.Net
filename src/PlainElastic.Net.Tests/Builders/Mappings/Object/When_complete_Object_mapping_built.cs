@@ -24,6 +24,7 @@ namespace PlainElastic.Net.Tests.Builders.Mappings
                                                     .CustomProperty(f => f.EnumProperty)
                                                     .Object(f => f.ObjectProperty)
                                                     .NestedObject(f => f.ObjectProperty)
+                                                    .GeoPoint(f => f.GeoPointProperty)
                                                     .MultiField(f => f.StringProperty, opt => opt
                                                         .Fields(f => f
                                                             .String("stringField")
@@ -67,6 +68,8 @@ namespace PlainElastic.Net.Tests.Builders.Mappings
 
         It should_contain_multi_field_property_mapping_part = () => result.ShouldContain("'StringProperty': { 'type': 'multi_field','fields': { 'stringField': { 'type': 'string' },'boolField': { 'type': 'boolean' } } }".AltQuote());
 
+        It should_contain_geo_point_property_mapping_part = () => result.ShouldContain("'GeoPointProperty': { 'type': 'geo_point' }".AltQuote());
+
         It should_generate_correct_JSON_result = () => result.ShouldEqual(("'TestObject': {" +
                                                                             " 'type': 'object'," +
                                                                             "'dynamic': false," +
@@ -83,6 +86,7 @@ namespace PlainElastic.Net.Tests.Builders.Mappings
                                                                                 "'EnumProperty': { 'type': 'long' }," +
                                                                                 "'ObjectProperty': { 'type': 'object' }," +
                                                                                 "'ObjectProperty': { 'type': 'nested' }," +
+                                                                                "'GeoPointProperty': { 'type': 'geo_point' }," +
                                                                                 "'StringProperty': { 'type': 'multi_field'," +
                                                                                                     "'fields': { " +
                                                                                                         "'stringField': { 'type': 'string' }," +

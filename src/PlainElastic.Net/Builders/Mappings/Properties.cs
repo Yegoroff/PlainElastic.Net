@@ -282,6 +282,26 @@ namespace PlainElastic.Net.Mappings
             return this;
         }
 
+        /// <summary>
+        /// Represents geo_point fields mapping.
+        /// see http://www.elasticsearch.org/guide/en/elasticsearch/reference/0.90/mapping-geo-point-type.html
+        /// </summary>
+        public Properties<T> GeoPoint<TField>(Expression<Func<T, TField>> field, Func<GeoPointMap<T>, GeoPointMap<T>> geoPointProperty = null)
+        {
+            var fieldName = field.GetPropertyPath();
+
+            return GeoPoint(fieldName, geoPointProperty);
+        }
+
+        /// <summary>
+        /// Represents geo_point fields mapping.
+        /// see http://www.elasticsearch.org/guide/en/elasticsearch/reference/0.90/mapping-geo-point-type.html
+        /// </summary>
+        public Properties<T> GeoPoint(string fieldName, Func<GeoPointMap<T>, GeoPointMap<T>> geoPointProperty = null)
+        {
+            RegisterMapAsJson(geoPointProperty.Bind(map => map.Field(fieldName)));
+            return this;
+        }
 
         protected override string ApplyMappingTemplate(string mappingBody)
         {

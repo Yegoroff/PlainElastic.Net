@@ -199,6 +199,7 @@
     <Compile Include="Builders\Mappings\Attachment\When_complete_Attachment_mapping_built.cs" />
     <Compile Include="Builders\Mappings\Core\Boolean\When_complete_Boolean_mapping_built.cs" />
     <Compile Include="Builders\Mappings\Core\Binary\When_complete_Binary_mapping_built.cs" />
+    <Compile Include="Builders\Mappings\Core\GeoPoint\When_complete_GeoPoint_mapping_built.cs" />
     <Compile Include="Builders\Mappings\Core\String\When_complete_String_mapping_built.cs" />
     <Compile Include="Builders\Mappings\Core\CustomProperty\When_CustomProperty_mapping_with_explicit_type_built.cs" />
     <Compile Include="Builders\Mappings\Core\CustomProperty\When_CustomProperty_mapping_with_false_condition_built.cs" />

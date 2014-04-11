@@ -136,6 +136,7 @@
     <Compile Include="Builders\IndexSettings\Analysis\Enums.cs" />
     <Compile Include="Builders\IndexSettings\IndexSettingsBuilder.cs" />
     <Compile Include="Builders\Mappings\Attachment.cs" />
+    <Compile Include="Builders\Mappings\Core\GeoPointMap.cs" />
     <Compile Include="Builders\Mappings\Core\ElasticCoreTypeMapper.cs" />
     <Compile Include="Builders\Mappings\Core\CustomPropertyMap.cs" />
     <Compile Include="Builders\Mappings\MultiField.cs" />

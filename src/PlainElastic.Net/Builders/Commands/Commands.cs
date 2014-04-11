@@ -1,3 +1,5 @@
+using PlainElastic.Net.Builders.Commands;
+
 namespace PlainElastic.Net
 {
     /// <summary>
@@ -288,5 +290,13 @@ namespace PlainElastic.Net
             return new UpdateSettingsCommand(index);
         }
 
+        /// <summary>
+        /// Supports post 0.90.1 index alias api for single alias management
+        /// http://www.elasticsearch.org/guide/en/elasticsearch/reference/0.90/indices-aliases.html
+        /// </summary>
+        public static IndexAliasCommand IndexAlias(string index = null, string alias = null)
+        {
+            return new IndexAliasCommand(index, alias);
+        }
     }
 }

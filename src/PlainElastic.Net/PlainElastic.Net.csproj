@@ -57,6 +57,8 @@
     <Compile Include="Builders\Commands\CloseCommand.cs" />
     <Compile Include="Builders\Commands\BulkCommand.cs" />
     <Compile Include="Builders\Commands\DeleteByQueryCommand.cs" />
+    <Compile Include="Builders\Commands\IndexAliasCommand.cs" />
+    <Compile Include="Serialization\Results\IndexAliasResult.cs" />
     <Compile Include="Builders\Commands\SearchScrollCommand.cs" />
     <Compile Include="Builders\Commands\MoreLikeThisCommand.cs" />
     <Compile Include="Builders\Commands\CreateIndexCommand.cs" />

@@ -237,6 +237,8 @@
     <Compile Include="Builders\Mappings\Object\When_Object_with_enum_property_mapping_built.cs" />
     <Compile Include="Builders\Mappings\Object\When_complete_Object_mapping_built.cs" />
     <Compile Include="Builders\Mappings\Object\When_Object_with_custom_property_built.cs" />
+    <Compile Include="Builders\Mappings\RootObject\When_RootObject_mapping_with_NestedProperty_built.cs" />
+    <Compile Include="Builders\Mappings\RootObject\When_simplest_RootObject_mapping_built.cs" />
     <Compile Include="Builders\Queries\Bool\When_BoolQuery_with_useActualShouldCount_built.cs" />
     <Compile Include="Builders\Queries\Boosting\When_complete_BoostingQuery_built.cs" />
     <Compile Include="Builders\Queries\Boosting\When_empty_BoostingQuery_built.cs" />

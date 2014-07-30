@@ -1,5 +1,5 @@
 using System;
-using System.Linq;
+
 using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Mappings
@@ -135,6 +135,13 @@ namespace PlainElastic.Net.Mappings
             return this;
         }
 
+        protected override string ApplyMappingTemplate(string mappingBody)
+        {
+            if (mappingBody.IsNullOrEmpty())
+                return "{0}: {{ 'type': 'object' }}".AltQuoteF(Name.Quotate());
+
+            return "{0}: {{ {1} }}".AltQuoteF(Name.Quotate(), mappingBody);
+        }
         
         /*
         public Type<T> Type;

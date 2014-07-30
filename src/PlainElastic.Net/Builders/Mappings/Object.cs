@@ -4,8 +4,7 @@ namespace PlainElastic.Net.Mappings
     /// Builds a mapping that allows to map inner JSON object. 
     /// http://www.elasticsearch.org/guide/reference/mapping/object-type.html
     /// </summary>
-    public class Object<T>: ObjectBase<T,Object<T>>
+    public class Object<T> : ObjectBase<T, Object<T>>
     {
-
     }
 }

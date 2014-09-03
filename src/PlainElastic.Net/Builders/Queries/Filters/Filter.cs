@@ -249,6 +249,15 @@ namespace PlainElastic.Net.Queries
             return this;
         }
 
+		/// <summary>
+		/// The regexp filter is similar to the regexp query, except that it is cacheable and can speedup performance in case you are reusing this filter in your queries.
+		/// see http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/query-dsl-regexp-filter.html
+		/// </summary>
+		public Filter<T> RegExp(Func<RegExpFilter<T>, RegExpFilter<T>> regExpFilter)
+		{
+			RegisterJsonPartExpression(regExpFilter);
+			return this;
+		}
 
         protected override bool HasRequiredParts()
         {

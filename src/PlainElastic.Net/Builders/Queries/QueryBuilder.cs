@@ -42,6 +42,16 @@ namespace PlainElastic.Net.Queries
             return this;
         }
 
+		/// <summary>
+		/// Allows to collect aggregated data based on a search query. 
+		/// see http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/search-aggregations.html
+		/// </summary>
+		public QueryBuilder<T> Aggregations(Func<Aggregations<T>, Aggregations<T>> aggregations)
+		{
+			RegisterJsonPartExpression(aggregations);
+			return this;
+		}
+
         /// <summary>
         /// The starting from index of the hits to return. Defaults to 0.
         /// </summary>

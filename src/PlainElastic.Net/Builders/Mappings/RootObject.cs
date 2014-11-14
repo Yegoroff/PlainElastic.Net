@@ -135,6 +135,14 @@ namespace PlainElastic.Net.Mappings
             return this;
         }
 
+        protected override string ApplyMappingTemplate(string mappingBody)
+        {
+            if (mappingBody.IsNullOrEmpty())
+                return "{0}: {{ }}".AltQuoteF(Name.Quotate());
+
+            return "{0}: {{ {1} }}".AltQuoteF(Name.Quotate(), mappingBody);
+        }
+
         
         /*
         public Type<T> Type;

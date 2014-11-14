@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata> 
     <id>PlainElastic.Net.Patched</id> 
-    <version>1.0.48.1</version>
+    <version>1.0.48.2</version>
     <authors>Alexander Yegorov, Emmanuel Mathot</authors>
     <projectUrl>https://github.com/emmanuelmathot/PlainElastic.Net</projectUrl>
     <licenseUrl>https://github.com/emmanuelmathot/PlainElastic.Net/blob/master/license.txt</licenseUrl>

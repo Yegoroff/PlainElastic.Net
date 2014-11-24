@@ -11,3 +11,4 @@ NuGet/*.nupkg
 *.crunchsolution.cache
 tools/T4Generators/PlainElastic.T4Generators/Builders/*/*/*.cs
 tools/T4Generators/PlainElastic.T4Generators/Builders/*/*/*.ignore
+packages/

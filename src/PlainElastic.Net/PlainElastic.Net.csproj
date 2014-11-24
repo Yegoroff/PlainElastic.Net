@@ -318,7 +318,7 @@
     <Compile Include="Serialization\Results\ShardsResult.cs" />
     <Compile Include="Serialization\SerializationExtensions.cs" />
     <Compile Include="Utils\JsonHelper.cs" />
-    <Compile Include="Utils\FuncExtesions.cs" />
+    <Compile Include="Utils\FuncExtensions.cs" />
     <Compile Include="Utils\JsonBeautifier.cs" />
     <Compile Include="Utils\UrlBuilder.cs" />
     <Compile Include="Utils\ReflectExtensions.cs" />

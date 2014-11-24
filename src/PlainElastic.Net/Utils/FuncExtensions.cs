@@ -2,7 +2,7 @@
 
 namespace PlainElastic.Net.Utils
 {
-    public static class FuncExtesions
+    public static class FuncExtensions
     {
         /// <summary>
         /// Represents Monadic Bind operator.

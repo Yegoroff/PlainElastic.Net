@@ -242,6 +242,7 @@
     <Compile Include="Builders\Queries\Boosting\When_empty_BoostingQuery_built.cs" />
     <Compile Include="Builders\Queries\FunctionScoreQuery\When_complete_DecayFunction_built.cs" />
     <Compile Include="Builders\Queries\FunctionScoreQuery\When_complete_ScriptScoreFunction_built.cs" />
+    <Compile Include="Builders\Queries\FunctionScoreQuery\When_complete_WeightFunction_built.cs" />
     <Compile Include="Builders\Queries\FunctionScoreQuery\When_ScoreFunction_built.cs" />
     <Compile Include="Builders\Queries\FunctionScoreQuery\When_empty_RandomScoreFunction_built.cs" />
     <Compile Include="Builders\Queries\FunctionScoreQuery\When_complete_BoostFactorFunction_built.cs" />

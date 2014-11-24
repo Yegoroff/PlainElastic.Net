@@ -1,3 +1,4 @@
+using System;
 using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Queries
@@ -14,6 +15,7 @@ namespace PlainElastic.Net.Queries
         /// <summary>
         /// Allows you to multiply the score by the provided boost_factor.
         /// </summary>
+        [Obsolete("Same as weight. Use weight instead. Deprecated in 1.4.0.Beta1.")]
         public BoostFactorFunction<T> BoostFactor(double boostFactor)
         {
             RegisterJsonPart("'boost_factor': {0}", boostFactor.AsString());

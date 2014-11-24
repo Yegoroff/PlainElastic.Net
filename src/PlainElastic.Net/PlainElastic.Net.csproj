@@ -59,6 +59,7 @@
     <Compile Include="Builders\Commands\DeleteByQueryCommand.cs" />
     <Compile Include="Builders\Commands\IndexAliasCommand.cs" />
     <Compile Include="Builders\Commands\IndexAliasesCommand.cs" />
+    <Compile Include="Builders\Queries\FunctionScoreQuery\WeightFunction.cs" />
     <Compile Include="Serialization\Results\IndexAliasesResult.cs" />
     <Compile Include="Builders\Commands\SearchScrollCommand.cs" />
     <Compile Include="Builders\Commands\MoreLikeThisCommand.cs" />

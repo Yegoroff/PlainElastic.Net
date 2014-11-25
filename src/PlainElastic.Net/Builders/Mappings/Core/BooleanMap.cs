@@ -13,5 +13,13 @@ namespace PlainElastic.Net.Mappings
             return "boolean";
         }
 
+        /// <summary>
+        /// The fields options allows to map several core types fields into a single json source field
+        /// </summary>
+        public virtual BooleanMap<T> Fields(Func<CoreFields<BooleanMap<T>>, CoreFields<BooleanMap<T>>> fields)
+        {
+            RegisterMapAsJson(fields);
+            return this;
+        }
     }
 }

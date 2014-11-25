@@ -10,6 +10,7 @@ namespace PlainElastic.Net.Tests.Builders.Mappings
     {
         Because of = () => result = new NumberMap<FieldsTestClass>()
                                                 .Field(doc => doc.StringProperty)
+                                                .Fields(f => f.String("multi_field"))
                                                 .ToString();
 
 
@@ -17,7 +18,9 @@ namespace PlainElastic.Net.Tests.Builders.Mappings
 
         It should_contain_double_type_declaration_part = () => result.ShouldContain("'type': 'double'".AltQuote());
 
-        It should_generate_correct_JSON_result = () => result.ShouldEqual(("'StringProperty': { 'type': 'double' }").AltQuote());
+        It should_generate_correct_JSON_result = () => result.ShouldEqual(("'StringProperty': { 'type': 'double','fields': { 'multi_field': { 'type': 'string' } } }").AltQuote());
+
+        It should_contain_fields_part = () => result.ShouldContain("'fields': { 'multi_field': { 'type': 'string' } }".AltQuote());
 
         private static string result;
     }

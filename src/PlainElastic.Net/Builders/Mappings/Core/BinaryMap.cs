@@ -13,5 +13,14 @@ namespace PlainElastic.Net.Mappings
         {
             return "binary";
         }
+
+        /// <summary>
+        /// The fields options allows to map several core types fields into a single json source field
+        /// </summary>
+        public virtual BinaryMap<T> Fields(Func<CoreFields<BinaryMap<T>>, CoreFields<BinaryMap<T>>> fields)
+        {
+            RegisterMapAsJson(fields);
+            return this;
+        }
     }
 }

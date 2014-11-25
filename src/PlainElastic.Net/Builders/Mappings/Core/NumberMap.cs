@@ -45,7 +45,14 @@ namespace PlainElastic.Net.Mappings
 
             return mappingType ?? "double";
         }
-    }
 
-    
+        /// <summary>
+        /// The fields options allows to map several core types fields into a single json source field
+        /// </summary>
+        public virtual NumberMap<T> Fields(Func<CoreFields<NumberMap<T>>, CoreFields<NumberMap<T>>> fields)
+        {
+            RegisterMapAsJson(fields);
+            return this;
+        }
+    }
 }

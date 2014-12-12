@@ -30,18 +30,6 @@ namespace PlainElastic.Net.Queries
             RegisterJsonPartExpression(boostFactor);
             return (TFunctionQuery)this;
         }        
-        
-        /// <summary>
-        /// Allows you to multiply the score by the provided weight.
-        /// This can sometimes be desired since boost value set on specific queries gets normalized,
-        /// while for this score function it does not.
-        /// see: http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/query-dsl-function-score-query.html#_weight
-        /// </summary>
-        public TFunctionQuery WeightFactor(Func<WeightFunction<T>, WeightFunction<T>> weight)
-        {
-            RegisterJsonPartExpression(weight);
-            return (TFunctionQuery)this;
-        }
 
         /// <summary>
         /// The random_score generates scores via a pseudo random number algorithm that is initialized with a seed.

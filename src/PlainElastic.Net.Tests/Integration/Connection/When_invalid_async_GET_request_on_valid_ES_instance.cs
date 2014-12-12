@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using Machine.Specifications;
+using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Tests.Integration.Connection
 {
@@ -23,7 +24,7 @@ namespace PlainElastic.Net.Tests.Integration.Connection
             exception.ShouldBe(typeof(OperationException));
 
         It should_throw_exception_with_message = () =>
-            exception.Message.ShouldEqual("No handler found for uri [/invalid] and method [GET]");
+            exception.Message.ShouldEqual(@"{'error':'IndexMissingException[[invalid] missing]','status':404}".AltQuote());
 
         It should_throw_exception_with_inner_WebException = () =>
             exception.InnerException.ShouldBe(typeof(WebException));

@@ -17,8 +17,8 @@ namespace PlainElastic.Net.Tests.Integration.Connection
                                          jsonData: "{ 'field': 'value' }".AltQuote()
                                          ).Result;
 
-        It should_return_OK = () =>
-            result.Result.ShouldContain("\"ok\":true");
+        It should_return_id_of_created_doc = () =>
+            result.Result.ShouldContain("\"_id\":\"1\"");
 
 
         private static ElasticConnection connection;

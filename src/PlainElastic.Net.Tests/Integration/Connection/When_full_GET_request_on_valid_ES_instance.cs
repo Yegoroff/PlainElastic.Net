@@ -14,7 +14,7 @@ namespace PlainElastic.Net.Tests.Integration.Connection
         Because of = () => result = connection.Get(@"http://localhost:9200?pretty=true");
 
 
-        It should_return_OK = () => result.Result.ShouldContain("\"ok\" : true");
+        It should_return_OK_status = () => result.Result.ShouldContain("\"status\" : 200");
 
         private static ElasticConnection connection;
         private static OperationResult result;

@@ -15,11 +15,11 @@ namespace PlainElastic.Net.Tests.Integration.Connection
 
         Because of = () => 
             result = connection.DeleteAsync(command: "/test/foo/_query", 
-                                         jsonData: "{'term': { 'field': 'value' } }".AltQuote()
+                                         jsonData: "{'query': {'term': { 'field': 'value' } } }".AltQuote()
                                          ).Result;
 
-        It should_return_OK = () =>
-            result.Result.ShouldContain("\"ok\":true");
+        It should_not_fail = () =>
+            result.Result.ShouldContain("\"failed\":0");
 
 
         private static ElasticConnection connection;

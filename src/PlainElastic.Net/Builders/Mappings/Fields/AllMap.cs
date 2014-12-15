@@ -93,7 +93,7 @@ namespace PlainElastic.Net.Mappings
 
         protected override string ApplyMappingTemplate(string mappingBody)
         {
-            return " '_all': {{ {0} }}".AltQuoteF(mappingBody);
+            return "'_all': {{ {0} }}".AltQuoteF(mappingBody);
         }
         
     }

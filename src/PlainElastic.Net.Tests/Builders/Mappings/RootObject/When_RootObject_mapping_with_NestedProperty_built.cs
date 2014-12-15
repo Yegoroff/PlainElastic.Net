@@ -5,15 +5,14 @@ using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Tests.Builders.Mappings
 {
-    [Subject(typeof(Object<>))]
+    [Subject(typeof(RootObject<>))]
     class When_RootObject_mapping_with_NestedProperty_built
     {
-        Because of = () => result = new RootObject<FieldsTestClass>()
-                                                .Field("TestObject")
+        Because of = () => result = new RootObject<FieldsTestClass>("TestObject")
                                                 .Properties(p => p.NestedObject(f => f.ObjectProperty, opt => opt.IncludeInAll(false).Enabled(true)))
                                                 .ToString();
 
-        It should_start_from_specified_field_name = () => result.ShouldStartWith("'TestObject': {".AltQuote());
+        It should_start_from_specified_type_name = () => result.ShouldStartWith("'TestObject': {".AltQuote());
 
         It should_not_contain_object_type_declaration_part = () => result.ShouldNotContain("'type': 'object'".AltQuote());
 

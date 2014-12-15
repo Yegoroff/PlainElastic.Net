@@ -14,7 +14,7 @@ namespace PlainElastic.Net.Mappings
         /// </summary>
         public IdField<T> Store(bool store)
         {
-            RegisterCustomJsonMap("'store': {0} ", store.AsString());
+            RegisterCustomJsonMap("'store': {0}", store.AsString());
             return this;
         }
 
@@ -23,7 +23,7 @@ namespace PlainElastic.Net.Mappings
         /// </summary>
         public IdField<T> Index(IndexState index)
         {
-            RegisterCustomJsonMap("'index': {0} ", index.AsString().Quotate());
+            RegisterCustomJsonMap("'index': {0}", index.AsString().Quotate());
             return this;
         }
 
@@ -33,14 +33,14 @@ namespace PlainElastic.Net.Mappings
         /// </summary>
         public IdField<T> Path(string path)
         {
-            RegisterCustomJsonMap(" 'path': {0}", path.Quotate());
+            RegisterCustomJsonMap("'path': {0}", path.Quotate());
             return this;
         }
 
 
         protected override string ApplyMappingTemplate(string mappingBody)
         {
-            return " '_id': {{ {0} }}".AltQuoteF(mappingBody);
+            return "'_id': {{ {0} }}".AltQuoteF(mappingBody);
         }
         
     }

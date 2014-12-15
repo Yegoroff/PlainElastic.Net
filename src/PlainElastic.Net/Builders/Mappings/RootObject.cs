@@ -25,7 +25,7 @@ namespace PlainElastic.Net.Mappings
         /// </summary>       
         public RootObject<T> IndexAnalyzer(string analyzer)
         {
-            RegisterCustomJsonMap("'index_analyzer': {0} ", analyzer.Quotate());
+            RegisterCustomJsonMap("'index_analyzer': {0}", analyzer.Quotate());
             return this;
         }
 
@@ -44,7 +44,7 @@ namespace PlainElastic.Net.Mappings
         /// </summary>
         public RootObject<T> SearchAnalyzer(string analyzer)
         {
-            RegisterCustomJsonMap("'search_analyzer': {0} ", analyzer.Quotate());
+            RegisterCustomJsonMap("'search_analyzer': {0}", analyzer.Quotate());
             return this;
         }
 
@@ -64,7 +64,7 @@ namespace PlainElastic.Net.Mappings
         /// </summary>
         public RootObject<T> DynamicDateFormats(string[] dynamicDateFormats)
         {
-            RegisterCustomJsonMap("'dynamic_date_formats': [ {0} ] ", dynamicDateFormats.Quotate().JoinWithComma());
+            RegisterCustomJsonMap("'dynamic_date_formats': [ {0} ]", dynamicDateFormats.Quotate().JoinWithComma());
             return this;
         }
 
@@ -73,7 +73,7 @@ namespace PlainElastic.Net.Mappings
         /// </summary>
         public RootObject<T> DateDetection(bool dateDetection = true)
         {
-            RegisterCustomJsonMap("'date_detection': {0} ", dateDetection.AsString());
+            RegisterCustomJsonMap("'date_detection': {0}", dateDetection.AsString());
             return this;
         }
 
@@ -82,7 +82,7 @@ namespace PlainElastic.Net.Mappings
         /// </summary>
         public RootObject<T> NumericDetection(bool numericDetection = false)
         {
-            RegisterCustomJsonMap("'numeric_detection': {0} ", numericDetection.AsString());
+            RegisterCustomJsonMap("'numeric_detection': {0}", numericDetection.AsString());
             return this;
         }
 
@@ -138,7 +138,7 @@ namespace PlainElastic.Net.Mappings
         protected override string ApplyMappingTemplate(string mappingBody)
         {
             if (mappingBody.IsNullOrEmpty())
-                return "{0}: {{ 'type': 'object' }}".AltQuoteF(Name.Quotate());
+                return "{0}: {{ }}".AltQuoteF(Name.Quotate());
 
             return "{0}: {{ {1} }}".AltQuoteF(Name.Quotate(), mappingBody);
         }

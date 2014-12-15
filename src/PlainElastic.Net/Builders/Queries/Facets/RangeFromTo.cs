@@ -9,27 +9,19 @@ namespace PlainElastic.Net.Queries
 		public RangeFromTo FromTo(double? from = null, double? to = null)
         {
 			if (!to.HasValue && !from.HasValue)
-			{
 				return this;
-			}
 
             hasValue = true;
 
 			if (from.HasValue)
 			{
 				if (to.HasValue)
-				{
-					RegisterJsonPart("{{ 'from': {0} }}, {{ 'to': {1} }}", from.AsString(), to.AsString());
-				}
+					RegisterJsonPart("{{ 'from': {0}, 'to': {1} }}", from.AsString(), to.AsString());
 				else
-				{
 					RegisterJsonPart("{{ 'from': {0} }}", from.AsString());
-				}
 			}
 			else
-			{
 				RegisterJsonPart("{{ 'to': {0} }}", to.AsString());
-			}
 
             return this;
         }

@@ -28,9 +28,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                                     )
                                                     .Function(fn => fn
                                                         .Filter(f => f.Custom("Fn-Filter2"))
-                                                        .BoostFactor(bf => bf
-                                                            .BoostFactor(100)
-                                                        )
+                                                        .Weight(150)
                                                     )
                                                 )
                                                 .ToString();
@@ -56,7 +54,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                                                             " }," +
                                                                             "{ " +
                                                                                 "'filter': Fn-Filter2," +
-                                                                                "'boost_factor': 100" +
+                                                                                "'weight': 150" +
                                                                             " }" +
                                                                        " ]").AltQuote());
 
@@ -77,7 +75,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                                                             " }," +
                                                                             "{ " +
                                                                                 "'filter': Fn-Filter2," +
-                                                                                "'boost_factor': 100" +
+                                                                                "'weight': 150" +
                                                                             " }" +
                                                                        " ]" +
                                                                     " } }").AltQuote());

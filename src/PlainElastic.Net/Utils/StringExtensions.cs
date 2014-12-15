@@ -126,8 +126,7 @@ namespace PlainElastic.Net.Utils
         {
             return value.ToString(CultureInfo.InvariantCulture);
         }
-
-
+        
         public static string AsString(this bool? value)
         {
             return value.HasValue ? value.Value.AsString(): null;
@@ -153,7 +152,35 @@ namespace PlainElastic.Net.Utils
             return value.ToString("F").Replace(", ", "|");;
         }
 
+        public static string AsString(this DateTime date)
+        {
+            return date.ToString("s");
+        }
 
+        public static string AsString(this DateTime? date)
+        {
+            return date.HasValue ? date.Value.AsString() : null;
+        }
+
+        public static string AsString(this Guid guid)
+        {
+            return guid.ToString();
+        }
+
+        public static string AsString(this Guid? guid)
+        {
+            return guid.HasValue ? guid.Value.AsString() : null;
+        }
+
+        public static IEnumerable<string> AsStrings(this IEnumerable<Guid> source)
+        {
+            return (source ?? Enumerable.Empty<Guid>()).Select(AsString);
+        }
+
+        public static IEnumerable<string> AsStrings(this IEnumerable<long> source)
+        {
+            return (source ?? Enumerable.Empty<long>()).Select(x => x.AsString());
+        }
 
         public static string BeautifyJson(this string json)
         {

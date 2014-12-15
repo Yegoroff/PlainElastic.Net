@@ -9,6 +9,7 @@ namespace PlainElastic.Net.Tests.Builders.Mappings
     class When_complete_Date_mapping_built
     {
         Because of = () => result = new DateMap<FieldsTestClass>()
+                                                .Fields(f => f.String("multi_field"))
                                                 .Field(doc => doc.DateProperty)
                                                 .Boost(5)
                                                 .Format("date format")
@@ -40,6 +41,8 @@ namespace PlainElastic.Net.Tests.Builders.Mappings
 
         It should_contain_precision_step_part = () => result.ShouldContain("'precision_step': 10".AltQuote());
 
+        It should_contain_fields_part = () => result.ShouldContain("'fields': { 'multi_field': { 'type': 'string' } }".AltQuote());
+
         It should_contain_store_part = () => result.ShouldContain("'store': true".AltQuote());
 
         It should_contain_fuzzy_factor_declaration_part = () => result.ShouldContain("'fuzzy_factor': 7".AltQuote());
@@ -48,6 +51,7 @@ namespace PlainElastic.Net.Tests.Builders.Mappings
         It should_generate_correct_JSON_result = () =>
             result.ShouldEqual(("'DateProperty': { " +
                                     "'type': 'date'," +
+                                    "'fields': { 'multi_field': { 'type': 'string' } }," +
                                     "'boost': 5," +
                                     "'format': 'date format'," +
                                     "'include_in_all': true," +

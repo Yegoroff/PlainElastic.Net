@@ -1,4 +1,5 @@
 using System;
+using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Queries
 {
@@ -23,11 +24,12 @@ namespace PlainElastic.Net.Queries
         /// while for this score function it does not.
         /// see: http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/query-dsl-function-score-query.html#_boost_factor
         /// </summary>
+        [Obsolete("Same as weight. Use weight instead. Deprecated in 1.4.0.Beta1.")]
         public TFunctionQuery BoostFactor(Func<BoostFactorFunction<T>, BoostFactorFunction<T>> boostFactor)
         {
             RegisterJsonPartExpression(boostFactor);
             return (TFunctionQuery)this;
-        }
+        }        
 
         /// <summary>
         /// The random_score generates scores via a pseudo random number algorithm that is initialized with a seed.
@@ -48,6 +50,17 @@ namespace PlainElastic.Net.Queries
         {
             RegisterJsonPartExpression(decayFunction);
             return (TFunctionQuery)this;
+        }
+        
+        /// <summary>
+        /// The weight score allows you to multiply the score by the provided weight. This can sometimes be desired since boost value set on specific queries gets normalized, while for this score function it does not.
+        /// see: http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/query-dsl-function-score-query.html#_weight
+        /// </summary>
+        /// <param name="weight"></param>
+        /// <returns></returns>
+        public TFunctionQuery Weight(double weight)
+        {
+            return Custom("'weight': {0}".AltQuote(), weight.AsString());
         }
     }
 }

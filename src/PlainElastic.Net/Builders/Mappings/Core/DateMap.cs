@@ -48,5 +48,13 @@ namespace PlainElastic.Net.Mappings
             return "date";
         }
 
+        /// <summary>
+        /// The fields options allows to map several core types fields into a single json source field
+        /// </summary>
+        public virtual DateMap<T> Fields(Func<CoreFields<DateMap<T>>, CoreFields<DateMap<T>>> fields)
+        {
+            RegisterMapAsJson(fields);
+            return this;
+        }
     }
 }

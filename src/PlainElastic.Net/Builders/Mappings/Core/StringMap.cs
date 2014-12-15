@@ -91,12 +91,19 @@ namespace PlainElastic.Net.Mappings
         {
             return SearchAnalyzer(analyzer.AsString());
         }
-
-
-
+        
         protected override string GetElasticFieldType(Type fieldType)
         {
             return "string";
+        }
+
+        /// <summary>
+        /// The fields options allows to map several core types fields into a single json source field
+        /// </summary>
+        public virtual StringMap<T> Fields(Func<CoreFields<StringMap<T>>, CoreFields<StringMap<T>>> fields)
+        {
+            RegisterMapAsJson(fields);
+            return this;
         }
     }
 }

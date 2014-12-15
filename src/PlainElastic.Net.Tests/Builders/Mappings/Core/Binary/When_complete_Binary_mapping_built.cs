@@ -9,6 +9,7 @@ namespace PlainElastic.Net.Tests.Builders.Mappings
     class When_complete_Binary_mapping_built
     {
         Because of = () => result = new BinaryMap<FieldsTestClass>()
+                                                .Fields(f => f.String("multi_field"))                                    
                                                 .Field(doc => doc.StringProperty)
                                                 .Boost(5)
                                                 .IncludeInAll(false)
@@ -17,6 +18,7 @@ namespace PlainElastic.Net.Tests.Builders.Mappings
                                                 .NullValue("Null Value")                                                
                                                 .Store(true)
                                                 .Custom("custom mapping")
+                                                
                                                 .ToString();
 
 
@@ -36,10 +38,13 @@ namespace PlainElastic.Net.Tests.Builders.Mappings
 
         It should_contain_store_part = () => result.ShouldContain("'store': true".AltQuote());
 
+        It should_contain_fields_part = () => result.ShouldContain("'fields': { 'multi_field': { 'type': 'string' } }".AltQuote());
+
         It should_contain_custom_part = () => result.ShouldContain("custom mapping");
 
         It should_generate_correct_JSON_result = () => result.ShouldEqual(("'StringProperty': { " +
                                                                             "'type': 'binary'," +
+                                                                            "'fields': { 'multi_field': { 'type': 'string' } }," +
                                                                             "'boost': 5," +
                                                                             "'include_in_all': false," +
                                                                             "'index': 'analyzed'," +

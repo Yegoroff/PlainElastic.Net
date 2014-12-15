@@ -10,6 +10,7 @@ namespace PlainElastic.Net.Tests.Builders.Mappings
     {
         Because of = () => result = new StringMap<FieldsTestClass>()
                                                 .Field(doc => doc.StringProperty)
+                                                .Fields(f => f.String("multi_field"))
                                                 .Boost(5)
                                                 .IncludeInAll(false)
                                                 .Index(IndexState.analyzed)
@@ -56,8 +57,11 @@ namespace PlainElastic.Net.Tests.Builders.Mappings
 
         It should_contain_custom_part = () => result.ShouldContain("custom mapping");
 
+        It should_contain_fields_part = () => result.ShouldContain("'fields': { 'multi_field': { 'type': 'string' } }".AltQuote());
+
         It should_generate_correct_JSON_result = () => result.ShouldEqual(("'StringProperty': { " +
                                                                             "'type': 'string'," +
+                                                                            "'fields': { 'multi_field': { 'type': 'string' } }," +
                                                                             "'boost': 5," +
                                                                             "'include_in_all': false," +
                                                                             "'index': 'analyzed'," +

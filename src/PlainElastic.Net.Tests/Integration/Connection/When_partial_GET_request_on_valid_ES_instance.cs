@@ -14,7 +14,7 @@ namespace PlainElastic.Net.Tests.Integration.Connection
         Because of = () => result = connection.Get("_refresh?pretty=true");
 
 
-        It should_return_OK = () => result.Result.ShouldContain("\"ok\" : true");
+        It should_not_fail = () => result.Result.ShouldContain("\"failed\" : 0");
 
         private static ElasticConnection connection;
         private static OperationResult result;

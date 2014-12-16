@@ -6,34 +6,34 @@ namespace PlainElastic.Net.Queries
 	/// The regexp filter is similar to the regexp query, except that it is cacheable and can speedup performance in case you are reusing this filter in your queries.
 	/// see http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/query-dsl-regexp-filter.html
 	/// </summary>    
-	public class RegExpFilter<T> : QueryBase<RegExpFilter<T>>
+    public class RegExpFilter<T> : FieldQueryBase<T, RegExpFilter<T>>
 	{
 		private bool hasValue;
 
-		public RegExpFilter<T> Value(string path, string regex)
+
+        public RegExpFilter<T> Value(string value)
 		{
-			if (!path.IsNullOrEmpty() && !regex.IsNullOrEmpty())
+			if (!value.IsNullOrEmpty())
 			{
-				RegisterJsonPart("{0}: {1}", path.Quotate(), regex.Quotate());
+                RegisterJsonPart("{0}: {1}", RegisteredField, value.Quotate());
 				hasValue = true;
 			}
 
 			return this;
 		}
 
-		/// <summary>
-		/// You can also select the cache name and use the same regexp flags in the filter as in the query.
-		/// </summary>
-		public RegExpFilter<T> Value(string path, string regex, RegexFlags regexFlags)
-		{
-			if (!path.IsNullOrEmpty() && !regex.IsNullOrEmpty())
-			{
-				RegisterJsonPart("{0}: {{ {1}, {2} }}", path.Quotate(), regex.Quotate(), regexFlags.AsString().Quotate());
-				hasValue = true;
-			}
 
-			return this;
-		}
+        public RegExpFilter<T> Value(string value, RegExpSyntaxFlags flags)
+        {
+            if (!value.IsNullOrEmpty())
+            {
+                RegisterJsonPart("{0}: {{ 'value': {1}, 'flags': {2} }}", RegisteredField, value.Quotate(), flags.AsString().Quotate());
+                hasValue = true;
+            }
+
+            return this;
+        }
+
 
 		public RegExpFilter<T> Cache(bool cache)
 		{
@@ -57,6 +57,8 @@ namespace PlainElastic.Net.Queries
 			RegisterJsonPart("'_name': {0}", filterName.Quotate());
 			return this;
 		}
+
+
 
 		protected override bool HasRequiredParts()
 		{

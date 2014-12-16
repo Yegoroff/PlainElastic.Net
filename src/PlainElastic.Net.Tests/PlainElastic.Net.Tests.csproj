@@ -337,6 +337,9 @@
     <Compile Include="Builders\Queries\_Filters\And\When_empty_AndFilter_built.cs" />
     <Compile Include="Builders\Queries\_Filters\Bool\When_complete_BoolFilter_built.cs" />
     <Compile Include="Builders\Queries\_Filters\Bool\When_empty_BoolFilter_built.cs" />
+    <Compile Include="Builders\Queries\_Filters\RegExp\When_simple_RegExpFilter_built.cs" />
+    <Compile Include="Builders\Queries\_Filters\RegExp\When_complete_RegExpFilter_built.cs" />
+    <Compile Include="Builders\Queries\_Filters\RegExp\When_RegExpFilter_without_value_built.cs" />
     <Compile Include="Builders\Queries\_Filters\HasParent\When_complete_HasParentFilter_built.cs" />
     <Compile Include="Builders\Queries\_Filters\HasParent\When_empty_HasParentFilter_built.cs" />
     <Compile Include="Builders\Queries\_Filters\GeoDistance\When_GeoDistanceFilter_with_empty_geo_point_built.cs" />

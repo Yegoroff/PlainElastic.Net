@@ -78,4 +78,16 @@ namespace PlainElastic.Net
         UNIX_LINES = 0x80
     }
 
+    [Flags]
+    public enum RegExpSyntaxFlags
+    {
+        NONE = 0,
+        ANYSTRING = 1,
+        AUTOMATON = 2,
+        COMPLEMENT = 4,
+        EMPTY = 8,
+        INTERSECTION = 0x10,
+        INTERVAL = 0x20,
+        ALL = 0x40
+    }
 }

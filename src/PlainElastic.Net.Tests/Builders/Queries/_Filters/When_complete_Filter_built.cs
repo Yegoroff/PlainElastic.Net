@@ -29,6 +29,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                             .Indices(i => i.Custom("Indices"))
                                             .Script(s => s.Custom("Script"))
                                             .GeoDistance(g => g.Custom("GeoDistance"))
+                                            .RegExp(r=>r.Custom("RegExp"))
                                             .MatchAll()
                                             .ToString();
 
@@ -57,6 +58,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                                                         "{ 'indices': { Indices } }," +
                                                                         "{ 'script': { Script } }," +
                                                                         "{ 'geo_distance': { GeoDistance } }," +
+                                                                        "{ 'regexp': { RegExp } }," +
                                                                         "{ 'match_all': {} }").AltQuote());
 
         private static string result;

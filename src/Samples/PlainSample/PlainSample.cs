@@ -141,7 +141,6 @@ namespace PlainSample
             Console.WriteLine("Index Results \r\n{0} \r\n".F(result));
 
             Console.WriteLine("Parsed Index Results");
-            Console.WriteLine(" ok: " + indexResult.ok);
             Console.WriteLine(" _index: " + indexResult._index);
             Console.WriteLine(" _type: " + indexResult._type);
             Console.WriteLine(" _id: " + indexResult._id);

@@ -80,7 +80,6 @@ namespace PlainSample
         private static void PrintIndexResult(IndexResult indexResult)
         {
             Console.WriteLine("Index Results:");
-            Console.WriteLine(" ok: " + indexResult.ok);
             Console.WriteLine(" _index: " + indexResult._index);
             Console.WriteLine(" _type: " + indexResult._type);
             Console.WriteLine(" _id: " + indexResult._id);

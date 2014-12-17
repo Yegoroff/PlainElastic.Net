@@ -190,6 +190,12 @@ namespace PlainElastic.Net.Queries
             return this;
         }
 
+
+        protected override bool ForceJsonBuild()
+        {
+            return true;
+        }
+
         private string GenerateFieldsFacetPart()
         {
             var fields = facetFields.JoinWithComma();
@@ -204,7 +210,7 @@ namespace PlainElastic.Net.Queries
         {
             string fields = GenerateFieldsFacetPart();
             if (!fields.IsNullOrEmpty())
-                body = new[] {fields, body}.JoinWithComma();
+                body = !body.IsNullOrEmpty() ? new[] {fields, body}.JoinWithComma() : fields;
 
             return "'terms': {{ {0} }}".AltQuoteF(body);
         }

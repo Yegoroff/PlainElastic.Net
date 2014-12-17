@@ -324,6 +324,7 @@
     <Compile Include="Builders\Queries\_Facets\GeoDistanceFacet\When_minimum_GeoDistanceRangeFacet_built.cs" />
     <Compile Include="Builders\Queries\_Facets\TermsStats\When_complete_TermsStatsFacet_built.cs" />
     <Compile Include="Builders\Queries\_Facets\Statistical\When_complete_StatisticalFacet_built.cs" />
+    <Compile Include="Builders\Queries\_Facets\Terms\When_termsFacet_with_multiple_fields_built.cs" />
     <Compile Include="Builders\Queries\_Facets\When_facet_with_empty_FacetFilter_built.cs" />
     <Compile Include="Builders\Queries\_Facets\RangeFacet\When_empty_RangeFacet_built.cs" />
     <Compile Include="Builders\Queries\_Facets\RangeFacet\When_complete_RangeFacet_built.cs" />

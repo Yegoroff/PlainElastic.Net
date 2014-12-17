@@ -12,7 +12,7 @@ namespace PlainElastic.Net.Queries
     /// </summary>
     public class MissingFilter<T> : FieldQueryBase<T, MissingFilter<T>>
     {
-        private bool hasRequiredParts;
+        private bool hasRequiredParts = true;
 
 
         /// <summary>
@@ -20,11 +20,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public MissingFilter<T> ShouldMiss(bool? value)
         {
-            if (RegisteredField.IsNullOrEmpty())
-                return this;
-
             hasRequiredParts = value.HasValue && value.Value;
-            RegisterJsonPart("'field': {0}", RegisteredField);
             return this;
         }
 
@@ -40,6 +36,11 @@ namespace PlainElastic.Net.Queries
         }
 
 
+        protected override bool ForceJsonBuild()
+        {
+            return hasRequiredParts;
+        }
+
         protected override bool HasRequiredParts()
         {
             return hasRequiredParts;
@@ -48,6 +49,18 @@ namespace PlainElastic.Net.Queries
 
         protected override string ApplyJsonTemplate(string body)
         {
+            if (!RegisteredField.IsNullOrEmpty())
+            {
+                var field = "'field': {0}".AltQuoteF(RegisteredField);
+
+                if (!body.IsNullOrEmpty())
+                    body = new[] { field, body }.JoinWithComma();
+                else
+                    body = field;
+            }
+            else if (!HasCustomPatrs)
+                return "";
+            
             return "{{ 'missing': {{ {0} }} }}".AltQuoteF(body);
         }
     }

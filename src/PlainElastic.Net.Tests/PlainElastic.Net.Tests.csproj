@@ -249,6 +249,7 @@
     <Compile Include="Builders\Queries\Bool\When_BoolQuery_with_useActualShouldCount_built.cs" />
     <Compile Include="Builders\Queries\Boosting\When_complete_BoostingQuery_built.cs" />
     <Compile Include="Builders\Queries\Boosting\When_empty_BoostingQuery_built.cs" />
+    <Compile Include="Builders\Queries\DisMax\When_DisMaxQuery_with_multimatch_built.cs" />
     <Compile Include="Builders\Queries\FunctionScoreQuery\When_complete_DecayFunction_built.cs" />
     <Compile Include="Builders\Queries\FunctionScoreQuery\When_complete_ScriptScoreFunction_built.cs" />
     <Compile Include="Builders\Queries\FunctionScoreQuery\When_ScoreFunction_built.cs" />
@@ -338,6 +339,7 @@
     <Compile Include="Builders\Queries\_Filters\And\When_empty_AndFilter_built.cs" />
     <Compile Include="Builders\Queries\_Filters\Bool\When_complete_BoolFilter_built.cs" />
     <Compile Include="Builders\Queries\_Filters\Bool\When_empty_BoolFilter_built.cs" />
+    <Compile Include="Builders\Queries\_Filters\Missing\When_filled_MissingFilter_built.cs" />
     <Compile Include="Builders\Queries\_Filters\RegExp\When_simple_RegExpFilter_built.cs" />
     <Compile Include="Builders\Queries\_Filters\RegExp\When_complete_RegExpFilter_built.cs" />
     <Compile Include="Builders\Queries\_Filters\RegExp\When_RegExpFilter_without_value_built.cs" />

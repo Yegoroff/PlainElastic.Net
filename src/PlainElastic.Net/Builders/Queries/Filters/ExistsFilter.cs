@@ -19,11 +19,7 @@ namespace PlainElastic.Net.Queries
         /// </summary>
         public ExistsFilter<T> ShouldExists(bool? value)
         {
-            if (RegisteredField.IsNullOrEmpty())
-                return this;
-
             hasRequiredParts = value.HasValue && value.Value;
-            RegisterJsonPart("'field': {0}", RegisteredField);
             return this;
         }
 
@@ -39,15 +35,33 @@ namespace PlainElastic.Net.Queries
         }
 
 
+
+        protected override bool ForceJsonBuild()
+        {
+            return hasRequiredParts;
+        }
+
         protected override bool HasRequiredParts()
         {
             return hasRequiredParts;
         }
 
-
         protected override string ApplyJsonTemplate(string body)
         {
+            if (!RegisteredField.IsNullOrEmpty())
+            {
+                var field = "'field': {0}".AltQuoteF(RegisteredField);
+
+                if (!body.IsNullOrEmpty())
+                    body = new[] { field, body }.JoinWithComma();
+                else
+                    body = field;
+            }
+            else if (!HasCustomPatrs)
+                return "";
+
             return "{{ 'exists': {{ {0} }} }}".AltQuoteF(body);
         }
+
     }
 }

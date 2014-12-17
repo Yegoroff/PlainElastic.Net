@@ -10,6 +10,7 @@ namespace PlainElastic.Net.Queries
     /// This can sometimes be desired since boost value set on specific queries gets normalized, while this query boost factor does not.
     /// see: http://www.elasticsearch.org/guide/reference/query-dsl/custom-boost-factor-query.html
     /// </summary>
+    [Obsolete("Use FunctionScore instead")]
     public class CustomBoostFactorQuery<T> : QueryBase<CustomBoostFactorQuery<T>>
     {
         private bool hasValues;

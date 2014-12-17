@@ -1,3 +1,4 @@
+using System;
 using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Queries
@@ -6,6 +7,7 @@ namespace PlainElastic.Net.Queries
     /// A family of text queries that accept text, analyzes it, and constructs a query out of it.
     /// see http://www.elasticsearch.org/guide/reference/query-dsl/text-query.html
     /// </summary>
+    [Obsolete("Use MatchQuery instead")]
     public class TextQuery<T> : MatchQueryBase<T, TextQuery<T>>
     {
 

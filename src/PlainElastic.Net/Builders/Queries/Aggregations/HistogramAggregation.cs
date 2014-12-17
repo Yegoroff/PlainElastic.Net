@@ -19,6 +19,16 @@ namespace PlainElastic.Net.Queries
             return this;
         }
 
+        /// <summary>
+        /// Formats the response as a hash instead keyed by the buckets keys.
+        /// </summary>
+        public HistogramAggregation<T> Keyed(bool keyed)
+        {
+            RegisterJsonPart("'keyed': {0}", keyed.AsString());
+            return this;
+        }
+
+
         protected override string ApplyAggregationBodyJsonTemplate(string body)
         {
             return "'histogram': {{ {0} }}".AltQuoteF(body);

@@ -58,6 +58,7 @@
     <Compile Include="Builders\Commands\IndexAliasCommand.cs" />
     <Compile Include="Builders\Commands\IndexAliasesCommand.cs" />
     <Compile Include="Builders\Queries\Aggregations\AggregationBase.cs" />
+    <Compile Include="Builders\Queries\Aggregations\ValueAggregationBase.cs" />
     <Compile Include="Builders\Queries\Aggregations\DateHistogramAggregation.cs" />
     <Compile Include="Builders\Queries\Aggregations\Aggregations.cs" />
     <Compile Include="Builders\Queries\Aggregations\FilterAggregation.cs" />

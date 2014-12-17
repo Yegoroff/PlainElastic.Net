@@ -30,30 +30,23 @@ namespace PlainElastic.Net.Queries
 		public RangeAggregationFromTo FromTo(string key, double? from = null, double? to = null)
 		{
 			if (!to.HasValue && !from.HasValue)
-			{
 				return this;
-			}
 
 			hasValue = true;
 
 			if (from.HasValue)
 			{
 				if (to.HasValue)
-				{
 					RegisterJsonPart("{{ 'key': {0}, 'from': {1}, 'to': {2} }}", key.Quotate(), from.AsString(), to.AsString());
-				}
 				else
-				{
 					RegisterJsonPart("{{ 'key': {0}, 'from': {1} }}", key.Quotate(), from.AsString());
-				}
 			}
 			else
-			{
 				RegisterJsonPart("{{ 'key': {0}, 'to': {1} }}", key.Quotate(), to.AsString());
-			}
 
 			return this;
 		}
+
 
         protected override bool HasRequiredParts()
         {

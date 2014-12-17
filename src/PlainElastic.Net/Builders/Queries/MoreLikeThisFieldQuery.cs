@@ -12,6 +12,7 @@ namespace PlainElastic.Net.Queries
     /// and support typed fields query (automatically wraps typed fields with type filter to match only on the specific type).
     /// see http://www.elasticsearch.org/guide/reference/query-dsl/mlt-field-query.html
     /// </summary>
+    [Obsolete("Use MoreLikeThisQuery set to a specific field")]
     public class MoreLikeThisFieldQuery<T> : FieldQueryBase<T,MoreLikeThisFieldQuery<T>>
     {
 

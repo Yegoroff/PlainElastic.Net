@@ -1,3 +1,4 @@
+using System;
 using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Queries
@@ -8,6 +9,7 @@ namespace PlainElastic.Net.Queries
     /// (by setting the default_field to the field this query executed against). 
     /// see http://www.elasticsearch.org/guide/reference/query-dsl/field-query.html
     /// </summary>
+    [Obsolete("Use QueryString instead")]
     public class FieldQuery<T> : FieldQueryBase<T, FieldQuery<T>>
     {
         private bool hasValue;

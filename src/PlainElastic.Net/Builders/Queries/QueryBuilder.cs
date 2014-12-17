@@ -36,6 +36,7 @@ namespace PlainElastic.Net.Queries
         /// Allows to collect aggregated data based on a search query. 
         /// see http://www.elasticsearch.org/guide/reference/api/search/facets/
         /// </summary>
+        [Obsolete("Facets are deprecated and will be removed in a future release. You are encouraged to migrate to aggregations instead.")]
         public QueryBuilder<T> Facets(Func<Facets<T>, Facets<T>> facets)
         {
             RegisterJsonPartExpression(facets);
@@ -136,10 +137,6 @@ namespace PlainElastic.Net.Queries
 
         // A search timeout, bounding the search request to be executed within the specified time value and bail with the hits accumulated up to that point when expired. Defaults to no timeout.
         //TODO: timeout
-
-        // Allows to highlight search results on one or more fields.
-        // see http://www.elasticsearch.org/guide/reference/api/search/highlighting.html
-        //TODO: highlight
 
         // Allows to selectively load specific fields for each document represented by a search hit. Defaults to load the internal _source field.
         // see  http://www.elasticsearch.org/guide/reference/api/search/fields.html

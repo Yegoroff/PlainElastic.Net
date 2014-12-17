@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
 using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Queries
@@ -12,7 +9,7 @@ namespace PlainElastic.Net.Queries
 	public class NestedAggregation<T> : AggregationBase<NestedAggregation<T>, T>
     {
         /// <summary>
-		/// The path to nest.
+        /// The path of the nested documents within the top level documents.
         /// </summary>
 		public NestedAggregation<T> Path(string path)
         {

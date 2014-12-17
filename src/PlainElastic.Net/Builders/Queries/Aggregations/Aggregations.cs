@@ -4,7 +4,7 @@ using PlainElastic.Net.Utils;
 namespace PlainElastic.Net.Queries
 {
     /// <summary>
-	/// Aggregations provide aggregated data based on a search query.
+    /// An aggregation can be seen as a unit-of-work that builds analytic information over a set of documents.
 	/// see http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/search-aggregations.html
     /// </summary>
 	public class Aggregations<T> : QueryBase<Aggregations<T>>

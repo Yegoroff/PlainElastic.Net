@@ -14,6 +14,7 @@ namespace PlainElastic.Net.Queries
         /// A family of text queries that accept text, analyzes it, and constructs a query out of it.
         /// see http://www.elasticsearch.org/guide/reference/query-dsl/text-query.html
         /// </summary>  
+        [Obsolete("Use MatchQuery instead")]
         public Query<T> Text(Func<TextQuery<T>, TextQuery<T>> textQuery)
         {
             RegisterJsonPartExpression(textQuery);
@@ -117,6 +118,7 @@ namespace PlainElastic.Net.Queries
         /// (by setting the default_field to the field this query executed against). 
         /// see http://www.elasticsearch.org/guide/reference/query-dsl/field-query.html
         /// </summary>
+        [Obsolete("Use QueryString instead")]
         public Query<T> Field(Func<FieldQuery<T>, FieldQuery<T>> fieldQuery)
         {
             RegisterJsonPartExpression(fieldQuery);
@@ -174,6 +176,7 @@ namespace PlainElastic.Net.Queries
         /// and support typed fields query (automatically wraps typed fields with type filter to match only on the specific type).
         /// see http://www.elasticsearch.org/guide/reference/query-dsl/mlt-field-query.html
         /// </summary>
+        [Obsolete("Use MoreLikeThisQuery set to a specific field")]
         public Query<T> MoreLikeThisField(Func<MoreLikeThisFieldQuery<T>, MoreLikeThisFieldQuery<T>> moreLikeThisFieldQuery)
         {
             RegisterJsonPartExpression(moreLikeThisFieldQuery);
@@ -234,6 +237,7 @@ namespace PlainElastic.Net.Queries
         /// optionally with a computation derived from other field values in the doc (numeric ones) using script expression. 
         /// see: http://www.elasticsearch.org/guide/reference/query-dsl/custom-score-query.html
         /// </summary>
+        [Obsolete("Use FunctionScore instead")]
         public Query<T> CustomScore(Func<CustomScoreQuery<T>, CustomScoreQuery<T>> customScoreQuery)
         {
             RegisterJsonPartExpression(customScoreQuery);
@@ -245,6 +249,7 @@ namespace PlainElastic.Net.Queries
         /// This can sometimes be desired since boost value set on specific queries gets normalized, while this query boost factor does not.
         /// see: http://www.elasticsearch.org/guide/reference/query-dsl/custom-boost-factor-query.html
         /// </summary>
+        [Obsolete("Use FunctionScore instead")]
         public Query<T> CustomBoostFactor(Func<CustomBoostFactorQuery<T>, CustomBoostFactorQuery<T>> customBoostFactor)
         {
             RegisterJsonPartExpression(customBoostFactor);

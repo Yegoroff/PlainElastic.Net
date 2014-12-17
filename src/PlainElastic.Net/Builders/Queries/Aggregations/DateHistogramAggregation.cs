@@ -42,6 +42,15 @@ namespace PlainElastic.Net.Queries
         }
 
         /// <summary>
+        /// The time_zone parameter simply sets the pre_zone parameter.
+        /// </summary>
+        public DateHistogramAggregation<T> TimeZone(string timeZone)
+        {
+            RegisterJsonPart("'time_zone': {0}", timeZone.Quotate());
+            return this;
+        }      
+
+        /// <summary>
         /// Sets the post time zone to use when bucketing the values. This timezone will be applied after
         /// rounding off the result.
         /// Can either be in the form of "-10:00" or
@@ -72,12 +81,11 @@ namespace PlainElastic.Net.Queries
         }
 
         /// <summary>
-        /// Sets the factor that will be used to multiply the value with before and divided
-        /// by after the rounding of the results.
+        /// Defines a date format, which will result in returning the dates as formatted strings next to the numeric key values.
         /// </summary>
-		public DateHistogramAggregation<T> Factor(double factor)
+		public DateHistogramAggregation<T> Format(string format)
         {
-            RegisterJsonPart("'factor': {0}", factor.AsString());
+            RegisterJsonPart("'format': {0}", format);
             return this;
         }
 

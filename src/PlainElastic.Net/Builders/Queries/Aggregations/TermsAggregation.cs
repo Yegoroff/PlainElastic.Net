@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
 using PlainElastic.Net.Utils;
 
@@ -10,59 +9,41 @@ namespace PlainElastic.Net.Queries
     /// Allows to specify field aggregations that return the N most frequent terms
 	/// see http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/search-aggregations-bucket-terms-aggregation.html
     /// </summary>
-	public class TermsAggregation<T> : AggregationBase<TermsAggregation<T>, T>
+	public class TermsAggregation<T> : ValueAggregationBase<TermsAggregation<T>, T>
     {
-        private readonly List<string> aggregationFields = new List<string>();
 
         /// <summary>
-        /// The field to execute term aggregation against.
+        /// Allows to control the ordering of the terms aggregations
         /// </summary>
-		public TermsAggregation<T> Field(string fieldName)
+        public TermsAggregation<T> Order(string field, OrderDirection order)
         {
-            RegisterJsonPart("'field': {0}", fieldName.Quotate());            
+            RegisterJsonPart("'order': {{ {0} : {1} }}", field, order.AsString().Quotate());
             return this;
         }
 
-        /// <summary>
-        /// The field to execute term aggregation against.
-        /// </summary>
-		public TermsAggregation<T> Field(Expression<Func<T, object>> field)
-        {
-            return Field(field.GetPropertyPath());
-        }
 
         /// <summary>
-        /// The field to execute term aggregation against.
-        /// </summary>
-		public TermsAggregation<T> FieldOfCollection<TProp>(Expression<Func<T, IEnumerable<TProp>>> collectionField, Expression<Func<TProp, object>> field)
-        {
-            var collectionProperty = collectionField.GetPropertyPath();
-            var fieldName = collectionProperty + "." + field.GetPropertyPath();
-
-            return Field(fieldName);
-        }
-
-        /// <summary>
-        /// Allows to control the ordering of the terms aggregations, to be ordered by count, term, reverse_count or reverse_term. The default is count.
-        /// </summary>
-		public TermsAggregation<T> Order(TermsFacetOrder order = TermsFacetOrder.count)
-        {
-            RegisterJsonPart("'order': {0}", order.AsString().Quotate());
-            return this;
-        }
-
-        /// <summary>
-        /// The number of the most frequent terms to return.
+        /// Sets the size - indicating how many term buckets should be returned (defaults to 10)
         /// </summary>
 		public TermsAggregation<T> Size(int size)
         {
             RegisterJsonPart("'size': {0}", size.AsString());
-
             return this;
         }
 
+        /// <summary>
+        /// Sets the shard_size - indicating the number of term buckets each shard will return to the coordinating node (the
+        /// node that coordinates the search execution). The higher the shard size is, the more accurate the results are.
+        /// </summary>
+        public TermsAggregation<T> ShardSize(int shardSize)
+        {
+            RegisterJsonPart("'shard_size': {0}", shardSize.AsString());
+            return this;
+            
+        }        
+
 		/// <summary>
-		/// It is possible to only return buckets that have a document count that is greater than or equal to a configured limit through the min_doc_count option.
+        /// Set the minimum document count terms should have in order to appear in the response.
 		/// </summary>
 		public TermsAggregation<T> MinDocCount(long minDocCount)
 		{
@@ -70,7 +51,46 @@ namespace PlainElastic.Net.Queries
 			return this;
 		}
 
-		/// <summary>
+        /// <summary>
+        /// Set the minimum document count terms should have on the shard in order to appear in the response.
+        /// </summary>
+        public TermsAggregation<T> ShardMinDocCount(long shardMinDocCount)
+        {
+			RegisterJsonPart("'shard_min_doc_count': {0}", shardMinDocCount.AsString());
+			return this;
+        }
+
+
+        /// <summary>
+        /// Return document count errors per term in the response.
+        /// </summary>
+        public TermsAggregation<T> ShowTermDocCountError(bool showTermDocCountError)
+        {
+            RegisterJsonPart("'show_term_doc_count_error': {0}", showTermDocCountError.AsString());
+			return this;
+        }
+
+        /// <summary>
+        /// Defines collection mode
+        /// </summary>
+        public TermsAggregation<T> CollectMode(CollectMode mode)
+        {
+            RegisterJsonPart("'collect_mode': {0}", mode.AsString().Quotate());
+			return this;
+        }
+
+
+        /// <summary>
+        /// When using scripts, the value type indicates the types of the values the script is generating.
+        /// </summary>
+        public TermsAggregation<T> ValueType(TermsValueType valueType)
+        {
+            RegisterJsonPart("'value_type': {0}", valueType.AsString().Quotate());
+			return this;
+        }
+       
+
+        /// <summary>
 		/// Allows to specify a term that should be included from the terms aggregation request result.
 		/// </summary>
 		public TermsAggregation<T> Include(string includeTerm)
@@ -89,6 +109,7 @@ namespace PlainElastic.Net.Queries
 
 			return this;
 		}
+
 
         /// <summary>
         /// Allows to specify a term that should be excluded from the terms aggregation request result.
@@ -120,45 +141,6 @@ namespace PlainElastic.Net.Queries
 			return this;
 		}
 
-        /// <summary>
-        /// Allow to define a script for terms aggregation to process the actual term
-        /// that will be used in the term facet collection, and also optionally control its inclusion or not.
-        /// </summary>
-		public TermsAggregation<T> Script(string script)
-        {
-            RegisterJsonPart("'script': {0}", script.Quotate());
-            return this;
-        }
-
-        /// <summary>
-        /// Sets a scripting language used for scripts.
-        /// By default used mvel language.
-        /// see: http://www.elasticsearch.org/guide/reference/modules/scripting.html
-        /// </summary>
-		public TermsAggregation<T> Lang(string lang)
-        {
-            RegisterJsonPart("'lang': {0}", lang.Quotate());
-            return this;
-        }
-
-        /// <summary>
-        /// Sets a scripting language used for scripts.
-        /// By default used mvel language.
-        /// see: http://www.elasticsearch.org/guide/reference/modules/scripting.html
-        /// </summary>
-		public TermsAggregation<T> Lang(ScriptLangs lang)
-        {
-            return Lang(lang.AsString());
-        }
-
-        /// <summary>
-        /// Sets parameters used for scripts.
-        /// </summary>
-		public TermsAggregation<T> Params(string paramsBody)
-        {
-            RegisterJsonPart("'params': {0}", paramsBody);
-            return this;
-        }
 
 		protected override string ApplyAggregationBodyJsonTemplate(string body)
 		{

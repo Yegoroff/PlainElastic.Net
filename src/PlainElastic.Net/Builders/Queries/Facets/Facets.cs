@@ -7,6 +7,7 @@ namespace PlainElastic.Net.Queries
     /// Facets provide aggregated data based on a search query.
     /// see http://www.elasticsearch.org/guide/reference/api/search/facets/index.html
     /// </summary>
+    [Obsolete("Facets are deprecated and will be removed in a future release. You are encouraged to migrate to aggregations instead.")]
     public class Facets<T> : QueryBase<Facets<T>>
     {
 

@@ -10,6 +10,7 @@ namespace PlainElastic.Net.Queries
     /// optionally with a computation derived from other field values in the doc (numeric ones) using script expression. 
     /// see: http://www.elasticsearch.org/guide/reference/query-dsl/custom-score-query.html
     /// </summary>
+    [Obsolete("Use Function Score")]
     public class CustomScoreQuery<T> : QueryBase<CustomScoreQuery<T>>
     {
         private bool hasValues;

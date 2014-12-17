@@ -12,7 +12,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                                 .Filters(fs => fs
                                                     .Filter(f => f
                                                         .Boost(2)
-                                                        .Script("script")
+                                                        .Script("script'value'")
                                                         .Custom("Filter")))
                                                 .ScoreMode(CustomFiltersScoreMode.total)
                                                 .Lang(ScriptLangs.python)
@@ -22,7 +22,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
 
         It should_contain_query_part = () => result.ShouldContain("'query': Query".AltQuote());
 
-        It should_contain_filters_part = () => result.ShouldContain("'filters': [ { 'filter': Filter,'boost': 2,'script': 'script' } ]".AltQuote());
+        It should_contain_filters_part = () => result.ShouldContain("'filters': [ { 'filter': Filter,'boost': 2,'script': 'script`value`' } ]".AltQuote());
 
         It should_contain_score_mode_part = () => result.ShouldContain("'score_mode': 'total'".AltQuote());
 
@@ -34,7 +34,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
 
         It should_return_correct_result = () => result.ShouldEqual(("{ 'custom_filters_score': { " +
                                                                     "'query': Query," +
-                                                                    "'filters': [ { 'filter': Filter,'boost': 2,'script': 'script' } ]," +
+                                                                    "'filters': [ { 'filter': Filter,'boost': 2,'script': 'script`value`' } ]," +
                                                                     "'score_mode': 'total'," +
                                                                     "'lang': 'python'," +
                                                                     "'params': script params," +

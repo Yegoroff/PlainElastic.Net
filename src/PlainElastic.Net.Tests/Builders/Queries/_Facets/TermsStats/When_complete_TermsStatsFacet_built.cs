@@ -13,9 +13,9 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                                 .ValueField(f => f.IntProperty)
                                                 .Order(TermsStatsFacetOrder.term)
                                                 .AllTerms(true)
-                                                .Script("Script")
+                                                .Script("Script'value'")
                                                 .ScriptField("Script.Field")
-                                                .ValueScript("Value Script")
+                                                .ValueScript("Value 'Script'")
                                                 .Lang(ScriptLangs.python)
                                                 .Params("test_params")
                                                 .Custom("'custom': {0}".AltQuote(), "123")
@@ -39,11 +39,11 @@ namespace PlainElastic.Net.Tests.Builders.Queries
 
         It should_contain_all_terms_part = () => result.ShouldContain("'all_terms': true".AltQuote());
 
-        It should_contain_script_part = () => result.ShouldContain("'script': 'Script'".AltQuote());
+        It should_contain_script_part = () => result.ShouldContain("'script': 'Script`value`'".AltQuote());
 
         It should_contain_script_field_part = () => result.ShouldContain("'script_field': 'Script.Field'".AltQuote());
 
-        It should_contain_value_script_part = () => result.ShouldContain("'value_script': 'Value Script'".AltQuote());
+        It should_contain_value_script_part = () => result.ShouldContain("'value_script': 'Value `Script`'".AltQuote());
 
         It should_contain_lang_part = () => result.ShouldContain("'lang': 'python'".AltQuote());
 
@@ -66,9 +66,9 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                     "'value_field': 'IntProperty'," +
                     "'order': 'term'," +
                     "'all_terms': true," +
-                    "'script': 'Script'," +
+                    "'script': 'Script`value`'," +
                     "'script_field': 'Script.Field'," +
-                    "'value_script': 'Value Script'," +
+                    "'value_script': 'Value `Script`'," +
                     "'lang': 'python'," +
                     "'params': test_params," +
                     "'custom': 123" +

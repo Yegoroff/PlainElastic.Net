@@ -118,9 +118,7 @@ namespace PlainElastic.Net.Queries
 
         public Sort<T> Script(string script, string type, string @params, SortDirection order)
         {
-            var expression = "{{ '_script': {{ 'script': {0},'type': {1},'params': {2},'order': {3} }} }}".AltQuoteF(script.Quotate(), type.Quotate(), @params, order.AsString().Quotate());
-            RegisterJsonPart(expression);
-
+            RegisterJsonPart("{{ '_script': {{ 'script': {0},'type': {1},'params': {2},'order': {3} }} }}", script.Quotate(), type.Quotate(), @params, order.AsString().Quotate());
             return this;
         }
 

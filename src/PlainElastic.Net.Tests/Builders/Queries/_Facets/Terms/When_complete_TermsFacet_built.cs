@@ -15,7 +15,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                                 .Exclude("One", "Two")
                                                 .Regex("Regex Expression")
                                                 .RegexFlags(RegexFlags.CANON_EQ | RegexFlags.UNICODE_CASE)
-                                                .Script("Script")
+                                                .Script("Script'value'")
                                                 .ScriptField("Script.Field")
                                                 .Custom("'custom': {0}".AltQuote(), "123")
 
@@ -40,7 +40,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
 
         It should_contain_regex_flags = () => result.ShouldContain("'regex_flags': 'CANON_EQ|UNICODE_CASE'".AltQuote());
 
-        It should_contain_script_part = () => result.ShouldContain("'script': 'Script'".AltQuote());
+        It should_contain_script_part = () => result.ShouldContain("'script': 'Script`value`'".AltQuote());
 
         It should_contain_script_field_part = () => result.ShouldContain("'script_field': 'Script.Field'".AltQuote());
 
@@ -63,7 +63,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                     "'exclude': [ 'One','Two' ]," +
                     "'regex': 'Regex Expression'," +
                     "'regex_flags': 'CANON_EQ|UNICODE_CASE'," +
-                    "'script': 'Script'," +
+                    "'script': 'Script`value`'," +
                     "'script_field': 'Script.Field'," +
                     "'custom': 123" +
                 " }," + 

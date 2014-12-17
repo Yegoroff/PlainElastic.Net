@@ -13,7 +13,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                                 .Boost(5)
                                                 .Lang(ScriptLangs.js)
                                                 .Params("'param1' : 2, 'param2' : 3.1".AltQuote())
-                                                .Script("script part")
+                                                .Script("script 'part'")
                                                 .ToString();
 
         It should_return_empty_string = () => 

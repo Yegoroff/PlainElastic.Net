@@ -12,7 +12,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                                 .GeoPoint(null, null)
                                                 .Geohash(null)
                                                 .ValueField(f => f.IntProperty)
-                                                .ValueScript("value script")
+                                                .ValueScript("value `script`")
                                                 .Lang(ScriptLangs.python)
                                                 .Params("script params")
                                                 .DistanceType(DistanceType.plane)

@@ -10,7 +10,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
         Because of = () => result = new ScriptFilter<FieldsTestClass>()
                                                 .Lang(ScriptLangs.js)
                                                 .Params( "{ 'param1' : 2, 'param2' : 3.1 }".AltQuote())
-                                                .Script( "script part")
+                                                .Script( "script 'part'")
                                                 .Cache(true)
                                                 .CacheKey("CacheKey")
                                                 .Name("FilterName")
@@ -25,7 +25,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
             result.ShouldContain("'params': { 'param1' : 2, 'param2' : 3.1 }".AltQuote());
 
         It should_contain_scripts_part = () =>
-            result.ShouldContain("'script': 'script part'".AltQuote());
+            result.ShouldContain("'script': 'script `part`'".AltQuote());
 
         It should_contain_cache_part = () => 
             result.ShouldContain("'_cache': true".AltQuote());
@@ -45,7 +45,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                     "'script': { " +
                                         "'lang': 'js'," +
                                         "'params': { 'param1' : 2, 'param2' : 3.1 }," +
-                                        "'script': 'script part'," +
+                                        "'script': 'script `part`'," +
                                         "'_cache': true," +
                                         "'_cache_key': 'CacheKey'," +
                                         "'_name': 'FilterName'," +

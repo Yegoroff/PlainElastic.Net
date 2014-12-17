@@ -12,8 +12,8 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                                 .Field(f => f.StringProperty)
                                                 .KeyField(f=> f.IntProperty)
                                                 .ValueField(f => f.EnumProperty)
-                                                .KeyScript("Key Script")
-                                                .ValueScript("Value Script")
+                                                .KeyScript("Key 'Script'")
+                                                .ValueScript("Value 'Script'")
                                                 .Ranges(r => r
                                                     .FromTo(from: 1, to: 5)
                                                     .FromTo(from: 10)
@@ -34,9 +34,9 @@ namespace PlainElastic.Net.Tests.Builders.Queries
         
         It should_contain_value_field_part = () => result.ShouldContain("'value_field': 'EnumProperty'".AltQuote());
 
-        It should_contain_key_script_part = () => result.ShouldContain("'key_script': 'Key Script'".AltQuote());
+        It should_contain_key_script_part = () => result.ShouldContain("'key_script': 'Key `Script`'".AltQuote());
         
-        It should_contain_value_script_part = () => result.ShouldContain("'value_script': 'Value Script'".AltQuote());
+        It should_contain_value_script_part = () => result.ShouldContain("'value_script': 'Value `Script`'".AltQuote());
 
         It should_contain_scope_part = () => result.ShouldContain("'scope': 'scope'".AltQuote());
 
@@ -59,8 +59,8 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                     "'field': 'StringProperty'," +
                     "'key_field': 'IntProperty'," +
                     "'value_field': 'EnumProperty'," +
-                    "'key_script': 'Key Script'," +
-                    "'value_script': 'Value Script'," +
+                    "'key_script': 'Key `Script`'," +
+                    "'value_script': 'Value `Script`'," +
                     "'ranges': [ " +
                         "{ 'from': 1, 'to': 5 }," +
                         "{ 'from': 10 }," +

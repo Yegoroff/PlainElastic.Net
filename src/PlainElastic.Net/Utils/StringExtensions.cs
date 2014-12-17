@@ -36,11 +36,12 @@ namespace PlainElastic.Net.Utils
         }
 
         /// <summary>
-        /// Replaces ' by " quotation sign.
+        /// Replaces ' by " quotation sign and ` by '.
+        /// Useful for JSON declarations.
         /// </summary>
         public static string AltQuote(this string quotedString)
         {
-            return quotedString.Replace('\'', '\"');
+            return quotedString.Replace('\'', '\"').Replace("`", "\'");
         }
 
         /// <summary>

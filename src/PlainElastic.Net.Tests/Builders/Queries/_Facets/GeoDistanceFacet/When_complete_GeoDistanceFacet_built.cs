@@ -13,7 +13,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                                 .GeoPoint(lat:10, lon:20)
                                                 .Geohash("ghash")
                                                 .ValueField(f => f.IntProperty)
-                                                .ValueScript("value script")
+                                                .ValueScript("value 'script'")
                                                 .Lang(ScriptLangs.python)
                                                 .Params("script params")
                                                 .DistanceType(DistanceType.plane)
@@ -34,7 +34,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
 
         It should_contain_value_field_part = () => result.ShouldContain("'value_field': 'IntProperty'".AltQuote());
 
-        It should_contain_value_script_part = () => result.ShouldContain("'value_script': 'value script'".AltQuote());
+        It should_contain_value_script_part = () => result.ShouldContain("'value_script': 'value `script`'".AltQuote());
 
         It should_contain_lang_part = () => result.ShouldContain("'lang': 'python'".AltQuote());
 
@@ -59,7 +59,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                         "'StringProperty': { 'lat': 10,'lon': 20 }," +
                         "'StringProperty': 'ghash'," +
                         "'value_field': 'IntProperty'," +
-                        "'value_script': 'value script'," +
+                        "'value_script': 'value `script`'," +
                         "'lang': 'python'," +
                         "'params': script params," +
                         "'distance_type': 'plane'," +

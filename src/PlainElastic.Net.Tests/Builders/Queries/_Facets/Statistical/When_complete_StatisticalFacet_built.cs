@@ -10,7 +10,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
         Because of = () => result = new StatisticalFacet<FieldsTestClass>()
                                                 .FacetName("TestFacet")
                                                 .Field(f => f.StringProperty)
-                                                .Script("Script")
+                                                .Script("Script'value'")
                                                 .Lang(ScriptLangs.python)
                                                 .Params("test_params")
                                                 .Custom("'custom': {0}".AltQuote(), "123")
@@ -26,7 +26,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
 
         It should_contain_field_part = () => result.ShouldContain("'field': 'StringProperty'".AltQuote());
 
-        It should_contain_script_part = () => result.ShouldContain("'script': 'Script'".AltQuote());
+        It should_contain_script_part = () => result.ShouldContain("'script': 'Script`value`'".AltQuote());
 
         It should_contain_lang_part = () => result.ShouldContain("'lang': 'python'".AltQuote());
 
@@ -46,7 +46,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
             "'TestFacet': { " +
                 "'statistical': { " +
                     "'field': 'StringProperty'," +
-                    "'script': 'Script'," +
+                    "'script': 'Script`value`'," +
                     "'lang': 'python'," +
                     "'params': test_params," +
                     "'custom': 123" +

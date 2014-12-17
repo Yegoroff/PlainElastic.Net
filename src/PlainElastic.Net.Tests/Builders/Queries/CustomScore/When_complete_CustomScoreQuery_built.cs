@@ -12,7 +12,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                                 .Boost(5)
                                                 .Lang(ScriptLangs.js)
                                                 .Params( "{ 'param1' : 2, 'param2' : 3.1 }".AltQuote())
-                                                .Script( "script part")
+                                                .Script( "script 'part'")
                                                 .Custom("{ custom part }")
                                                 .ToString();
 
@@ -30,7 +30,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
             result.ShouldContain("'params': { 'param1' : 2, 'param2' : 3.1 }".AltQuote());
 
         It should_contain_scripts_part = () =>
-            result.ShouldContain("'script': 'script part'".AltQuote());
+            result.ShouldContain("'script': 'script `part`'".AltQuote());
 
         It should_contain_custom_part = () =>
             result.ShouldContain("{ custom part }".AltQuote());
@@ -43,7 +43,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
                                         "'boost': 5," +
                                         "'lang': 'js'," +
                                         "'params': { 'param1' : 2, 'param2' : 3.1 }," +
-                                        "'script': 'script part'," +
+                                        "'script': 'script `part`'," +
                                         "{ custom part } " +
                                    "} " +
                                "}").AltQuote());

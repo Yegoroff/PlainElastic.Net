@@ -136,7 +136,7 @@ namespace PlainSample
         private static void PrintDeleteResult(DeleteResult deleteResult)
         {
             Console.WriteLine("Delete Results:");
-            Console.WriteLine(" ok: " + deleteResult.ok);
+            Console.WriteLine(" acknowledged: " + deleteResult.acknowledged);
             Console.WriteLine(" _index: " + deleteResult._index);
             Console.WriteLine(" _type: " + deleteResult._type);
             Console.WriteLine(" _id: " + deleteResult._id);

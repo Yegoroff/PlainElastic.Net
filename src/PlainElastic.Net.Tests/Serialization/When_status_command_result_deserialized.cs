@@ -10,7 +10,6 @@ namespace PlainElastic.Net.Tests.Serialization
         #region Status Command Json Result
         private static readonly string statusCommandJsonResult =
 @"{
-    'ok': true,
     '_shards': {
         'total': 5,
         'successful': 3,
@@ -136,9 +135,6 @@ namespace PlainElastic.Net.Tests.Serialization
         Because of = () =>
             result = jsonSerializer.ToStatusResult(statusCommandJsonResult.AltQuote());
             
-
-        It should_contain_ok_true = () =>
-            result.ok.ShouldBeTrue();
 
         It should_contain_correct_shards_total = () =>
             result._shards.total.ShouldEqual(5);

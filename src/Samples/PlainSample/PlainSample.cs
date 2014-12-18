@@ -241,8 +241,7 @@ namespace PlainSample
 
             Console.WriteLine("Delete RESULT: \r\n{0} \r\n".F(result));
 
-            Console.WriteLine("Parsed Delete Results");
-            Console.WriteLine(" ok: " + deleteResult.ok);
+            Console.WriteLine("Parsed Delete Results");          
             Console.WriteLine(" acknowledged: " + deleteResult.acknowledged);
             Console.WriteLine(" _index: " + deleteResult._index);
             Console.WriteLine(" _type: " + deleteResult._type);

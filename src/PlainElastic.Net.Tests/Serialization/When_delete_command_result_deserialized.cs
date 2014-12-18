@@ -10,7 +10,6 @@ namespace PlainElastic.Net.Tests.Serialization
         #region Delete Command Json Result
         private static readonly string deleteCommandJsonResult =
 @"{
-    'ok': true,
     'found': true,
     '_index': 'twitter',
     '_type': 'tweet',
@@ -26,10 +25,6 @@ namespace PlainElastic.Net.Tests.Serialization
         Because of = () =>
             result = jsonSerializer.ToDeleteResult(deleteCommandJsonResult.AltQuote());
             
-
-        It should_contain_ok_true = () =>
-            result.ok.ShouldBeTrue();
-
         It should_contain_correct_index = () =>
             result._index.ShouldEqual("twitter");
 

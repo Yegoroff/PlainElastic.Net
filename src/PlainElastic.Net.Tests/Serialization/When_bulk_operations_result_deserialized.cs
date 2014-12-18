@@ -18,7 +18,7 @@ namespace PlainElastic.Net.Tests.Serialization
                 '_type': 'type1',
                 '_id': '2',
                 '_version': 1,
-                'ok': true
+                'status': 201
             }
         },
         {
@@ -27,7 +27,7 @@ namespace PlainElastic.Net.Tests.Serialization
                 '_type': 'type1',
                 '_id': '3',
                 '_version': 1,
-                'ok': true
+                'status': 201
             }
         },
         {
@@ -36,7 +36,7 @@ namespace PlainElastic.Net.Tests.Serialization
                 '_type': 'type1',
                 '_id': '4',
                 '_version': 1,
-                'ok': true
+                'status': 201
             }
         },
         {
@@ -53,8 +53,10 @@ namespace PlainElastic.Net.Tests.Serialization
                 '_type': 'type1',
                 '_id': '1',
                 '_version': 2,
-                'ok': true
+                'status': 404,
+                'found': false
             }
+
         }
     ]
 }".AltQuote();
@@ -89,8 +91,8 @@ namespace PlainElastic.Net.Tests.Serialization
         It should_contain_first_index_item_with_version_1 = () =>
            result.items[0].Result._version.ShouldEqual(1);
 
-        It should_contain_first_index_item_with_ok_true = () =>
-           result.items[0].Result.ok.ShouldBeTrue();
+        It should_contain_first_index_item_with_status_201 = () =>
+           result.items[0].Result.status.ShouldEqual(201);
 
 
         It should_contain_second_index_item = () =>

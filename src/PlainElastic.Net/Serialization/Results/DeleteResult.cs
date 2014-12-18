@@ -2,8 +2,6 @@
 {
     public class DeleteResult : BaseResult
     {
-        public bool ok;
-
         public bool acknowledged;
 
         public string _index;

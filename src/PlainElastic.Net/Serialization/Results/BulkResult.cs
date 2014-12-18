@@ -45,7 +45,8 @@ namespace PlainElastic.Net.Serialization
             public string _type;
             public string _id;
             public int _version;
-            public bool ok;
+            public int status;
+            public bool? found;
             public string error;
         }
 

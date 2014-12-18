@@ -4,7 +4,6 @@ namespace PlainElastic.Net.Serialization
 {
     public class StatusResult
     {
-        public bool ok;
         public ShardsResult _shards;
         public Dictionary<string, IndexStatus> indices;
 

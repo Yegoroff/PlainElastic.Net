@@ -11,7 +11,7 @@
 
         public long _version;
 
-        public bool exists;
+        public bool found;
 
         public T _source;
 

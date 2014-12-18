@@ -9,5 +9,7 @@
         public string _id;
 
         public long _version;
+
+        public bool created;
     }
 }

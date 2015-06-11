@@ -74,6 +74,31 @@ namespace PlainElastic.Net
         }
 
         /// <summary>
+        /// Builds a Bulk JSON that allows to update custom Json document in specified Index.
+        /// If no index and type parameters specified, they will be taken from BulkCommand parameters.
+        /// </summary>
+        /// <param name="data">The document to update in ES index.</param>
+        /// <param name="id">The document id.</param>
+        /// <param name="index">The ES index name, if not specified will be taken from BulkCommand endpoint address.</param>
+        /// <param name="type">The ES type name, if not specified will be taken from BulkCommand endpoint address.</param>
+        /// <param name="options">The bulk operation options.</param>
+        /// <param name="customOptions">The custom JSON options for create operation.
+        ///  Options should be comma separated string of values:
+        /// <c>"_index": "test", "_type": "first", "_id": 1, "_version": 100</c>
+        /// </param>
+        public string Update(object data, string id, string index = null, string type = null, 
+                             BulkOperationOptions options = null, string customOptions = null)
+        {
+            string optionsJson = options == null ? "" : options.ToString();
+
+            var parameters = BuildOperationParameters(index, type, id, optionsJson, customOptions);
+
+            var command = "{{ 'update': {{ {0} }} }}\n".AltQuoteF(parameters);
+            var dataJson = data as string ?? serializer.Serialize(data);
+            return command + dataJson + "\n";
+        }
+
+        /// <summary>
         /// Builds a Bulk JSON that allows to remove custom Json document from specified Index.
         /// If no index and type parameters specified, they will be taken from BulkCommand parameters.
         /// </summary>

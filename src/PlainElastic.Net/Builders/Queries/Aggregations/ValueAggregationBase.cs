@@ -5,6 +5,8 @@ using PlainElastic.Net.Utils;
 
 namespace PlainElastic.Net.Queries
 {
+    using PlainElastic.Net.Builders;
+
     /// <summary>
 	/// A base class for all multi- and single-value aggregations
     /// </summary>
@@ -78,6 +80,5 @@ namespace PlainElastic.Net.Queries
             RegisterJsonPart("'params': {0}", paramsBody);
             return (TAggregation)this;
         }
-
     }
 }

@@ -31,6 +31,16 @@ namespace PlainElastic.Net.Queries
         }
 
         /// <summary>
+        /// Defines a multi bucket aggregations where each bucket is associated with a filter. Each bucket will collect all documents that match its associated filter.
+        /// see https://www.elasticsearch.org/guide/en/elasticsearch/reference/current/search-aggregations-bucket-filters-aggregation.html
+        /// </summary>
+		public Aggregations<T> Filters(Func<FiltersAggregation<T>, FiltersAggregation<T>> filtersAggregation)
+        {
+			RegisterJsonPartExpression(filtersAggregation);
+            return this;
+        }
+
+        /// <summary>
 		/// A multi-bucket value source based aggregation that enables the user to define a set of ranges - each representing a bucket. During the aggregation process, the values extracted from each document will be checked against each bucket range and "bucket" the relevant/matching document. Note that this aggregration includes the from value and excludes the to value for each range.
 		/// see http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/search-aggregations-bucket-range-aggregation.html
         /// </summary>

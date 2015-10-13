@@ -13,11 +13,11 @@ namespace PlainElastic.Net
         private IWebProxy proxy;
         private bool proxySet;
 
-        public ElasticConnection(string defaultHost = null, int defaultPort = 9200)
+        public ElasticConnection(string defaultHost = null, int defaultPort = 9200, int timeoutInMilliseconds = 60 * 1000)
         {
             DefaultHost = defaultHost;
             DefaultPort = defaultPort;
-            Timeout = 60 * 1000; // 60 seconds
+            Timeout = timeoutInMilliseconds;
         }
 
         

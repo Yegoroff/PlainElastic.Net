@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
@@ -13,15 +13,30 @@ namespace PlainElastic.Net
         private IWebProxy proxy;
         private bool proxySet;
 
+        public ElasticConnection(Uri uri)
+        {
+            DefaultHost = uri.Host;
+            DefaultPort = uri.Port;
+            DefaultScheme = uri.Scheme;
+
+            if (!string.IsNullOrEmpty(uri.UserInfo))
+            {
+                var userInfoSegements = uri.UserInfo.Split(':');
+                Credentials = new NetworkCredential(userInfoSegements[0], userInfoSegements[1]);
+            }
+        }
+
         public ElasticConnection(string defaultHost = null, int defaultPort = 9200, int timeoutInMilliseconds = 60 * 1000)
         {
             DefaultHost = defaultHost;
             DefaultPort = defaultPort;
+            DefaultScheme = "http";
             Timeout = timeoutInMilliseconds;
         }
-
         
         public string DefaultHost { get; set; }
+
+        public string DefaultScheme { get; set; }
 
         public int DefaultPort { get; set; }
 
@@ -256,7 +271,7 @@ namespace PlainElastic.Net
             if (Uri.IsWellFormedUriString(command, UriKind.Absolute))
                 return command;
 
-            return @"http://{0}:{1}/{2}".F(DefaultHost, DefaultPort, command);
+            return @"{0}://{1}:{2}/{3}".F(DefaultScheme, DefaultHost, DefaultPort, command);
         }
     }
 }

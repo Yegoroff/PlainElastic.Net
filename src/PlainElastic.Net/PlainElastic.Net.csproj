@@ -300,6 +300,7 @@
     <Compile Include="Connection\OperationResult.cs" />
     <Compile Include="Connection\IElasticConnection.cs" />
     <Compile Include="Builders\Mappings\MapBuilder.cs" />
+    <Compile Include="Connection\ThriftConnection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Builders\Queries\Filters\AndFilter.cs" />
     <Compile Include="Builders\Queries\BoolQuery.cs" />

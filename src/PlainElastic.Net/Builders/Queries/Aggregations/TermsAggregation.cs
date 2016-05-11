@@ -11,7 +11,6 @@ namespace PlainElastic.Net.Queries
     /// </summary>
 	public class TermsAggregation<T> : ValueAggregationBase<TermsAggregation<T>, T>
     {
-
         /// <summary>
         /// Allows to control the ordering of the terms aggregations
         /// </summary>

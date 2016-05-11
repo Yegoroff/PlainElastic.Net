@@ -14,7 +14,7 @@ namespace PlainElastic.Net.Queries
         /// Allows to specify field aggregations that return the N most frequent terms
 		/// see http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/search-aggregations-bucket-terms-aggregation.html
         /// </summary>
-		public Aggregations<T> Terms(Func<TermsAggregation<T>, TermsAggregation<T>> termsAggregation)
+        public Aggregations<T> Terms(Func<TermsAggregation<T>, TermsAggregation<T>> termsAggregation)
         {
 			RegisterJsonPartExpression(termsAggregation);
             return this;
@@ -27,6 +27,16 @@ namespace PlainElastic.Net.Queries
 		public Aggregations<T> Filter(Func<FilterAggregation<T>, FilterAggregation<T>> filterAggregation)
         {
 			RegisterJsonPartExpression(filterAggregation);
+            return this;
+        }
+
+        /// <summary>
+        /// Defines a multi bucket aggregations where each bucket is associated with a filter. Each bucket will collect all documents that match its associated filter.
+        /// see https://www.elasticsearch.org/guide/en/elasticsearch/reference/current/search-aggregations-bucket-filters-aggregation.html
+        /// </summary>
+		public Aggregations<T> Filters(Func<FiltersAggregation<T>, FiltersAggregation<T>> filtersAggregation)
+        {
+			RegisterJsonPartExpression(filtersAggregation);
             return this;
         }
 
@@ -179,6 +189,18 @@ namespace PlainElastic.Net.Queries
 		public Aggregations<T> DateHistogram(Func<DateHistogramAggregation<T>, DateHistogramAggregation<T>> dateHistogramAggregation)
         {
 			RegisterJsonPartExpression(dateHistogramAggregation);
+            return this;
+        }
+
+        /// <summary>
+        /// A top hits aggregation that return the N top listed documents of an aggregation.
+        /// see https://www.elasticsearch.org/guide/en/elasticsearch/reference/current/search-aggregations-metrics-top-hits-aggregation.html
+        /// </summary>
+        /// <param name="topHitsAggregation"></param>
+        /// <returns></returns>
+        public Aggregations<T> TopHits(Func<TopHitsAggregation<T>, TopHitsAggregation<T>> topHitsAggregation)
+        {
+            RegisterJsonPartExpression(topHitsAggregation);
             return this;
         }
 

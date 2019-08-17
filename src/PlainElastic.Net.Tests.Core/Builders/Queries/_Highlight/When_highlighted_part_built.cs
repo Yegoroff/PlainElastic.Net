@@ -58,7 +58,7 @@ namespace PlainElastic.Net.Tests.Builders.Queries
 
         It should_contain_StringProperty_field = () => result.ShouldContain("{ 'StringProperty': { 'number_of_fragments': 8,'encoder': 'html','order': 'score' } }".AltQuote());
 
-        It should_contain_CustomField_field = () => result.ShouldContain("{ 'CustomField': {  } }".AltQuote());
+        It should_contain_CustomField_field = () => result.Contains("{ 'CustomField': {  } }".AltQuote());
 
         It should_return_correct_JSON = () => result.ShouldEqual(("'highlight': { " +
                                                                     "'pre_tags': ['<One>','<Two>']," +

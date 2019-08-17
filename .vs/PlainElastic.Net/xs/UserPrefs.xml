@@ -1,0 +1,31 @@
+﻿<Properties StartupConfiguration="{B6D99C2C-51AD-4BF0-850E-1C60A293EE3E}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="src/Samples/PlainSample.Core/ElasticClient.cs">
+    <Files>
+      <File FileName="src/PlainElastic.Net.Core/obj/Debug/netstandard2.0/PlainElastic.Net.Core.AssemblyInfo.cs" />
+      <File FileName="src/Samples/PlainSample.Core/ElasticClient.cs" Line="7" Column="2" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="PlainElastic.Net" expanded="True">
+            <Node name="PlainElastic.Tests" selected="True" />
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.UnitTesting.TestPad">
+        <State name="__root__">
+          <Node name="PlainElastic.Net" expanded="True">
+            <Node name="PlainElastic.Tests" selected="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.PlainElastic.Tests FirstBuild="True" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

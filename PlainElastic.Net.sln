@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlainElastic.Net", "src\PlainElastic.Net.Core\PlainElastic.Net.csproj", "{EDC268D0-3613-4BEB-A22F-7AC4AB8A4761}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlainElastic.Net.Tests.Core", "src\PlainElastic.Net.Tests.Core\PlainElastic.Net.Tests.Core.csproj", "{32337783-D3F3-47B5-ACB6-C2F5C8810483}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlainSample.Core", "src\Samples\PlainSample.Core\PlainSample.Core.csproj", "{B2963301-DAC1-44C8-B9DC-F49E334332B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlainElastic.Tests", "PlainElastic.Tests\PlainElastic.Tests.csproj", "{B6D99C2C-51AD-4BF0-850E-1C60A293EE3E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,14 +17,14 @@ Global
 		{EDC268D0-3613-4BEB-A22F-7AC4AB8A4761}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EDC268D0-3613-4BEB-A22F-7AC4AB8A4761}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EDC268D0-3613-4BEB-A22F-7AC4AB8A4761}.Release|Any CPU.Build.0 = Release|Any CPU
-		{32337783-D3F3-47B5-ACB6-C2F5C8810483}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{32337783-D3F3-47B5-ACB6-C2F5C8810483}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{32337783-D3F3-47B5-ACB6-C2F5C8810483}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{32337783-D3F3-47B5-ACB6-C2F5C8810483}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B2963301-DAC1-44C8-B9DC-F49E334332B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B2963301-DAC1-44C8-B9DC-F49E334332B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2963301-DAC1-44C8-B9DC-F49E334332B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2963301-DAC1-44C8-B9DC-F49E334332B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6D99C2C-51AD-4BF0-850E-1C60A293EE3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6D99C2C-51AD-4BF0-850E-1C60A293EE3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6D99C2C-51AD-4BF0-850E-1C60A293EE3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6D99C2C-51AD-4BF0-850E-1C60A293EE3E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

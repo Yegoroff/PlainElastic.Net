@@ -31,8 +31,13 @@ namespace PlainElastic.Net.Tests
         }
 
         public static bool ShouldEqual<T>(this T current, T other)
-        {
-                return current.Equals(other);
+		{
+			if (current == null)
+				if (other == null)
+					return true;
+				else
+					return false;
+			return current.Equals(other);
         }
 
         public static bool ShouldNotBeNull<T>(this T current) where T : class

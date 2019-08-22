@@ -9,12 +9,12 @@ namespace PlainElastic.Net.Tests.Integration.Connection
         Establish context = () =>
         {
             connection = new ElasticConnection("localhost", 9200);
-            connection.Put("/test/foo/1", "{ 'field': 'value' }".AltQuote());
+            connection.Put("test/foo/1", "{ 'field': 'value' }".AltQuote());
         };
 
 
         Because of = () => 
-            result = connection.HeadAsync(command: "/test/foo").Result;
+            result = connection.HeadAsync(command: "test/foo").Result;
 
         It should_return_empty_result = () =>
             result.Result.ShouldBeEmpty();

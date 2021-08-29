@@ -3,9 +3,11 @@ using Machine.Specifications;
 
 namespace PlainElastic.Net.Tests.Connection
 {
+
     [Subject(typeof(ElasticConnection))]
     class When_CreateRequest_with_custom_Timeout_called
     {
+
         Establish context = () => {
             timeout = 1000;
             connection = new TestableConnection { Timeout = timeout };
@@ -20,5 +22,9 @@ namespace PlainElastic.Net.Tests.Connection
         private static HttpWebRequest result;
         private static TestableConnection connection;
         private static int timeout;
+
+        public When_CreateRequest_with_custom_Timeout_called()
+        {
+        }
     }
 }

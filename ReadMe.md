@@ -1,7 +1,7 @@
 PlainElastic.Net
 =======
 
-The really plain Elastic Search .Net client.
+The really plain Elastic Search .Net core client.
 
 
 * [Idea](#plain-idea)

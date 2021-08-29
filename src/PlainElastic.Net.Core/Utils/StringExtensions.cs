@@ -40,7 +40,7 @@ namespace PlainElastic.Net.Utils
         /// Useful for JSON declarations.
         /// </summary>
         public static string AltQuote(this string quotedString)
-        {
+            {
             return quotedString.Replace('\'', '\"').Replace("`", "\'");
         }
 
